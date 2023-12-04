@@ -10,7 +10,8 @@ import java.util.List;
 public class DataModel {
   public static final String universityProgramsPath =
       "assets/data/programs.json";
-  public static List<UniversityProgram> generateProgramList()
+
+public static List<UniversityProgram> generateProgramList()
       throws IOException {
     FileReader reader = new FileReader(universityProgramsPath);
 

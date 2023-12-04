@@ -43,3 +43,7 @@
     - Webscraper
     - PERT Chart
 
+Github CLI
+Git
+Maven
+Github Desktop
