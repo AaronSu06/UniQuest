@@ -1,5 +1,11 @@
 # Post Secondary App
 
+**STUFF TO INSTALL:**
+- Github CLI
+- Git
+- Maven
+- Github Desktop
+ 
 **Features:**
 
 - Favouriting/Saving Universities
@@ -43,7 +49,3 @@
     - Webscraper
     - PERT Chart
 
-Github CLI
-Git
-Maven
-Github Desktop
