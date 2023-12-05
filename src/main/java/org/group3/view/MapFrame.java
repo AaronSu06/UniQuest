@@ -3,14 +3,13 @@ package org.group3.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -43,7 +42,7 @@ public class MapFrame extends JFrame {
   private JPanel sideBar = new JPanel();
 
   JPanel universitySearchPanel = new JPanel();
-  JTextField universitySearchField = new JTextField();
+  JTextField universitySearchField = new JTextField("Enter a University...");
   JButton universitySearchSubmit = new JButton();
 
   // Sidebar content
@@ -146,6 +145,20 @@ public class MapFrame extends JFrame {
     // Get rid of the borders and add some padding
     universitySearchField.setBorder(
         BorderFactory.createEmptyBorder(0, 5, 0, 5));
+
+    // Remove text when gained focus -> get's rid of default text
+    universitySearchField.addFocusListener(new FocusListener() {
+      public void focusGained(FocusEvent e) {
+        universitySearchField.setText("");
+      }
+
+      public void focusLost(FocusEvent e) {
+        if (universitySearchField.getText().trim().isEmpty()) {
+          universitySearchField.setText("Search Schools...");
+        }
+      }
+    });
+
     GUIUtils.setFontRenderingHints(universitySearchField);
 
     // Submit button
@@ -176,20 +189,22 @@ public class MapFrame extends JFrame {
     sideBarContentPanel.setOpaque(false);
 
     // Title and address
-    universityTitle.setPreferredSize(new Dimension(150, 80));
-    universityTitle.setText("University Of Waterloo");
+    universityTitle.setBounds(0,0,150,10);
+    universityTitle.setText("York University");
     universityTitle.setFont(new Font("Sans Serif", Font.BOLD, 20));
     // So that text is contained and wrapped
     universityTitle.setLineWrap(true);
     universityTitle.setWrapStyleWord(true);
+    universityTitle.setEditable(false);
     GUIUtils.setFontRenderingHints(universityTitle);
     sideBarContentPanel.add(universityTitle);
 
-    universityAddress.setPreferredSize(new Dimension(150, 80));
-    universityAddress.setText("Ancient China Road 100");
+    universityAddress.setBounds(0,0,150,80);
+    universityAddress.setText("200 University Ave W, Waterloo ON N2L 3G1, Canada");
     universityAddress.setFont(new Font("Sans Serif", Font.PLAIN, 14));
     universityAddress.setLineWrap(true);
     universityAddress.setWrapStyleWord(true);
+    universityAddress.setEditable(false);
     GUIUtils.setFontRenderingHints(universityAddress);
     sideBarContentPanel.add(universityAddress);
 
