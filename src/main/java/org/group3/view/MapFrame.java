@@ -3,21 +3,20 @@ package org.group3.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Rectangle;
 import java.io.File;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.MouseInputListener;
-import javax.swing.text.Caret;
-import javax.swing.text.DefaultCaret;
-import javax.swing.text.JTextComponent;
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
 import org.jxmapviewer.cache.FileBasedLocalCache;
@@ -43,11 +42,20 @@ public class MapFrame extends JFrame {
   // Sidebar
   private JPanel sideBar = new JPanel();
 
-  JPanel universitySearch = new JPanel();
+  JPanel universitySearchPanel = new JPanel();
   JTextField universitySearchField = new JTextField();
   JButton universitySearchSubmit = new JButton();
 
-  JLabel universityName = new JLabel();
+  // Sidebar content
+  JPanel sideBarContentPanel = new JPanel();
+
+  JTextArea universityTitle = new JTextArea();
+  JTextArea universityAddress = new JTextArea();
+
+  JPanel programsPanel = new JPanel();
+  JScrollPane programsScrollPane;
+
+  JButton favouriteButton = new JButton("Favourite");
 
   public MapFrame() {
     addMap();
@@ -86,13 +94,13 @@ public class MapFrame extends JFrame {
     addMapControls();
 
     /* ==== Adding to the Container ==== */
-    mapViewer.setBounds(2, 0, 1080, 720);
+    mapViewer.setBounds(2, 0, 1080, 700);
 
     mapContainer.add(mapViewer);
 
     mapContainer.setLayout(null);
 
-    mapContainer.setBounds(198, 0, 1082, 720);
+    mapContainer.setBounds(198, 45, 1082, 675);
     mapContainer.setBackground(new Color(168, 168, 168, 255));
     add(mapContainer);
   }
@@ -113,49 +121,98 @@ public class MapFrame extends JFrame {
 
   public void addSideBar() {
     sideBar.setLayout(null);
-    sideBar.setBounds(0, 0, 198, 720);
+    sideBar.setBounds(0, 45, 198, 700);
     sideBar.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     sideBar.setBackground(Color.WHITE);
 
     addUniversitySearchBar();
+    addSideBarContent();
 
     add(sideBar);
   }
 
   // University search bar
   public void addUniversitySearchBar() {
-    universitySearch.setBounds(24, 16, 150, 32);
-    universitySearch.setBackground(AppColors.LIGHT_GREEN);
-    universitySearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-    universitySearch.setLayout(null);
+    universitySearchPanel.setBounds(24, 35, 150, 32);
+    universitySearchPanel.setBackground(AppColors.LIGHT_GREEN);
+    universitySearchPanel.setBorder(
+        BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    universitySearchPanel.setLayout(null);
 
     // Search Field
     universitySearchField.setBounds(0, 0, 118, 32);
-    universitySearchField.setOpaque(false);
+    universitySearchField.setOpaque(true);
+    universitySearchField.setBackground(AppColors.LIGHT_GREEN);
     // Get rid of the borders and add some padding
     universitySearchField.setBorder(
-        BorderFactory.createEmptyBorder(5, 5, 0, 5));
+        BorderFactory.createEmptyBorder(0, 5, 0, 5));
+    GUIUtils.setFontRenderingHints(universitySearchField);
 
     // Submit button
     universitySearchSubmit.setIcon(new ImageIcon("assets/images/search.png"));
     universitySearchSubmit.setSelectedIcon(
         new ImageIcon("assets/images/search.png"));
-    universitySearchSubmit.setBackground(AppColors.MUTED_GREEN);
+    universitySearchSubmit.setBackground(AppColors.BUTTON_NORMAL);
 
     // Get rid of the border
     universitySearchSubmit.setBorder(
         BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-    // Get rid of java's awful 2001 default button styling
+    // Replace button styling
     universitySearchSubmit.setUI(new CustomButtonUI());
     universitySearchSubmit.setBounds(118, 0, 32, 32);
 
     universitySearchSubmit.addActionListener(
         (e) -> System.out.println("Hi (Submit University)"));
 
-    universitySearch.add(universitySearchField);
-    universitySearch.add(universitySearchSubmit);
+    universitySearchPanel.add(universitySearchField);
+    universitySearchPanel.add(universitySearchSubmit);
 
-    sideBar.add(universitySearch);
+    sideBar.add(universitySearchPanel);
+  }
+
+  public void addSideBarContent() {
+    sideBarContentPanel.setBounds(24, 75, 150, 600);
+    sideBarContentPanel.setOpaque(false);
+
+    // Title and address
+    universityTitle.setPreferredSize(new Dimension(150, 80));
+    universityTitle.setText("University Of Waterloo");
+    universityTitle.setFont(new Font("Sans Serif", Font.BOLD, 20));
+    // So that text is contained and wrapped
+    universityTitle.setLineWrap(true);
+    universityTitle.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(universityTitle);
+    sideBarContentPanel.add(universityTitle);
+
+    universityAddress.setPreferredSize(new Dimension(150, 80));
+    universityAddress.setText("Ancient China Road 100");
+    universityAddress.setFont(new Font("Sans Serif", Font.PLAIN, 14));
+    universityAddress.setLineWrap(true);
+    universityAddress.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(universityAddress);
+    sideBarContentPanel.add(universityAddress);
+
+    // Add programs
+    programsPanel.setBackground(AppColors.LIGHT_GREEN);
+    programsScrollPane = new JScrollPane(programsPanel);
+    programsScrollPane.setPreferredSize(new Dimension(150, 320));
+    programsScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+    sideBarContentPanel.add(programsScrollPane);
+
+    // Add the favourite button
+    favouriteButton.setBackground(AppColors.BUTTON_NORMAL);
+    // Change button appearance
+    favouriteButton.setUI(new CustomButtonUI());
+    // Turn on font anti-aliasing
+    GUIUtils.setFontRenderingHints(favouriteButton);
+    // Set the size
+    favouriteButton.setPreferredSize(new Dimension(150, 45));
+    // Remove border
+    favouriteButton.setBorder(new EmptyBorder(0, 0, 0, 0));
+    sideBarContentPanel.add(favouriteButton);
+
+    // Add the content to the sidebar
+    sideBar.add(sideBarContentPanel);
   }
 }
