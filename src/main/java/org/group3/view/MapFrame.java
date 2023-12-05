@@ -129,21 +129,27 @@ public class MapFrame extends JFrame {
     universitySearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     universitySearch.setLayout(null);
 
+    // Search Field
     universitySearchField.setBounds(0, 0, 118, 32);
     universitySearchField.setOpaque(false);
+    // Get rid of the borders and add some padding
     universitySearchField.setBorder(
         BorderFactory.createEmptyBorder(5, 5, 0, 5));
-    universitySearchField.setCaret(new DefaultCaret());
-    universitySearchField.setCaretPosition(0);
 
+    // Submit button
     universitySearchSubmit.setIcon(new ImageIcon("assets/images/search.png"));
     universitySearchSubmit.setSelectedIcon(
         new ImageIcon("assets/images/search.png"));
     universitySearchSubmit.setBackground(AppColors.MUTED_GREEN);
+
+    // Get rid of the border
     universitySearchSubmit.setBorder(
         BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
+    // Get rid of java's awful 2001 default button styling
     universitySearchSubmit.setUI(new CustomButtonUI());
     universitySearchSubmit.setBounds(118, 0, 32, 32);
+
     universitySearchSubmit.addActionListener(
         (e) -> System.out.println("Hi (Submit University)"));
 
