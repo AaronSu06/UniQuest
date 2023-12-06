@@ -27,8 +27,6 @@ import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 
-// https://github.com/msteiger/jxmapviewer2/tree/master/examples/src
-
 public class MapFrame extends JFrame {
   // Some random lake in Ontario
   public static final GeoPosition ONTARIO =
@@ -42,7 +40,7 @@ public class MapFrame extends JFrame {
   private JPanel sideBar = new JPanel();
 
   JPanel universitySearchPanel = new JPanel();
-  JTextField universitySearchField = new JTextField("Enter a University...");
+  JTextField universitySearchField = new JTextField("Search School...");
   JButton universitySearchSubmit = new JButton();
 
   // Sidebar content
@@ -67,18 +65,21 @@ public class MapFrame extends JFrame {
     setVisible(true);
   }
 
-  public void addMap() {
+  // https://github.com/msteiger/jxmapviewer2/tree/master/examples/src
+  private void addMap() {
     // Create a TileFactoryInfo for Virtual Earth
+    // Tiles determine how the map looks
     TileFactoryInfo info =
         new VirtualEarthTileFactoryInfo(VirtualEarthTileFactoryInfo.MAP);
     DefaultTileFactory tileFactory = new DefaultTileFactory(info);
 
     // Setup local file cache
+    // Faster load times of the map
     File cacheDir = new File(System.getProperty("user.home") + File.separator +
                              ".jxmapviewer2");
     tileFactory.setLocalCache(new FileBasedLocalCache(cacheDir, false));
 
-    // Setup JXMapViewer
+    // Setup the tileFactory
     mapViewer.setTileFactory(tileFactory);
 
     // Use 16 threads in parallel to load the tiles
@@ -105,7 +106,7 @@ public class MapFrame extends JFrame {
   }
 
   // Method to add mouse controls to the map
-  public void addMapControls() {
+  private void addMapControls() {
     MouseInputListener mia = new PanMouseInputListener(mapViewer);
     mapViewer.addMouseListener(mia);
     mapViewer.addMouseMotionListener(mia);
@@ -118,7 +119,7 @@ public class MapFrame extends JFrame {
     mapViewer.addKeyListener(new PanKeyListener(mapViewer));
   }
 
-  public void addSideBar() {
+  private void addSideBar() {
     sideBar.setLayout(null);
     sideBar.setBounds(0, 45, 198, 700);
     sideBar.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -131,9 +132,10 @@ public class MapFrame extends JFrame {
   }
 
   // University search bar
-  public void addUniversitySearchBar() {
+  private void addUniversitySearchBar() {
     universitySearchPanel.setBounds(24, 35, 150, 32);
     universitySearchPanel.setBackground(AppColors.LIGHT_GREEN);
+    // Get rid of the border
     universitySearchPanel.setBorder(
         BorderFactory.createEmptyBorder(0, 0, 0, 0));
     universitySearchPanel.setLayout(null);
@@ -142,17 +144,24 @@ public class MapFrame extends JFrame {
     universitySearchField.setBounds(0, 0, 118, 32);
     universitySearchField.setOpaque(true);
     universitySearchField.setBackground(AppColors.LIGHT_GREEN);
+
     // Get rid of the borders and add some padding
     universitySearchField.setBorder(
+        // Pass in values: top, left, bottom, right -> in this order
+        // top: 0px, left: 5px, bottom: 0px, right: 5px
         BorderFactory.createEmptyBorder(0, 5, 0, 5));
 
     // Remove text when gained focus -> get's rid of default text
     universitySearchField.addFocusListener(new FocusListener() {
+      // When the text field is just being typed in:
       public void focusGained(FocusEvent e) {
+        // Empty the filler text
         universitySearchField.setText("");
       }
 
+      // When the text field is no longer being typed in
       public void focusLost(FocusEvent e) {
+        // If the text is emtpy, reset the filler
         if (universitySearchField.getText().trim().isEmpty()) {
           universitySearchField.setText("Search Schools...");
         }
@@ -184,12 +193,15 @@ public class MapFrame extends JFrame {
     sideBar.add(universitySearchPanel);
   }
 
-  public void addSideBarContent() {
+  private void addSideBarContent() {
     sideBarContentPanel.setBounds(24, 75, 150, 600);
     sideBarContentPanel.setOpaque(false);
 
     // Title and address
-    universityTitle.setBounds(0,0,150,10);
+    // Set an arbitrary boundary
+    // For some reason, this allows for dynamically-sized JTextAreas with fixed
+    // width
+    universityTitle.setBounds(0, 0, 150, 10);
     universityTitle.setText("York University");
     universityTitle.setFont(new Font("Sans Serif", Font.BOLD, 20));
     // So that text is contained and wrapped
@@ -199,8 +211,10 @@ public class MapFrame extends JFrame {
     GUIUtils.setFontRenderingHints(universityTitle);
     sideBarContentPanel.add(universityTitle);
 
-    universityAddress.setBounds(0,0,150,80);
-    universityAddress.setText("200 University Ave W, Waterloo ON N2L 3G1, Canada");
+    // Set an arbitrary boundary
+    universityAddress.setBounds(0, 0, 150, 10);
+    universityAddress.setText(
+        "200 University Ave W, Waterloo ON N2L 3G1, Canada");
     universityAddress.setFont(new Font("Sans Serif", Font.PLAIN, 14));
     universityAddress.setLineWrap(true);
     universityAddress.setWrapStyleWord(true);
@@ -211,7 +225,7 @@ public class MapFrame extends JFrame {
     // Add programs
     programsPanel.setBackground(AppColors.LIGHT_GREEN);
     programsScrollPane = new JScrollPane(programsPanel);
-    programsScrollPane.setPreferredSize(new Dimension(150, 320));
+    programsScrollPane.setPreferredSize(new Dimension(150, 390));
     programsScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
     sideBarContentPanel.add(programsScrollPane);
 
@@ -221,7 +235,6 @@ public class MapFrame extends JFrame {
     favouriteButton.setUI(new CustomButtonUI());
     // Turn on font anti-aliasing
     GUIUtils.setFontRenderingHints(favouriteButton);
-    // Set the size
     favouriteButton.setPreferredSize(new Dimension(150, 45));
     // Remove border
     favouriteButton.setBorder(new EmptyBorder(0, 0, 0, 0));
