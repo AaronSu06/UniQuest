@@ -155,8 +155,9 @@ public class MapFrame extends JFrame {
     universitySearchField.addFocusListener(new FocusListener() {
       // When the text field is just being typed in:
       public void focusGained(FocusEvent e) {
-        // Empty the filler text
-        universitySearchField.setText("");
+        if (universitySearchField.getText().equals("Search Schools..."))
+          // Empty the filler text
+          universitySearchField.setText("");
       }
 
       // When the text field is no longer being typed in
