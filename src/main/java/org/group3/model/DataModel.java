@@ -8,26 +8,34 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class DataModel {
-  public static final String universityProgramsPath =
-      "assets/data/programs.json";
+	public static final String universityProgramsPath = "assets/data/programs.json";
+	public static final String userInfoPath = "assets/data/userInfo.json";
 
-public static List<UniversityProgram> generateProgramList()
-      throws IOException {
-    FileReader reader = new FileReader(universityProgramsPath);
+	public static List<UniversityProgram> generateProgramList() throws IOException {
+		FileReader reader = new FileReader(universityProgramsPath);
 
-    Gson gson = new Gson();
-    Type universityProgramListType =
-        new TypeToken<List<UniversityProgram>>() {}.getType();
+		Gson gson = new Gson();
+		Type universityProgramListType = new TypeToken<List<UniversityProgram>>() {
+		}.getType();
 
-    List<UniversityProgram> universityProgramList =
-        gson.fromJson(reader, universityProgramListType);
+		List<UniversityProgram> universityProgramList = gson.fromJson(reader, universityProgramListType);
 
-    for (UniversityProgram program : universityProgramList) {
-      System.out.println(program);
-    }
+		for (UniversityProgram program : universityProgramList) {
+			System.out.println(program);
+		}
 
-    System.out.println(universityProgramList.size());
+		System.out.println(universityProgramList.size());
 
-    return universityProgramList;
-  }
+		return universityProgramList;
+	}
+
+	public static void generateUserAccount(String username, String password) {
+		Gson gson = new Gson();
+		
+		
+	}
+	
+	public static void getUserAccount() {
+		
+	}
 }
