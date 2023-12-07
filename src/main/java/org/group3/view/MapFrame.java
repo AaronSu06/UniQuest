@@ -119,7 +119,7 @@ public class MapFrame extends JFrame {
     mapViewer.addKeyListener(new PanKeyListener(mapViewer));
   }
 
-  private void addSideBar() {
+  public void addSideBar() {
     sideBar.setLayout(null);
     sideBar.setBounds(0, 45, 198, 700);
     sideBar.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -134,7 +134,7 @@ public class MapFrame extends JFrame {
   }
 
   // University search bar
-  private void addUniversitySearchBar() {
+  public void addUniversitySearchBar() {
     universitySearchPanel.setBounds(24, 35, 150, 32);
     universitySearchPanel.setBackground(AppColors.LIGHT_GREEN);
     // Get rid of the border

@@ -14,6 +14,7 @@ import org.group3.model.UniversityProgram;
 // code.
 public class Main {
   public static List<UniversityProgram> universityPrograms;
+
   public static void main(String[] args) {
     try {
       universityPrograms = DataModel.generateProgramList();
@@ -29,8 +30,7 @@ public class Main {
       }
     }
 
-    Gson gson =
-        new GsonBuilder().setPrettyPrinting().create();
+    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     String jsonString = gson.toJson(universityNames);
 
     try (FileWriter writer = new FileWriter("assets/data/universities.json")) {
