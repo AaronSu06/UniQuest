@@ -40,7 +40,7 @@ public class MapFrame extends JFrame {
   private JPanel sideBar = new JPanel();
 
   JPanel universitySearchPanel = new JPanel();
-  JTextField universitySearchField = new JTextField("Search School...");
+  JTextField universitySearchField = new JTextField("Search Schools...");
   JButton universitySearchSubmit = new JButton();
 
   // Sidebar content
@@ -126,7 +126,9 @@ public class MapFrame extends JFrame {
     sideBar.setBackground(Color.WHITE);
 
     addUniversitySearchBar();
-    addSideBarContent();
+
+    // On first load: don't display the sideBar content
+    // addSideBarContent();
 
     add(sideBar);
   }
