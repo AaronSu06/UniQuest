@@ -103,7 +103,6 @@ public class MapController implements ActionListener, MouseListener {
     System.out.println(universityName);
 
     University clickedUniversity = DataModel.findUniversitySpecific(universityName);
-    System.out.println(clickedUniversity);
 
   }
 
