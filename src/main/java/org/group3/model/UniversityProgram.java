@@ -1,6 +1,8 @@
 package org.group3.model;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UniversityProgram {
   private String name;
@@ -13,6 +15,7 @@ public class UniversityProgram {
   private String instructionLanguage;
   private List<String> prerequisites;
   private String notes;
+  
 
   public UniversityProgram(String name, String university, String degree,
                            String ouacProgramCode, String gradeRange,
@@ -89,5 +92,15 @@ public class UniversityProgram {
         ", enrollment='" + enrollment + '\'' + ", instructionLanguage='" +
         instructionLanguage + '\'' + ", prerequisites=" + prerequisites +
         ", notes='" + notes + '\'' + '}';
+  }
+  public double getGrade() {
+	  Pattern p = Pattern.compile("\\d+");
+      Matcher m = p.matcher(getGradeRange());
+
+      if(m.find()) {
+          return Integer.parseInt(m.group());
+      }
+
+      return -1;
   }
 }

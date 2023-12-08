@@ -1,11 +1,12 @@
 package org.group3.view;
 import java.awt.Dimension;
+import java.util.*;
+import java.util.Map.Entry;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import org.group3.model.*;
 import javax.swing.*;
 
@@ -16,6 +17,8 @@ public class DisplayPanel extends JPanel{
 //	private JScrollPane scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 //	private JScrollPane scrollPane = new JScrollPane(null, 0, 0)
 	private ArrayList<UniversityPanel>universityArray = new ArrayList<>();
+	
+	private ArrayList<UniversityProgram>universityProgramArray = (ArrayList<UniversityProgram>) Main.programList;
 	public DisplayPanel() {
 //		setLayout(null);
 //		
@@ -47,19 +50,39 @@ public class DisplayPanel extends JPanel{
 		
 	
 	}
+	
 	public void addUniversityPanels() {
+		removeAll();
+		universityArray.clear();
+		
 		for(int i = 0;i<Main.programList.size();i++) {
-			universityArray.add(new UniversityPanel(Main.programList.get(i)));
+			universityArray.add(new UniversityPanel(universityProgramArray.get(i)));
 			universityArray.get(i).setPreferredSize(new Dimension(220,300));;
 			add(universityArray.get(i));
 
 		}
+		repaint();
+		revalidate();
+	}
+	public void filteredUniversities(HashMap<Integer, UniversityProgram>hashmap) {
+		removeAll();
+		universityArray.clear();
+		for(int i = 0;i<hashmap.size();i++){
+			universityArray.add(new UniversityPanel(hashmap.get(i)));
+			universityArray.get(i).setPreferredSize(new Dimension(220,300));;
+			add(universityArray.get(i));
+			System.out.println(i);
+		}
+		repaint();
+		revalidate();
+			
 	}
 	public void updateUniversityPanels() {
 		removeAll();
 		for(int i = 0;i<Main.programList.size();i++) {
 			universityArray.get(i).setPreferredSize(new Dimension(220,300));;
 			add(universityArray.get(i));
+			
 
 		}
 		repaint();
@@ -69,11 +92,74 @@ public class DisplayPanel extends JPanel{
 		if(type==0) {
 			universityArray.sort((a,b)->a.getProgram().getName().compareTo(b.getProgram().getName()));
 			updateUniversityPanels();
+		}else if(type==1) {
+			universityArray.sort((a,b)->a.getProgram().getName().compareTo(b.getProgram().getName()));
+			Collections.reverse(universityArray);
+			updateUniversityPanels();
+		}else if(type==2) {
+			Collections.sort(universityProgramArray,Comparator.comparing(UniversityProgram::getGrade));
+//			for(UniversityProgram uni:universityProgramArray) {
+//				System.out.println(uni);
+//
+//			}
+			Collections.reverse(universityProgramArray);
+			addUniversityPanels();
+//			updateUniversityPanels();
+//			universityArray.getFirst().getProgram().getGrade();
+
+		}else if(type==3) {
+			Collections.sort(universityProgramArray,Comparator.comparing(UniversityProgram::getGrade));
+
+			addUniversityPanels();
+		}else if(type==4) {
+			
+		}else if(type==5) {
+			
+		}else if(type==6) {
+			
+		}else if(type==7) {
+			
 		}
 
 		
 	}
-	public void filter() {
+	public void filter(ArrayList<String>selectedFilters) {
+		removeAll();
+		HashMap<Integer, UniversityProgram>filteredList = new HashMap<>();
+		HashMap<Integer,UniversityProgram>hashMapVersion = convertArrayListToHashMap(Main.programList);
+		for(String selected:selectedFilters) {
+			Predicate<Map.Entry<Integer, UniversityProgram>> predicate = entry -> entry.getValue().getName().equals(selected);
+			Map<Integer, UniversityProgram> filteredPrograms =  filterMap(hashMapVersion, predicate);			
+			universityArray.clear();
+			filteredList.putAll(filteredPrograms);
+			
+		}
+		filteredUniversities(filteredList);
+		
+	}
+	private HashMap<Integer, UniversityProgram> 
+    convertArrayListToHashMap(List<UniversityProgram> programList) 
+    { 
+  
+        HashMap<Integer, UniversityProgram> hashMap = new HashMap<>(); 
+  
+        for(int i = 0;i<programList.size();i++) {
+        	hashMap.put(i, programList.get(i));
+        }
+  
+        return hashMap; 
+    } 
+//	public  <T> List<T> filterObjects(List<T> list, Predicate<T> predicate) {
+//        return list.stream()
+//            .filter(predicate)
+//            .collect(Collectors.toList());
+//    }
+	public <K, V> HashMap<K, V> filterMap(HashMap<Integer, UniversityProgram>map, Predicate<? super Entry<Integer, UniversityProgram>> predicate) {
+        return (HashMap<K, V>) map.entrySet().stream()
+            .filter(predicate)
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+	public void resetToOriginal() {
 		
 	}
 }

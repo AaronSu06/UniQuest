@@ -14,6 +14,7 @@ public class Main {
 	public static List<UniversityProgram> programList;
   public static void main(String[] args) {
     try {
+//    	tornto metropolian university (formly ryerson university) is gonna be called toronto metropolian university
       programList = DataModel.generateProgramList();
     } catch (Exception e) {
       System.out.println("Something went wrong...");

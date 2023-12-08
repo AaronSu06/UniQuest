@@ -7,33 +7,45 @@ import java.awt.Color;
 
 public class SearchFrame extends JFrame {
 
-	private FilterPanel filterPanel = new FilterPanel();
+//	private FilterPanel filterPanel = new FilterPanel();
 	private MenuPanel menuPanel = new MenuPanel();
-	private SortPanel sortPanel = new SortPanel();
-	private JScrollPane sortScrollPane = new JScrollPane(sortPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//	private SortPanel sortPanel = new SortPanel();
+//	private JButton confirmButton = new JButton("Confirm");
+	private	SidePanel sidePanel = new SidePanel();
+	private JTextField searchField = new JTextField("Search for program or university");
+	private JScrollPane sideScrollPane = new JScrollPane(sidePanel,  JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//	private JScrollPane sortScrollPane = new JScrollPane(sortPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	private DisplayPanel displayPanel = new DisplayPanel();
 	private JScrollPane displayScrollPane = new JScrollPane(displayPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	public SearchFrame() {
 		setLayout(null);
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		setSize(1280,720);
-		menuPanel.setBounds(0,0,1280,45);
-		menuPanel.setBorder(border);
-		add(menuPanel);
+//		menuPanel.setBounds(0,0,1280,45);
+//		menuPanel.setBorder(border);
+//		add(menuPanel);
 		
-		filterPanel.setBounds(0,45,300,337);
-		filterPanel.setBorder(border);
-		add(filterPanel);
+//		filterPanel.setBounds(0,45,300,337);
+//		filterPanel.setBorder(border);
+//		add(filterPanel);
 		
 //		sortPanel.setBounds(0,382,300,337);
 //		sortPanel.setBorder(border);
 //		add(sortPanel);
 		
-		sortScrollPane.setBounds(0,382,300,337);
-		sortScrollPane.setBorder(border);
-		sortScrollPane.getVerticalScrollBar().setUnitIncrement(4);
-		add(sortScrollPane);
+//		sortScrollPane.setBounds(0,382,300,337);
+//		sortScrollPane.setBorder(border);
+//		sortScrollPane.getVerticalScrollBar().setUnitIncrement(4);
+//		add(sortScrollPane);
 //		displayPanel.setBounds(300,45,980,675);
+//		sidePanel.setBounds(0,45,300,675);
+//		sidePanel.setBorder(border);
+//		sideScrollPane.add(sidePanel);
+		
+		sideScrollPane.setBounds(0,45,300,675);
+		sideScrollPane.setBorder(border);
+		sideScrollPane.getVerticalScrollBar().setUnitIncrement(20);
+		add(sideScrollPane);
 		
 		displayScrollPane.setBounds(300,45,980,675);
 		displayScrollPane.setBorder(border);
@@ -50,30 +62,25 @@ public class SearchFrame extends JFrame {
 		
 		
 	}
-	public FilterPanel getFilterPanel() {
-		return filterPanel;
-	}
-	public void setFilterPanel(FilterPanel filterPanel) {
-		this.filterPanel = filterPanel;
-	}
+//	public FilterPanel getFilterPanel() {
+//		return filterPanel;
+//	}
+//	public void setFilterPanel(FilterPanel filterPanel) {
+//		this.filterPanel = filterPanel;
+//	}
 	public MenuPanel getMenuPanel() {
 		return menuPanel;
 	}
 	public void setMenuPanel(MenuPanel menuPanel) {
 		this.menuPanel = menuPanel;
 	}
-	public SortPanel getSortPanel() {
-		return sortPanel;
-	}
-	public void setSortPanel(SortPanel sortPanel) {
-		this.sortPanel = sortPanel;
-	}
-	public JScrollPane getSortScrollPane() {
-		return sortScrollPane;
-	}
-	public void setSortScrollPane(JScrollPane sortScrollPane) {
-		this.sortScrollPane = sortScrollPane;
-	}
+//	public SortPanel getSortPanel() {
+//		return sortPanel;
+//	}
+//	public void setSortPanel(SortPanel sortPanel) {
+//		this.sortPanel = sortPanel;
+//	}
+
 	public DisplayPanel getDisplayPanel() {
 		return displayPanel;
 	}
@@ -85,6 +92,24 @@ public class SearchFrame extends JFrame {
 	}
 	public void setDisplayScrollPane(JScrollPane displayScrollPane) {
 		this.displayScrollPane = displayScrollPane;
+	}
+	public SidePanel getSidePanel() {
+		return sidePanel;
+	}
+	public void setSidePanel(SidePanel sidePanel) {
+		this.sidePanel = sidePanel;
+	}
+	public JTextField getSearchField() {
+		return searchField;
+	}
+	public void setSearchField(JTextField searchField) {
+		this.searchField = searchField;
+	}
+	public JScrollPane getSideScrollPane() {
+		return sideScrollPane;
+	}
+	public void setSideScrollPane(JScrollPane sideScrollPane) {
+		this.sideScrollPane = sideScrollPane;
 	}
 	
 }
