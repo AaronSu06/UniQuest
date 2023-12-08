@@ -2,22 +2,21 @@ package org.group3.model;
 
 public class UserInfo {
 
-	private String userName;
+	private String username;
 	private String password;
-	private String firstName;
-	private String lastName;
 	
-	public UserInfo(String userName, String password) {
-		this.userName = userName;
+	public UserInfo(String username, String password) {
+		super();
+		this.username = username;
 		this.password = password;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getusername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setusername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -28,25 +27,8 @@ public class UserInfo {
 		this.password = password;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
 	@Override
 	public String toString() {
-		return "UserInfo [userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName="
-				+ lastName + "]";
+		return "UserInfo [username=" + username + ", password=" + password + "]";
 	}
 }

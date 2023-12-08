@@ -8,7 +8,7 @@ public class HomeFrame extends JFrame {
 	// 3 panels are used, 2 of which will swap with one another according to the
 	// topPanel
 	private JPanel topPanel = new JPanel();
-	private JPanel loginPanel = new JPanel();
+	private JPanel bottomPanel = new JPanel();
 
 	// instance variables for the panels
 	private JButton login = new JButton("LOG IN");
@@ -18,12 +18,16 @@ public class HomeFrame extends JFrame {
 	private JLabel usernameText = new JLabel("Username");
 	private JLabel passwordText = new JLabel("Password");
 	private JLabel confirmPasswordText = new JLabel("Confirm Password");
-	private JTextArea username = new JTextArea();
-	private JTextArea password = new JTextArea();
-	private JTextArea confirmPassword = new JTextArea();
-	private JButton loginBtn = new JButton(new ImageIcon("images/Login.png"));
-	private JButton loginAsGuest = new JButton(new ImageIcon("images/GuestLogin.png"));
-	private JButton enterBtn = new JButton(new ImageIcon("images/Login.png"));
+	private JTextField username = new JTextField("Enter Username Here");
+	private JTextField password = new JTextField("Enter Password Here");
+	private JTextField confirmPassword = new JTextField("Confirm Password Here");
+	private JButton loginBtn = new JButton("Log In");
+	private JButton loginAsGuest = new JButton("Log In As Guest");
+	private JButton enterBtn = new JButton("Log In");
+	
+	Color green = new Color(132, 199, 80);
+	Color gray = new Color(207, 207, 207);
+	Color white = new Color(255, 255, 255);
 
 	public HomeFrame() {
 		// set font and size of all components in the JFrame
@@ -32,58 +36,79 @@ public class HomeFrame extends JFrame {
 		usernameText.setFont(new Font("Sans Serif", Font.BOLD, 22));
 		passwordText.setFont(new Font("Sans Serif", Font.BOLD, 22));
 		confirmPasswordText.setFont(new Font("Sans Serif", Font.BOLD, 22));
-		username.setFont(new Font("Sans Serif", Font.PLAIN, 22));
+		loginBtn.setFont(new Font("Sans Serif", Font.BOLD, 22));
+		loginAsGuest.setFont(new Font("Sans Serif", Font.BOLD, 22));
+		enterBtn.setFont(new Font("Sans Serif", Font.BOLD, 22));
 
 		// flow layout for the topPanel
-		topPanel.setLayout(new FlowLayout());
+		topPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
+
+		// change the properties of the topPanel buttons
 		login.setPreferredSize(new Dimension(180, 40));
+		login.setForeground(green);
+		login.setBorder(new RoundedBorder(15, green));
+		
 		signup.setPreferredSize(new Dimension(180, 40));
+		signup.setForeground(gray);
+		signup.setBorder(new RoundedBorder(15, gray));
 
 		// pack the 2 buttons to the JPanel
 		topPanel.add(login);
 		topPanel.add(signup);
 
-		loginPanel.setLayout(null);
+		bottomPanel.setLayout(null);
 
-		// positions for the common GUI components
-		imageLabel.setBounds(487, 5, 300, 300);
-		welcomeLabel.setBounds(424, 199, 419, 74);
-		usernameText.setBounds(452, 273, 172, 74);
-		username.setBounds(452, 323, 354, 40);
-		passwordText.setBounds(452, 374, 172, 74);
-		password.setBounds(452, 424, 354, 40);
+		// properties for the common GUI components
+		imageLabel.setBounds(487, -50, 300, 300);
+		welcomeLabel.setBounds(430, 134, 419, 74);
+		usernameText.setBounds(455, 208, 172, 74);
+		username.setBounds(460, 263, 364, 40);
+		username.setOpaque(false);
+		username.setBorder(new RoundedBorder(10, Color.GRAY));
+		passwordText.setBounds(457, 309, 172, 74);
+		password.setBounds(460, 364, 364, 40);
+		password.setOpaque(false);
+		password.setBorder(new RoundedBorder(10, Color.GRAY));
 
-		// positions for the login panel
-		loginBtn.setBounds(557, 487, 150, 40);
-		loginAsGuest.setBounds(507, 554, 250, 40);
+		// properties for the login panel
+		loginBtn.setBounds(565, 427, 150, 40);
+		loginBtn.setForeground(green);
+		loginBtn.setBorder(new RoundedBorder(10, green));
+		loginAsGuest.setBounds(515, 494, 250, 40);
+		loginAsGuest.setForeground(green);
+		loginAsGuest.setBorder(new RoundedBorder(10, green));
 
-		// positions for the signup
-		confirmPasswordText.setBounds(452, 473, 268, 74);
-		confirmPassword.setBounds(452, 518, 364, 40);
-		enterBtn.setBounds(572, 584, 150, 40);
-		
-		// initially disable the positions for the signup
+		// properties for the signup
+		confirmPasswordText.setBounds(455, 408, 268, 74);
+		confirmPassword.setBounds(460, 463, 364, 40);
+		confirmPassword.setOpaque(false);
+		confirmPassword.setBorder(new RoundedBorder(10, Color.GRAY));
+		enterBtn.setBounds(572, 524, 150, 40);
+		enterBtn.setForeground(green);
+		enterBtn.setBorder(new RoundedBorder(10, green));
+
+		// initially disable the components for the signup
 		confirmPasswordText.setVisible(false);
 		confirmPassword.setVisible(false);
 		enterBtn.setVisible(false);
 
 		// pack all the necessary GUI components to the JPanel
-		loginPanel.add(imageLabel);
-		loginPanel.add(welcomeLabel);
-		loginPanel.add(usernameText);
-		loginPanel.add(username);
-		loginPanel.add(passwordText);
-		loginPanel.add(password);
-		loginPanel.add(loginBtn);
-		loginPanel.add(loginAsGuest);
-		loginPanel.add(confirmPasswordText);
-		loginPanel.add(confirmPassword);
-		loginPanel.add(enterBtn);
+		bottomPanel.add(imageLabel);
+		bottomPanel.add(welcomeLabel);
+		bottomPanel.add(usernameText);
+		bottomPanel.add(username);
+		bottomPanel.add(passwordText);
+		bottomPanel.add(password);
+		bottomPanel.add(loginBtn);
+		bottomPanel.add(loginAsGuest);
+		bottomPanel.add(confirmPasswordText);
+		bottomPanel.add(confirmPassword);
+		bottomPanel.add(enterBtn);
 
 		// border layout for the JPanels... pack all to the JFrame
 		setLayout(new BorderLayout());
 		add(topPanel, BorderLayout.PAGE_START);
-		add(loginPanel, BorderLayout.CENTER);
+		add(bottomPanel, BorderLayout.CENTER);
 
 		// settings for the JFrame
 		this.setTitle("Uni-Quest Ontario");
@@ -126,12 +151,12 @@ public class HomeFrame extends JFrame {
 		this.confirmPasswordText = confirmPasswordText;
 	}
 
-	public JPanel getLoginPanel() {
-		return loginPanel;
+	public JPanel getbottomPanel() {
+		return bottomPanel;
 	}
 
-	public void setLoginPanel(JPanel loginPanel) {
-		this.loginPanel = loginPanel;
+	public void setbottomPanel(JPanel bottomPanel) {
+		this.bottomPanel = bottomPanel;
 	}
 
 	public JButton getLogin() {
@@ -150,27 +175,27 @@ public class HomeFrame extends JFrame {
 		this.signup = signup;
 	}
 
-	public JTextArea getUsername() {
+	public JTextField getUsername() {
 		return username;
 	}
 
-	public void setUsername(JTextArea username) {
+	public void setUsername(JTextField username) {
 		this.username = username;
 	}
 
-	public JTextArea getPassword() {
+	public JTextField getPassword() {
 		return password;
 	}
 
-	public void setPassword(JTextArea password) {
+	public void setPassword(JTextField password) {
 		this.password = password;
 	}
 
-	public JTextArea getConfirmPassword() {
+	public JTextField getConfirmPassword() {
 		return confirmPassword;
 	}
 
-	public void setConfirmPassword(JTextArea confirmPassword) {
+	public void setConfirmPassword(JTextField confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
 
