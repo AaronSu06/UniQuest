@@ -3,15 +3,17 @@ package org.group3.model;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 import org.jxmapviewer.viewer.GeoPosition;
 
+/*
+ * Class for handling the data of our app: Follows the CRUD pattern 
+ * */
 public class DataModel {
   public static final String UNIVERSITY_PROGRAMS_PATH = "assets/data/programs.json";
 
+  // Data creation: generating all of the universities
   public static final University[] UNIVERSITIES =
       new University[] {
         new University(
@@ -129,29 +131,69 @@ public class DataModel {
         new University(
             "University of Ottawa",
             new GeoPosition(45.42310569141703, -75.68313326028367),
-            "75 Laurier Ave E, Ottawa, ON K1N 6N5")
+            "75 Laurier Ave E, Ottawa, ON K1N 6N5"),
+        new University(
+            "OCAD University",
+            new GeoPosition(43.65318514660098, -79.39148463108539),
+            "100 McCaul St, Toronto, ON M5T 1W1"),
+        new University(
+            "Brock University",
+            new GeoPosition(43.118133965949355, -79.24768682535174),
+            "1812 Sir Isaac Brock Way, St. Catharines, ON L2S 3A1"),
+        new University(
+            "University of Guelph-Humber",
+            new GeoPosition(43.72797139577033, -79.6060059157344),
+            "207 Humber College Blvd, Etobicoke, ON M9W 5L7"),
+        new University(
+            "University of Ottawa – Saint Paul University",
+            new GeoPosition(45.40789036638955, -75.67614447576598),
+            "223 Main St, Ottawa, ON K1S 1C4")
       };
 
-  public static List<UniversityProgram> generateProgramList() throws IOException {
+  public static ArrayList<UniversityProgram> universityProgramArrayList;
+
+  /*
+   * === Database Creation Methods ===
+   */
+
+  /**
+   * Generates all of the university programs needed for our app
+   *
+   * @throws Exception when the file is not found, or when any error occurs when reading the json
+   *     file
+   */
+  public static void generateProgramArrayList() throws Exception {
     FileReader reader = new FileReader(UNIVERSITY_PROGRAMS_PATH);
 
     Gson gson = new Gson();
-    Type universityProgramListType = new TypeToken<List<UniversityProgram>>() {}.getType();
+    Type universityProgramArrayListType =
+        new TypeToken<ArrayList<UniversityProgram>>() {}.getType();
 
-    List<UniversityProgram> universityProgramList =
-        gson.fromJson(reader, universityProgramListType);
-
-    System.out.println(universityProgramList.size());
-
-    return universityProgramList;
+    universityProgramArrayList = gson.fromJson(reader, universityProgramArrayListType);
+    for (UniversityProgram universityProgram : universityProgramArrayList) {
+      University university = findUniversitySpecific(universityProgram.getUniversity());
+      if (university == null) {
+        System.out.println(universityProgram);
+      }
+      university.getPrograms().add(universityProgram);
+    }
   }
+
+  /*
+   * === Retrieval Methods ===
+   */
 
   /**
    * @param universityName The exact name of the university to find
    * @return the {@code University} associated with univeristyName
    */
   public static University findUniversitySpecific(String universityName) {
-    throw new IllegalArgumentException("Invalid University Name");
+    for (University university : UNIVERSITIES) {
+      if (university.getName().equals(universityName)) {
+        return university;
+      }
+    }
+    return null;
   }
 
   public static ArrayList<University> findUniversityByKeyword(String keyword) {
