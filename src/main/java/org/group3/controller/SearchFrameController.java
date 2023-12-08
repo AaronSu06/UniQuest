@@ -3,6 +3,7 @@ package org.group3.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.group3.view.SearchFrame;
 
@@ -31,12 +32,16 @@ public class SearchFrameController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==searchFrame.getSidePanel().getSortPanel().getConfirmButton()) {
 //			ArrayList<Integer> selectedIndexArray = new ArrayList<>();
-			ArrayList<String>selectedStrings = new ArrayList<String>();
+//			ArrayList<String>selectedStrings = new ArrayList<String>();
+			HashMap<Integer, String>selectedStrings = new HashMap<Integer, String>();
 			System.out.println("CONFIRMED");
 			for(int i = 0;i<searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().size();i++) {
 				if(searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).isSelected()) {
 //					selectedIndexArray.add(i);
-					selectedStrings.add(searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText());
+					System.out.println(i);
+					selectedStrings.put(i, searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText());
+//					selectedStrings.add(searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText());
+//					System.out.println(selectedStrings.getLast());
 				}
 				
 			}
@@ -54,6 +59,7 @@ public class SearchFrameController implements ActionListener{
 		}
 		if(e.getSource()==searchFrame.getSidePanel().getSortPanel().getResetButton()) {
 			System.out.println("RESETTED");
+			searchFrame.getDisplayPanel().resetToOriginal();
 		}
 		
 		

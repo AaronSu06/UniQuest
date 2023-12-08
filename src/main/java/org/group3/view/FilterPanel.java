@@ -14,7 +14,8 @@ import java.util.*;
 public class FilterPanel extends JPanel{
 	private ArrayList<JCheckBox> checkBoxArray = new ArrayList<>();
 	private JLabel filterTitle = new JLabel("Filters");
-	
+	private static int universityCount=0;
+	private static int gradeRangeCount = 0;
 	public FilterPanel() {
 		setLayout(new GridLayout(0,1));
 		filterTitle.setFont(new Font("SansSerif", Font.BOLD,30));
@@ -26,6 +27,7 @@ public class FilterPanel extends JPanel{
 		for(int i = 0 ;i<Main.programList.size();i++) {
 			if(!universities.contains(Main.programList.get(i).getUniversity())) {
 				universities.add(Main.programList.get(i).getUniversity());
+				universityCount++;
 			}
 		}
 		for(int i = 0;i<universities.size();i++) {
@@ -34,6 +36,7 @@ public class FilterPanel extends JPanel{
 			checkBoxArray.get(i).setPreferredSize(new Dimension(300,50));
 			add(checkBoxArray.getLast());
 		}
+		gradeRangeCount+=universityCount;
 		for(int i = 0;i<6;i++) {
 			if(i==0) {
 				checkBoxArray.add(new JCheckBox("less than 50%"));
@@ -44,6 +47,7 @@ public class FilterPanel extends JPanel{
 			}
 			checkBoxArray.getLast().setPreferredSize(new Dimension(300,50));
 			add(checkBoxArray.getLast());
+			gradeRangeCount++;
 		}
 	}
 
@@ -62,5 +66,24 @@ public class FilterPanel extends JPanel{
 	public void setFilterTitle(JLabel filterTitle) {
 		this.filterTitle = filterTitle;
 	}
+
+	public static int getUniversityCount() {
+		return universityCount;
+	}
+
+	public static void setUniversityCount(int universityCount) {
+		FilterPanel.universityCount = universityCount;
+	}
+
+	public static int getGradeRangeCount() {
+		return gradeRangeCount;
+	}
+
+	public static void setGradeRangeCount(int gradeRangeCount) {
+		FilterPanel.gradeRangeCount = gradeRangeCount;
+	}
+
+	
+	
 	
 }
