@@ -2,9 +2,7 @@ package org.group3.model;
 
 import java.awt.Font;
 import java.util.ArrayList;
-
 import javax.swing.JTextArea;
-
 import org.group3.view.GUIUtils;
 import org.jxmapviewer.viewer.GeoPosition;
 
@@ -21,11 +19,12 @@ public class University {
     this.address = address;
 
     // Setup the search result button
-    searchResult.setText(name);
+    searchResult.setText("• " + name);
     searchResult.setFont(new Font("Sans Serif", Font.PLAIN, 14));
     searchResult.setLineWrap(true);
     searchResult.setWrapStyleWord(true);
     searchResult.setEditable(false);
+    searchResult.setBounds(0, 0, 150, 10);
     GUIUtils.setFontRenderingHints(searchResult);
   }
 
@@ -71,8 +70,16 @@ public class University {
 
   @Override
   public String toString() {
-    return "University [name=" + name + ", position=" + position + ", address=" + address + ", programs=" + programs
-        + ", searchResult=" + searchResult + "]";
+    return "University [name="
+        + name
+        + ", position="
+        + position
+        + ", address="
+        + address
+        + ", programs="
+        + programs
+        + ", searchResult="
+        + searchResult
+        + "]";
   }
-
 }

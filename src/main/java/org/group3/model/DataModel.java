@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.jxmapviewer.viewer.GeoPosition;
 
 /*
- * Class for handling the data of our app: Follows the CRUD pattern 
+ * Class for handling the data of our app: Follows the CRUD (Create retrieve update destroy) pattern 
  * */
 public class DataModel {
   public static final String UNIVERSITY_PROGRAMS_PATH = "assets/data/programs.json";
@@ -202,7 +202,6 @@ public class DataModel {
     for (University university : UNIVERSITIES) {
       if (university.getName().toLowerCase().contains(keyword)) results.add(university);
     }
-    System.out.println(results);
     return results;
   }
 }

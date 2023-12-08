@@ -9,10 +9,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
 import org.group3.model.DataModel;
 import org.group3.model.University;
+import org.group3.view.LabelledUniversityWaypoint;
 import org.group3.view.MapFrame;
-import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.Waypoint;
 
 public class MapController implements ActionListener, MouseListener {
@@ -20,6 +23,7 @@ public class MapController implements ActionListener, MouseListener {
 
   public MapController() {
     mapFrame = new MapFrame();
+
     addMouseListeners();
     addActionListeners();
 
@@ -43,16 +47,34 @@ public class MapController implements ActionListener, MouseListener {
   @Override
   public void actionPerformed(ActionEvent arg0) {
     if (arg0.getSource().equals(mapFrame.getUniversitySearchSubmit())) {
-      ArrayList<University> universityResults =
-          DataModel.findUniversityByKeyword(mapFrame.getUniversitySearchField().getText());
+      ArrayList<University> universityResults = DataModel
+          .findUniversityByKeyword(mapFrame.getUniversitySearchField().getText());
 
-      // TODO: update the GUI: get rid of all components on the sidebar content; loop
-      // through the universityResults list & add them to the sidebar content
+      // update the GUI: get rid of all components on the sidebar content; loop
+      addUniversityResults(universityResults);
     }
 
     if (arg0.getSource().equals(mapFrame.getFavouriteButton())) {
       // Do Stuff
     }
+  }
+
+  /**
+   * @param universities the {@code ArrayList} that contains all of the universities
+   */
+  public void addUniversityResults(ArrayList<University> universities) {
+    mapFrame.getSideBarContentPanel().removeAll();
+    if (universities.isEmpty()) {
+      JOptionPane.showMessageDialog(null, "No results!");
+      return;
+    }
+
+    for (University uni : universities) {
+      mapFrame.getSideBarContentPanel().add(uni.getSearchResult());
+    }
+
+    mapFrame.getSideBarContentPanel().repaint();
+    mapFrame.getSideBarContentPanel().revalidate();
   }
 
   /**
@@ -66,7 +88,7 @@ public class MapController implements ActionListener, MouseListener {
     Set<Waypoint> waypoints = new HashSet<Waypoint>();
 
     for (University university : universities) {
-      waypoints.add(new DefaultWaypoint(university.getPosition()));
+      waypoints.add(new LabelledUniversityWaypoint(university.getPosition(), university.getName()));
     }
 
     mapFrame.getWaypointPainter().setWaypoints(waypoints);
@@ -74,8 +96,15 @@ public class MapController implements ActionListener, MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent arg0) {
-    // TODO Auto-generated method stub
-    System.out.println("Hello");
+    if (!(arg0.getSource() instanceof JTextArea)) return;
+    JTextArea clickedUniversityTextArea = (JTextArea) arg0.getSource();
+    // Removes the dot in front of the text area and gets rid of the resulting space
+    String universityName = clickedUniversityTextArea.getText().substring(1).trim();
+    System.out.println(universityName);
+
+    University clickedUniversity = DataModel.findUniversitySpecific(universityName);
+    System.out.println(clickedUniversity);
+
   }
 
   @Override

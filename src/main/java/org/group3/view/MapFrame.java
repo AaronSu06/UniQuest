@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.MouseInputListener;
-
 import org.group3.model.DataModel;
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
@@ -50,6 +50,7 @@ public class MapFrame extends JFrame {
 
   // Sidebar content
   JPanel sideBarContentPanel = new JPanel();
+  JScrollPane sideBarContentScrollPane;
 
   JTextArea universityTitle = new JTextArea();
   JTextArea universityAddress = new JTextArea();
@@ -93,7 +94,7 @@ public class MapFrame extends JFrame {
     mapViewer.setZoom(13);
     mapViewer.setAddressLocation(DataModel.UNIVERSITIES[0].getPosition());
 
-    waypointPainter.setRenderer(new ExampleWaypoint());
+    waypointPainter.setRenderer(new UniversityWaypointRenderer());
 
     mapViewer.setOverlayPainter(waypointPainter);
 
@@ -133,8 +134,19 @@ public class MapFrame extends JFrame {
 
     addUniversitySearchBar();
 
+    sideBarContentPanel.setBackground(Color.WHITE);
+
+    sideBarContentScrollPane = new JScrollPane(sideBarContentPanel);
+    sideBarContentScrollPane.setBounds(24, 75, 150, 600);
+    sideBarContentPanel.setPreferredSize(new Dimension(150, 660));
+    sideBarContentScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+    sideBarContentScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    sideBarContentScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
     // On first load: don't display the sideBar content
     // addSideBarContent();
+
+    sideBar.add(sideBarContentScrollPane);
 
     add(sideBar);
   }
@@ -198,8 +210,6 @@ public class MapFrame extends JFrame {
   }
 
   public void addSideBarContent() {
-    sideBarContentPanel.setBounds(24, 75, 150, 600);
-    sideBarContentPanel.setOpaque(false);
 
     // Title and address
     // Set an arbitrary boundary
@@ -244,7 +254,6 @@ public class MapFrame extends JFrame {
     sideBarContentPanel.add(favouriteButton);
 
     // Add the content to the sidebar
-    sideBar.add(sideBarContentPanel);
   }
 
   public static GeoPosition getOntario() {
