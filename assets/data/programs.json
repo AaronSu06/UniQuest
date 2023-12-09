@@ -15,7 +15,7 @@
     "link": "https://brocku.ca/goodman/programs/bacc/"
   },
   {
-    "name": "Accounting ",
+    "name": "Accounting",
     "university": "Ontario Tech University",
     "degree": "Bachelor of Commerce, BCom",
     "ouacProgramCode": "DBG",
@@ -240,7 +240,7 @@
     "link": "https://www.trentu.ca/futurestudents/specialization/african-studies?target=undergraduate"
   },
   {
-    "name": "African Studies (Major) ",
+    "name": "African Studies (Major)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Social Science, BSocSc",
     "ouacProgramCode": "OKE",
@@ -1101,7 +1101,7 @@
     "link": "https://www.uottawa.ca/faculty-arts/programs/undergraduate/interdisciplinary-studies"
   },
   {
-    "name": "Arts – Interdisciplinary Studies (4 years) ",
+    "name": "Arts – Interdisciplinary Studies (4 years)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "OAA",
@@ -1210,7 +1210,7 @@
     "link": "https://www.wlu.ca/programs/arts/undergraduate/ba-mba/index.html"
   },
   {
-    "name": "Arts Degree (BA) + Master’s Degree (MA or MAP) ",
+    "name": "Arts Degree (BA) + Master’s Degree (MA or MAP)",
     "university": "Wilfrid Laurier University",
     "degree": "Bachelor of Arts/Master of Arts, BA/MA",
     "ouacProgramCode": "UMA",
@@ -2747,7 +2747,7 @@
     "link": "https://www.uottawa.ca/faculty-science/programs/undergraduate/biomedical-science"
   },
   {
-    "name": "Biomedical Science (BSc) ",
+    "name": "Biomedical Science (BSc)",
     "university": "York University",
     "degree": "Bachelor of Science, BSc",
     "ouacProgramCode": "YSW",
@@ -3631,7 +3631,7 @@
     "link": "https://www.algomau.ca/academics/school-of-business-economics/programming-in-brampton/"
   },
   {
-    "name": "Business Administration Co-op International Dual Degree ",
+    "name": "Business Administration Co-op International Dual Degree",
     "university": "Brock University",
     "degree": "Bachelor of Business Administration/Bachelor of Science, BBA/BSc",
     "ouacProgramCode": "BND",
@@ -3771,7 +3771,7 @@
     "link": "https://ontariotechu.ca/programs/undergraduate/social-science-and-humanities/business-society/index.php"
   },
   {
-    "name": "Business Communication ",
+    "name": "Business Communication",
     "university": "Brock University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "BUD",
@@ -3815,7 +3815,7 @@
     "link": "https://brocku.ca/programs/undergraduate/business-economics/"
   },
   {
-    "name": "Business Economics (BA) ",
+    "name": "Business Economics (BA)",
     "university": "York University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "YBH",
@@ -4719,7 +4719,7 @@
     "link": "http://futurestudents.yorku.ca/program/screenwriting"
   },
   {
-    "name": "Circumpolar Studies Diploma ",
+    "name": "Circumpolar Studies Diploma",
     "university": "Trent University",
     "degree": "Diploma, Dipl.",
     "ouacProgramCode": "RCJ",
@@ -5005,7 +5005,7 @@
     "link": "http://business.queensu.ca"
   },
   {
-    "name": "Commerce — Accounting (BCom) and Master of Science in Management (Research Project) (5-year double degree) ",
+    "name": "Commerce — Accounting (BCom) and Master of Science in Management (Research Project) (5-year double degree)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts/Master of Science, BA/MSc Bachelor of Commerce, BCom",
     "ouacProgramCode": "OCE",
@@ -5054,7 +5054,7 @@
     "link": "https://www.telfer.uottawa.ca/en/bcom/your-program-of-study/program-options/misa"
   },
   {
-    "name": "Commerce — Business Technology Management  (BCom) and Master of Science in Management (Research Project) (5-year double degree) ",
+    "name": "Commerce — Business Technology Management  (BCom) and Master of Science in Management (Research Project) (5-year double degree)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts/Master of Science, BA/MSc Bachelor of Commerce, BCom",
     "ouacProgramCode": "OCJ",
@@ -5136,7 +5136,7 @@
     "link": "https://www.telfer.uottawa.ca/en/bcom/your-program-of-study/program-options/finance"
   },
   {
-    "name": "Commerce — Finance (BCom) and Master of Science in Management (Research Project) (5-year double degree) ",
+    "name": "Commerce — Finance (BCom) and Master of Science in Management (Research Project) (5-year double degree)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts/Master of Science, BA/MSc Bachelor of Commerce, BCom",
     "ouacProgramCode": "OCI",
@@ -5185,7 +5185,7 @@
     "link": "https://telfer.uottawa.ca/en/bcom/your-program-of-study/program-options/healthcare-analytics"
   },
   {
-    "name": "Commerce — Healthcare Analytics (BCom) and Master of Science in Management (Research Project) (5-year double degree)  ",
+    "name": "Commerce — Healthcare Analytics (BCom) and Master of Science in Management (Research Project) (5-year double degree) ",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts/Master of Science, BA/MSc Bachelor of Commerce, BCom",
     "ouacProgramCode": "OCD",
@@ -5217,7 +5217,7 @@
     "link": "https://www.telfer.uottawa.ca/en/bcom/your-program-of-study/program-options/human-resource-management"
   },
   {
-    "name": "Commerce — Human Resources (BCom) and Master of Science in Management (Research Project) (5-year double degree) ",
+    "name": "Commerce — Human Resources (BCom) and Master of Science in Management (Research Project) (5-year double degree)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts/Master of Science, BA/MSc Bachelor of Commerce, BCom",
     "ouacProgramCode": "OCR",
@@ -5315,7 +5315,7 @@
     "link": "https://www.telfer.uottawa.ca/en/bcom/your-program-of-study/program-options/management"
   },
   {
-    "name": "Commerce — Management (BCom) and Master of Science in Management (Research Project) (5-year double degree) ",
+    "name": "Commerce — Management (BCom) and Master of Science in Management (Research Project) (5-year double degree)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts/Master of Science, BA/MSc Bachelor of Commerce, BCom",
     "ouacProgramCode": "OCS",
@@ -5364,7 +5364,7 @@
     "link": "https://www.telfer.uottawa.ca/en/bcom/your-program-of-study/program-options/marketing"
   },
   {
-    "name": "Commerce — Marketing (BCom) and Master of Science in Management (Research Project) (5-year double degree) ",
+    "name": "Commerce — Marketing (BCom) and Master of Science in Management (Research Project) (5-year double degree)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts/Master of Science, BA/MSc Bachelor of Commerce, BCom",
     "ouacProgramCode": "OCT",
@@ -5886,7 +5886,7 @@
     "link": "https://www.algomau.ca/academics/programs/community-development/"
   },
   {
-    "name": "Community Economic and Social Development (BA 4 year) ",
+    "name": "Community Economic and Social Development (BA 4 year)",
     "university": "Algoma University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "JBA",
@@ -8797,7 +8797,7 @@
     "link": "https://www.trentu.ca/futurestudents/degree/data-science-bsc?target=undergraduate"
   },
   {
-    "name": "Data Science ",
+    "name": "Data Science",
     "university": "Ontario Tech University",
     "degree": "Bachelor of Science, BSc Bachelor of Science and Management, BSc&Mgt",
     "ouacProgramCode": "DSM",
@@ -9508,7 +9508,7 @@
     "link": "https://wlu.ca/programs/business-and-economics/undergraduate/economics-ba/index.html"
   },
   {
-    "name": "Economics (BA) ",
+    "name": "Economics (BA)",
     "university": "York University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "YFE",
@@ -10435,7 +10435,7 @@
     "link": "https://future.uwindsor.ca/english"
   },
   {
-    "name": "English (4 years) ",
+    "name": "English (4 years)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts, BA Bachelor of Arts (Co-op), BA (Co-op)",
     "ouacProgramCode": "OVA",
@@ -11101,7 +11101,7 @@
     "link": "https://brocku.ca/programs/undergraduate/environmental-geoscience/"
   },
   {
-    "name": "Environmental Management ",
+    "name": "Environmental Management",
     "university": "University of Guelph",
     "degree": "Bachelor of Bio-Resource Management, BBRM",
     "ouacProgramCode": "GBC",
@@ -11783,7 +11783,7 @@
     "link": "https://ontariotechu.ca/programs/undergraduate/business/finance/index.php"
   },
   {
-    "name": "Financial & Business Economics (BA) ",
+    "name": "Financial & Business Economics (BA)",
     "university": "York University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "YBK",
@@ -12013,7 +12013,7 @@
     "link": "https://www.uottawa.ca/faculty-health-sciences/nutrition/undergraduate-studies/honours-bachelor-food-and-nutrition-sciences-bfnsc"
   },
   {
-    "name": "Foods and Nutrition ",
+    "name": "Foods and Nutrition",
     "university": "Western University",
     "degree": "Bachelor of Science, BSc",
     "ouacProgramCode": "EH",
@@ -12071,7 +12071,7 @@
     "link": "https://www.trentu.ca/futurestudents/degree/forensic-chemistry?target=undergraduate"
   },
   {
-    "name": "Forensic Psychology ",
+    "name": "Forensic Psychology",
     "university": "Ontario Tech University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "DPS",
@@ -12338,7 +12338,7 @@
     "link": "https://www.lakeheadu.ca/programs/undergraduate-programs/forestry/node/3579"
   },
   {
-    "name": "Foundations of Indigenous Learning ",
+    "name": "Foundations of Indigenous Learning",
     "university": "Trent University",
     "degree": "Diploma, Dipl.",
     "ouacProgramCode": "RG",
@@ -12382,7 +12382,7 @@
     "link": "https://www.trentu.ca/futurestudents/degree/business-and-arts?target=undergraduate"
   },
   {
-    "name": "French as a Second Language (4-year major) ",
+    "name": "French as a Second Language (4-year major)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "OVR",
@@ -13722,7 +13722,7 @@
     "link": "http://futurestudents.yorku.ca/program/health-studies"
   },
   {
-    "name": "Health Studies (Sociology BA) Specialization ",
+    "name": "Health Studies (Sociology BA) Specialization",
     "university": "Trent University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "RSH",
@@ -14792,7 +14792,7 @@
     "link": "https://www.kings.uwo.ca/future-students/programs/human-rights/"
   },
   {
-    "name": "iArts (Integrated Arts) ",
+    "name": "iArts (Integrated Arts)",
     "university": "McMaster University",
     "degree": "Bachelor of Arts, BA Bachelor of Fine Arts, BFA",
     "ouacProgramCode": "MHI",
@@ -15023,7 +15023,7 @@
     "link": "http://futurestudents.yorku.ca/program/indigenous-studies"
   },
   {
-    "name": "Indigenous Studies (BA in combination) ",
+    "name": "Indigenous Studies (BA in combination)",
     "university": "Wilfrid Laurier University – Brantford Campus",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "UIS",
@@ -15259,7 +15259,7 @@
     "link": "https://www.trentu.ca/business/"
   },
   {
-    "name": "Information Systems & Media Studies ",
+    "name": "Information Systems & Media Studies",
     "university": "Trent University – Durham Greater Toronto Area",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "RIM",
@@ -15620,7 +15620,7 @@
     "link": "https://www.torontomu.ca/sid/"
   },
   {
-    "name": "International BA (iBA Bilingual) ",
+    "name": "International BA (iBA Bilingual)",
     "university": "York University – Glendon Campus",
     "degree": "International Bachelor of Arts, iBA",
     "ouacProgramCode": "YGG",
@@ -16699,7 +16699,7 @@
     "link": "https://www.trentu.ca/futurestudents/degree/law-arts-trentswansea-dual-degree-llb-ba"
   },
   {
-    "name": "Law (LL.B.) Gender and Women’s Studies (BA): Trent/Swansea Dual Degree ",
+    "name": "Law (LL.B.) Gender and Women’s Studies (BA): Trent/Swansea Dual Degree",
     "university": "Trent University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "RNU",
@@ -16767,7 +16767,7 @@
     "link": "https://www.trentu.ca/futurestudents/degree/law-arts-trentswansea-dual-degree-llb-ba"
   },
   {
-    "name": "Law (LL.B.) International Development Studies (BA): Trent/Swansea Dual Degree ",
+    "name": "Law (LL.B.) International Development Studies (BA): Trent/Swansea Dual Degree",
     "university": "Trent University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "RNW",
@@ -16835,7 +16835,7 @@
     "link": "http://trentu.ca/durham/academics/degrees-and-programs/law-arts-trentswansea-dual-degree-llb-ba"
   },
   {
-    "name": "Law (LL.B.) Philosophy (BA): Trent/Swansea Dual Degree ",
+    "name": "Law (LL.B.) Philosophy (BA): Trent/Swansea Dual Degree",
     "university": "Trent University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "RNZ",
@@ -16886,7 +16886,7 @@
     "link": "http://trentu.ca/durham/academics/degrees-and-programs/law-arts-trentswansea-dual-degree-llb-ba"
   },
   {
-    "name": "Law (LL.B.) Sociology (BA): Trent/Swansea Dual Degree ",
+    "name": "Law (LL.B.) Sociology (BA): Trent/Swansea Dual Degree",
     "university": "Trent University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "RNY",
@@ -16963,7 +16963,7 @@
     "link": "https://www.uwindsor.ca/laps/"
   },
   {
-    "name": "Liberal Studies ",
+    "name": "Liberal Studies",
     "university": "Ontario Tech University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "DLS",
@@ -17012,7 +17012,7 @@
     "link": "https://www.queensu.ca/artsci/programs-and-degrees"
   },
   {
-    "name": "Life Sciences - Health Sciences Stream (regular and co-op) ",
+    "name": "Life Sciences - Health Sciences Stream (regular and co-op)",
     "university": "University of Toronto – Scarborough",
     "degree": "Bachelor of Science, BSc",
     "ouacProgramCode": "TXD",
@@ -17100,7 +17100,7 @@
     "link": "https://uwaterloo.ca/future-students/programs/life-sciences?utm_source=mur-einfo&utm_medium=referral&utm_campaign=mur-ouac"
   },
   {
-    "name": "Linguistics (4 years) ",
+    "name": "Linguistics (4 years)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "OVG",
@@ -17806,7 +17806,7 @@
     "link": "http://futurestudents.yorku.ca/program/mathematics-education"
   },
   {
-    "name": "Mathematics for Education (BSc) ",
+    "name": "Mathematics for Education (BSc)",
     "university": "York University",
     "degree": "Bachelor of Science, BSc",
     "ouacProgramCode": "YPQ",
@@ -18183,7 +18183,7 @@
     "link": "https://uwaterloo.ca/future-students/programs/mechatronics-engineering?utm_source=mur-einfo&utm_medium=referral&utm_campaign=mur-ouac"
   },
   {
-    "name": "Media and Communication Studies ",
+    "name": "Media and Communication Studies",
     "university": "Brock University",
     "degree": "Bachelor of Arts, BA Diploma, Dipl.",
     "ouacProgramCode": "BUC",
@@ -18273,7 +18273,7 @@
     "link": "https://www.trentu.ca/futurestudents/degree/media-studies?target=undergraduate"
   },
   {
-    "name": "Media Studies ",
+    "name": "Media Studies",
     "university": "Trent University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "RAM",
@@ -18406,7 +18406,7 @@
     "link": "https://ontariotechu.ca/programs/health-sciences/medical-laboratory-science.php"
   },
   {
-    "name": "Medical Laboratory Science - Northern Access Initiative ",
+    "name": "Medical Laboratory Science - Northern Access Initiative",
     "university": "Ontario Tech University",
     "degree": "Bachelor of Health Sciences, BHSc",
     "ouacProgramCode": "DMN",
@@ -19201,7 +19201,7 @@
     "link": "https://www.lakeheadu.ca/programs/undergraduate-programs/natural-science/node/3596"
   },
   {
-    "name": "Navigating the Music Industry Ecosystem Certificate ",
+    "name": "Navigating the Music Industry Ecosystem Certificate",
     "university": "Wilfrid Laurier University",
     "degree": "Certificate, Cert",
     "ouacProgramCode": "UBK",
@@ -19357,7 +19357,7 @@
     "link": "https://ontariotechu.ca/programs/energy-systems-and-nuclear-science/nuclear-engineering.php"
   },
   {
-    "name": "Nuclear Engineering (Co-op) ",
+    "name": "Nuclear Engineering (Co-op)",
     "university": "Ontario Tech University",
     "degree": "Bachelor of Engineering (Co-op), BEng (Co-op) Bachelor of Engineering & Management (Co-op), BEng&Mgt (Co-op)",
     "ouacProgramCode": "DNC",
@@ -20020,7 +20020,7 @@
     "link": "https://www.uottawa.ca/faculty-arts/programs/undergraduate/philosophy"
   },
   {
-    "name": "Philosophy – Ethics Specialization ",
+    "name": "Philosophy – Ethics Specialization",
     "university": "Trent University",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "RPJ",
@@ -20387,7 +20387,7 @@
     "link": "https://ontariotechu.ca/programs/science/physics-regular-and-co-op.php"
   },
   {
-    "name": "Physics ",
+    "name": "Physics",
     "university": "Trent University",
     "degree": "Bachelor of Science, BSc",
     "ouacProgramCode": "RPY",
@@ -20933,7 +20933,7 @@
     "link": "https://brocku.ca/programs/undergraduate/popular-culture/"
   },
   {
-    "name": "Post-Baccalaureate Certificate in Computer Science ",
+    "name": "Post-Baccalaureate Certificate in Computer Science",
     "university": "Wilfrid Laurier University",
     "degree": "Certificate, Cert",
     "ouacProgramCode": "URM",
@@ -21288,7 +21288,7 @@
     "link": "https://www.trentu.ca/futurestudents/degree/joint-majors?target=undergraduate"
   },
   {
-    "name": "Psychology and Linguistics (Joint Honours – 4 years) ",
+    "name": "Psychology and Linguistics (Joint Honours – 4 years)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "OUB",
@@ -22439,7 +22439,7 @@
     "link": "https://uwaterloo.ca/future-students/programs/science-and-business?utm_source=mur-einfo&utm_medium=referral&utm_campaign=mur-ouac"
   },
   {
-    "name": "Science – Non-Honours (3 years) ",
+    "name": "Science – Non-Honours (3 years)",
     "university": "Carleton University",
     "degree": "Bachelor of Science, BSc",
     "ouacProgramCode": "CS",
@@ -22502,7 +22502,7 @@
     "link": "https://brocku.ca/programs/undergraduate/sciences/"
   },
   {
-    "name": "Sciences sociales en études interdisciplinaires (4 ans) ",
+    "name": "Sciences sociales en études interdisciplinaires (4 ans)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Social Science, BSocSc",
     "ouacProgramCode": "OOK",
@@ -22807,7 +22807,7 @@
     "link": "http://socialsciences.mcmaster.ca/"
   },
   {
-    "name": "Social Sciences in Interdisciplinary studies (4 years) ",
+    "name": "Social Sciences in Interdisciplinary studies (4 years)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Social Science, BSocSc",
     "ouacProgramCode": "OKH",
@@ -24174,7 +24174,7 @@
     "link": "https://future.uwindsor.ca/visual-arts"
   },
   {
-    "name": "Visual Arts (4-year major) (French Immersion Stream is available) ",
+    "name": "Visual Arts (4-year major) (French Immersion Stream is available)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Arts, BA",
     "ouacProgramCode": "OUK",
@@ -24222,7 +24222,7 @@
     "link": "https://www.algomau.ca/academics/programs/visual-arts/"
   },
   {
-    "name": "Visual Arts (BFA) (4 years) ",
+    "name": "Visual Arts (BFA) (4 years)",
     "university": "University of Ottawa",
     "degree": "Bachelor of Fine Arts, BFA",
     "ouacProgramCode": "OVE",
@@ -24342,7 +24342,7 @@
     "link": "https://www.uoguelph.ca/programs/bachelor-of-engineering"
   },
   {
-    "name": "Water Sciences ",
+    "name": "Water Sciences",
     "university": "Trent University",
     "degree": "Bachelor of Science, BSc",
     "ouacProgramCode": "RWA",
