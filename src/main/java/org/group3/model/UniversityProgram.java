@@ -1,8 +1,17 @@
 package org.group3.model;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.*;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 public class UniversityProgram {
   private String name;
@@ -15,13 +24,15 @@ public class UniversityProgram {
   private String instructionLanguage;
   private List<String> prerequisites;
   private String notes;
+//private ImageIcon universityLogo;
+//  private ImageIcon universityLogo;
   
 
   public UniversityProgram(String name, String university, String degree,
                            String ouacProgramCode, String gradeRange,
                            String experientialLearning, String enrollment,
                            String instructionLanguage,
-                           List<String> prerequisites, String notes) {
+                           List<String> prerequisites, String notes) throws NoSuchFileException {
     this.name = name;
     this.university = university;
     this.degree = degree;
@@ -32,6 +43,24 @@ public class UniversityProgram {
     this.instructionLanguage = instructionLanguage;
     this.prerequisites = prerequisites;
     this.notes = notes;
+    
+//    String modifiedUniversityName = university.replace(' ', '_');
+    String imagePathJpg = "path/to/images/" + getUniversity() + ".jpg";
+    String imagePathPng = "path/to/images/" + getUniversity() + ".png";
+    BufferedImage image = null;
+    try {
+        image = ImageIO.read(new File(imagePathJpg));
+    }catch(IOException e) {
+    	try {
+    		image = ImageIO.read(new File(imagePathPng));
+    		System.out.println("SUCCESS");
+    	}catch(IOException e2) {
+    		e2.printStackTrace();
+    		System.out.println("FAILED IMAGE");
+    	}
+    }
+//    this.universityLogo = new ImageIcon(image);
+    
   }
 
   public String getName() { return name; }
@@ -81,8 +110,19 @@ public class UniversityProgram {
   public String getNotes() { return notes; }
 
   public void setNotes(String notes) { this.notes = notes; }
+  
+  
 
-  @Override
+//  public ImageIcon getUniversityLogo() {
+//	return universityLogo;
+//}
+//
+//public void setUniversityLogo(ImageIcon universityLogo) {
+//	this.universityLogo = universityLogo;
+//}
+
+
+@Override
   public String toString() {
     return "UniversityProgram{"
         + "name='" + name + '\'' + ", university='" + university + '\'' +
@@ -93,6 +133,7 @@ public class UniversityProgram {
         instructionLanguage + '\'' + ", prerequisites=" + prerequisites +
         ", notes='" + notes + '\'' + '}';
   }
+
   public double getGrade() {
 	  Pattern p = Pattern.compile("\\d+");
       Matcher m = p.matcher(getGradeRange());

@@ -23,11 +23,12 @@ public class SortPanel extends JPanel {
 //	private JRadioButton universityAlphabeticalDescend = new JRadioButton("A-Z");
 //	private JRadioButton universityGradeAscend = new JRadioButton("Low-High");
 //	private JRadioButton universityGradeDescend = new JRadioButton("Low-High");
-	private JRadioButton[] universityJRadioButtonArray = new JRadioButton[4];
+	private JRadioButton[] universityJRadioButtonArray = new JRadioButton[2];
 	private JButton confirmButton = new JButton("Confirm");
 	private JButton resetButton = new JButton("Reset");
+	private ButtonGroup buttonGroupProgram = new ButtonGroup();
+	private ButtonGroup buttonGroupUniversity = new ButtonGroup();
 
-	private ButtonGroup buttonGroup = new ButtonGroup();
 
 	public SortPanel() {
 //		setLayout(new GridLayout(0,1));
@@ -50,7 +51,7 @@ public class SortPanel extends JPanel {
 			
 			programJRadioButtonArray[i].setPreferredSize(new Dimension(300,29));
 			setRadioButtonText(i, 0);
-			buttonGroup.add(programJRadioButtonArray[i]);
+			buttonGroupProgram.add(programJRadioButtonArray[i]);
 			programOptions.add(programJRadioButtonArray[i]);
 
 		}
@@ -71,6 +72,7 @@ public class SortPanel extends JPanel {
 //			universityJRadioButtonArray[i].setBounds(10, 40+i*29, 300, 29);
 			universityJRadioButtonArray[i].setPreferredSize(new Dimension(300,29));
 			setRadioButtonText(i, 1);
+			buttonGroupUniversity.add(universityJRadioButtonArray[i]);
 			universityOptions.add(universityJRadioButtonArray[i]);
 
 		}
@@ -144,12 +146,12 @@ public class SortPanel extends JPanel {
 
 
 	public ButtonGroup getButtonGroup() {
-		return buttonGroup;
+		return buttonGroupProgram;
 	}
 
 
 	public void setButtonGroup(ButtonGroup buttonGroup) {
-		this.buttonGroup = buttonGroup;
+		this.buttonGroupProgram = buttonGroup;
 	}
 
 

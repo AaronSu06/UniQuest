@@ -42,12 +42,15 @@ public class SearchFrame extends JFrame {
 //		sidePanel.setBorder(border);
 //		sideScrollPane.add(sidePanel);
 		
+		searchField.setBounds(300,45,980,45);
+		searchField.setBorder(border);
+		add(searchField);
 		sideScrollPane.setBounds(0,45,300,675);
 		sideScrollPane.setBorder(border);
 		sideScrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		add(sideScrollPane);
 		
-		displayScrollPane.setBounds(300,45,980,675);
+		displayScrollPane.setBounds(300,90,980,675);
 		displayScrollPane.setBorder(border);
 		displayScrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		add(displayScrollPane);

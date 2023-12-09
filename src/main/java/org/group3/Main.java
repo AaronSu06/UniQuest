@@ -17,6 +17,7 @@ public class Main {
 //    	tornto metropolian university (formly ryerson university) is gonna be called toronto metropolian university
       programList = DataModel.generateProgramList();
     } catch (Exception e) {
+    	e.printStackTrace();
       System.out.println("Something went wrong...");
     }
 //    new SearchFrame();
