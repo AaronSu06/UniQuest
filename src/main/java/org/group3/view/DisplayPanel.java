@@ -96,6 +96,9 @@ public class DisplayPanel extends JPanel{
 //
 //			}
 //		}
+		universityArray.clear();
+		universityArray = new ArrayList<>(universityPanelArray);
+//		System.out.println(universityArray.size());
 	
 		repaint();
 		revalidate();
@@ -137,6 +140,8 @@ public class DisplayPanel extends JPanel{
 	}
 	public void filter(HashMap<Integer,String>selectedFilters) {
 		ArrayList<UniversityPanel>tempArray = new ArrayList<>(universityArray);
+		ArrayList<UniversityPanel>jointArray = new ArrayList<>();
+//		System.out.println(selectedFilters);
 		System.out.println(selectedFilters);
 		for(Map.Entry<Integer, String> filter:selectedFilters.entrySet()) {
 			for(int i = 0;i<tempArray.size();i++) {
@@ -153,9 +158,17 @@ public class DisplayPanel extends JPanel{
 					i--;
 				}
 			}
+//			jointArray=new ArrayList<>(tempArray);
+			for(UniversityPanel uni:tempArray) {
+				if(!jointArray.contains(uni)) {
+					jointArray.add(uni);
+				}
+			}
+			
 		}
+		
 //		System.out.println(tempArray);
-		updateUniversityPanels(tempArray);
+		updateUniversityPanels(jointArray);
 	}
 	 public double convertToInteger(String filters) {
 		  Pattern p = Pattern.compile("\\d+");
@@ -220,6 +233,8 @@ public class DisplayPanel extends JPanel{
 //            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 //    }
 	public void resetToOriginal() {
-		updateUniversityPanels(universityArray);
+		System.out.println(universityArray.size());
+//		updateUniversityPanels(universityArray);
+		addUniversityPanels();
 	}
 }

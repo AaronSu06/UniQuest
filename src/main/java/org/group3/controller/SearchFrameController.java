@@ -34,18 +34,23 @@ public class SearchFrameController implements ActionListener{
 //			ArrayList<Integer> selectedIndexArray = new ArrayList<>();
 //			ArrayList<String>selectedStrings = new ArrayList<String>();
 			HashMap<Integer, String>selectedStrings = new HashMap<Integer, String>();
-			System.out.println("CONFIRMED");
+//			System.out.println("CONFIRMED");
+			searchFrame.getDisplayPanel().resetToOriginal();
+		
 			for(int i = 0;i<searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().size();i++) {
 				if(searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).isSelected()) {
 //					selectedIndexArray.add(i);
-					System.out.println(i);
+//					System.out.println(i);
 					selectedStrings.put(i, searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText());
 //					selectedStrings.add(searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText());
 //					System.out.println(selectedStrings.getLast());
 				}
 				
 			}
-			searchFrame.getDisplayPanel().filter(selectedStrings);
+			if(selectedStrings.size()!=0) {
+				searchFrame.getDisplayPanel().filter(selectedStrings);
+
+			}
 			for(int i = 0;i<searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray().length;i++) {
 				System.out.println(searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray()[i].isSelected());
 				if(searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray()[i].isSelected()) {
@@ -58,8 +63,11 @@ public class SearchFrameController implements ActionListener{
 			
 		}
 		if(e.getSource()==searchFrame.getSidePanel().getSortPanel().getResetButton()) {
-			System.out.println("RESETTED");
+//			System.out.println("RESETTED");
 			searchFrame.getDisplayPanel().resetToOriginal();
+			searchFrame.getSidePanel().getFilterPanel().reset();
+			searchFrame.getSidePanel().getSortPanel().reset();
+			
 		}
 		
 		

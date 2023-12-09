@@ -82,7 +82,11 @@ public class FilterPanel extends JPanel{
 	public static void setGradeRangeCount(int gradeRangeCount) {
 		FilterPanel.gradeRangeCount = gradeRangeCount;
 	}
-
+	public void reset() {
+		for(JCheckBox box:checkBoxArray) {
+			box.setSelected(false);
+		}
+	}
 	
 	
 	
