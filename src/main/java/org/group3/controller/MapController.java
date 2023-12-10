@@ -1,5 +1,6 @@
 package org.group3.controller;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -76,10 +77,13 @@ public class MapController implements ActionListener, MouseListener {
     }
 
     for (University uni : universities) {
+//    	uni.getSearchResult().setPreferredSize(new Dimension(150,100));
       mapFrame.getSideBarContentPanel().add(uni.getSearchResult());
     }
     mapFrame.getSideBarContentPanel().repaint();
     mapFrame.getSideBarContentPanel().revalidate();
+ 
+    
   }
 
   /**
