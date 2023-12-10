@@ -28,7 +28,7 @@ public class DisplayPanel extends JPanel {
 //	private JScrollPane scrollPane = new JScrollPane(null, 0, 0)
 	private ArrayList<UniversityPanel> universityArray = new ArrayList<>();
 
-	private ArrayList<UniversityProgram> universityProgramArray = (ArrayList<UniversityProgram>) Main.programList;
+	private ArrayList<UniversityProgram> universityProgramArray = (ArrayList<UniversityProgram>) DataModel.universityProgramArrayList;
 
 	public DisplayPanel() {
 //		setLayout(null);
@@ -90,7 +90,7 @@ public class DisplayPanel extends JPanel {
 		universityArray.clear();
 //		universityArray =new ArrayList<>();
 
-		for (int i = 0; i < Main.programList.size(); i++) {
+		for (int i = 0; i < DataModel.universityProgramArrayList.size(); i++) {
 			universityArray.add(new UniversityPanel(universityProgramArray.get(i)));
 			universityArray.get(i).setPreferredSize(new Dimension(220, 300));
 //			System.out.println(universityArray.get(i).getProgram().getUniversity());

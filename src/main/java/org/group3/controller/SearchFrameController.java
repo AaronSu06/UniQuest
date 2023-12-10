@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.group3.model.LogoInput;
 import org.group3.view.DisplayPanel;
 import org.group3.view.SearchFrame;
 import org.group3.view.UniversityInformationPanel;
@@ -114,29 +115,29 @@ public class SearchFrameController implements ActionListener {
 						JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 				scroll.setPreferredSize(new Dimension(500, 500));
 //				System.out.println("assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity() + ".jpg");
-				String imagePathJpg = "assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity() + ".jpg";
-				String imagePathPng = "assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity()  + ".png";
-				BufferedImage image = null;
-				try {
-					image = ImageIO.read(new File(imagePathJpg));
-					Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
-					image = new BufferedImage(300, 200, BufferedImage.TYPE_INT_RGB);
-					image.getGraphics().drawImage(scaledImage, 0, 0, null);
-
-				} catch (IOException e2) {
-					try {
-						image = ImageIO.read(new File(imagePathPng));
-						Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
-						image = new BufferedImage(300, 200, BufferedImage.TYPE_INT_RGB);
-						image.getGraphics().drawImage(scaledImage, 0, 0, null);
-						System.out.println("SUCCESS");
-					} catch (IOException e3) {
-						e3.printStackTrace();
-						System.out.println("FAILED IMAGE");
-					}
-				}
-				ImageIcon imageIcon = new ImageIcon(image);
-				JOptionPane.showMessageDialog(searchFrame, scroll, "Information", 1, imageIcon);
+//				String imagePathJpg = "assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity() + ".jpg";
+//				String imagePathPng = "assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity()  + ".png";
+//				BufferedImage image = null;
+//				try {
+//					image = ImageIO.read(new File(imagePathJpg));
+//					Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
+//					image = new BufferedImage(300, 200, BufferedImage.TYPE_INT_RGB);
+//					image.getGraphics().drawImage(scaledImage, 0, 0, null);
+//
+//				} catch (IOException e2) {
+//					try {
+//						image = ImageIO.read(new File(imagePathPng));
+//						Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
+//						image = new BufferedImage(300, 200, BufferedImage.TYPE_INT_RGB);
+//						image.getGraphics().drawImage(scaledImage, 0, 0, null);
+//						System.out.println("SUCCESS");
+//					} catch (IOException e3) {
+//						e3.printStackTrace();
+//						System.out.println("FAILED IMAGE");
+//					}
+//				}
+//				ImageIcon imageIcon = new ImageIcon(image);
+				JOptionPane.showMessageDialog(searchFrame, scroll, "Information", 1, LogoInput.imageMap.get(searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity()));
 
 //				JOptionPane.showMessageDialog(searchFrame, scroll);
 			}

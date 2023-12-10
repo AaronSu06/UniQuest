@@ -158,7 +158,7 @@ public class DataModel {
       };
 
   public static ArrayList<UniversityProgram> universityProgramArrayList;
-
+ 
   /*
    * === Database Creation Methods ===
    */

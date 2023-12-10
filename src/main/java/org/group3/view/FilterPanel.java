@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import org.group3.Main;
+import org.group3.model.DataModel;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,9 +37,9 @@ public class FilterPanel extends JPanel{
 		instituionLabel.setOpaque(true);
 		add(instituionLabel);
 		ArrayList<String>universities = new ArrayList<>();
-		for(int i = 0 ;i<Main.programList.size();i++) {
-			if(!universities.contains(Main.programList.get(i).getUniversity())) {
-				universities.add(Main.programList.get(i).getUniversity());
+		for(int i = 0 ;i<DataModel.universityProgramArrayList.size();i++) {
+			if(!universities.contains(DataModel.universityProgramArrayList.get(i).getUniversity())) {
+				universities.add(DataModel.universityProgramArrayList.get(i).getUniversity());
 				universityCount++;
 			}
 		}

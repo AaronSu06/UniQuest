@@ -14,11 +14,12 @@ import java.io.IOException;
 public class LogoInput {
 	public static HashMap<String, ImageIcon>imageMap = new HashMap<>();
 	public LogoInput() {
-		for (int i = 0; i < Main.programList.size(); i++) {
-			String uni = Main.programList.get(i).getUniversity();
+		for (int i = 0; i < DataModel.universityProgramArrayList.size(); i++) {
+			String uni =  DataModel.universityProgramArrayList.get(i).getUniversity();
+			System.out.println(uni);
 			if(!imageMap.containsKey(uni)) {
-				String imagePathJpg = "assets/data/UniLogos/" + Main.programList.get(i).getUniversity() + ".jpg";
-				String imagePathPng = "assets/data/UniLogos/" + Main.programList.get(i).getUniversity()  + ".png";
+				String imagePathJpg = "assets/data/UniLogos/" + DataModel.universityProgramArrayList.get(i).getUniversity() + ".jpg";
+				String imagePathPng = "assets/data/UniLogos/" + DataModel.universityProgramArrayList.get(i).getUniversity()  + ".png";
 				BufferedImage image = null;
 				try {
 					image = ImageIO.read(new File(imagePathJpg));
