@@ -22,7 +22,8 @@ public class UniversityPanel extends JPanel{
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		universityLabel.setText(program.getName());
 		universityLabel.setBounds(0,0,250,50);
-		universityLabel.setBackground(new Color(159,226,135,100));
+//		universityLabel.setBackground(new Color(159,226,135,100));
+		universityLabel.setBackground(AppColors.LIGHT_GREEN);
 		universityLabel.setForeground(Color.BLACK);
 		universityLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		universityLabel.setOpaque(true);

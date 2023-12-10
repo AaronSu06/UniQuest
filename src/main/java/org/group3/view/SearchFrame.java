@@ -50,7 +50,9 @@ public class SearchFrame extends JFrame {
     // sidePanel.setBounds(0,45,300,675);
     // sidePanel.setBorder(border);
     // sideScrollPane.add(sidePanel);
-
+    menuPanel.setBounds(0,0,1280,45);
+    menuPanel.setBorder(border);
+    add(menuPanel);
     searchField.setBounds(300, 45, 980, 45);
     // searchField.setBorder(border);
     searchField.setBackground(new Color(182, 215, 168));
