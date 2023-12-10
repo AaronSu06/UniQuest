@@ -26,7 +26,16 @@ public class SearchFrameController implements ActionListener {
 	private SearchFrame searchFrame = new SearchFrame();
 
 	public SearchFrameController() {
+		searchFrame.setVisible(false);
 		addActionListeners();
+	}
+	
+	public SearchFrame getSearchFrame() {
+		return searchFrame;
+	}
+
+	public void setSearchFrame(SearchFrame searchFrame) {
+		this.searchFrame = searchFrame;
 	}
 
 	public void addActionListeners() {
@@ -46,6 +55,8 @@ public class SearchFrameController implements ActionListener {
 		}
 		for (int i = 0; i < searchFrame.getDisplayPanel().getUniversityArray().size(); i++) {
 			searchFrame.getDisplayPanel().getUniversityArray().get(i).getUniversityButton().addActionListener(this);
+			searchFrame.getDisplayPanel().getUniversityArray().get(i).getFavouriteButton().addActionListener(this);
+
 		}
 		searchFrame.getSearchField().addActionListener(this);
 	}
@@ -55,6 +66,7 @@ public class SearchFrameController implements ActionListener {
 		System.out.println(searchFrame.getDisplayPanel().getUniversityArray().size());
 		for (int i = 0; i < searchFrame.getDisplayPanel().getUniversityArray().size(); i++) {
 			searchFrame.getDisplayPanel().getUniversityArray().get(i).getUniversityButton().addActionListener(this);
+			searchFrame.getDisplayPanel().getUniversityArray().get(i).getFavouriteButton().addActionListener(this);
 		}
 	}
 
@@ -158,6 +170,15 @@ public class SearchFrameController implements ActionListener {
 			searchFrame.getDisplayPanel().search(text);
 			reAddActionListeners();
 			
+		}
+		
+//		FAVOURITING
+		for(int i = 0;i<searchFrame.getDisplayPanel().getUniversityArray().size();i++) {
+			if(e.getSource()==searchFrame.getDisplayPanel().getUniversityArray().get(i).getFavouriteButton()) {
+//				Do something
+				System.out.println(i +": THIS IS THE ITERATION NUMBER");
+//				Note: You'll probably need to pass the program in as an argument to save the stuff.
+			}
 		}
 
 	}

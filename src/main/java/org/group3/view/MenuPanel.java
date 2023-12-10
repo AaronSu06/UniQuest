@@ -10,7 +10,7 @@ import javax.swing.border.Border;
 public class MenuPanel extends JPanel{
 	private JButton quit = new JButton();
 	private JButton[]frameButtons = new JButton[3];
-	private JButton logOut = new JButton();
+	private JButton logOut = new JButton("LOG OUT");
 	private JButton profile = new JButton();
 	public MenuPanel() {
 		setLayout(null);
@@ -39,6 +39,7 @@ public class MenuPanel extends JPanel{
 		}
 		logOut.setBounds(1050,7,100,30);
 		logOut.setBorder(b);
+		logOut.setBackground(Color.RED);
 		add(logOut);
 		profile.setBounds(1200,7,30,30);
 		profile.setBorder(b);
@@ -48,4 +49,29 @@ public class MenuPanel extends JPanel{
 //			button.setBounds();
 //		}
 	}
+	public JButton getQuit() {
+		return quit;
+	}
+	public void setQuit(JButton quit) {
+		this.quit = quit;
+	}
+	public JButton[] getFrameButtons() {
+		return frameButtons;
+	}
+	public void setFrameButtons(JButton[] frameButtons) {
+		this.frameButtons = frameButtons;
+	}
+	public JButton getLogOut() {
+		return logOut;
+	}
+	public void setLogOut(JButton logOut) {
+		this.logOut = logOut;
+	}
+	public JButton getProfile() {
+		return profile;
+	}
+	public void setProfile(JButton profile) {
+		this.profile = profile;
+	}
+	
 }

@@ -29,27 +29,10 @@ public class SearchFrame extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(null);
     Border border = BorderFactory.createLineBorder(Color.BLACK);
+    
     setSize(1280, 720);
-    // menuPanel.setBounds(0,0,1280,45);
-    // menuPanel.setBorder(border);
-    // add(menuPanel);
-
-    // filterPanel.setBounds(0,45,300,337);
-    // filterPanel.setBorder(border);
-    // add(filterPanel);
-
-    // sortPanel.setBounds(0,382,300,337);
-    // sortPanel.setBorder(border);
-    // add(sortPanel);
-
-    // sortScrollPane.setBounds(0,382,300,337);
-    // sortScrollPane.setBorder(border);
-    // sortScrollPane.getVerticalScrollBar().setUnitIncrement(4);
-    // add(sortScrollPane);
-    // displayPanel.setBounds(300,45,980,675);
-    // sidePanel.setBounds(0,45,300,675);
-    // sidePanel.setBorder(border);
-    // sideScrollPane.add(sidePanel);
+    setLocationRelativeTo(null);
+    setResizable(false);
     menuPanel.setBounds(0,0,1280,45);
     menuPanel.setBorder(border);
     add(menuPanel);
@@ -58,13 +41,13 @@ public class SearchFrame extends JFrame {
     searchField.setBackground(new Color(182, 215, 168));
     searchField.setOpaque(true);
     add(searchField);
-    sideScrollPane.setBounds(0, 45, 300, 675);
+    sideScrollPane.setBounds(0, 45, 300, 640);
     // sideScrollPane.setBorder(border);
     sideScrollPane.getVerticalScrollBar().setUnitIncrement(20);
     // sideScrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     add(sideScrollPane);
 
-    displayScrollPane.setBounds(300, 90, 980, 675);
+    displayScrollPane.setBounds(300, 90, 965, 675);
     // displayScrollPane.setBorder(border);
     displayScrollPane.getVerticalScrollBar().setUnitIncrement(20);
     add(displayScrollPane);

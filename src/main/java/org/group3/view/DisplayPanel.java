@@ -27,7 +27,6 @@ public class DisplayPanel extends JPanel {
 //	private JScrollPane scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 //	private JScrollPane scrollPane = new JScrollPane(null, 0, 0)
 	private ArrayList<UniversityPanel> universityArray = new ArrayList<>();
-
 	private ArrayList<UniversityProgram> universityProgramArray = (ArrayList<UniversityProgram>) DataModel.universityProgramArrayList;
 
 	public DisplayPanel() {
@@ -94,7 +93,15 @@ public class DisplayPanel extends JPanel {
 			universityArray.add(new UniversityPanel(universityProgramArray.get(i)));
 			universityArray.get(i).setPreferredSize(new Dimension(220, 300));
 //			System.out.println(universityArray.get(i).getProgram().getUniversity());
+			
+//			Image sizeToFit = LogoInput.imageMap.get(universityArray.get(i).getProgram().getUniversity()).getImage().getScaledInstance(universityArray.get(i).getUniversityButton().getWidth(),universityArray.get(i).getUniversityButton().getHeight(), Image.SCALE_SMOOTH);
+//			universityArray.get(i).getUniversityButton().setIcon(new ImageIcon(sizeToFit));
+			universityArray.get(i).getUniversityButton().setContentAreaFilled(false);
 			universityArray.get(i).getUniversityButton().setIcon(LogoInput.imageMap.get(universityArray.get(i).getProgram().getUniversity()));
+//			universityArray.get(i).getUniversityButton().setHorizontalAlignment(SwingConstants.LEFT);
+//			universityArray.get(i).getUniversityButton().setVerticalAlignment(SwingConstants.TOP);
+//			universityArray.get(i).getUniversityButton().setHorizontalTextPosition(SwingConstants.LEFT);
+
 //			String imagePathJpg = "assets/data/UniLogos/" + getUniversityArray().get(i).getProgram().getUniversity() + ".jpg";
 //			String imagePathPng = "assets/data/UniLogos/" + getUniversityArray().get(i).getProgram().getUniversity()  + ".png";
 //			BufferedImage image = null;
@@ -189,20 +196,39 @@ public class DisplayPanel extends JPanel {
 			Collections.reverse(universityArray);
 			updateUniversityPanels(universityArray);
 		} else if (type == 2) {
-			Collections.sort(universityProgramArray, Comparator.comparing(UniversityProgram::getGrade));
+//			universityArray.sort((a,b)->a.getProgram().getGrade().compareTo(b.getProgram().getGrade()));
+			Collections.sort(universityArray, new Comparator<UniversityPanel>() {
+
+				@Override
+				public int compare(UniversityPanel o1, UniversityPanel o2) {
+					// TODO Auto-generated method stub
+	                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
+				}
+	            
+	        });
+//			Collections.sort(universityProgramArray, Comparator.comparing(UniversityProgram::getGrade));
 //			for(UniversityProgram uni:universityProgramArray) {
 //				System.out.println(uni);
 //
 //			}
-			Collections.reverse(universityProgramArray);
-			addUniversityPanels();
-//			updateUniversityPanels();
-//			universityArray.getFirst().getProgram().getGrade();
+			Collections.reverse(universityArray);
+//			Collections.reverse(universityProgramArray);
+//			addUniversityPanels();
+			updateUniversityPanels(universityArray);
 
 		} else if (type == 3) {
-			Collections.sort(universityProgramArray, Comparator.comparing(UniversityProgram::getGrade));
+//			Collections.sort(universityProgramArray, Comparator.comparing(UniversityProgram::getGrade));
+			Collections.sort(universityArray, new Comparator<UniversityPanel>() {
 
-			addUniversityPanels();
+				@Override
+				public int compare(UniversityPanel o1, UniversityPanel o2) {
+					// TODO Auto-generated method stub
+	                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
+				}
+	            
+	        });
+			updateUniversityPanels(universityArray);
+//			addUniversityPanels();
 		} else if (type == 4) {
 			universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
 			updateUniversityPanels(universityArray);
@@ -223,21 +249,15 @@ public class DisplayPanel extends JPanel {
 	public void filter(HashMap<Integer, String> selectedFilters) {
 		ArrayList<UniversityPanel> tempArray = new ArrayList<>(universityArray);
 		ArrayList<UniversityPanel> jointArray = new ArrayList<>();
-//		System.out.println(selectedFilters);
-//		System.out.println(selectedFilters);
 		for (Map.Entry<Integer, String> filter : selectedFilters.entrySet()) {
 			int filter1 = convertToInteger(filter.getValue());
-			System.out.println(filter1);
-			System.out.println(Integer.toString(filter1));
-			System.out.println(filter.getValue().replace(Integer.toString(filter1), ""));
 			int filter2 = convertToInteger(filter.getValue().replace(Integer.toString(filter1), ""));
+			System.out.println(filter.getKey());
+			System.out.println(filter.getValue());
 
-//			filter.getValue().replace(Double.toString(filter1), "");
-			System.out.println(filter2);
 //			
 			for (int i = 0; i < tempArray.size(); i++) {
-//				System.out.println(filter.getKey());
-				System.out.println(tempArray.get(i).getProgram().getGrade());
+//				System.out.println(tempArray.get(i).getProgram().getGrade());
 				if (filter.getKey() <= FilterPanel.getUniversityCount()
 						&& filter.getValue().equals(tempArray.get(i).getProgram().getUniversity())) {
 //					
@@ -246,6 +266,9 @@ public class DisplayPanel extends JPanel {
 						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
 						&& (filter2 >= (tempArray.get(i).getProgram().getGrade()))
 						&& filter1 <= tempArray.get(i).getProgram().getGrade()) {
+
+				}else if(filter.getKey()>FilterPanel.getGradeRangeCount()&&tempArray.get(i).getProgram().containsCourseCode(filter.getValue())) {
+					
 
 				}
 //				else if(filter.getKey() > FilterPanel.getUniversityCount()
@@ -269,6 +292,7 @@ public class DisplayPanel extends JPanel {
 					jointArray.add(uni);
 				}
 			}
+			tempArray=jointArray;
 
 		}
 

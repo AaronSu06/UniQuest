@@ -18,6 +18,7 @@ public class FilterPanel extends JPanel{
 	private JLabel filterTitle = new JLabel("Filters");
 	private JLabel instituionLabel = new JLabel("Institutions");
 	private JLabel gradeLabel = new JLabel("Grade Range");
+
 	private static int universityCount=0;
 	private static int gradeRangeCount = 0;
 	public FilterPanel() {
@@ -57,17 +58,30 @@ public class FilterPanel extends JPanel{
 		gradeLabel.setBackground(new Color(132,192,106,100));
 		gradeLabel.setOpaque(true);
 		add(gradeLabel);
-		for(int i = 0;i<6;i++) {
-			if(i==0) {
-				checkBoxArray.add(new JCheckBox("less than 50%"));
-				
-			}else {
-				checkBoxArray.add(new JCheckBox(Integer.toString(40+i*10)+"% to "+Integer.toString(50+i*10)+"%"));
+//		for(int i = 0;i<6;i++) {
+//			if(i==0) {
+//				checkBoxArray.add(new JCheckBox("less than 50%"));
+//				
+//			}else {
+//				checkBoxArray.add(new JCheckBox(Integer.toString(40+i*10)+"% to "+Integer.toString(50+i*10)+"%"));
+//
+//			}
+//			checkBoxArray.getLast().setPreferredSize(new Dimension(300,50));
+//			add(checkBoxArray.getLast());
+//			gradeRangeCount++;
+//		}
+		for(int i = 0;i<4;i++) {
+			
+			
+			checkBoxArray.add(new JCheckBox(Integer.toString(60+i*10)+"% to "+Integer.toString(70+i*10)+"%"));
 
-			}
+			
 			checkBoxArray.getLast().setPreferredSize(new Dimension(300,50));
 			add(checkBoxArray.getLast());
 			gradeRangeCount++;
+		}
+		for(int i =0;i<DataModel.universityProgramArrayList.size();i++) {
+			
 		}
 	}
 

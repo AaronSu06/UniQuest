@@ -145,9 +145,12 @@ public class LoginController implements ActionListener, FocusListener {
 		// signal that the user has decided to sign in as a guest
 		if (e.getSource() == homeFrame.getLoginAsGuest()) {
 			JOptionPane.showMessageDialog(homeFrame, "Signed In As Guest!!!!");
+			homeFrame.setVisible(false);
+			MainController.searchFrameController.getSearchFrame().setVisible(true);
+			
 		}
 	}
-
+	
 	// limitations behind the signup (such as passwords must match, no space in
 	// username, etc.)
 	public boolean validInfo() {
