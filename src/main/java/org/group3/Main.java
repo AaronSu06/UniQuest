@@ -12,10 +12,13 @@ import org.group3.view.SearchFrame;
 // code.
 public class Main {
 	public static List<UniversityProgram> programList;
+	public static LogoInput logoInput;
   public static void main(String[] args) {
     try {
 //    	tornto metropolian university (formly ryerson university) is gonna be called toronto metropolian university
       programList = DataModel.generateProgramList();
+      logoInput=new LogoInput();
+      
     } catch (Exception e) {
     	e.printStackTrace();
       System.out.println("Something went wrong...");

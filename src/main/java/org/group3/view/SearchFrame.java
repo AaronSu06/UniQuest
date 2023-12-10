@@ -46,6 +46,7 @@ public class SearchFrame extends JFrame {
 		searchField.setBounds(300,45,980,45);
 //		searchField.setBorder(border);
 		searchField.setBackground(new Color(182,215,168,100));
+		searchField.setOpaque(true);
 		add(searchField);
 		sideScrollPane.setBounds(0,45,300,675);
 //		sideScrollPane.setBorder(border);
