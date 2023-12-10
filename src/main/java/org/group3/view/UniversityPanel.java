@@ -1,6 +1,11 @@
 package org.group3.view;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import org.group3.Main;
@@ -9,17 +14,22 @@ public class UniversityPanel extends JPanel{
 	private JLabel universityLabel = new JLabel();
 	private JButton universityButton = new JButton();
 	private UniversityProgram program;
+	private ImageIcon image;
 	public UniversityPanel(UniversityProgram program) {
 		super();
 		this.program = program;
 		setLayout(null);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		universityLabel.setText(program.getName());
-		universityLabel.setBounds(20,0,200,50);
-//		System.out.println(program.getName());
+		universityLabel.setBounds(0,0,250,50);
+		universityLabel.setBackground(new Color(159,226,135,100));
+		universityLabel.setForeground(Color.WHITE);
+		universityLabel.setOpaque(true);
+		//		System.out.println(program.getName());
 		add(universityLabel);
 		
 		universityButton.setBounds(0,50,250,250);
+//		universityButton.setIcon(imageIcon);
 		add(universityButton);
 		
 	}

@@ -113,7 +113,7 @@ public class SearchFrameController implements ActionListener {
 								searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram()),
 						JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 				scroll.setPreferredSize(new Dimension(500, 500));
-				System.out.println("assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity() + ".jpg");
+//				System.out.println("assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity() + ".jpg");
 				String imagePathJpg = "assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity() + ".jpg";
 				String imagePathPng = "assets/data/UniLogos/" + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity()  + ".png";
 				BufferedImage image = null;

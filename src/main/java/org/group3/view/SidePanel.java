@@ -22,7 +22,7 @@ public class SidePanel extends JPanel {
 //		GroupLayout gl = new GroupLayout(this);
 		setLayout(new GridLayout(0,1));
 //		setLayout(gl);
-	
+		setOpaque(false);
 		
 		
 		

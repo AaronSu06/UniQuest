@@ -5,12 +5,18 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.group3.model.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import org.group3.Main;
@@ -87,7 +93,31 @@ public class DisplayPanel extends JPanel {
 		for (int i = 0; i < Main.programList.size(); i++) {
 			universityArray.add(new UniversityPanel(universityProgramArray.get(i)));
 			universityArray.get(i).setPreferredSize(new Dimension(220, 300));
-			;
+			System.out.println(universityArray.get(i).getProgram().getUniversity());
+			String imagePathJpg = "assets/data/UniLogos/" + getUniversityArray().get(i).getProgram().getUniversity() + ".jpg";
+			String imagePathPng = "assets/data/UniLogos/" + getUniversityArray().get(i).getProgram().getUniversity()  + ".png";
+			BufferedImage image = null;
+			try {
+				image = ImageIO.read(new File(imagePathJpg));
+				Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
+				image = new BufferedImage(300, 200, BufferedImage.TYPE_INT_RGB);
+				image.getGraphics().drawImage(scaledImage, 0, 0, null);
+
+			} catch (IOException e2) {
+				try {
+					image = ImageIO.read(new File(imagePathPng));
+					Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
+					image = new BufferedImage(300, 200, BufferedImage.TYPE_INT_RGB);
+					image.getGraphics().drawImage(scaledImage, 0, 0, null);
+//					System.out.println("SUCCESS");
+				} catch (IOException e3) {
+					e3.printStackTrace();
+//					System.out.println("FAILED IMAGE");
+				}
+			}
+			ImageIcon imageIcon = new ImageIcon(image);
+			universityArray.get(i).getUniversityButton().setIcon(imageIcon);
+			
 			add(universityArray.get(i));
 
 		}

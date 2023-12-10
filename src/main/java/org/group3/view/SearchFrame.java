@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 
 public class SearchFrame extends JFrame {
 
@@ -43,15 +44,17 @@ public class SearchFrame extends JFrame {
 //		sideScrollPane.add(sidePanel);
 		
 		searchField.setBounds(300,45,980,45);
-		searchField.setBorder(border);
+//		searchField.setBorder(border);
+		searchField.setBackground(new Color(182,215,168,100));
 		add(searchField);
 		sideScrollPane.setBounds(0,45,300,675);
-		sideScrollPane.setBorder(border);
+//		sideScrollPane.setBorder(border);
 		sideScrollPane.getVerticalScrollBar().setUnitIncrement(20);
+//		sideScrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		add(sideScrollPane);
 		
 		displayScrollPane.setBounds(300,90,980,675);
-		displayScrollPane.setBorder(border);
+//		displayScrollPane.setBorder(border);
 		displayScrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		add(displayScrollPane);
 		
