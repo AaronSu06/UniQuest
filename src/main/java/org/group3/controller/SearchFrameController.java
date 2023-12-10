@@ -152,7 +152,10 @@ public class SearchFrameController implements ActionListener {
 
 		}
 		if(e.getSource()==searchFrame.getSearchField()) {
+			searchFrame.getDisplayPanel().resetToOriginal();
 			String text = searchFrame.getSearchField().getText();
+			searchFrame.getDisplayPanel().search(text);
+			reAddActionListeners();
 			
 		}
 

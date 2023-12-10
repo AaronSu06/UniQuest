@@ -199,8 +199,8 @@ public class DisplayPanel extends JPanel {
 			System.out.println(filter1);
 			System.out.println(Integer.toString(filter1));
 			System.out.println(filter.getValue().replace(Integer.toString(filter1), ""));
-			int filter2 = convertToInteger(filter.getValue().replace(Integer .toString(filter1), ""));
-			
+			int filter2 = convertToInteger(filter.getValue().replace(Integer.toString(filter1), ""));
+
 //			filter.getValue().replace(Double.toString(filter1), "");
 			System.out.println(filter2);
 //			
@@ -211,10 +211,11 @@ public class DisplayPanel extends JPanel {
 						&& filter.getValue().equals(tempArray.get(i).getProgram().getUniversity())) {
 //					
 
-				} else if(filter.getKey() > FilterPanel.getUniversityCount()
-				&& filter.getKey() <= FilterPanel.getGradeRangeCount()
-				&& (filter2 >= (tempArray.get(i).getProgram().getGrade()))&&filter1<=tempArray.get(i).getProgram().getGrade()) {
-					
+				} else if (filter.getKey() > FilterPanel.getUniversityCount()
+						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
+						&& (filter2 >= (tempArray.get(i).getProgram().getGrade()))
+						&& filter1 <= tempArray.get(i).getProgram().getGrade()) {
+
 				}
 //				else if(filter.getKey() > FilterPanel.getUniversityCount()
 //						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
@@ -243,20 +244,62 @@ public class DisplayPanel extends JPanel {
 //		System.out.println(tempArray);
 		updateUniversityPanels(jointArray);
 	}
+
 	public void search(String string) {
+		string = string.toLowerCase();
 		ArrayList<UniversityPanel> matches = new ArrayList<>();
-        for (UniversityPanel program : universityArray) {
-            if (program.getProgram().getName().contains(string)) {
-                matches.add(program);
-            }
-        }
-        updateUniversityPanels(matches);
+		for (UniversityPanel program : universityArray) {
+			if (program.getProgram().getName().contains(string)) {
+				matches.add(program);
+			} else if (program.getProgram().getUniversity().toLowerCase().contains(string)) {
+				matches.add(program);
+			} else if (program.getProgram().getDegree().toLowerCase().contains(string)) {
+				matches.add(program);
+			} else if (program.getProgram().getOuacProgramCode().toLowerCase().contains(string)) {
+				matches.add(program);
+			} else if (program.getProgram().getGradeRange().toLowerCase().contains(string)) {
+				matches.add(program);
+			} else if (program.getProgram().getExperientialLearning().toLowerCase().contains(string)) {
+				matches.add(program);
+			} else if (program.getProgram().getInstructionLanguage().toLowerCase().contains(string)) {
+				matches.add(program);
+			} else {
+				for (String prerequisite : program.getProgram().getPrerequisites()) {
+					if (prerequisite.toLowerCase().contains(string)) {
+						matches.add(program);
+						break;
+					}
+				}
+			}
+			if (program.getProgram().getEnrollment() != null) {
+				if(program.getProgram().getEnrollment().toLowerCase().contains(string)) {
+					if(matches.size()==0) {
+						matches.add(program);
+					}else if(matches.getLast() != program) {
+						matches.add(program);
+					}
+				}
+				
+			}
+			if (program.getProgram().getNotes() != null) {
+				if(program.getProgram().getNotes().toLowerCase().contains(string)) {
+					if(matches.size()==0) {
+						matches.add(program);
+					}else if(matches.getLast() != program) {
+						matches.add(program);
+					}
+				}
+				
+			}
+
+		}
+		updateUniversityPanels(matches);
 	}
 
 	public int convertToInteger(String filters) {
 		Pattern p = Pattern.compile("\\d+");
 		Matcher m = p.matcher(filters);
-		
+
 		if (m.find()) {
 			return Integer.parseInt(m.group());
 		}
