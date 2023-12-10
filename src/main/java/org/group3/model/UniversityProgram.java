@@ -1,6 +1,8 @@
 package org.group3.model;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UniversityProgram {
   private String name;
@@ -35,6 +37,41 @@ public class UniversityProgram {
     this.instructionLanguage = instructionLanguage;
     this.prerequisites = prerequisites;
     this.notes = notes;
+  }
+
+  @Override
+  public String toString() {
+    return "UniversityProgram{"
+        + "name='"
+        + name
+        + '\''
+        + ", university='"
+        + university
+        + '\''
+        + ", degree='"
+        + degree
+        + '\''
+        + ", ouacProgramCode='"
+        + ouacProgramCode
+        + '\''
+        + ", gradeRange='"
+        + gradeRange
+        + '\''
+        + ", experientialLearning='"
+        + experientialLearning
+        + '\''
+        + ", enrollment='"
+        + enrollment
+        + '\''
+        + ", instructionLanguage='"
+        + instructionLanguage
+        + '\''
+        + ", prerequisites="
+        + prerequisites
+        + ", notes='"
+        + notes
+        + '\''
+        + '}';
   }
 
   public String getName() {
@@ -117,38 +154,26 @@ public class UniversityProgram {
     this.notes = notes;
   }
 
-  @Override
-  public String toString() {
-    return "UniversityProgram{"
-        + "name='"
-        + name
-        + '\''
-        + ", university='"
-        + university
-        + '\''
-        + ", degree='"
-        + degree
-        + '\''
-        + ", ouacProgramCode='"
-        + ouacProgramCode
-        + '\''
-        + ", gradeRange='"
-        + gradeRange
-        + '\''
-        + ", experientialLearning='"
-        + experientialLearning
-        + '\''
-        + ", enrollment='"
-        + enrollment
-        + '\''
-        + ", instructionLanguage='"
-        + instructionLanguage
-        + '\''
-        + ", prerequisites="
-        + prerequisites
-        + ", notes='"
-        + notes
-        + '\''
-        + '}';
+  public int getGrade() {
+    Pattern p = Pattern.compile("\\d+");
+    Matcher m = p.matcher(getGradeRange());
+    int avg = 0;
+    int count = 0;
+    // System.out.println("RUNNING GET GRADE");
+    while (m.find()) {
+      // System.out.println("PRINTING MATCH");
+      // System.out.println(m.group());
+      avg += Integer.parseInt(m.group());
+      count++;
+    }
+    // if (m.find()) {
+    // return Integer.parseInt(m.group());
+    // }
+    if (count > 0) {
+      return avg / count;
+
+    } else {
+      return avg;
+    }
   }
 }
