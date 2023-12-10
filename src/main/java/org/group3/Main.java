@@ -4,6 +4,7 @@ import org.group3.model.DataModel;
 import org.group3.model.LogoInput;
 import org.group3.view.SearchFrame;
 import org.group3.controller.LoginController;
+import org.group3.controller.MapController;
 import org.group3.controller.SearchFrameController;
 
 public class Main {
@@ -15,6 +16,6 @@ public class Main {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    new SearchFrameController();
+    new MapController();
   }
 }
