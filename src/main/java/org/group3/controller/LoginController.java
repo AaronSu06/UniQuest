@@ -48,6 +48,11 @@ public class LoginController implements ActionListener {
 			homeFrame.getLogin().setBorder(new RoundedBorder(15, green));
 			homeFrame.getSignup().setForeground(gray);
 			homeFrame.getSignup().setBorder(new RoundedBorder(15, gray));
+			
+			// reset color scheme
+			homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
+			homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
+			homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 		}
 
 		if (e.getSource() == homeFrame.getSignup()) {
@@ -65,14 +70,22 @@ public class LoginController implements ActionListener {
 			homeFrame.getSignup().setBorder(new RoundedBorder(15, green));
 			homeFrame.getLogin().setForeground(gray);
 			homeFrame.getLogin().setBorder(new RoundedBorder(15, gray));
+			
+			// reset color scheme
+			homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
+			homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
+			homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 		}
 
 		// action commands for the Signup Panel
 		if (e.getSource() == homeFrame.getEnterBtn()) {
 			try {
-				if (homeFrame.getPassword().getText().equals(homeFrame.getConfirmPassword().getText()) && validInfo()) {
+				if (validInfo() && homeFrame.getPassword().getText().equals(homeFrame.getConfirmPassword().getText())) {
 					DataModel.generateUserAccount(homeFrame.getUsername().getText(), homeFrame.getPassword().getText());
 
+					homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
+					homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
+					homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 					JOptionPane.showMessageDialog(homeFrame, "User has signed up");
 				}
 
@@ -100,7 +113,8 @@ public class LoginController implements ActionListener {
 				for (UserInfo userInfo : userInfoList) {
 					if (homeFrame.getUsername().getText().equals(userInfo.getusername())
 							&& homeFrame.getPassword().getText().equals(userInfo.getPassword())) {
-						
+						homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
+						homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 						JOptionPane.showMessageDialog(homeFrame, "Signed in as " + homeFrame.getUsername().getText());
 						break;
 					}
@@ -125,6 +139,7 @@ public class LoginController implements ActionListener {
 	public boolean validInfo() {
 		for (int i = 0; i < homeFrame.getUsername().getText().length(); i++) {
 			if (Character.isWhitespace(homeFrame.getUsername().getText().charAt(i))) {
+				homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 				homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
 				JOptionPane.showMessageDialog(homeFrame, "Username Must Not Contain Spaces! Please Try Again.");
 				return false;
@@ -132,12 +147,14 @@ public class LoginController implements ActionListener {
 		}
 
 		if (!homeFrame.getConfirmPassword().getText().equals(homeFrame.getPassword().getText())) {
+			homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
 			homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, red));
 			JOptionPane.showMessageDialog(homeFrame, "Password Does Not Match! Please Try Again.");
 			return false;
 		}
 
 		else if (homeFrame.getUsername().getText().length() <= 3) {
+			homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 			homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
 			JOptionPane.showMessageDialog(homeFrame, "Username Must Be Greater Than 3 Characters! Please Try Again.");
 			return false;
