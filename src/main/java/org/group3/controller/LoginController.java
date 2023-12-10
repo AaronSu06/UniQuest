@@ -12,7 +12,7 @@ import org.group3.view.RoundedBorder;
 import org.group3.model.DataModel;
 import org.group3.model.UserInfo;
 
-public class LoginController implements ActionListener {
+public class LoginController implements ActionListener, FocusListener {
 
 	HomeFrame homeFrame = new HomeFrame();
 
@@ -21,6 +21,11 @@ public class LoginController implements ActionListener {
 	Color gray = new Color(207, 207, 207);
 
 	public LoginController() {
+		// add the focus listener for the JTextField
+		homeFrame.getUsername().addFocusListener(this);
+		homeFrame.getPassword().addFocusListener(this);
+		homeFrame.getConfirmPassword().addFocusListener(this);
+
 		// add the action listeners for each button
 		homeFrame.getLogin().addActionListener(this);
 		homeFrame.getLoginBtn().addActionListener(this);
@@ -112,15 +117,7 @@ public class LoginController implements ActionListener {
 		// action commands for the Login Panel
 		if (e.getSource() == homeFrame.getLoginBtn()) {
 			List<UserInfo> userInfoList = null;
-
-			// get the user information stored in the .json file so that we don't overwrite
-			// it (if it exists)
-			try {
-				userInfoList = DataModel.getUserAccount();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			userInfoList = getUserInfo(userInfoList);
 
 			// if not null, as in a file exists, check if the username and password used to
 			// login match any of that in the file
@@ -177,7 +174,81 @@ public class LoginController implements ActionListener {
 			return false;
 		}
 
+		List<UserInfo> userInfoList = null;
+		userInfoList = getUserInfo(userInfoList);
+
+		// if not null, as in a file exists, check if the username and password used to
+		// login match any of that in the file
+		if (userInfoList != null) {
+			for (UserInfo userInfo : userInfoList) {
+				if (homeFrame.getUsername().getText().equals(userInfo.getusername())) {
+					homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
+					JOptionPane.showMessageDialog(homeFrame, "Username Is Already Taken! Please Try Again.");
+					return false;
+				}
+			}
+		}
+
 		// will return true if all the provided information is valid
 		return true;
+	}
+
+	public List<UserInfo> getUserInfo(List<UserInfo> userInfoList) {
+		// get the user information stored in the .json file so that we don't overwrite
+		// it (if it exists)
+		try {
+			userInfoList = DataModel.getUserAccount();
+			return userInfoList;
+
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		
+		// When the text field is just being typed in:
+		if (e.getComponent() == homeFrame.getUsername()) {
+			if (homeFrame.getUsername().getText().equals("Enter Username")) {
+				homeFrame.getUsername().setText("");
+			}
+		}
+		
+		else if (e.getComponent() == homeFrame.getPassword()) {
+			if (homeFrame.getPassword().getText().equals("Enter Password")) {
+				homeFrame.getPassword().setText("");
+			}
+		}
+		
+		else if (e.getComponent() == homeFrame.getConfirmPassword()) {
+			if (homeFrame.getConfirmPassword().getText().equals("Re-Enter Password")) {
+				homeFrame.getConfirmPassword().setText("");
+			}
+		}
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		
+		// If the text is empty, reset the filler
+		if (e.getComponent() == homeFrame.getUsername()) {
+			if (homeFrame.getUsername().getText().trim().isEmpty()) {
+				homeFrame.getUsername().setText("Enter Username");
+			}
+		}
+		
+		else if (e.getComponent() == homeFrame.getPassword()) {
+			if (homeFrame.getPassword().getText().trim().isEmpty()) {
+				homeFrame.getPassword().setText("Enter Password");
+			}
+		}
+		
+		else if (e.getComponent() == homeFrame.getConfirmPassword()) {
+			if (homeFrame.getConfirmPassword().getText().trim().isEmpty()) {
+				homeFrame.getConfirmPassword().setText("Re-Enter Password");
+			}
+		}
 	}
 }
