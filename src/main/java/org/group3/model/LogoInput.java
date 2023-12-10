@@ -24,6 +24,9 @@ public class LogoInput {
 					image = ImageIO.read(new File(imagePathJpg));
 					Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 					image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
+					image.getGraphics().setColor(Color.WHITE);
+					image.getGraphics().fillRect(0, 0, image.getWidth(), image.getHeight());
+					
 					image.getGraphics().drawImage(scaledImage, 0, 0, null);
 
 				} catch (IOException e2) {
@@ -31,8 +34,12 @@ public class LogoInput {
 						image = ImageIO.read(new File(imagePathPng));
 						Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 						image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
+						image.getGraphics().setColor(Color.WHITE);
+						image.getGraphics().fillRect(0, 0, image.getWidth(), image.getHeight());
+
 						image.getGraphics().drawImage(scaledImage, 0, 0, null);
-//						System.out.println("SUCCESS");
+
+						//						System.out.println("SUCCESS");
 					} catch (IOException e3) {
 						e3.printStackTrace();
 //						System.out.println("FAILED IMAGE");
