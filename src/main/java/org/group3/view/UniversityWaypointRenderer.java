@@ -9,6 +9,9 @@ import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointRenderer;
 
+/**
+ * Sourced from the JXMapViewer 2 examples
+ */
 public class UniversityWaypointRenderer implements WaypointRenderer<Waypoint> {
   private static final int ZOOM_THRESHOLD = 8;
 
@@ -37,7 +40,7 @@ public class UniversityWaypointRenderer implements WaypointRenderer<Waypoint> {
 
     g.drawImage(img, x, y, null);
     
-    // Only draw the labels if the map is zoomed in to a certain degree
+    // Only draw the text labels if the map is zoomed in to a certain threshold 
     if (map.getZoom() <= ZOOM_THRESHOLD) {
       g.drawString(luw.getUniversityName(), x - 4 * (luw.getUniversityName().length() / 2), y);
     }

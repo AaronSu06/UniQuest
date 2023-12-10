@@ -17,6 +17,6 @@ public class Main {
       e.printStackTrace();
     }
     
-    new LoginController();
+    new MapController();
   }
 }

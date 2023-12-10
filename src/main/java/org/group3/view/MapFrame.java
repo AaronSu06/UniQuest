@@ -3,12 +3,10 @@ package org.group3.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.ScrollPaneLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.MouseInputListener;
 import org.group3.model.DataModel;
@@ -130,26 +127,27 @@ public class MapFrame extends JFrame {
   }
 
   public void addSideBar() {
-//    sideBar.setLayout(new BoxLayout(sideBar, BoxLayout.PAGE_AXIS));
-	sideBar.setLayout(null);
-    sideBar.setBounds(0, 45, 198, 700);
+    // sideBar.setLayout(new BoxLayout(sideBar, BoxLayout.PAGE_AXIS));
+    sideBar.setLayout(null);
+    sideBar.setBounds(0, 45, 198, 675);
     sideBar.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     sideBar.setBackground(Color.WHITE);
 
     addUniversitySearchBar();
-//    sideBarContentPanel.setLayout(new BoxLayout(sideBarContentPanel, BoxLayout.Y_AXIS));
+    // sideBarContentPanel.setLayout(new BoxLayout(sideBarContentPanel,
+    // BoxLayout.Y_AXIS));
 
     sideBarContentPanel.setBackground(Color.WHITE);
 
     sideBarContentScrollPane = new JScrollPane(sideBarContentPanel);
     sideBarContentScrollPane.setBounds(24, 75, 150, 600);
-    sideBarContentPanel.setPreferredSize(new Dimension(150, 1350));
+    sideBarContentPanel.setPreferredSize(new Dimension(150, 1150));
     sideBarContentScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
     sideBarContentScrollPane.setHorizontalScrollBarPolicy(
         ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     sideBarContentScrollPane.setVerticalScrollBarPolicy(
         ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-  
+    sideBarContentScrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
     // On first load: don't display the sideBar content
     // addSideBarContent();
@@ -162,7 +160,7 @@ public class MapFrame extends JFrame {
   // University search bar
   public void addUniversitySearchBar() {
     universitySearchPanel.setBounds(24, 35, 150, 32);
-//	universitySearchPanel.setPreferredSize(new Dimension(150,32));
+    // universitySearchPanel.setPreferredSize(new Dimension(150,32));
     universitySearchPanel.setBackground(AppColors.LIGHT_GREEN);
     // Get rid of the border
     universitySearchPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -247,7 +245,7 @@ public class MapFrame extends JFrame {
     // Add programs
     programsPanel.setBackground(AppColors.LIGHT_GREEN);
     programsScrollPane = new JScrollPane(programsPanel);
-    programsScrollPane.setPreferredSize(new Dimension(150, 390));
+    programsScrollPane.setPreferredSize(new Dimension(150, 300));
     programsScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
     sideBarContentPanel.add(programsScrollPane);
 
@@ -331,6 +329,14 @@ public class MapFrame extends JFrame {
 
   public void setSideBarContentPanel(JPanel sideBarContentPanel) {
     this.sideBarContentPanel = sideBarContentPanel;
+  }
+
+  public JScrollPane getSideBarContentScrollPane() {
+    return sideBarContentScrollPane;
+  }
+
+  public void setSideBarContentScrollPane(JScrollPane sideBarContentScrollPane) {
+    this.sideBarContentScrollPane = sideBarContentScrollPane;
   }
 
   public JTextArea getUniversityTitle() {
