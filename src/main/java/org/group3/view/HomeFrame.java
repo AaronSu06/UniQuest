@@ -23,7 +23,7 @@ public class HomeFrame extends JFrame {
 	private JLabel confirmPasswordText = new JLabel("Confirm Password");
 	private JTextField username = new JTextField("Enter Username");
 	private JTextField password = new JTextField("Enter Password");
-	private JTextField confirmPassword = new JTextField("Re Enter Password");
+	private JTextField confirmPassword = new JTextField("Re-Enter Password");
 	private JButton loginBtn = new JButton("Log In");
 	private JButton loginAsGuest = new JButton("Log In As Guest");
 	private JButton enterBtn = new JButton("Log In");
@@ -37,7 +37,7 @@ public class HomeFrame extends JFrame {
 		setTitle("Uni-Quest Ontario");
 		setResizable(false);
 		setLayout(null);
-		setSize(1280, 745);
+		setSize(1280, 720);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
