@@ -91,8 +91,8 @@ public class DisplayPanel extends JPanel {
 			add(universityArray.get(i));
 
 		}
-		System.out.println("ADDING");
-		System.out.println(universityArray.size());
+//		System.out.println("ADDING");
+//		System.out.println(universityArray.size());
 		repaint();
 		revalidate();
 	}
@@ -118,10 +118,10 @@ public class DisplayPanel extends JPanel {
 		for (int i = 0; i < universityPanelArray.size(); i++) {
 			universityPanelArray.get(i).setPreferredSize(new Dimension(220, 300));
 			add(universityPanelArray.get(i));
-			System.out.println(universityPanelArray.get(i).getProgram());
+//			System.out.println(universityPanelArray.get(i).getProgram());
 		}
-		System.out.println("PANEL ARRAY SIZE");
-		System.out.println(universityPanelArray.size());
+//		System.out.println("PANEL ARRAY SIZE");
+//		System.out.println(universityPanelArray.size());
 
 //		if(universityProgramArray.size()>0) {
 //			for(int i = 0;i<universityProgramArray.size();i++) {
@@ -131,17 +131,17 @@ public class DisplayPanel extends JPanel {
 //
 //			}
 //		}
-		System.out.println("UNI ARRAY SIZE BEFORE");
-		System.out.println(universityArray.size());
+//		System.out.println("UNI ARRAY SIZE BEFORE");
+//		System.out.println(universityArray.size());
 
 //		universityArray.clear();
 		universityArray = universityPanelArray;
 //		this.universityArray.addAll(universityPanelArray);
-		for(UniversityPanel uni:universityArray) {
-			System.out.println(uni.getProgram());
-		}
-		System.out.println("UNI ARRAY SIZE AFTER");
-		System.out.println(universityArray.size());
+//		for(UniversityPanel uni:universityArray) {
+//			System.out.println(uni.getProgram());
+//		}
+//		System.out.println("UNI ARRAY SIZE AFTER");
+//		System.out.println(universityArray.size());
 //		universityArray = new ArrayList<>(universityPanelArray);
 //		System.out.println(universityArray.size());
 
@@ -195,20 +195,38 @@ public class DisplayPanel extends JPanel {
 //		System.out.println(selectedFilters);
 //		System.out.println(selectedFilters);
 		for (Map.Entry<Integer, String> filter : selectedFilters.entrySet()) {
-			double filter1 = convertToInteger(filter.getValue());
-			filter.getValue().replace(Double.toString(filter1), "");
+			int filter1 = convertToInteger(filter.getValue());
+			System.out.println(filter1);
+			System.out.println(Integer.toString(filter1));
+			System.out.println(filter.getValue().replace(Integer.toString(filter1), ""));
+			int filter2 = convertToInteger(filter.getValue().replace(Integer .toString(filter1), ""));
 			
+//			filter.getValue().replace(Double.toString(filter1), "");
+			System.out.println(filter2);
+//			
 			for (int i = 0; i < tempArray.size(); i++) {
 //				System.out.println(filter.getKey());
+				System.out.println(tempArray.get(i).getProgram().getGrade());
 				if (filter.getKey() <= FilterPanel.getUniversityCount()
 						&& filter.getValue().equals(tempArray.get(i).getProgram().getUniversity())) {
 //					
 
-				} else if (filter.getKey() > FilterPanel.getUniversityCount()
-						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
-						&& ((convertToInteger(filter.getValue()) >= (tempArray.get(i).getProgram().getGrade()))&&filter1<=tempArray.get(i).getProgram().getGrade())) {
-
-				} else {
+				} else if(filter.getKey() > FilterPanel.getUniversityCount()
+				&& filter.getKey() <= FilterPanel.getGradeRangeCount()
+				&& (filter2 >= (tempArray.get(i).getProgram().getGrade()))&&filter1<=tempArray.get(i).getProgram().getGrade()) {
+					
+				}
+//				else if(filter.getKey() > FilterPanel.getUniversityCount()
+//						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
+//						&& ((convertToInteger(filter.getValue()) <= (tempArray.get(i).getProgram().getGrade())))) {
+//					
+//				}
+//				else if (filter.getKey() > FilterPanel.getUniversityCount()
+//						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
+//						&& ((convertToInteger(filter.getValue()) <= (tempArray.get(i).getProgram().getGrade()))&&filter1>=tempArray.get(i).getProgram().getGrade())) {
+//
+//				} 
+				else {
 					tempArray.remove(i);
 					i--;
 				}
@@ -235,10 +253,10 @@ public class DisplayPanel extends JPanel {
         updateUniversityPanels(matches);
 	}
 
-	public double convertToInteger(String filters) {
+	public int convertToInteger(String filters) {
 		Pattern p = Pattern.compile("\\d+");
 		Matcher m = p.matcher(filters);
-
+		
 		if (m.find()) {
 			return Integer.parseInt(m.group());
 		}
