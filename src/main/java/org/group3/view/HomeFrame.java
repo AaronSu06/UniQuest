@@ -37,7 +37,7 @@ public class HomeFrame extends JFrame {
 		setTitle("Uni-Quest Ontario");
 		setResizable(false);
 		setLayout(null);
-		setSize(1280, 745);
+		setSize(1280, 720);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
