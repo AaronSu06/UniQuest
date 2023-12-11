@@ -18,7 +18,7 @@ public class FilterPanel extends JPanel{
 	private JLabel filterTitle = new JLabel("Filters");
 	private JLabel instituionLabel = new JLabel("Institutions");
 	private JLabel gradeLabel = new JLabel("Grade Range");
-
+	private JLabel prerequisiteCourseLabel = new JLabel("Prerequisite Courses");
 	private static int universityCount=0;
 	private static int gradeRangeCount = 0;
 	public FilterPanel() {
@@ -80,8 +80,30 @@ public class FilterPanel extends JPanel{
 			add(checkBoxArray.getLast());
 			gradeRangeCount++;
 		}
+		prerequisiteCourseLabel.setPreferredSize(new Dimension(300,50));
+		prerequisiteCourseLabel.setFont(new Font("SansSerif",Font.BOLD,20));
+		prerequisiteCourseLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		prerequisiteCourseLabel.setBackground(new Color(132,192,106,100));
+		prerequisiteCourseLabel.setOpaque(true);
+		add(prerequisiteCourseLabel);
+		ArrayList<String>courseCodes = new ArrayList<String>();
+//		System.out.println("RUNNING FILTER INITIAL");
 		for(int i =0;i<DataModel.universityProgramArrayList.size();i++) {
-			
+//			System.out.println(i);
+			for(String string: DataModel.universityProgramArrayList.get(i).getCourseCodes()) {
+//				System.out.println(string+ "THIS IS STRING");
+				
+				if(!courseCodes.contains(string)) {
+					courseCodes.add(string);
+				}
+			}
+		}
+//		System.out.println(courseCodes);
+		for(int i = 0;i<courseCodes.size();i++) {
+			checkBoxArray.add(new JCheckBox(courseCodes.get(i)));
+//			checkBoxArray.get(i).setBounds(10,10+i*29, 300,29);
+			checkBoxArray.getLast().setPreferredSize(new Dimension(300,50));
+			add(checkBoxArray.getLast());
 		}
 	}
 

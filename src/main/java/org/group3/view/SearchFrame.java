@@ -56,7 +56,7 @@ public class SearchFrame extends JFrame {
     // displayPanel.setBorder(border);
     // add(displayPanel);
 
-    setVisible(true);
+//    setVisible(true);
     repaint();
     revalidate();
   }

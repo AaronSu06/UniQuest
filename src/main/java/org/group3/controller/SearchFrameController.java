@@ -39,9 +39,7 @@ public class SearchFrameController implements ActionListener {
 	}
 
 	public void addActionListeners() {
-//		for(int i = 0;i<searchFrame.getSortPanel().getProgramJRadioButtonArray().length;i++) {
-//			searchFrame.getSortPanel().getProgramJRadioButtonArray()[i].addActionListener(this);
-//		}
+
 		for (int i = 0; i < searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray().length; i++) {
 			searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray()[i].addActionListener(this);
 		}
@@ -90,6 +88,9 @@ public class SearchFrameController implements ActionListener {
 				}
 
 			}
+			System.out.println(selectedStrings);
+			System.out.println(searchFrame.getSidePanel().getFilterPanel().getUniversityCount());
+			System.out.println(searchFrame.getSidePanel().getFilterPanel().getGradeRangeCount());
 			if (selectedStrings.size() != 0) {
 				searchFrame.getDisplayPanel().filter(selectedStrings);
 

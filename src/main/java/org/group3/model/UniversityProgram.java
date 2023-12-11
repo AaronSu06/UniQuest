@@ -192,16 +192,18 @@ public class UniversityProgram {
 	public ArrayList<String> getCourseCodes() {
 		ArrayList<String> courseCodes = new ArrayList<>();
 		for(String prereq:getPrerequisites()) {
-			Pattern pattern = Pattern.compile("[A-Za-z]+\\d+");
+			Pattern pattern = Pattern.compile("[A-Z]{3}\\d[A-Z]");
 			Matcher matcher = pattern.matcher(prereq);
 
 			while (matcher.find()) {
-				
-				if(matcher.group().length()<5) {
+//				System.out.println(matcher.group());
+				if(matcher.group().length()<4) {
 					if(prereq.toLowerCase().contains("math")) {
-						courseCodes.add(matcher.group()+" Math");
+						courseCodes.add("MHF4U");
+						courseCodes.add("MCV4U");
+						courseCodes.add("MDM4U");
 					}else if(prereq.toLowerCase().contains("english")) {
-						courseCodes.add(matcher.group()+" English");
+						courseCodes.add("ENG4U");
 					}
 				}else {
 					courseCodes.add(matcher.group());
@@ -213,8 +215,10 @@ public class UniversityProgram {
 		
 	}
 	public boolean containsCourseCode(String courseCode) {
-		ArrayList<String>courseCodes = getCourseCodes();
+		ArrayList<String>courseCodes = new ArrayList<>(getCourseCodes());
+//		System.out.println(getCourseCodes());
 		for(String code:courseCodes) {
+			
 			if(courseCode.contains(code)) {
 				return true;
 			}

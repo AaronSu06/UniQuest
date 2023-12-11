@@ -75,7 +75,7 @@ public class MapFrame extends JFrame {
 		setSize(1280, 720);
 	    setLocationRelativeTo(null);
 
-		setVisible(true);
+//		setVisible(true);
 	}
 
 	public MenuPanel getMenuPanel() {

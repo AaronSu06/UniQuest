@@ -258,16 +258,16 @@ public class DisplayPanel extends JPanel {
 //			
 			for (int i = 0; i < tempArray.size(); i++) {
 //				System.out.println(tempArray.get(i).getProgram().getGrade());
-				if (filter.getKey() <= FilterPanel.getUniversityCount()
+				if (filter.getKey() < FilterPanel.getUniversityCount()
 						&& filter.getValue().equals(tempArray.get(i).getProgram().getUniversity())) {
 //					
 
-				} else if (filter.getKey() > FilterPanel.getUniversityCount()
-						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
+				} else if (filter.getKey() >= FilterPanel.getUniversityCount()
+						&& filter.getKey() < FilterPanel.getGradeRangeCount()
 						&& (filter2 >= (tempArray.get(i).getProgram().getGrade()))
 						&& filter1 <= tempArray.get(i).getProgram().getGrade()) {
 
-				}else if(filter.getKey()>FilterPanel.getGradeRangeCount()&&tempArray.get(i).getProgram().containsCourseCode(filter.getValue())) {
+				}else if(filter.getKey()>=FilterPanel.getGradeRangeCount()&&tempArray.get(i).getProgram().containsCourseCode(filter.getValue())) {
 					
 
 				}
