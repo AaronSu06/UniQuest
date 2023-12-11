@@ -15,8 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import org.group3.model.DataModel;
 import org.group3.model.University;
+import org.group3.model.UniversityProgram;
 import org.group3.view.LabelledUniversityWaypoint;
 import org.group3.view.MapFrame;
+import org.group3.view.ProgramInfoText;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
 
@@ -44,6 +46,7 @@ public class MapController implements ActionListener, MouseListener {
     // TODO: access all programs, add an action listener to its fav button which
     // updates
     // user object, and writes to file
+
     mapFrame.getFavouriteButton().addActionListener(this);
   }
 
@@ -54,7 +57,9 @@ public class MapController implements ActionListener, MouseListener {
           DataModel.findUniversityByKeyword(mapFrame.getUniversitySearchField().getText());
 
       addUniversityResults(universityResults);
-      // Yo this is sick
+
+      // Loads the waypoints according the university results
+      // If it is empty, just load all of the waypoints instead
       loadWaypoints(
           universityResults.size() == 0
               ? Arrays.asList(DataModel.UNIVERSITIES)
@@ -87,7 +92,7 @@ public class MapController implements ActionListener, MouseListener {
   }
 
   /**
-   * @param universities is the univerisites to render waypoints for
+   * @param universities is the {@code List} univerisites to render waypoints for
    */
   public void loadWaypoints(List<University> universities) {
     // Clear the current waypoints
@@ -119,25 +124,49 @@ public class MapController implements ActionListener, MouseListener {
     mapFrame.getUniversityTitle().setText(university.getName());
     mapFrame.getUniversityAddress().setText(university.getAddress());
 
+    for (UniversityProgram program : university.getPrograms()) {
+      ProgramInfoText infoText = new ProgramInfoText(program.getName());
+      infoText.addMouseListener(
+          new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+              System.out.println("Favourited Program!");
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent arg0) {}
+
+            @Override
+            public void mouseExited(MouseEvent arg0) {}
+
+            @Override
+            public void mousePressed(MouseEvent arg0) {}
+
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}
+          });
+      mapFrame.getProgramsPanel().add(infoText);
+    }
+
     mapFrame.repaint();
     mapFrame.revalidate();
   }
 
   @Override
   public void mouseClicked(MouseEvent arg0) {
-    // Display the university information
+    // Display the university information (Programs, address, etc.)
     if (arg0.getSource() instanceof JTextArea) {
       JTextArea clickedUniversityTextArea = (JTextArea) arg0.getSource();
       // Removes the dot in front of the text area and gets rid of the resulting space
       String universityName = clickedUniversityTextArea.getText().substring(1).trim();
-      System.out.println(universityName);
 
       ArrayList<University> u = new ArrayList<University>();
       u.add(DataModel.findUniversitySpecific(universityName));
 
       loadWaypoints(u);
+
       addUniversityInformation(u.get(0));
-      System.out.println(u.get(0).getPrograms().size());
+
       mapFrame.getSideBarContentScrollPane().getViewport().setViewPosition(new Point(0, 0));
       mapFrame.getSideBarContentPanel().setPreferredSize(new Dimension(150, 500));
     }

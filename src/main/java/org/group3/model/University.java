@@ -20,7 +20,7 @@ public class University {
 
     // Setup the search result button
     searchResult.setText("• " + name);
-    searchResult.setFont(new Font("Sans Serif", Font.PLAIN, 14));
+    searchResult.setFont(new Font("Sans Serif", Font.PLAIN, 12));
     searchResult.setLineWrap(true);
     searchResult.setWrapStyleWord(true);
     searchResult.setEditable(false);

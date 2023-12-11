@@ -141,7 +141,7 @@ public class MapFrame extends JFrame {
 
     sideBarContentScrollPane = new JScrollPane(sideBarContentPanel);
     sideBarContentScrollPane.setBounds(24, 75, 150, 600);
-    sideBarContentPanel.setPreferredSize(new Dimension(150, 1150));
+    sideBarContentPanel.setPreferredSize(new Dimension(150, 1350));
     sideBarContentScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
     sideBarContentScrollPane.setHorizontalScrollBarPolicy(
         ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
