@@ -1,34 +1,41 @@
 package org.group3.model;
 
+import java.util.HashMap;
+
 public class UserInfo {
 
 	private String username;
-	private String password;
-	
-	public UserInfo(String username, String password) {
+	private HashMap<String, String> courseInfo = new HashMap<String, String>();
+
+	public UserInfo(String username, HashMap<String, String> courseInfo, String[] keyArr) {
 		super();
 		this.username = username;
-		this.password = password;
+		
+		for (int i = 0; i < keyArr.length; i++) {
+			if (courseInfo.get(keyArr[i]) != null) {
+				this.courseInfo.put(keyArr[i], courseInfo.get(keyArr[i]));
+			}
+		}
 	}
 
-	public String getusername() {
+	public HashMap<String, String> getCourseInfo() {
+		return courseInfo;
+	}
+
+	public void setCourseInfo(HashMap<String, String> courseInfo) {
+		this.courseInfo = courseInfo;
+	}
+
+	public String getUsername() {
 		return username;
 	}
 
-	public void setusername(String username) {
+	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	@Override
 	public String toString() {
-		return "UserInfo [username=" + username + ", password=" + password + "]";
+		return "UserInfo [username=" + username + ", courseInfo=" + courseInfo + "]";
 	}
 }

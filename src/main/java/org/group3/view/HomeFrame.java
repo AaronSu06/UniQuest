@@ -26,7 +26,7 @@ public class HomeFrame extends JFrame {
 	private JTextField confirmPassword = new JTextField("Re-Enter Password");
 	private JButton loginBtn = new JButton("Log In");
 	private JButton loginAsGuest = new JButton("Log In As Guest");
-	private JButton enterBtn = new JButton("Log In");
+	private JButton enterBtn = new JButton("Sign Up");
 
 	Color green = new Color(132, 199, 80);
 	Color gray = new Color(207, 207, 207);

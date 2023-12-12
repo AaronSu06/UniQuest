@@ -10,12 +10,17 @@ import javax.swing.JOptionPane;
 import org.group3.view.HomeFrame;
 import org.group3.view.RoundedBorder;
 import org.group3.model.DataModel;
-import org.group3.model.UserInfo;
+import org.group3.model.UserAccount;
+import org.group3.view.PersonalInfoFrame; // testting purposes
 
 public class LoginController implements ActionListener, FocusListener {
+	
+	public static String user = null;
 
+	// call the homeFrame class to display the GUI
 	HomeFrame homeFrame = new HomeFrame();
 
+	// Colors for the gui
 	Color green = new Color(132, 199, 80);
 	Color red = new Color(222, 49, 99);
 	Color gray = new Color(207, 207, 207);
@@ -107,6 +112,9 @@ public class LoginController implements ActionListener, FocusListener {
 					homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 					homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 					JOptionPane.showMessageDialog(homeFrame, "User has signed up");
+					
+					// update the String
+					user = homeFrame.getUsername().getText();
 				}
 
 			} catch (IOException e1) {
@@ -116,18 +124,25 @@ public class LoginController implements ActionListener, FocusListener {
 
 		// action commands for the Login Panel
 		if (e.getSource() == homeFrame.getLoginBtn()) {
-			List<UserInfo> userInfoList = null;
+			List<UserAccount> userInfoList = null;
 			userInfoList = getUserInfo(userInfoList);
 
 			// if not null, as in a file exists, check if the username and password used to
 			// login match any of that in the file
 			if (userInfoList != null) {
-				for (UserInfo userInfo : userInfoList) {
+				for (UserAccount userInfo : userInfoList) {
 					if (homeFrame.getUsername().getText().equals(userInfo.getusername())
 							&& homeFrame.getPassword().getText().equals(userInfo.getPassword())) {
 						homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
 						homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 						JOptionPane.showMessageDialog(homeFrame, "Signed in as " + homeFrame.getUsername().getText());
+						
+						// update the String
+						user = homeFrame.getUsername().getText();
+						
+						// switch JFrames
+						homeFrame.dispose();
+						new PersonalInfoFrame();
 						break;
 					}
 
@@ -144,7 +159,13 @@ public class LoginController implements ActionListener, FocusListener {
 
 		// signal that the user has decided to sign in as a guest
 		if (e.getSource() == homeFrame.getLoginAsGuest()) {
-			JOptionPane.showMessageDialog(homeFrame, "Signed In As Guest!!!!");
+			// reset color scheme
+			homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
+			homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
+			JOptionPane.showMessageDialog(homeFrame, "Signed In As Guest");
+			
+			// update the String
+			user = null;
 		}
 	}
 
@@ -174,13 +195,13 @@ public class LoginController implements ActionListener, FocusListener {
 			return false;
 		}
 
-		List<UserInfo> userInfoList = null;
+		List<UserAccount> userInfoList = null;
 		userInfoList = getUserInfo(userInfoList);
 
 		// if not null, as in a file exists, check if the username and password used to
 		// login match any of that in the file
 		if (userInfoList != null) {
-			for (UserInfo userInfo : userInfoList) {
+			for (UserAccount userInfo : userInfoList) {
 				if (homeFrame.getUsername().getText().equals(userInfo.getusername())) {
 					homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
 					JOptionPane.showMessageDialog(homeFrame, "Username Is Already Taken! Please Try Again.");
@@ -193,7 +214,7 @@ public class LoginController implements ActionListener, FocusListener {
 		return true;
 	}
 
-	public List<UserInfo> getUserInfo(List<UserInfo> userInfoList) {
+	public List<UserAccount> getUserInfo(List<UserAccount> userInfoList) {
 		// get the user information stored in the .json file so that we don't overwrite
 		// it (if it exists)
 		try {
@@ -208,20 +229,20 @@ public class LoginController implements ActionListener, FocusListener {
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		
+
 		// When the text field is just being typed in:
 		if (e.getComponent() == homeFrame.getUsername()) {
 			if (homeFrame.getUsername().getText().equals("Enter Username")) {
 				homeFrame.getUsername().setText("");
 			}
 		}
-		
+
 		else if (e.getComponent() == homeFrame.getPassword()) {
 			if (homeFrame.getPassword().getText().equals("Enter Password")) {
 				homeFrame.getPassword().setText("");
 			}
 		}
-		
+
 		else if (e.getComponent() == homeFrame.getConfirmPassword()) {
 			if (homeFrame.getConfirmPassword().getText().equals("Re-Enter Password")) {
 				homeFrame.getConfirmPassword().setText("");
@@ -231,20 +252,20 @@ public class LoginController implements ActionListener, FocusListener {
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		
+
 		// If the text is empty, reset the filler
 		if (e.getComponent() == homeFrame.getUsername()) {
 			if (homeFrame.getUsername().getText().trim().isEmpty()) {
 				homeFrame.getUsername().setText("Enter Username");
 			}
 		}
-		
+
 		else if (e.getComponent() == homeFrame.getPassword()) {
 			if (homeFrame.getPassword().getText().trim().isEmpty()) {
 				homeFrame.getPassword().setText("Enter Password");
 			}
 		}
-		
+
 		else if (e.getComponent() == homeFrame.getConfirmPassword()) {
 			if (homeFrame.getConfirmPassword().getText().trim().isEmpty()) {
 				homeFrame.getConfirmPassword().setText("Re-Enter Password");
