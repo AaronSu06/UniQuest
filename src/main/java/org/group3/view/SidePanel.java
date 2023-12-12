@@ -14,9 +14,6 @@ public class SidePanel extends JPanel {
 	private FilterPanel filterPanel = new FilterPanel();
 	private SortPanel sortPanel = new SortPanel();
 	
-//	private JPanel utilityPanel = new JPanel();
-//	private JButton confirmButton = new JButton("Confirm");
-//	private JButton resetButton = new JButton("Reset");
 
 	public SidePanel() {
 //		GroupLayout gl = new GroupLayout(this);
@@ -29,39 +26,14 @@ public class SidePanel extends JPanel {
 		
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		
-//		filterPanel.setLocation(0, 0);
 		filterPanel.setBorder(border);
 		
-//		filterPanel.setPreferredSize(new Dimension(300,337));
 		
 		add(filterPanel);
+//
+//		sortPanel.setBorder(border);
+//		add(sortPanel);
 
-//		sortPanel.setLocation(0, 337, 300, 337);
-		sortPanel.setBorder(border);
-//		sortPanel.setPreferredSize(new Dimension(300,337));
-//		sortPanel.setPreferredSize(new Dimension(300,100));
-//		sortPanel.setPreferredSize(new Dimension(300,377));
-		add(sortPanel);
-//		utilityPanel.setLayout(null);
-//		confirmButton.setPreferredSize(new Dimension(300,50));
-//		confirmButton.setBounds(0,0,300,50);
-//		utilityPanel.add(confirmButton);
-//		resetButton.setPreferredSize(new Dimension(300,50));
-//		resetButton.setBounds(0,50,300,50);
-//		utilityPanel.add(resetButton);
-//		utilityPanel.setPreferredSize(new Dimension(300,100));
-//		add(utilityPanel);
-//		confirmButton.setPreferredSize(new Dimension(300,50));
-//		confirmButton.setBorder(border);
-//		add(confirmButton);
-//		gl.setVerticalGroup(
-//				gl.createParallelGroup()
-//				.addGroup(gl.createParallelGroup())
-//				.addComponent(filterPanel)
-//				.addComponent(sortPanel)
-//				.addComponent(confirmButton)
-//				
-//				);
 	}
 
 	public FilterPanel getFilterPanel() {

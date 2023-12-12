@@ -1,5 +1,6 @@
 package org.group3.view;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,6 +20,9 @@ public class FilterPanel extends JPanel{
 	private JLabel instituionLabel = new JLabel("Institutions");
 	private JLabel gradeLabel = new JLabel("Grade Range");
 	private JLabel prerequisiteCourseLabel = new JLabel("Prerequisite Courses");
+	private JButton confirmButton = new JButton("Confirm");
+	private JButton resetButton = new JButton("Reset to Default");
+	private JButton resetToUser = new JButton("Reset by user information");
 	private static int universityCount=0;
 	private static int gradeRangeCount = 0;
 	public FilterPanel() {
@@ -105,6 +109,14 @@ public class FilterPanel extends JPanel{
 			checkBoxArray.getLast().setPreferredSize(new Dimension(300,50));
 			add(checkBoxArray.getLast());
 		}
+//		confirmButton.setBounds(0,336,300,50);
+		confirmButton.setPreferredSize(new Dimension(300,50));
+		add(confirmButton);
+		resetButton.setPreferredSize(new Dimension(300,50));
+//		resetButton.setBounds(0,386,300,50);
+		add(resetButton);
+		resetToUser.setPreferredSize(new Dimension(300,50));
+		add(resetToUser);
 	}
 
 	public ArrayList<JCheckBox> getCheckBoxArray() {
@@ -138,6 +150,55 @@ public class FilterPanel extends JPanel{
 	public static void setGradeRangeCount(int gradeRangeCount) {
 		FilterPanel.gradeRangeCount = gradeRangeCount;
 	}
+	
+	public JLabel getInstituionLabel() {
+		return instituionLabel;
+	}
+
+	public void setInstituionLabel(JLabel instituionLabel) {
+		this.instituionLabel = instituionLabel;
+	}
+
+	public JLabel getGradeLabel() {
+		return gradeLabel;
+	}
+
+	public void setGradeLabel(JLabel gradeLabel) {
+		this.gradeLabel = gradeLabel;
+	}
+
+	public JLabel getPrerequisiteCourseLabel() {
+		return prerequisiteCourseLabel;
+	}
+
+	public void setPrerequisiteCourseLabel(JLabel prerequisiteCourseLabel) {
+		this.prerequisiteCourseLabel = prerequisiteCourseLabel;
+	}
+
+	public JButton getConfirmButton() {
+		return confirmButton;
+	}
+
+	public void setConfirmButton(JButton confirmButton) {
+		this.confirmButton = confirmButton;
+	}
+
+	public JButton getResetButton() {
+		return resetButton;
+	}
+
+	public void setResetButton(JButton resetButton) {
+		this.resetButton = resetButton;
+	}
+
+	public JButton getResetToUser() {
+		return resetToUser;
+	}
+
+	public void setResetToUser(JButton resetToUser) {
+		this.resetToUser = resetToUser;
+	}
+
 	public void reset() {
 		for(JCheckBox box:checkBoxArray) {
 			box.setSelected(false);

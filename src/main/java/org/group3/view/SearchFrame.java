@@ -8,6 +8,7 @@ public class SearchFrame extends JFrame {
 
   // private FilterPanel filterPanel = new FilterPanel();
   private MenuPanel menuPanel = new MenuPanel();
+  private SortMenu sortMenu = new SortMenu();
   // private SortPanel sortPanel = new SortPanel();
   // private JButton confirmButton = new JButton("Confirm");
   private SidePanel sidePanel = new SidePanel();
@@ -36,7 +37,12 @@ public class SearchFrame extends JFrame {
     menuPanel.setBounds(0,0,1280,45);
     menuPanel.setBorder(border);
     add(menuPanel);
-    searchField.setBounds(300, 45, 980, 45);
+    
+    sortMenu.setBounds(800,45,460,45);
+    sortMenu.setBackground(new Color(182, 215, 168));
+    sortMenu.setOpaque(true);
+    add(sortMenu);
+    searchField.setBounds(300, 45, 500, 45);
     // searchField.setBorder(border);
     searchField.setBackground(new Color(182, 215, 168));
     searchField.setOpaque(true);
@@ -121,4 +127,13 @@ public class SearchFrame extends JFrame {
   public void setSideScrollPane(JScrollPane sideScrollPane) {
     this.sideScrollPane = sideScrollPane;
   }
+
+public SortMenu getSortMenu() {
+	return sortMenu;
+}
+
+public void setSortMenu(SortMenu sortMenu) {
+	this.sortMenu = sortMenu;
+}
+  
 }
