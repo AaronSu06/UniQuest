@@ -1,16 +1,14 @@
 package org.group3.view;
 
-import java.awt.Component;
 import java.awt.Font;
-
 import javax.swing.JTextArea;
 
 public class ProgramInfoText extends JTextArea {
   public ProgramInfoText(String programName) {
     // Setup the search result button
-    setText(programName);
-    setAlignmentY(Component.TOP_ALIGNMENT);
+    setText("• " + programName);
     setFont(new Font("Sans Serif", Font.PLAIN, 12));
+    setBackground(AppColors.LIGHT_GREEN);
     setLineWrap(true);
     setWrapStyleWord(true);
     setEditable(false);

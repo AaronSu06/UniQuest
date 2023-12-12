@@ -141,7 +141,7 @@ public class MapFrame extends JFrame {
 
     sideBarContentScrollPane = new JScrollPane(sideBarContentPanel);
     sideBarContentScrollPane.setBounds(24, 75, 150, 600);
-    sideBarContentPanel.setPreferredSize(new Dimension(150, 1350));
+    sideBarContentPanel.setPreferredSize(new Dimension(150, 1800));
     sideBarContentScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
     sideBarContentScrollPane.setHorizontalScrollBarPolicy(
         ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -244,9 +244,12 @@ public class MapFrame extends JFrame {
 
     // Add programs
     programsPanel.setBackground(AppColors.LIGHT_GREEN);
+    programsPanel.setPreferredSize(new Dimension(150, 10000));
     programsScrollPane = new JScrollPane(programsPanel);
     programsScrollPane.setPreferredSize(new Dimension(150, 300));
     programsScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+    programsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    programsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     sideBarContentPanel.add(programsScrollPane);
 
     // Add the favourite button
