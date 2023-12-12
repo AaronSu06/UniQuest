@@ -126,7 +126,7 @@ public class DataModel {
         new University(
             "Western University",
             new GeoPosition(43.00959711477564, -81.27373334666575),
-            "POOP STREET"),
+            "1151 Richmond St, London, ON N6A 3K7"),
         new University(
             "Toronto Metropolitan University",
             new GeoPosition(43.657658114959986, -79.37880137021212),

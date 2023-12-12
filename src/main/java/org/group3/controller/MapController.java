@@ -81,8 +81,10 @@ public class MapController implements ActionListener, MouseListener {
    */
   public void addUniversityResults(List<University> universities) {
     mapFrame.getSideBarContentPanel().removeAll();
+
+    int preferredHeight = universities.size() * 55;
+    mapFrame.getSideBarContentPanel().setPreferredSize(new Dimension(150, preferredHeight));
     for (University uni : universities) {
-      // uni.getSearchResult().setPreferredSize(new Dimension(150,100));
       mapFrame.getSideBarContentPanel().add(uni.getSearchResult());
       JLabel invisibleLabel = new JLabel();
       invisibleLabel.setPreferredSize(new Dimension(150, 20));
@@ -125,7 +127,9 @@ public class MapController implements ActionListener, MouseListener {
     mapFrame.getUniversityTitle().setText(university.getName());
     mapFrame.getUniversityAddress().setText(university.getAddress());
 
-    int preferredHeight = university.getPrograms().size() * 70;
+    System.out.println(university.getPrograms().size());
+
+    int preferredHeight = university.getPrograms().size() * 120;
 
     mapFrame.getProgramsPanel().setPreferredSize(new Dimension(150, preferredHeight));
 
@@ -137,7 +141,7 @@ public class MapController implements ActionListener, MouseListener {
             public void mouseClicked(MouseEvent arg0) {
               System.out.println("Favourited Program!");
               infoText.setForeground(AppColors.NORMAL_GREEN);
-              // TODO might consider displaying the program info instead of only favouriting 
+              // TODO might consider displaying the program info instead of only favouriting
             }
 
             @Override
@@ -159,6 +163,7 @@ public class MapController implements ActionListener, MouseListener {
       mapFrame.getProgramsPanel().add(invisibleLabel);
     }
 
+    mapFrame.getProgramsScrollPane().getViewport().setViewPosition(new Point(0, 0));
     mapFrame.repaint();
     mapFrame.revalidate();
   }
