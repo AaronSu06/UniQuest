@@ -54,6 +54,7 @@ public class SearchFrameController implements ActionListener {
 		System.out.println("RE ADDING");
 		System.out.println(searchFrame.getDisplayPanel().getUniversityArray().size());
 		for (int i = 0; i < searchFrame.getDisplayPanel().getUniversityArray().size(); i++) {
+//			searchFrame.getDisplayPanel().getUniversityArray().get(i).getFavouriteButton().addActionListener(this);
 			searchFrame.getDisplayPanel().getUniversityArray().get(i).getUniversityButton().addActionListener(this);
 		}
 	}
@@ -90,10 +91,11 @@ public class SearchFrameController implements ActionListener {
 					break;
 				}
 			}
-			for (int i = 0; i < searchFrame.getSidePanel().getSortPanel().getUniversityJRadioButtonArray().length; i++) {
+			for (int i = 0; i < searchFrame.getSidePanel().getSortPanel()
+					.getUniversityJRadioButtonArray().length; i++) {
 //				System.out.println(searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray()[i].isSelected());
 				if (searchFrame.getSidePanel().getSortPanel().getUniversityJRadioButtonArray()[i].isSelected()) {
-					searchFrame.getDisplayPanel().sort(i+4);
+					searchFrame.getDisplayPanel().sort(i + 4);
 					break;
 				}
 			}
@@ -137,7 +139,8 @@ public class SearchFrameController implements ActionListener {
 //					}
 //				}
 //				ImageIcon imageIcon = new ImageIcon(image);
-				JOptionPane.showMessageDialog(searchFrame, scroll, "Information", 1, LogoInput.imageMap.get(searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity()));
+				JOptionPane.showMessageDialog(searchFrame, scroll, "Information", 1, LogoInput.imageMap
+						.get(searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity()));
 
 //				JOptionPane.showMessageDialog(searchFrame, scroll);
 			}
@@ -152,13 +155,22 @@ public class SearchFrameController implements ActionListener {
 			searchFrame.revalidate();
 
 		}
-		if(e.getSource()==searchFrame.getSearchField()) {
+		if (e.getSource() == searchFrame.getSearchField()) {
 			searchFrame.getDisplayPanel().resetToOriginal();
 			String text = searchFrame.getSearchField().getText();
 			searchFrame.getDisplayPanel().search(text);
 			reAddActionListeners();
-			
+
 		}
+
+////      FAVOURITING
+//		for (int i = 0; i < searchFrame.getDisplayPanel().getUniversityArray().size(); i++) {
+//			if (e.getSource() == searchFrame.getDisplayPanel().getUniversityArray().get(i).getFavouriteButton()) {
+////              Do something
+//				System.out.println(i + ": THIS IS THE ITERATION NUMBER");
+////              Note: You'll probably need to pass the program in as an argument to save the stuff.
+//			}
+//		}
 
 	}
 
