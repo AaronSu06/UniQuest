@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import org.group3.model.DataModel;
 import org.group3.model.University;
 import org.group3.model.UniversityProgram;
+import org.group3.view.AppColors;
 import org.group3.view.LabelledUniversityWaypoint;
 import org.group3.view.MapFrame;
 import org.group3.view.ProgramInfoText;
@@ -69,6 +70,8 @@ public class MapController implements ActionListener, MouseListener {
     }
 
     if (arg0.getSource().equals(mapFrame.getFavouriteButton())) {
+      // Change colour
+      mapFrame.getFavouriteButton().setBackground(AppColors.BUTTON_PRESSED);
       // Do Stuff
     }
   }
@@ -133,6 +136,8 @@ public class MapController implements ActionListener, MouseListener {
             @Override
             public void mouseClicked(MouseEvent arg0) {
               System.out.println("Favourited Program!");
+              infoText.setForeground(AppColors.NORMAL_GREEN);
+              // TODO might consider displaying the program info instead of only favouriting 
             }
 
             @Override
