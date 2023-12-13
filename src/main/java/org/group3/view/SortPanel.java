@@ -218,12 +218,23 @@ public class SortPanel extends JPanel {
 
 	}
 	public void reset() {
-		for(JRadioButton button: programJRadioButtonArray) {
-			button.setSelected(false);
-		}
-		for(JRadioButton button: universityJRadioButtonArray) {
-			button.setSelected(false);
-		}
+//		for(JRadioButton button: programJRadioButtonArray) {
+//			button.setSelected(false);
+//		}
+//		for(JRadioButton button: universityJRadioButtonArray) {
+//			button.setSelected(false);
+//		}
+//		for(int i = 0;i<programJRadioButtonArray.length;i++) {
+//			programJRadioButtonArray[i].setSelected(false);
+//
+//		}
+//		for(int i = 0;i<universityJRadioButtonArray.length;i++) {
+//			universityJRadioButtonArray[i].setSelected(false);
+//
+//		}
+		buttonGroupProgram.clearSelection();
+		buttonGroupUniversity.clearSelection();
+		
 	}
 
 }

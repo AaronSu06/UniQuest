@@ -29,7 +29,7 @@ public class MapController implements ActionListener, MouseListener {
 
   public MapController() {
     mapFrame = new MapFrame();
-
+    mapFrame.setVisible(false);
     addMouseListeners();
     addActionListeners();
 
@@ -37,7 +37,15 @@ public class MapController implements ActionListener, MouseListener {
     addUniversityResults(Arrays.asList(DataModel.UNIVERSITIES));
   }
 
-  public void addMouseListeners() {
+  public MapFrame getMapFrame() {
+	return mapFrame;
+}
+
+public void setMapFrame(MapFrame mapFrame) {
+	this.mapFrame = mapFrame;
+}
+
+public void addMouseListeners() {
     for (University university : DataModel.UNIVERSITIES) {
       university.getSearchResult().addMouseListener(this);
     }

@@ -2,6 +2,11 @@ package org.group3.view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +45,18 @@ public class UniversityInformationPanel extends JPanel {
 		ouacProgramCodeButton.setText("OUAC code: "+program.getOuacProgramCode());
 		ouacProgramCodeButton.setPreferredSize(new Dimension(500,50));
 		ouacProgramCodeButton.setHorizontalAlignment(SwingConstants.LEFT);
+		ouacProgramCodeButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String ouacCode = program.getOuacProgramCode();
+				StringSelection selection = new StringSelection(ouacCode);
+				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+				clipboard.setContents(selection, null);
+				JOptionPane.showMessageDialog(null, "Code Copied!");
+			}
+			
+		});
 		add(ouacProgramCodeButton);
 		gradeRangeLabel.setText("Grade Range: "+program.getGradeRange());
 		gradeRangeLabel.setPreferredSize(new Dimension(500,50));

@@ -15,7 +15,7 @@ public class UniversityPanel extends JPanel{
 	private JButton universityButton = new JButton();
 	private UniversityProgram program;
 	private ImageIcon image;
-//	private JButton favouriteButton = new JButton(LogoInput.favouritingStar);
+	private JButton favouriteButton = new JButton(LogoInput.favouritingStar);
 	public UniversityPanel(UniversityProgram program) {
 		super();
 		this.program = program;
@@ -28,6 +28,8 @@ public class UniversityPanel extends JPanel{
 		universityLabel.setForeground(Color.BLACK);
 		universityLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		universityLabel.setOpaque(true);
+		favouriteButton.setBounds(0,0,20,20);
+		universityLabel.add(favouriteButton);
 		//		System.out.println(program.getName());
 //		favouriteButton.setBounds(0,0,20,20);
 		add(universityLabel);
@@ -61,6 +63,19 @@ public class UniversityPanel extends JPanel{
 	public void setProgram(UniversityProgram program) {
 		this.program = program;
 	}
+	public ImageIcon getImage() {
+		return image;
+	}
+	public void setImage(ImageIcon image) {
+		this.image = image;
+	}
+	public JButton getFavouriteButton() {
+		return favouriteButton;
+	}
+	public void setFavouriteButton(JButton favouriteButton) {
+		this.favouriteButton = favouriteButton;
+	}
+	
 	
 
 }
