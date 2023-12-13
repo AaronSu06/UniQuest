@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import org.group3.view.PersonalInfoFrame;
+
 public class MainController implements ActionListener{
 	public static LoginController loginController = new LoginController();
 	public static MapController mapController = new MapController();
@@ -17,9 +19,12 @@ public class MainController implements ActionListener{
 		addActionListeners();
 	}
 	public void addActionListeners() {
+		searchFrameController.getSearchFrame().getMenuPanel().getProfile().addActionListener(this);
+		
 		for(JButton button:searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()) {
 			button.addActionListener(this);
 		}
+		mapController.getMapFrame().getMenuPanel().getProfile().addActionListener(this);
 		for(JButton button:mapController.getMapFrame().getMenuPanel().getFrameButtons()) {
 			button.addActionListener(this);
 		}
@@ -46,6 +51,12 @@ public class MainController implements ActionListener{
 			
 			JOptionPane.showMessageDialog(null, "You are already on this screen");
 
+		}
+		if(e.getSource()==searchFrameController.getSearchFrame().getMenuPanel().getProfile()) {
+			new PersonalInfoFrame();
+		}
+		if(e.getSource()==mapController.getMapFrame().getMenuPanel().getProfile()) {
+			new PersonalInfoFrame();
 		}
 		
 	}

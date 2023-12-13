@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class MenuPanel extends JPanel{
-	private JButton quit = new JButton();
+	private JButton quit = new JButton("Quit");
 	private JButton[]frameButtons = new JButton[3];
 	private JButton logOut = new JButton("LOG OUT");
 	private JButton profile = new JButton();
