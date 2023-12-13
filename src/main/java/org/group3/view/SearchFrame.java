@@ -38,11 +38,11 @@ public class SearchFrame extends JFrame {
     menuPanel.setBorder(border);
     add(menuPanel);
     
-    sortMenu.setBounds(800,45,460,45);
+    sortMenu.setBounds(1000,45,260,45);
     sortMenu.setBackground(new Color(182, 215, 168));
     sortMenu.setOpaque(true);
     add(sortMenu);
-    searchField.setBounds(300, 45, 500, 45);
+    searchField.setBounds(300, 45, 700, 45);
     // searchField.setBorder(border);
     searchField.setBackground(new Color(182, 215, 168));
     searchField.setOpaque(true);

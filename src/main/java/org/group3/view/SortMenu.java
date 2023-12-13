@@ -32,8 +32,8 @@ public class SortMenu extends JPanel{
 		
 		sortingTypes[0] = new JMenu("Primary Sort");
 		sortingTypes[0].setPreferredSize(new Dimension(230,45));
-		sortingTypes[1] = new JMenu("Secondary Sort");
-		sortingTypes[1].setPreferredSize(new Dimension(230,45));
+//		sortingTypes[1] = new JMenu("Secondary Sort");
+//		sortingTypes[1].setPreferredSize(new Dimension(230,45));
 		programMenu[0]=new JMenu("Program Sorts");
 
 		for (int i = 0; i < programJMenuArray[0].length; i++) {
@@ -46,18 +46,18 @@ public class SortMenu extends JPanel{
 		}
 		programMenu[0].setPreferredSize(new Dimension(230,45));
 		
-		programMenu[1]=new JMenu("Program Sorts");
-		for (int i = 0; i < programJMenuArray[1].length; i++) {
-			programJMenuArray[1][i] = new JMenuItem();
-//			programJMenuArray[i].setBounds(10, 40+i*29, 300, 29);
-			
-			programJMenuArray[1][i].setPreferredSize(new Dimension(300, 29));
-			setJMenuItemText(i,0,1);
-			programMenu[1].add(programJMenuArray[1][i]);
-		}
-		programMenu[1].setPreferredSize(new Dimension(230,45));
+//		programMenu[1]=new JMenu("Program Sorts");
+//		for (int i = 0; i < programJMenuArray[1].length; i++) {
+//			programJMenuArray[1][i] = new JMenuItem();
+////			programJMenuArray[i].setBounds(10, 40+i*29, 300, 29);
+//			
+//			programJMenuArray[1][i].setPreferredSize(new Dimension(300, 29));
+//			setJMenuItemText(i,0,1);
+//			programMenu[1].add(programJMenuArray[1][i]);
+//		}
+//		programMenu[1].setPreferredSize(new Dimension(230,45));
 		sortingTypes[0].add(programMenu[0]);
-		sortingTypes[1].add(programMenu[1]);
+//		sortingTypes[1].add(programMenu[1]);
 		universityMenu[0]=new JMenu("University Sorts");
 
 		for (int i = 0; i < universityJMenuArray[0].length; i++) {
@@ -67,26 +67,27 @@ public class SortMenu extends JPanel{
 			setJMenuItemText(i,1,0);
 			universityMenu[0].add(universityJMenuArray[0][i]);
 		}
-		universityMenu[1]=new JMenu("University Sorts");
-
-		for (int i = 0; i < universityJMenuArray[1].length; i++) {
-			universityJMenuArray[1][i] = new JMenuItem();
-//			universityJMenuArray[i].setBounds(10, 40+i*29, 300, 29);
-			universityJMenuArray[1][i].setPreferredSize(new Dimension(300, 29));
-			setJMenuItemText(i,1,1);
-
-			universityMenu[1].add(universityJMenuArray[1][i]);
-		}
+//		universityMenu[1]=new JMenu("University Sorts");
+//
+//		for (int i = 0; i < universityJMenuArray[1].length; i++) {
+//			universityJMenuArray[1][i] = new JMenuItem();
+////			universityJMenuArray[i].setBounds(10, 40+i*29, 300, 29);
+//			universityJMenuArray[1][i].setPreferredSize(new Dimension(300, 29));
+//			setJMenuItemText(i,1,1);
+//
+//			universityMenu[1].add(universityJMenuArray[1][i]);
+//		}
 		sortingTypes[0].add(universityMenu[0]);
 
-		sortingTypes[1].add(universityMenu[1]);
+//		sortingTypes[1].add(universityMenu[1]);
 		noSort[0]=new JMenuItem("No Sort");
 		
 		sortingTypes[0].add(noSort[0]);
-		noSort[1]=new JMenuItem("No sort");
-		sortingTypes[1].add(noSort[1]);
+//		noSort[1]=new JMenuItem("No sort");
+//		sortingTypes[1].add(noSort[1]);
+		sortingTypes[0].setBounds(0,0,300,45);
 		sorts.add(sortingTypes[0]);
-		sorts.add(sortingTypes[1]);
+//		sorts.add(sortingTypes[1]);
 		add(sorts);
 
 	}

@@ -63,7 +63,7 @@ public class SearchFrameController implements ActionListener {
 		searchFrame.getSidePanel().getFilterPanel().getResetButton().addActionListener(this);
 		searchFrame.getSidePanel().getFilterPanel().getResetToUser().addActionListener(this);
 		searchFrame.getSortMenu().getNoSort()[0].addActionListener(this);
-		searchFrame.getSortMenu().getNoSort()[1].addActionListener(this);
+//		searchFrame.getSortMenu().getNoSort()[1].addActionListener(this);
 		
 //		for(JMenuItem menu:searchFrame.getSortMenu().getUniversityJMenuArray()[0]) {
 //			menu.addActionListener(this);
@@ -74,18 +74,18 @@ public class SearchFrameController implements ActionListener {
 		for(Component menu:searchFrame.getSortMenu().getProgramMenu()[0].getMenuComponents()) {
 			((JMenuItem)menu).addActionListener(this);
 		}
-		for(Component menu:searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()) {
-			((JMenuItem)menu).addActionListener(this);
-		}
+//		for(Component menu:searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()) {
+//			((JMenuItem)menu).addActionListener(this);
+//		}
 //		for(JMenuItem menu:searchFrame.getSortMenu().getProgramJMenuArray()[0]) {
 //			menu.addActionListener(this);
 //		}
 		for(Component menu:searchFrame.getSortMenu().getUniversityMenu()[0].getMenuComponents()) {
 			((JMenuItem)menu).addActionListener(this);
 		}
-		for(Component menu:searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()) {
-			((JMenuItem)menu).addActionListener(this);
-		}
+//		for(Component menu:searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()) {
+//			((JMenuItem)menu).addActionListener(this);
+//		}
 //		for(JMenuItem menu:searchFrame.getSortMenu().getProgramJMenuArray()[1]) {
 //			menu.addActionListener(this);
 //		}
@@ -103,57 +103,57 @@ public class SearchFrameController implements ActionListener {
 		for(Component menu:searchFrame.getSortMenu().getProgramMenu()[0].getMenuComponents()) {
 			((JMenuItem)menu).addActionListener(this);
 		}
-		for(Component menu:searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()) {
-			((JMenuItem)menu).addActionListener(this);
-		}
+//		for(Component menu:searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()) {
+//			((JMenuItem)menu).addActionListener(this);
+//		}
 
 		for(Component menu:searchFrame.getSortMenu().getUniversityMenu()[0].getMenuComponents()) {
 			((JMenuItem)menu).addActionListener(this);
 		}
-		for(Component menu:searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()) {
-			((JMenuItem)menu).addActionListener(this);
-		}
+//		for(Component menu:searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()) {
+//			((JMenuItem)menu).addActionListener(this);
+//		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == searchFrame.getSidePanel().getSortPanel().getConfirmButton()) {
-			HashMap<Integer, String> selectedStrings = new HashMap<Integer, String>();
-			searchFrame.getDisplayPanel().resetToOriginal();
-
-			for (int i = 0; i < searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().size(); i++) {
-				if (searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).isSelected()) {
-					selectedStrings.put(i,
-							searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText());
-				}
-
-			}
-			System.out.println(selectedStrings);
-			System.out.println(searchFrame.getSidePanel().getFilterPanel().getUniversityCount());
-			System.out.println(searchFrame.getSidePanel().getFilterPanel().getGradeRangeCount());
-			if (selectedStrings.size() != 0) {
-				searchFrame.getDisplayPanel().filter(selectedStrings);
-
-			}
-			for (int i = 0; i < searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray().length; i++) {
-				if (searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray()[i].isSelected()) {
-//					searchFrame.getDisplayPanel().sort(i);
-					break;
-				}
-			}
-			for (int i = 0; i < searchFrame.getSidePanel().getSortPanel()
-					.getUniversityJRadioButtonArray().length; i++) {
-				if (searchFrame.getSidePanel().getSortPanel().getUniversityJRadioButtonArray()[i].isSelected()) {
-//					searchFrame.getDisplayPanel().sort(i + 4);
-					break;
-				}
-			}
-			reAddActionListeners();
-
-			searchFrame.repaint();
-			searchFrame.revalidate();
-
-		}
+//		if (e.getSource() == searchFrame.getSidePanel().getSortPanel().getConfirmButton()) {
+//			HashMap<Integer, String> selectedStrings = new HashMap<Integer, String>();
+//			searchFrame.getDisplayPanel().resetToOriginal();
+//
+//			for (int i = 0; i < searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().size(); i++) {
+//				if (searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).isSelected()) {
+//					selectedStrings.put(i,
+//							searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText());
+//				}
+//
+//			}
+//			System.out.println(selectedStrings);
+//			System.out.println(searchFrame.getSidePanel().getFilterPanel().getUniversityCount());
+//			System.out.println(searchFrame.getSidePanel().getFilterPanel().getGradeRangeCount());
+//			if (selectedStrings.size() != 0) {
+//				searchFrame.getDisplayPanel().filter(selectedStrings);
+//
+//			}
+//			for (int i = 0; i < searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray().length; i++) {
+//				if (searchFrame.getSidePanel().getSortPanel().getProgramJRadioButtonArray()[i].isSelected()) {
+////					searchFrame.getDisplayPanel().sort(i);
+//					break;
+//				}
+//			}
+//			for (int i = 0; i < searchFrame.getSidePanel().getSortPanel()
+//					.getUniversityJRadioButtonArray().length; i++) {
+//				if (searchFrame.getSidePanel().getSortPanel().getUniversityJRadioButtonArray()[i].isSelected()) {
+////					searchFrame.getDisplayPanel().sort(i + 4);
+//					break;
+//				}
+//			}
+////			reAddActionListeners();
+//
+//			searchFrame.repaint();
+//			searchFrame.revalidate();
+//
+//		}
 		if(e.getSource()==searchFrame.getSidePanel().getFilterPanel().getConfirmButton()) {
 			HashMap<Integer, String> selectedStrings = new HashMap<Integer, String>();
 			searchFrame.getDisplayPanel().resetToOriginal();
@@ -185,7 +185,7 @@ public class SearchFrameController implements ActionListener {
 					break;
 				}
 			}
-			reAddActionListeners();
+//			reAddActionListeners();
 
 			searchFrame.repaint();
 			searchFrame.revalidate();
@@ -194,7 +194,7 @@ public class SearchFrameController implements ActionListener {
 			searchFrame.getDisplayPanel().resetToOriginal();
 			searchFrame.getSidePanel().getFilterPanel().reset();
 			searchFrame.getSidePanel().getSortPanel().reset();
-			reAddActionListeners();
+//			reAddActionListeners();
 			searchFrame.repaint();
 			searchFrame.revalidate();
 		}
@@ -214,17 +214,17 @@ public class SearchFrameController implements ActionListener {
 				break;
 			}
 		}
-		if (e.getSource() == searchFrame.getSidePanel().getSortPanel().getResetButton()) {
-//			System.out.println("RESETTED");
-			searchFrame.getDisplayPanel().resetToOriginal();
-			searchFrame.getSidePanel().getFilterPanel().reset();
-			searchFrame.getSidePanel().getSortPanel().reset();
-			reAddActionListeners();
-			searchFrame.repaint();
-			searchFrame.revalidate();
-
-			
-		}
+//		if (e.getSource() == searchFrame.getSidePanel().getSortPanel().getResetButton()) {
+////			System.out.println("RESETTED");
+//			searchFrame.getDisplayPanel().resetToOriginal();
+//			searchFrame.getSidePanel().getFilterPanel().reset();
+//			searchFrame.getSidePanel().getSortPanel().reset();
+////			reAddActionListeners();
+//			searchFrame.repaint();
+//			searchFrame.revalidate();
+//
+//			
+//		}
 		if (e.getSource() == searchFrame.getSearchField()) {
 //			searchFrame.getDisplayPanel().resetToOriginal();
 			searchFrame.getDisplayPanel().resetToPrevious(1);
@@ -245,15 +245,21 @@ public class SearchFrameController implements ActionListener {
 //				reAddActionListeners();
 
 			}
+//			else if(e.getSource()==searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()[i]) {
+//				searchFrame.getDisplayPanel().sort(i,1);
+//				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getProgramJMenuArray()[1][i].getText());
+////				reAddActionListeners();
+//
+//			}
 		}
-		for(int i = 0;i<searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponentCount();i++) {
-			if(e.getSource()==searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()[i]) {
-				searchFrame.getDisplayPanel().sort(i,1);
-				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getProgramJMenuArray()[1][i].getText());
-//				reAddActionListeners();
-
-			}
-		}
+//		for(int i = 0;i<searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponentCount();i++) {
+//			if(e.getSource()==searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()[i]) {
+//				searchFrame.getDisplayPanel().sort(i,1);
+//				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getProgramJMenuArray()[1][i].getText());
+////				reAddActionListeners();
+//
+//			}
+//		}
 		for(int i = 0;i<searchFrame.getSortMenu().getUniversityMenu()[0].getMenuComponentCount();i++) {
 			if(e.getSource()==searchFrame.getSortMenu().getUniversityMenu()[0].getMenuComponents()[i]) {
 				searchFrame.getDisplayPanel().sort(i+4,0);
@@ -261,31 +267,39 @@ public class SearchFrameController implements ActionListener {
 //				reAddActionListeners();
 
 			}
+//			else if(e.getSource()==searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()[i]) {
+//				searchFrame.getDisplayPanel().sort(i+4,1);
+//				
+//				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getUniversityJMenuArray()[1][i].getText());
+////				reAddActionListeners();
+//
+//			}
 		}
-		for(int i = 0;i<searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponentCount();i++) {
-			if(e.getSource()==searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()[i]) {
-				searchFrame.getDisplayPanel().sort(i+4,1);
-				
-				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getUniversityJMenuArray()[1][i].getText());
-//				reAddActionListeners();
-
-			}
-		}
+//		for(int i = 0;i<searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponentCount();i++) {
+//			if(e.getSource()==searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()[i]) {
+//				searchFrame.getDisplayPanel().sort(i+4,1);
+//				
+//				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getUniversityJMenuArray()[1][i].getText());
+////				reAddActionListeners();
+//
+//			}
+//		}
 		
 		
 		if(e.getSource()==searchFrame.getSortMenu().getNoSort()[0]) {
 			searchFrame.getSortMenu().getSortingTypes()[0].setText(searchFrame.getSortMenu().getNoSort()[0].getText());
 			searchFrame.getDisplayPanel().resetToPrevious(0);
-			reAddActionListeners();
+//			reAddActionListeners();
 
 			
-		}else if (e.getSource()==searchFrame.getSortMenu().getNoSort()[1]) {
-			searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getNoSort()[1].getText());
-			searchFrame.getDisplayPanel().resetToPrevious(1);
-			reAddActionListeners();
-
-
 		}
+//		else if (e.getSource()==searchFrame.getSortMenu().getNoSort()[1]) {
+//			searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getNoSort()[1].getText());
+//			searchFrame.getDisplayPanel().resetToPrevious(1);
+//			reAddActionListeners();
+//
+//
+//		}
 //		if(e.getSource()==searchFrame.getSortMenu().getProgramMenu()[0]) {
 //			searchFrame.getSortMenu().getSortingTypes()[0].setText(searchFrame.getSortMenu().getProgramMenu()[0].getText());
 //			searchFrame.getDisplayPanel().sort(0);
