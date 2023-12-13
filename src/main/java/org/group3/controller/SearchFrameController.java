@@ -10,15 +10,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.group3.model.DataModel;
 import org.group3.model.LogoInput;
+import org.group3.model.UserAccount;
+import org.group3.model.UserInfo;
 import org.group3.view.DisplayPanel;
 import org.group3.view.SearchFrame;
 import org.group3.view.UniversityInformationPanel;
@@ -327,7 +332,19 @@ public class SearchFrameController implements ActionListener {
 //				Note: You'll probably need to pass the program in as an argument to save the stuff.
 			}
 		}
-		
+		if(e.getSource()==searchFrame.getSidePanel().getFilterPanel().getResetToUser()) {
+			System.out.println(searchFrame.getDisplayPanel().getUniversityArray().size());
+			System.out.println(searchFrame.getDisplayPanel().getUserAccordanceArray().size());
+			searchFrame.getDisplayPanel().resetToUser();
+			System.out.println(searchFrame.getDisplayPanel().getUniversityArray().size());
+			System.out.println(searchFrame.getDisplayPanel().getUserAccordanceArray().size());
+
+			for(UniversityPanel panel:searchFrame.getDisplayPanel().getUniversityArray()) {
+				System.out.println(panel.getProgram());
+			}
+//			searchFrame.repaint();
+//			searchFrame.revalidate();
+		}
 
 ////      FAVOURITING
 //		for (int i = 0; i < searchFrame.getDisplayPanel().getUniversityArray().size(); i++) {
@@ -338,6 +355,57 @@ public class SearchFrameController implements ActionListener {
 //			}
 //		}
 
+	}
+	public void retrieveUserInformation(UserAccount user) throws IOException {
+//		UserInfo userInfo = DataModel.getUserInformation();
+		double avg = 0;
+		UserInfo currentUser = null;
+		for(UserInfo userInfo:DataModel.getUserInformation()) {
+			if(userInfo.getUsername().equals(user.getusername())) {
+				currentUser = userInfo;
+			}
+		}
+		HashMap <Integer,String>temp = new HashMap<>();
+		for (Map.Entry<String, String> entry : currentUser.getCourseInfo().entrySet()) {
+			for(int i = 0;i<searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().size();i++) {
+				if(entry.getKey().equals(searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText())) {
+					temp.put(i, entry.getKey());
+					avg+=Double.parseDouble(entry.getValue());				}
+			}
+		}
+		avg/=temp.size();
+		avg = Math.floor(avg);
+		System.out.println(avg);
+		
+		System.out.println(searchFrame.getSidePanel().getFilterPanel().getUniversityCount());
+		if(avg>=60&&avg<70) {
+			System.out.println("1");
+			temp.put(searchFrame.getSidePanel().getFilterPanel().getUniversityCount(),Double.toString(avg));
+		}else if(avg>=70&&avg<80) {
+			System.out.println("2");
+
+			temp.put(searchFrame.getSidePanel().getFilterPanel().getUniversityCount()+1,Double.toString(avg));
+
+		}else if(avg>=80&&avg<90) {
+			System.out.println("3");
+
+			temp.put(searchFrame.getSidePanel().getFilterPanel().getUniversityCount()+2,Double.toString(avg));
+
+		}else if(avg>=90) {
+			System.out.println("4");
+
+			temp.put(searchFrame.getSidePanel().getFilterPanel().getUniversityCount()+3,Double.toString(avg));
+
+		}
+		System.out.println(temp);
+		searchFrame.getDisplayPanel().filter(temp);
+//		searchFrame.getDisplayPanel().setUserAccordanceArray(null);
+		searchFrame.getDisplayPanel().getUserAccordanceArray().addAll(searchFrame.getDisplayPanel().getUniversityArray());
+		for(UniversityPanel panel:searchFrame.getDisplayPanel().getUserAccordanceArray()) {
+			System.out.println(panel.getProgram());
+		}
+		System.out.println(searchFrame.getDisplayPanel().getUserAccordanceArray().size());
+		
 	}
 
 }

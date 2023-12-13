@@ -1,19 +1,14 @@
 [
   {
-<<<<<<< Updated upstream
     "username": "aaaaa",
     "password": "a"
-=======
-    "username": "Test2",
-    "password": "sss"
   },
   {
-    "username": "Test",
-    "password": "sss"
+    "username": "bbbbb",
+    "password": "b"
   },
   {
-    "username": "Test3",
-    "password": "sss"
->>>>>>> Stashed changes
+    "username": "ccccc",
+    "password": "c"
   }
 ]

@@ -10,8 +10,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JPanel;
 import javax.swing.*;
+
+import org.group3.model.LogoInput;
 import org.group3.model.UniversityProgram;
 
 public class UniversityInformationPanel extends JPanel {
@@ -26,17 +27,41 @@ public class UniversityInformationPanel extends JPanel {
 	private JLabel prerequisiteLabelHeader = new JLabel("Prerequisites:");
 	private ArrayList<JLabel> prerequisitesLabelArray=new ArrayList<JLabel>();
 	private JLabel notesLabel=new JLabel();
-	
+	private JButton favouriteUniversityButton = new JButton(LogoInput.favouritingStar);
+	private JButton favouriteProgramButton = new JButton(LogoInput.favouritingStar);
 
 	public UniversityInformationPanel(UniversityProgram program) {
 		setLayout(new GridLayout(0,1));
 		nameLabel.setText("Program: "+program.getName());
 		nameLabel.setPreferredSize(new Dimension(500,50));
 		nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		nameLabel.setLayout(null);
+		favouriteProgramButton.setBounds(480,0,20,20);
+		favouriteProgramButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+			
+		});
+		nameLabel.add(favouriteProgramButton);
 		add(nameLabel);
 		universityLabel.setText("University: "+program.getUniversity());
 		universityLabel.setPreferredSize(new Dimension(500,50));
 		universityLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		favouriteUniversityButton.setBounds(480,0,20,20);
+		favouriteUniversityButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+			
+		});
+		universityLabel.add(favouriteUniversityButton);
+		nameLabel.add(favouriteProgramButton);
+
 		add(universityLabel);
 		degreeLabel.setText("Degree: "+program.getDegree());
 		degreeLabel.setPreferredSize(new Dimension(500,50));
@@ -93,6 +118,7 @@ public class UniversityInformationPanel extends JPanel {
 		notesLabel.setPreferredSize(new Dimension(500,50));
 		notesLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		add(notesLabel);
+		
 	}
 
 	public JLabel getNameLabel() {

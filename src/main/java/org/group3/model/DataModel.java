@@ -314,7 +314,7 @@ public class DataModel {
 			}.getType();
 
 			List<UserInfo> userInfoList = gson.fromJson(reader, userInfoListType);
-
+			System.out.println(userInfoList);
 			return userInfoList;
 
 		} catch (Exception e) {

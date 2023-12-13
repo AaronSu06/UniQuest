@@ -1,13 +1,13 @@
 [
   {
-    "username": "Test",
+    "username": "aaaaa",
     "courseInfo": {
-      "Course 10": "32",
-      "Course 5": "92",
-      "Course 7": "19",
-      "Course 2": "39",
-      "Course 1": "65",
-      "Course 3": "32"
+      "MHF4U": "93",
+      "SCH4U": "89",
+      "SPH4U": "93",
+      "MCV4U": "100",
+      "ICS4U": "95",
+      "ENG4U": "80"
     }
   }
 ]
