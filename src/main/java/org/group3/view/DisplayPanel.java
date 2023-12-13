@@ -192,7 +192,9 @@ public class DisplayPanel extends JPanel {
 			add(universityPanelArray.get(i));
 		}
 
-		universityArray = universityPanelArray;
+		universityArray.clear();
+		universityArray.addAll(universityPanelArray);
+//		universityArray = universityPanelArray;
 		
 
 
@@ -205,10 +207,15 @@ public class DisplayPanel extends JPanel {
 		System.out.println(sortType[0]+"sort 1," + sortType[1]+"sort 2");
 		ArrayList<UniversityPanel> sortedArray;
 		if (priority == 0 && sortType[0] != -1) {
+			System.out.println("FIRST");
 			sortedArray = new ArrayList<>(sortPriority[0]);
 		} else if (priority == 1 && sortType[1] != -1) {
+			System.out.println("SECOND");
+
 			sortedArray = new ArrayList<>(sortPriority[1]);
 		} else {
+			System.out.println("LAST");
+
 			sortedArray = new ArrayList<>(getUniversityArray());
 		}
 		sortType[priority]=type;
