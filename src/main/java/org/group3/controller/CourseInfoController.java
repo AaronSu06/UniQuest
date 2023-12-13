@@ -47,7 +47,7 @@ public class CourseInfoController implements ActionListener {
 					courseInfoKey[i] = personalInfo.getCoursePanel().getCourse()[i].getCourseCode().getSelectedItem().toString();
 				}
 
-				DataModel.generateUserInfo("Test", courseInfo, courseInfoKey);
+				DataModel.generateUserInfo("aaaaa", courseInfo, courseInfoKey);
 				JOptionPane.showMessageDialog(personalInfo, "Your Current Changes Have Been Saved.");
 
 			} catch (IOException e1) {

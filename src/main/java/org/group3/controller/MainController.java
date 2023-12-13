@@ -53,10 +53,11 @@ public class MainController implements ActionListener{
 
 		}
 		if(e.getSource()==searchFrameController.getSearchFrame().getMenuPanel().getProfile()) {
-			new PersonalInfoFrame();
+			new CourseInfoController();
 		}
 		if(e.getSource()==mapController.getMapFrame().getMenuPanel().getProfile()) {
-			new PersonalInfoFrame();
+			new CourseInfoController();
+
 		}
 		
 	}

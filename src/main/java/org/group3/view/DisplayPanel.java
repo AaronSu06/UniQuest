@@ -29,9 +29,10 @@ public class DisplayPanel extends JPanel {
 	private ArrayList<UniversityPanel> universityArray = new ArrayList<>();
 	private ArrayList<UniversityPanel> originalUniversityArray;
 	private ArrayList<UniversityProgram> universityProgramArray = (ArrayList<UniversityProgram>) DataModel.universityProgramArrayList;
-	private ArrayList<UniversityPanel>[] sortPriority = new ArrayList[2];
-	private int[] sortType = new int[2];
-	private boolean[]sorted = new boolean[2];
+//	private ArrayList<UniversityPanel>[] sortPriority = new ArrayList[2];
+//	private int[] sortType = new int[2];
+//	private boolean[]sorted = new boolean[2];
+	private ArrayList<UniversityPanel>userAccordanceArray = new ArrayList<>();
 
 	public DisplayPanel() {
 //		setLayout(null);
@@ -60,13 +61,29 @@ public class DisplayPanel extends JPanel {
 ////			}
 //		}
 		addUniversityPanels();
-		sortPriority[0] = new ArrayList<>(universityArray);
-		sortPriority[1] = new ArrayList<>(universityArray);
-		sortType[0] = -1;
-		sortType[1] = -1;
+//		sortPriority[0] = new ArrayList<>(universityArray);
+//		sortPriority[1] = new ArrayList<>(universityArray);
+//		sortType[0] = -1;
+//		sortType[1] = -1;
 		originalUniversityArray=new ArrayList<>(universityArray);
 //		add(scrollPane);
 
+	}
+
+//	public boolean[] getSorted() {
+//		return sorted;
+//	}
+//
+//	public void setSorted(boolean[] sorted) {
+//		this.sorted = sorted;
+//	}
+
+	public ArrayList<UniversityPanel> getUserAccordanceArray() {
+		return userAccordanceArray;
+	}
+
+	public void setUserAccordanceArray(ArrayList<UniversityPanel> userAccordanceArray) {
+		this.userAccordanceArray = userAccordanceArray;
 	}
 
 	public ArrayList<UniversityPanel> getOriginalUniversityArray() {
@@ -77,21 +94,21 @@ public class DisplayPanel extends JPanel {
 		this.originalUniversityArray = originalUniversityArray;
 	}
 
-	public ArrayList<UniversityPanel>[] getSortPriority() {
-		return sortPriority;
-	}
-
-	public void setSortPriority(ArrayList<UniversityPanel>[] sortPriority) {
-		this.sortPriority = sortPriority;
-	}
-
-	public int[] getSortType() {
-		return sortType;
-	}
-
-	public void setSortType(int[] sortType) {
-		this.sortType = sortType;
-	}
+//	public ArrayList<UniversityPanel>[] getSortPriority() {
+//		return sortPriority;
+//	}
+//
+//	public void setSortPriority(ArrayList<UniversityPanel>[] sortPriority) {
+//		this.sortPriority = sortPriority;
+//	}
+//
+//	public int[] getSortType() {
+//		return sortType;
+//	}
+//
+//	public void setSortType(int[] sortType) {
+//		this.sortType = sortType;
+//	}
 
 	public JScrollBar getScrollBar() {
 		return scrollBar;
@@ -203,50 +220,35 @@ public class DisplayPanel extends JPanel {
 	}
 
 	public void sort(int type, int priority) {
-		System.out.println("RAN "+type+" "+priority);
-		System.out.println(sortType[0]+"sort 1," + sortType[1]+"sort 2");
-		ArrayList<UniversityPanel> sortedArray;
-		if (priority == 0 && sortType[0] != -1) {
-			System.out.println("FIRST");
-			sortedArray = new ArrayList<>(sortPriority[0]);
-		} else if (priority == 1 && sortType[1] != -1) {
-			System.out.println("SECOND");
-
-			sortedArray = new ArrayList<>(sortPriority[1]);
-		} else {
-			System.out.println("LAST");
-
-			sortedArray = new ArrayList<>(getUniversityArray());
-		}
-		sortType[priority]=type;
+//		System.out.println("RAN "+type+" "+priority);
+//		System.out.println(sortType[0]+"sort 1," + sortType[1]+"sort 2");
+		ArrayList<UniversityPanel> sortedArray=new ArrayList<>();
+		sortedArray.addAll(universityArray);
+//		if (priority == 0 && sortType[0] != -1) {
+//			System.out.println("FIRST");
+//			sortedArray = new ArrayList<>(sortPriority[0]);
+//		} else if (priority == 1 && sortType[1] != -1) {
+//			System.out.println("SECOND");
+//
+//			sortedArray = new ArrayList<>(sortPriority[1]);
+//		} else {
+//			System.out.println("LAST");
+//
+//			sortedArray = new ArrayList<>(getUniversityArray());
+//		}
+//		sortType[priority]=type;
 //		System.out.println(sortedArray);
 		if (priority == 0) {
 			if (type == 0) {
-//				universityArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-//				updateUniversityPanels(universityArray);
 
 				sortedArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
 				updateUniversityPanels(sortedArray);
 			} else if (type == 1) {
-//				universityArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
 				sortedArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
 				Collections.reverse(sortedArray);
 				updateUniversityPanels(sortedArray);
 
 			} else if (type == 2) {
-//				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
-//
-//					@Override
-//					public int compare(UniversityPanel o1, UniversityPanel o2) {
-//		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-//					}
-//		            
-//		        });
-//
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
 				Collections.sort(sortedArray, new Comparator<UniversityPanel>() {
 
 					@Override
@@ -260,15 +262,6 @@ public class DisplayPanel extends JPanel {
 				updateUniversityPanels(sortedArray);
 
 			} else if (type == 3) {
-//				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
-//
-//					@Override
-//					public int compare(UniversityPanel o1, UniversityPanel o2) {
-//		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-//					}
-//		            
-//		        });
-//				updateUniversityPanels(universityArray);
 				Collections.sort(sortedArray, new Comparator<UniversityPanel>() {
 
 					@Override
@@ -285,129 +278,83 @@ public class DisplayPanel extends JPanel {
 				updateUniversityPanels(sortedArray);
 
 			} else if (type == 5) {
-//				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
 				sortedArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
 				Collections.reverse(sortedArray);
 				updateUniversityPanels(sortedArray);
 			}
-			sorted[0]=true;
-			sort(sortType[1], 1);
-		} else {
+//			sorted[0]=true;
+//			sort(sortType[1], 1);
+		}
+//		else {
+//
 //			if (type == 0) {
-//				universityArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-//				updateUniversityPanels(universityArray);
+//
+//				sortedArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
+//				updateUniversityPanels(sortedArray);
 //			} else if (type == 1) {
-//				universityArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
+//				sortedArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
+//				Collections.reverse(sortedArray);
+//				updateUniversityPanels(sortedArray);
+//
 //			} else if (type == 2) {
-//				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
+////				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
+////
+////					@Override
+////					public int compare(UniversityPanel o1, UniversityPanel o2) {
+////		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
+////					}
+////		            
+////		        });
+////
+////				Collections.reverse(universityArray);
+////				updateUniversityPanels(universityArray);
+//				Collections.sort(sortedArray, new Comparator<UniversityPanel>() {
 //
 //					@Override
 //					public int compare(UniversityPanel o1, UniversityPanel o2) {
-//		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
+//						return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
 //					}
-//		            
-//		        });
 //
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
+//				});
+//
+//				Collections.reverse(sortedArray);
+//				updateUniversityPanels(sortedArray);
 //
 //			} else if (type == 3) {
-//				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
+////				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
+////
+////					@Override
+////					public int compare(UniversityPanel o1, UniversityPanel o2) {
+////		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
+////					}
+////		            
+////		        });
+////				updateUniversityPanels(universityArray);
+//				Collections.sort(sortedArray, new Comparator<UniversityPanel>() {
 //
 //					@Override
 //					public int compare(UniversityPanel o1, UniversityPanel o2) {
-//		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
+//						return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
 //					}
-//		            
-//		        });
-//				updateUniversityPanels(universityArray);
+//
+//				});
+//				updateUniversityPanels(sortedArray);
 //			} else if (type == 4) {
-//				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-//				updateUniversityPanels(universityArray);
+////				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
+////				updateUniversityPanels(universityArray);
+//				sortedArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
+//				updateUniversityPanels(sortedArray);
 //
 //			} else if (type == 5) {
-//				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
-//
-//			} 
-			if (type == 0) {
-//				universityArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-//				updateUniversityPanels(universityArray);
-
-				sortedArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-				updateUniversityPanels(sortedArray);
-			} else if (type == 1) {
-//				universityArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
-				sortedArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-				Collections.reverse(sortedArray);
-				updateUniversityPanels(sortedArray);
-
-			} else if (type == 2) {
-//				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
-//
-//					@Override
-//					public int compare(UniversityPanel o1, UniversityPanel o2) {
-//		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-//					}
-//		            
-//		        });
-//
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
-				Collections.sort(sortedArray, new Comparator<UniversityPanel>() {
-
-					@Override
-					public int compare(UniversityPanel o1, UniversityPanel o2) {
-						return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-					}
-
-				});
-
-				Collections.reverse(sortedArray);
-				updateUniversityPanels(sortedArray);
-
-			} else if (type == 3) {
-//				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
-//
-//					@Override
-//					public int compare(UniversityPanel o1, UniversityPanel o2) {
-//		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-//					}
-//		            
-//		        });
-//				updateUniversityPanels(universityArray);
-				Collections.sort(sortedArray, new Comparator<UniversityPanel>() {
-
-					@Override
-					public int compare(UniversityPanel o1, UniversityPanel o2) {
-						return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-					}
-
-				});
-				updateUniversityPanels(sortedArray);
-			} else if (type == 4) {
-//				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-//				updateUniversityPanels(universityArray);
-				sortedArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-				updateUniversityPanels(sortedArray);
-
-			} else if (type == 5) {
-//				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-//				Collections.reverse(universityArray);
-//				updateUniversityPanels(universityArray);
-				sortedArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-				Collections.reverse(sortedArray);
-				updateUniversityPanels(sortedArray);
-			}
-			sorted[1]=true;
-		}
+////				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
+////				Collections.reverse(universityArray);
+////				updateUniversityPanels(universityArray);
+//				sortedArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
+//				Collections.reverse(sortedArray);
+//				updateUniversityPanels(sortedArray);
+//			}
+//			sorted[1]=true;
+//		}
 
 	}
 
@@ -584,21 +531,11 @@ public class DisplayPanel extends JPanel {
 		updateUniversityPanels(originalUniversityArray);
 	}
 	public void resetToPrevious(int arrayIndex) {
-		if(arrayIndex==0) {
-			if(sorted[1]) {
-				updateUniversityPanels(getSortPriority()[1]);
-			}else {
-				resetToOriginal();
-			}
-			sorted[0]=false;
-		}else if(arrayIndex==1) {
-			if(sorted[0]) {
-				updateUniversityPanels(getSortPriority()[0]);
-			}else {
-				resetToOriginal();
-			}
-			sorted[1]=false;
-		}
+		
+	}
+	public void resetToUser() {
+		updateUniversityPanels(userAccordanceArray);
+	
 	}
 
 

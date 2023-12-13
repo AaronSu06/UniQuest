@@ -1,2 +1,13 @@
 [
+  {
+    "username": "aaaaa",
+    "courseInfo": {
+      "Course 6": "SBI4U",
+      "Course 5": "SCH4U",
+      "Course 2": "MCV4U",
+      "Course 1": "ENG4U",
+      "Course 4": "SPH4U",
+      "Course 3": "MHF4U"
+    }
+  }
 ]

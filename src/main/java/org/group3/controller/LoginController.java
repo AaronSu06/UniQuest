@@ -137,7 +137,14 @@ public class LoginController implements ActionListener, FocusListener {
 
             // switch JFrames
             homeFrame.dispose();
-            new PersonalInfoFrame();
+//            new PersonalInfoFrame();
+            MainController.searchFrameController.getSearchFrame().setVisible(true);
+            try {
+				MainController.searchFrameController.retrieveUserInformation(userInfo);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             break;
           } else {
             homeFrame.getUsername().setBorder(new RoundedBorder(10, red));

@@ -53,7 +53,7 @@ public class SearchFrame extends JFrame {
     // sideScrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     add(sideScrollPane);
 
-    displayScrollPane.setBounds(300, 90, 965, 675);
+    displayScrollPane.setBounds(300, 90, 965, 600);
     // displayScrollPane.setBorder(border);
     displayScrollPane.getVerticalScrollBar().setUnitIncrement(20);
     add(displayScrollPane);
