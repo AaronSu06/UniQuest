@@ -26,7 +26,6 @@ public class CourseInfoController implements ActionListener {
 		// add an action listener for only the saveBtn (information only saves when the
 		// user clicks save)
 		personalInfo.getSaveBtn().addActionListener(this);
-
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class CourseInfoController implements ActionListener {
 		if (e.getSource() == personalInfo.getSaveBtn()) {
 			try {
 				
-				// clear the hashmap (of possible)
+				// clear the hashmap
 				courseInfo.clear();
 				
 				// store the changes from the courseJPanel into an Array
@@ -47,7 +46,7 @@ public class CourseInfoController implements ActionListener {
 					courseInfoKey[i] = personalInfo.getCoursePanel().getCourse()[i].getCourseCode().getSelectedItem().toString();
 				}
 
-				DataModel.generateUserInfo("Test", courseInfo, courseInfoKey);
+				DataModel.generateUserInfo(LoginController.user, courseInfo, courseInfoKey);
 				JOptionPane.showMessageDialog(personalInfo, "Your Current Changes Have Been Saved.");
 
 			} catch (IOException e1) {

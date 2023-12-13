@@ -17,6 +17,12 @@ public class Main {
     } catch (Exception e) {
       e.printStackTrace();
     }
+<<<<<<< Updated upstream
     new MainController();
+=======
+    
+    new LoginController();
+//    new CourseInfoController();
+>>>>>>> Stashed changes
   }
 }

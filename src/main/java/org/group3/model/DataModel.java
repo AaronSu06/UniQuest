@@ -267,8 +267,9 @@ public class DataModel {
 		}
 	}
 
-	public static void generateUserInfo(String username, HashMap<String, String> courseInfo, String[] keyArr) throws IOException {
-		
+	public static void generateUserInfo(String username, HashMap<String, String> courseInfo, String[] keyArr)
+			throws IOException {
+
 		Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
 		ArrayList<UserInfo> users = new ArrayList<UserInfo>();
@@ -280,7 +281,12 @@ public class DataModel {
 		// if not null, as in a file exists, add it to the user ArrayList
 		if (userInfoList != null) {
 			for (UserInfo userInfo : userInfoList) {
-				users.add(userInfo);
+
+				// if the user already has existing information saved, don't add the information
+				// so that we won't have duplicates of the same user
+				if (!(userInfo.getUsername().equals(username))) {
+					users.add(userInfo);
+				}
 			}
 		}
 

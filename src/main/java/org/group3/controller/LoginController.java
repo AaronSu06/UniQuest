@@ -7,11 +7,19 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import org.group3.model.DataModel;
 import org.group3.model.UserAccount;
+<<<<<<< Updated upstream
 import org.group3.view.HomeFrame;
 import org.group3.view.PersonalInfoFrame; // testting purposes
 import org.group3.view.RoundedBorder;
 
 public class LoginController implements ActionListener, FocusListener {
+=======
+
+public class LoginController implements ActionListener, FocusListener {
+	
+	public static String user = null;
+	private boolean incorrectInfo = false;
+>>>>>>> Stashed changes
 
   public static String user = null;
 
@@ -132,6 +140,7 @@ public class LoginController implements ActionListener, FocusListener {
             JOptionPane.showMessageDialog(
                 homeFrame, "Signed in as " + homeFrame.getUsername().getText());
 
+<<<<<<< Updated upstream
             // update the String
             user = homeFrame.getUsername().getText();
 
@@ -156,6 +165,47 @@ public class LoginController implements ActionListener, FocusListener {
       homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
       JOptionPane.showMessageDialog(homeFrame, "Signed In As Guest");
       MainController.searchFrameController.getSearchFrame().setVisible(true);
+=======
+			// if not null, as in a file exists, check if the username and password used to
+			// login match any of that in the file
+			if (userInfoList != null) {
+				for (UserAccount userInfo : userInfoList) {
+					
+					if (homeFrame.getUsername().getText().equals(userInfo.getusername())
+							&& homeFrame.getPassword().getText().equals(userInfo.getPassword())) {
+						homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
+						homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
+						JOptionPane.showMessageDialog(homeFrame, "Signed in as " + homeFrame.getUsername().getText());
+						
+						// update the String
+						user = homeFrame.getUsername().getText();
+						
+						// update the flag variable
+						incorrectInfo = false;
+						
+						// switch JFrames
+						homeFrame.dispose();
+						new CourseInfoController();
+						break;
+					}
+					
+					// update the flag variable
+					else {
+						incorrectInfo = true;
+					}
+				}
+			}
+			
+			// if the information provided is not valid, display a message
+			if (incorrectInfo) {
+				incorrectInfo = false;
+				homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
+				homeFrame.getPassword().setBorder(new RoundedBorder(10, red));
+				JOptionPane.showMessageDialog(homeFrame,
+						"Incorrect Username and/or Password! Please Try Again.");
+			}
+		}
+>>>>>>> Stashed changes
 
       // update the String
       user = null;
