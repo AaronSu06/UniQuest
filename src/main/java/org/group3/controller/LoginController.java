@@ -155,6 +155,7 @@ public class LoginController implements ActionListener, FocusListener {
       homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
       homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
       JOptionPane.showMessageDialog(homeFrame, "Signed In As Guest");
+      MainController.searchFrameController.getSearchFrame().setVisible(true);
 
       // update the String
       user = null;
