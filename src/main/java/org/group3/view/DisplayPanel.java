@@ -364,7 +364,8 @@ public class DisplayPanel extends JPanel {
 		for (Map.Entry<Integer, String> filter : selectedFilters.entrySet()) {
 			int filter1 = convertToInteger(filter.getValue());
 			int filter2 = convertToInteger(filter.getValue().replace(Integer.toString(filter1), ""));
-
+			System.out.println(filter1);
+			System.out.println(filter2);
 //			
 			for (int i = 0; i < tempArray.size(); i++) {
 //				System.out.println(tempArray.get(i).getProgram().getGrade());
@@ -377,7 +378,16 @@ public class DisplayPanel extends JPanel {
 						&& (filter2 >= (tempArray.get(i).getProgram().getGrade()))
 						&& filter1 <= tempArray.get(i).getProgram().getGrade()) {
 
-				} else if (filter.getKey() >= FilterPanel.getGradeRangeCount()
+				} else if(filter.getKey() >= FilterPanel.getUniversityCount()
+						&& filter.getKey() < FilterPanel.getGradeRangeCount()
+						&& (filter2 ==0)
+						&& filter1 <= tempArray.get(i).getProgram().getGrade()) {
+					
+				}
+				
+				
+				
+				else if (filter.getKey() >= FilterPanel.getGradeRangeCount()
 						&& tempArray.get(i).getProgram().containsCourseCode(filter.getValue())) {
 
 				}

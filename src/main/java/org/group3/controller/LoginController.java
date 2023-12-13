@@ -145,6 +145,7 @@ public class LoginController implements ActionListener, FocusListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+            
             break;
           } else {
             homeFrame.getUsername().setBorder(new RoundedBorder(10, red));

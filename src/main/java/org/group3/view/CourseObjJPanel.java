@@ -3,6 +3,8 @@ package org.group3.view;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
+
+import org.group3.model.DataModel;
 import org.group3.model.UniversityProgram;
 
 public class CourseObjJPanel extends JPanel {
@@ -19,9 +21,20 @@ public class CourseObjJPanel extends JPanel {
 	public CourseObjJPanel() {
 		
 		// test courses
-		for (int i = 0; i < 10; i++) {
-			courseList.add("Course " + (i + 1));
+//		for (int i = 0; i < 10; i++) {
+//			courseList.add("Course " + (i + 1));
+//		}
+		for(int i =0;i<DataModel.universityProgramArrayList.size();i++) {
+//			System.out.println(i);
+			for(String string: DataModel.universityProgramArrayList.get(i).getCourseCodes()) {
+//				System.out.println(string+ "THIS IS STRING");
+				
+				if(!courseList.contains(string)) {
+					courseList.add(string);
+				}
+			}
 		}
+		courseList.add("Other");
 		
 		courseCode = new JComboBox(courseList.toArray());
 
@@ -34,6 +47,8 @@ public class CourseObjJPanel extends JPanel {
 		// set the size of the components
 //		courseCode.setRenderer(new CustomComboBox());
 		courseMark.setPreferredSize(new Dimension(177, 40));
+		
+		
 		
 		// add them to the JLabel
 		add(courseCode);

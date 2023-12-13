@@ -368,11 +368,36 @@ public class SearchFrameController implements ActionListener {
 		HashMap <Integer,String>temp = new HashMap<>();
 		for (Map.Entry<String, String> entry : currentUser.getCourseInfo().entrySet()) {
 			for(int i = 0;i<searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().size();i++) {
-				if(entry.getValue().equals(searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText())) {
-					temp.put(i, entry.getValue());
-				}
+				if(entry.getKey().equals(searchFrame.getSidePanel().getFilterPanel().getCheckBoxArray().get(i).getText())) {
+					temp.put(i, entry.getKey());
+					avg+=Double.parseDouble(entry.getValue());				}
 			}
 		}
+		avg/=temp.size();
+		avg = Math.floor(avg);
+		System.out.println(avg);
+		
+		System.out.println(searchFrame.getSidePanel().getFilterPanel().getUniversityCount());
+		if(avg>=60&&avg<70) {
+			System.out.println("1");
+			temp.put(searchFrame.getSidePanel().getFilterPanel().getUniversityCount(),Double.toString(avg));
+		}else if(avg>=70&&avg<80) {
+			System.out.println("2");
+
+			temp.put(searchFrame.getSidePanel().getFilterPanel().getUniversityCount()+1,Double.toString(avg));
+
+		}else if(avg>=80&&avg<90) {
+			System.out.println("3");
+
+			temp.put(searchFrame.getSidePanel().getFilterPanel().getUniversityCount()+2,Double.toString(avg));
+
+		}else if(avg>=90) {
+			System.out.println("4");
+
+			temp.put(searchFrame.getSidePanel().getFilterPanel().getUniversityCount()+3,Double.toString(avg));
+
+		}
+		System.out.println(temp);
 		searchFrame.getDisplayPanel().filter(temp);
 //		searchFrame.getDisplayPanel().setUserAccordanceArray(null);
 		searchFrame.getDisplayPanel().getUserAccordanceArray().addAll(searchFrame.getDisplayPanel().getUniversityArray());
