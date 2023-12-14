@@ -1,7 +1,8 @@
 package org.group3.controller;
 
 import java.awt.Dimension;
-import java.awt.Point;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -11,14 +12,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 import org.group3.model.DataModel;
 import org.group3.model.LogoInput;
 import org.group3.model.University;
-import org.group3.model.UniversityProgram;
-import org.group3.view.AppColors;
 import org.group3.view.LabelledUniversityWaypoint;
 import org.group3.view.MapFrame;
 import org.group3.view.ProgramInfoText;
@@ -27,121 +26,37 @@ import org.group3.view.UniversityMapFrameSearchResult;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
 
+// Code for scrolling to the top:
+// https://stackoverflow.com/questions/291115/java-swing-using-jscrollpane-and-having-it-scroll-back-to-top
 public class MapController implements ActionListener, MouseListener {
-  MapFrame mapFrame;
+  private MapFrame mapFrame;
 
   public MapController() {
     mapFrame = new MapFrame();
     mapFrame.setVisible(false);
-    addActionListeners();
+
+    mapFrame.getUniversitySearchSubmit().addActionListener(this);
 
     addWaypoints(Arrays.asList(DataModel.UNIVERSITIES));
     addUniversitySearchResults(Arrays.asList(DataModel.UNIVERSITIES));
   }
 
-  public MapFrame getMapFrame() {
-    return mapFrame;
-  }
-
-  public void setMapFrame(MapFrame mapFrame) {
-    this.mapFrame = mapFrame;
-  }
-
-  public void addActionListeners() {
-    mapFrame.getUniversitySearchSubmit().addActionListener(this);
-
-    // TODO: access all programs, add an action listener to its fav button which
-    // updates
-    // user object, and writes to file
-
-    mapFrame.getFavouriteButton().addActionListener(this);
-  }
-
   @Override
   public void actionPerformed(ActionEvent arg0) {
+    // When the user submits a search
     if (arg0.getSource().equals(mapFrame.getUniversitySearchSubmit())) {
       List<University> universityResults =
           DataModel.findUniversityByKeyword(mapFrame.getUniversitySearchField().getText());
 
       if (universityResults.size() == 0) {
-        addUniversitySearchResults(Arrays.asList(DataModel.UNIVERSITIES));
         addWaypoints(Arrays.asList(DataModel.UNIVERSITIES));
+        addUniversitySearchResults(Arrays.asList(DataModel.UNIVERSITIES));
         JOptionPane.showMessageDialog(null, "No Results!");
       } else {
-        addUniversitySearchResults(universityResults);
         addWaypoints(universityResults);
+        addUniversitySearchResults(universityResults);
       }
     }
-
-    if (arg0.getSource().equals(mapFrame.getFavouriteButton())) {
-      // Change colour
-      mapFrame.getFavouriteButton().setBackground(AppColors.BUTTON_PRESSED);
-      // Do Stuff
-    }
-  }
-
-  /**
-   * @param universities the {@code List} that contains all of the universities
-   */
-  public void addUniversitySearchResults(List<University> universities) {
-    mapFrame.getSideBarContentPanel().removeAll();
-
-    // Calculate a good height for the result pane
-    int preferredHeight = universities.size() * 55;
-    mapFrame.getSideBarContentPanel().setPreferredSize(new Dimension(150, preferredHeight));
-
-    // Add the search result
-    for (University uni : universities) {
-      UniversityMapFrameSearchResult searchResult =
-          new UniversityMapFrameSearchResult(uni.getName());
-
-      // Add a mouse listener to the university text
-      searchResult.addMouseListener(
-          new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent arg0) {
-              // Get rid of the bullet point in front of the result
-              String universityName = searchResult.getText().substring(1).trim();
-
-              // Create a dummy ArrayList to hold the university since the waypoint adding
-              // method can only take in lists because of how JXMapViewer's waypoit system is
-              // implemented (it requires a map)
-              List<University> u = new ArrayList<University>();
-
-              u.add(DataModel.findUniversitySpecific(universityName));
-
-              addWaypoints(u);
-
-              // Since the university is the only thing in the arrayList.
-              addUniversityInformation(u.get(0));
-
-              // Adjust the boundaires of the sidebar accordingly
-              mapFrame.getSideBarContentScrollPane().getViewport().setViewPosition(new Point(0, 0));
-              mapFrame.getSideBarContentPanel().setPreferredSize(new Dimension(150, 500));
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent arg0) {}
-
-            @Override
-            public void mouseExited(MouseEvent arg0) {}
-
-            @Override
-            public void mousePressed(MouseEvent arg0) {}
-
-            @Override
-            public void mouseReleased(MouseEvent arg0) {}
-          });
-
-      mapFrame.getSideBarContentPanel().add(searchResult);
-
-      JLabel invisibleLabel = new JLabel();
-      invisibleLabel.setPreferredSize(new Dimension(150, 20));
-      mapFrame.getSideBarContentPanel().add(invisibleLabel);
-    }
-    mapFrame.getSideBarContentPanel().repaint();
-    mapFrame.getSideBarContentPanel().revalidate();
   }
 
   /**
@@ -170,27 +85,104 @@ public class MapController implements ActionListener, MouseListener {
     mapFrame.revalidate();
   }
 
-  public void addUniversityInformation(University university) {
+  /**
+   * @param universities the {@code List} that contains all of the universities
+   */
+  public void addUniversitySearchResults(List<University> universities) {
     mapFrame.getSideBarContentPanel().removeAll();
+
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.fill = GridBagConstraints.HORIZONTAL; // Expand horizontally
+    gbc.insets = new Insets(10, 0, 10, 0); // Padding
+
+    // Add the search result
+    for (int i = 0; i < universities.size(); i++) {
+      University uni = universities.get(i);
+
+      UniversityMapFrameSearchResult searchResult =
+          new UniversityMapFrameSearchResult(uni.getName());
+
+      // Add a mouse listener to the university text
+      searchResult.addMouseListener(
+          new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+              // Get rid of the bullet point in front of the result
+              String universityName = searchResult.getText().substring(1).trim();
+
+              // Create a dummy ArrayList to hold the university since the waypoint adding
+              // method can only take in lists because of how JXMapViewer's waypoit system is
+              // implemented (it requires a map)
+              List<University> u = new ArrayList<University>();
+
+              u.add(DataModel.findUniversitySpecific(universityName));
+
+              addWaypoints(u);
+
+              // Since the university is the only thing in the arrayList.
+              addUniversityInformation(u.get(0));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent arg0) {}
+
+            @Override
+            public void mouseExited(MouseEvent arg0) {}
+
+            @Override
+            public void mousePressed(MouseEvent arg0) {}
+
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}
+          });
+
+      gbc.gridx = 0;
+      gbc.gridy = i;
+
+      mapFrame.getSideBarContentPanel().add(searchResult, gbc);
+    }
+
+    // Scroll to the top:
+    SwingUtilities.invokeLater(
+        new Runnable() {
+
+          @Override
+          public void run() {
+            mapFrame.getSideBarContentScrollPane().getVerticalScrollBar().setValue(0);
+          }
+        });
+    mapFrame.getSideBarContentPanel().repaint();
+    mapFrame.getSideBarContentPanel().revalidate();
+  }
+
+  public void addUniversityInformation(University university) {
+    // Remove any content that already exists
+    mapFrame.getSideBarContentPanel().removeAll();
+    mapFrame.getProgramsPanel().removeAll();
+
+    // Re-add the GUI components to dispaly the univeristy info
     mapFrame.addUniversityInfoGUI();
 
+    // Set title and addres accordingly
     mapFrame.getUniversityTitle().setText(university.getName());
     mapFrame.getUniversityAddress().setText(university.getAddress());
 
-    System.out.println(university.getPrograms().size());
+    // Make layout constraints
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.fill = GridBagConstraints.HORIZONTAL; // Expand horizontally
+    gbc.insets = new Insets(10, 0, 10, 0); // Padding
 
-    int preferredHeight = university.getPrograms().size() * 120;
-
-    mapFrame.getProgramsPanel().setPreferredSize(new Dimension(150, preferredHeight));
-
-    for (UniversityProgram program : university.getPrograms()) {
-      ProgramInfoText infoText = new ProgramInfoText(program.getName());
+    for (int i = 0; i < university.getPrograms().size(); i++) {
+      var program = university.getPrograms().get(i);
+      ProgramInfoText programInfoText = new ProgramInfoText(program.getName());
 
       // Dynamically add a mouse listener to the program text area
-      infoText.addMouseListener(
+      programInfoText.addMouseListener(
           new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent arg0) {
+              // Will display a program information panel
               JScrollPane scroll =
                   new JScrollPane(
                       new UniversityInformationPanel(program),
@@ -213,14 +205,23 @@ public class MapController implements ActionListener, MouseListener {
             @Override
             public void mouseReleased(MouseEvent arg0) {}
           });
-      mapFrame.getProgramsPanel().add(infoText);
 
-      JLabel invisibleLabel = new JLabel();
-      invisibleLabel.setPreferredSize(new Dimension(150, 20));
-      mapFrame.getProgramsPanel().add(invisibleLabel);
+      gbc.gridx = 0;
+      gbc.gridy = i;
+
+      mapFrame.getProgramsPanel().add(programInfoText, gbc);
     }
 
-    mapFrame.getProgramsScrollPane().getViewport().setViewPosition(new Point(0, 0));
+    // Scroll to the top:
+    SwingUtilities.invokeLater(
+        new Runnable() {
+
+          @Override
+          public void run() {
+            mapFrame.getProgramsScrollPane().getVerticalScrollBar().setValue(0);
+          }
+        });
+
     mapFrame.repaint();
     mapFrame.revalidate();
   }
@@ -229,22 +230,22 @@ public class MapController implements ActionListener, MouseListener {
   public void mouseClicked(MouseEvent arg0) {}
 
   @Override
-  public void mouseEntered(MouseEvent arg0) {
-    // TODO Auto-generated method stub
-  }
+  public void mouseEntered(MouseEvent arg0) {}
 
   @Override
-  public void mouseExited(MouseEvent arg0) {
-    // TODO Auto-generated method stub
-  }
+  public void mouseExited(MouseEvent arg0) {}
 
   @Override
-  public void mousePressed(MouseEvent arg0) {
-    // TODO Auto-generated method stub
-  }
+  public void mousePressed(MouseEvent arg0) {}
 
   @Override
-  public void mouseReleased(MouseEvent arg0) {
-    // TODO Auto-generated method stub
+  public void mouseReleased(MouseEvent arg0) {}
+
+  public MapFrame getMapFrame() {
+    return mapFrame;
+  }
+
+  public void setMapFrame(MapFrame mapFrame) {
+    this.mapFrame = mapFrame;
   }
 }

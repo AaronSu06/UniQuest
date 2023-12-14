@@ -64,7 +64,6 @@ public class MainController implements ActionListener {
       
       // Don't even have to pass in any arguments it just gets the user info :smile:
       new CourseInfoController();
-      System.out.println("Course Info Controller HAVE BEEN JENURATED");
     }
 
     // if () {
