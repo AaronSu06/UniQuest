@@ -2,12 +2,7 @@
   {
     "username": "Test",
     "courseInfo": {
-      "Course 10": "32",
-      "Course 5": "92",
-      "Course 7": "19",
-      "Course 2": "39",
-      "Course 1": "65",
-      "Course 3": "32"
+      "Course 1": "Course Mark"
     }
   }
 ]

@@ -1,3 +1,7 @@
+/* William Qian, Aaron Su
+ * 
+ */
+
 package org.group3.controller;
 
 import java.awt.Component;
@@ -18,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.group3.model.DataModel;
 import org.group3.model.LogoInput;
 import org.group3.view.DisplayPanel;
 import org.group3.view.SearchFrame;
@@ -26,6 +31,7 @@ import org.group3.view.UniversityPanel;
 
 public class SearchFrameController implements ActionListener {
 	private SearchFrame searchFrame = new SearchFrame();
+	private ArrayList<String> programList = new ArrayList<String>();
 
 	public SearchFrameController() {
 		searchFrame.setVisible(false);
@@ -321,8 +327,22 @@ public class SearchFrameController implements ActionListener {
 
 //		FAVOURITING
 		for (int i = 0; i < searchFrame.getDisplayPanel().getUniversityArray().size(); i++) {
+			
 			if (e.getSource() == searchFrame.getDisplayPanel().getUniversityArray().get(i).getFavouriteButton()) {
 //				Do something
+				
+				if (!LoginController.user.equals(null)) {
+					
+						programList.add(searchFrame.getDisplayPanel().getUniversityArray().get(i).getUniversityLabel().getText() + " at " + searchFrame.getDisplayPanel().getUniversityArray().get(i).getProgram().getUniversity());
+						
+						try {
+							DataModel.generateUserProgram(LoginController.user, programList);
+							
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+				}
+				
 				System.out.println(i + ": THIS IS THE ITERATION NUMBER");
 //				Note: You'll probably need to pass the program in as an argument to save the stuff.
 			}

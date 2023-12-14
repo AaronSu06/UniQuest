@@ -5,8 +5,8 @@ import javax.swing.*;
 
 public class PersonalInfoFrame extends JFrame {
 
-	private JScrollPane scrollBar;
-	private CourseJPanel coursePanel = new CourseJPanel();
+	private JScrollPane scrollBar = new JScrollPane();
+	private InfoJPanel infoPanel = new InfoJPanel();
 	private JPanel btnPanel = new JPanel();
 	private JButton saveBtn = new JButton("Save");
 
@@ -24,8 +24,13 @@ public class PersonalInfoFrame extends JFrame {
 		btnPanel.add(saveBtn);
 
 		setLayout(new BorderLayout());
+		
+		// preferences for the scroll bar
+		scrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollBar.setViewportView(infoPanel);
 
-		add(coursePanel, BorderLayout.CENTER);
+		add(scrollBar, BorderLayout.CENTER);
 		add(btnPanel, BorderLayout.PAGE_END);
 
 //		add(programHeader);
@@ -40,12 +45,12 @@ public class PersonalInfoFrame extends JFrame {
 		setVisible(true);
 	}
 
-	public CourseJPanel getCoursePanel() {
-		return coursePanel;
+	public InfoJPanel getInfoPanel() {
+		return infoPanel;
 	}
 
-	public void setCoursePanel(CourseJPanel coursePanel) {
-		this.coursePanel = coursePanel;
+	public void setInfoPanel(InfoJPanel coursePanel) {
+		this.infoPanel = coursePanel;
 	}
 
 	public JButton getSaveBtn() {
