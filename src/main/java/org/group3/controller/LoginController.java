@@ -15,7 +15,7 @@ public class LoginController implements ActionListener, FocusListener {
   public static String user = null;
   public List<UserAccount> userAccountList;
   private boolean incorrectInfo = false;
-// call the homeFrame class to display the GUI
+  // call the homeFrame class to display the GUI
   HomeFrame homeFrame = new HomeFrame();
 
   // Colors for the gui
@@ -124,19 +124,16 @@ public class LoginController implements ActionListener, FocusListener {
       // if not null, as in a file exists, check if the username and password used to
       // login match any of that in the file
 
-// <<<<<<< HEAD
-			// if not null, as in a file exists, check if the username and password used to
-			// login match any of that in the file
-			if (userAccountList != null && userAccountList.size() > 0) {
-				for (UserAccount userInfo : userAccountList) {
-// =======
-//           if (homeFrame.getUsername().getText().equals(userInfo.getusername())
-//               && homeFrame.getPassword().getText().equals(userInfo.getPassword())) {
-//             homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
-//             homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
-//             JOptionPane.showMessageDialog(
-//                 homeFrame, "Signed in as " + homeFrame.getUsername().getText());
-// >>>>>>> Kevin-Favouriting
+      // if not null, as in a file exists, check if the username and password used to
+      // login match any of that in the file
+      if (userAccountList != null && userAccountList.size() > 0) {
+        for (UserAccount userAccount : userAccountList) {
+          if (homeFrame.getUsername().getText().equals(userAccount.getusername())
+              && homeFrame.getPassword().getText().equals(userAccount.getPassword())) {
+            homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
+            homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
+            JOptionPane.showMessageDialog(
+                homeFrame, "Signed in as " + homeFrame.getUsername().getText());
 
             // update the String
             user = homeFrame.getUsername().getText();
@@ -144,27 +141,22 @@ public class LoginController implements ActionListener, FocusListener {
             // update the flag variable
             incorrectInfo = false;
 
-            // try {
-            //   MainController.searchFrameController.retrieveUserInformation(userInfo);
-            // } catch (IOException e1) {
-            //   System.out.println("Something went wrong (Login Controller)");
-            // }
-            
             // switch JFrames
-            MainController.searchFrameController.getSearchFrame().setVisible(true);
             homeFrame.setVisible(false);
+
+            //
+            // MainController.searchFrameController.getSearchFrame().setVisible(true);
+
+            new CourseInfoController();
             break;
           }
-
-          // update the flag variable
-          else {
-            incorrectInfo = true;
-          }
         }
-      } else {
-        incorrectInfo = true;
+        // update the flag variable
       }
+    } else {
+      incorrectInfo = true;
     }
+
     // signal that the user has decided to sign in as a guest
     if (e.getSource() == homeFrame.getLoginAsGuest()) {
       // reset color scheme
@@ -180,7 +172,8 @@ public class LoginController implements ActionListener, FocusListener {
     // if the information provided is not valid, display a message
     if (incorrectInfo) {
       incorrectInfo = false;
-      homeFrame.getUsername().setBorder(new RoundedBorder(10, red)); homeFrame.getPassword().setBorder(new RoundedBorder(10, red));
+      homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
+      homeFrame.getPassword().setBorder(new RoundedBorder(10, red));
       JOptionPane.showMessageDialog(
           homeFrame, "Incorrect Username and/or Password! Please Try Again.");
     }
@@ -275,5 +268,13 @@ public class LoginController implements ActionListener, FocusListener {
         homeFrame.getConfirmPassword().setText("Re-Enter Password");
       }
     }
+  }
+
+  public HomeFrame getHomeFrame() {
+    return homeFrame;
+  }
+
+  public void setHomeFrame(HomeFrame homeFrame) {
+    this.homeFrame = homeFrame;
   }
 }

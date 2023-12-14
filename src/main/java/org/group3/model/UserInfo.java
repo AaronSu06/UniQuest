@@ -1,76 +1,41 @@
 package org.group3.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class UserInfo {
 
-  private String username;
+	private String username;
+	private HashMap<String, String> courseInfo = new HashMap<String, String>();
 
-  // SO THATS THE PROBLEM
-  private ArrayList<UniversityProgram> favouritedPrograms;
-  private ArrayList<University> favouritedUniverisites;
+	public UserInfo(String username, HashMap<String, String> courseInfo, String[] keyArr) {
+		super();
+		this.username = username;
+		
+		for (int i = 0; i < keyArr.length; i++) {
+			if (courseInfo.get(keyArr[i]) != null) {
+				this.courseInfo.put(keyArr[i], courseInfo.get(keyArr[i]));
+			}
+		}
+	}
 
-  private HashMap<String, String> courseInfo = new HashMap<String, String>();
+	public HashMap<String, String> getCourseInfo() {
+		return courseInfo;
+	}
 
-  public UserInfo(
-      String username,
-      ArrayList<UniversityProgram> favouritedPrograms,
-      ArrayList<University> favouritedUniverisites,
-      HashMap<String, String> courseInfo,
-      String[] keyArr) {
-    super();
-    this.username = username;
-    this.favouritedPrograms = favouritedPrograms;
-    this.favouritedUniverisites = favouritedUniverisites;
+	public void setCourseInfo(HashMap<String, String> courseInfo) {
+		this.courseInfo = courseInfo;
+	}
 
-    generateNewCourseInfoMap(courseInfo, keyArr);
+	public String getUsername() {
+		return username;
+	}
 
-  }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-  public void generateNewCourseInfoMap(HashMap<String, String> courseInfo, String[] keyArr) {
-    for (int i = 0; i < keyArr.length; i++) {
-      if (courseInfo.get(keyArr[i]) != null) {
-        this.courseInfo.put(keyArr[i], courseInfo.get(keyArr[i]));
-      }
-    }
-  }
-
-  public HashMap<String, String> getCourseInfo() {
-    return courseInfo;
-  }
-
-  public void setCourseInfo(HashMap<String, String> courseInfo) {
-    this.courseInfo = courseInfo;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public List<UniversityProgram> getFavouritedPrograms() {
-    return favouritedPrograms;
-  }
-
-  public void setFavouritedPrograms(ArrayList<UniversityProgram> favouritedPrograms) {
-    this.favouritedPrograms = favouritedPrograms;
-  }
-
-  public List<University> getFavouritedUniverisites() {
-    return favouritedUniverisites;
-  }
-
-  public void setFavouritedUniverisites(ArrayList<University> favouritedUniverisites) {
-    this.favouritedUniverisites = favouritedUniverisites;
-  }
-
-  @Override
-  public String toString() {
-    return "UserInfo [username=" + username + ", courseInfo=" + courseInfo + "]";
-  }
+	@Override
+	public String toString() {
+		return "UserInfo [username=" + username + ", courseInfo=" + courseInfo + "]";
+	}
 }
