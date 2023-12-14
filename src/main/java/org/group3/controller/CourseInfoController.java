@@ -1,36 +1,28 @@
 package org.group3.controller;
 
-import java.awt.Color;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import javax.swing.JOptionPane;
-
-import org.group3.view.PersonalInfoFrame;
-import org.group3.controller.LoginController;
 import org.group3.model.DataModel;
+import org.group3.view.PersonalInfoFrame;
 
 public class CourseInfoController implements ActionListener {
+  private HashMap<String, String> courseInfo = new HashMap<String, String>();
+  private String[] courseInfoKey = new String[6];
 
-	private HashMap<String, String> courseInfo = new HashMap<String, String>();
-	private String[] courseInfoKey = new String[6];
+  // display the PersonalInfoFrame
+  PersonalInfoFrame personalInfo = new PersonalInfoFrame();
 
-	// display the PersonalInfoFrame
-	PersonalInfoFrame personalInfo = new PersonalInfoFrame();
+  public CourseInfoController() {
 
-	public CourseInfoController() {
+    // add an action listener for only the saveBtn (information only saves when the
+    // user clicks save)
+    personalInfo.getSaveBtn().addActionListener(this);
+  }
 
-		// add an action listener for only the saveBtn (information only saves when the
-		// user clicks save)
-		personalInfo.getSaveBtn().addActionListener(this);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
+  @Override
+  public void actionPerformed(ActionEvent e) {
 		// if the save button is pressed, save the information to the .json file
 		if (e.getSource() == personalInfo.getSaveBtn()) {
 			try {

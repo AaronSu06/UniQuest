@@ -1,8 +1,14 @@
 [
   {
-    "username": "aaaaa",
+    "username": "Kevin",
+    "favouritedPrograms": [],
+    "favouritedUniverisites": [],
     "courseInfo": {
-      "Course 1": "Course Mark"
+      "EAE4U": "34",
+      "FEF4U": "25",
+      "MCV4U": "45",
+      "BAT4M": "16",
+      "ENG4U": "Course Mark"
     }
   }
 ]

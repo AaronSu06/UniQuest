@@ -1,9 +1,6 @@
 package org.group3.model;
 
-import java.awt.Font;
 import java.util.ArrayList;
-import javax.swing.JTextArea;
-import org.group3.view.GUIUtils;
 import org.jxmapviewer.viewer.GeoPosition;
 
 public class University {
@@ -11,21 +8,12 @@ public class University {
   private GeoPosition position;
   private String address;
   private ArrayList<UniversityProgram> programs = new ArrayList<UniversityProgram>();
-  private JTextArea searchResult = new JTextArea();
 
   public University(String name, GeoPosition position, String address) {
     this.name = name;
     this.position = position;
     this.address = address;
 
-    // Setup the search result button
-    searchResult.setText("• " + name);
-    searchResult.setFont(new Font("Sans Serif", Font.PLAIN, 12));
-    searchResult.setLineWrap(true);
-    searchResult.setWrapStyleWord(true);
-    searchResult.setEditable(false);
-    searchResult.setBounds(0, 0, 150, 10);
-    GUIUtils.setFontRenderingHints(searchResult);
   }
 
   public String getName() {
@@ -58,28 +46,5 @@ public class University {
 
   public void setPrograms(ArrayList<UniversityProgram> programs) {
     this.programs = programs;
-  }
-
-  public JTextArea getSearchResult() {
-    return searchResult;
-  }
-
-  public void setSearchResult(JTextArea searchResult) {
-    this.searchResult = searchResult;
-  }
-
-  @Override
-  public String toString() {
-    return "University [name="
-        + name
-        + ", position="
-        + position
-        + ", address="
-        + address
-        + ", programs="
-        + programs
-        + ", searchResult="
-        + searchResult
-        + "]";
   }
 }

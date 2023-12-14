@@ -13,32 +13,34 @@ public class SearchFrame extends JFrame {
   // private JButton confirmButton = new JButton("Confirm");
   private SidePanel sidePanel = new SidePanel();
   private JTextField searchField = new JTextField("Search for program or university");
-  private JScrollPane sideScrollPane = new JScrollPane(
-      sidePanel,
-      JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-      JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+  private JScrollPane sideScrollPane =
+      new JScrollPane(
+          sidePanel,
+          JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+          JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
   // private JScrollPane sortScrollPane = new JScrollPane(sortPanel,
   // JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
   // JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
   private DisplayPanel displayPanel = new DisplayPanel();
-  private JScrollPane displayScrollPane = new JScrollPane(
-      displayPanel,
-      JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-      JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+  private JScrollPane displayScrollPane =
+      new JScrollPane(
+          displayPanel,
+          JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+          JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
   public SearchFrame() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(null);
     Border border = BorderFactory.createLineBorder(Color.BLACK);
-    
+
     setSize(1280, 720);
     setLocationRelativeTo(null);
     setResizable(false);
-    menuPanel.setBounds(0,0,1280,45);
+    menuPanel.setBounds(0, 0, 1280, 45);
     menuPanel.setBorder(border);
     add(menuPanel);
-    
-    sortMenu.setBounds(1000,45,260,45);
+
+    sortMenu.setBounds(1000, 45, 260, 45);
     sortMenu.setBackground(new Color(182, 215, 168));
     sortMenu.setOpaque(true);
     add(sortMenu);
@@ -62,7 +64,7 @@ public class SearchFrame extends JFrame {
     // displayPanel.setBorder(border);
     // add(displayPanel);
 
-//    setVisible(true);
+    // setVisible(true);
     repaint();
     revalidate();
   }
@@ -127,13 +129,11 @@ public class SearchFrame extends JFrame {
   public void setSideScrollPane(JScrollPane sideScrollPane) {
     this.sideScrollPane = sideScrollPane;
   }
+  public SortMenu getSortMenu() {
+    return sortMenu;
+  }
 
-public SortMenu getSortMenu() {
-	return sortMenu;
-}
-
-public void setSortMenu(SortMenu sortMenu) {
-	this.sortMenu = sortMenu;
-}
-  
+  public void setSortMenu(SortMenu sortMenu) {
+    this.sortMenu = sortMenu;
+  }
 }

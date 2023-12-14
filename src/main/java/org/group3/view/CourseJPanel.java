@@ -59,7 +59,10 @@ public class CourseJPanel extends JPanel {
       // get the saved user information
       userInfoList = DataModel.getUserInformation();
     } catch (IOException e) {
+      // This is for the IOException from DataMode.getUserInformation(), not for the
+      // Gson
       e.printStackTrace();
+      return;
     }
 
     // if not null, as in a file exists
