@@ -48,7 +48,7 @@ public class CourseInfoController implements ActionListener {
 
 				DataModel.generateUserInfo(LoginController.user, courseInfo, courseInfoKey);
 				JOptionPane.showMessageDialog(personalInfo, "Your Current Changes Have Been Saved.");
-
+				personalInfo.setVisible(false);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
