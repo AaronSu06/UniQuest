@@ -21,7 +21,7 @@ import org.group3.model.University;
 import org.group3.view.LabelledUniversityWaypoint;
 import org.group3.view.MapFrame;
 import org.group3.view.ProgramInfoText;
-import org.group3.view.UniversityInformationPanel;
+import org.group3.view.UniversityProgramInformationPanel;
 import org.group3.view.UniversityMapFrameSearchResult;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
@@ -185,7 +185,7 @@ public class MapController implements ActionListener, MouseListener {
               // Will display a program information panel
               JScrollPane scroll =
                   new JScrollPane(
-                      new UniversityInformationPanel(program),
+                      new UniversityProgramInformationPanel(program),
                       JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                       JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
               scroll.setPreferredSize(new Dimension(500, 500));

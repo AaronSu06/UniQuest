@@ -40,6 +40,14 @@ public class LoginController implements ActionListener, FocusListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    // if the information provided is not valid, display a message
+    if (incorrectInfo) {
+      incorrectInfo = false;
+      homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
+      homeFrame.getPassword().setBorder(new RoundedBorder(10, red));
+      JOptionPane.showMessageDialog(
+          homeFrame, "Incorrect Username and/or Password! Please Try Again.");
+    }
 
     // action commands for switching between Login and Signup Panels
     if (e.getSource() == homeFrame.getLogin()) {
@@ -144,10 +152,18 @@ public class LoginController implements ActionListener, FocusListener {
             // switch JFrames
             homeFrame.setVisible(false);
 
-            //
-            // MainController.searchFrameController.getSearchFrame().setVisible(true);
+            MainController.searchFrameController.getSearchFrame().setVisible(true);
 
-            new CourseInfoController();
+            try {
+              MainController.searchFrameController.retrieveUserInformation();
+              MainController.searchFrameController
+                  .getSearchFrame()
+                  .getDisplayPanel()
+                  .resetToOriginal();
+            } catch (IOException e1) {
+              e1.printStackTrace();
+            }
+
             break;
           }
         }
@@ -167,15 +183,6 @@ public class LoginController implements ActionListener, FocusListener {
       MainController.searchFrameController.getSearchFrame().setVisible(true);
 
       user = null;
-    }
-
-    // if the information provided is not valid, display a message
-    if (incorrectInfo) {
-      incorrectInfo = false;
-      homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
-      homeFrame.getPassword().setBorder(new RoundedBorder(10, red));
-      JOptionPane.showMessageDialog(
-          homeFrame, "Incorrect Username and/or Password! Please Try Again.");
     }
   }
 

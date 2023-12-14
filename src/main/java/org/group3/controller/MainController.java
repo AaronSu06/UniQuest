@@ -34,16 +34,16 @@ public class MainController implements ActionListener {
     for (JButton button : searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()) {
       button.addActionListener(this);
     }
-    searchFrameController
-        .getSearchFrame()
-        .getMenuPanel()
-        .getQuit()
-        .addActionListener(loginController);
+
+    searchFrameController.getSearchFrame().getMenuPanel().getQuit().addActionListener(this);
+
 
     // adds actionlisteners to mapFrame menuPanel
     mapController.getMapFrame().getMenuPanel().getProfile().addActionListener(this);
     mapController.getMapFrame().getMenuPanel().getLogOut().addActionListener(this);
     mapController.getMapFrame().getMenuPanel().getProfile().addActionListener(this);
+    mapController.getMapFrame().getMenuPanel().getQuit().addActionListener(this);
+
     for (JButton button : mapController.getMapFrame().getMenuPanel().getFrameButtons()) {
       button.addActionListener(this);
     }
@@ -56,15 +56,18 @@ public class MainController implements ActionListener {
     // structure checks searchFrame menu components for switching frames
 
     // gives a message to say that the user is in the current frame
-    if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[0]) {
+    if (e.getSource()
+        == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[0]) {
       JOptionPane.showMessageDialog(null, "You are already on this screen");
 
       // sets quiz frame visible
-    } else if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[1]) {
+    } else if (e.getSource()
+        == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[1]) {
       searchFrameController.getSearchFrame().setVisible(false);
 
       // sets map frame visible
-    } else if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[2]) {
+    } else if (e.getSource()
+        == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[2]) {
       searchFrameController.getSearchFrame().setVisible(false);
       mapController.getMapFrame().setVisible(true);
     }
@@ -86,13 +89,16 @@ public class MainController implements ActionListener {
     if (e.getSource() == mapController.getMapFrame().getMenuPanel().getProfile()) {
       new CourseInfoController();
     }
-    if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getLogOut()) {
+    if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getLogOut()
+        || e.getSource() == mapController.getMapFrame().getMenuPanel().getLogOut()) {
       searchFrameController.getSearchFrame().setVisible(false);
       loginController.getHomeFrame().setVisible(true);
     }
-    if (e.getSource() == mapController.getMapFrame().getMenuPanel().getLogOut()) {
-      mapController.getMapFrame().setVisible(false);
-      loginController.getHomeFrame().setVisible(true);
+
+    if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getQuit()
+        || e.getSource() == mapController.getMapFrame().getMenuPanel().getQuit()) {
+
+      System.exit(0);
     }
   }
 }

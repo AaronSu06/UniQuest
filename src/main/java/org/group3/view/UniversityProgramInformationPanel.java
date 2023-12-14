@@ -12,7 +12,7 @@ import javax.swing.*;
 import org.group3.model.UniversityProgram;
 
 // class
-public class UniversityInformationPanel extends JPanel {
+public class UniversityProgramInformationPanel extends JPanel {
 
   private JLabel nameLabel = new JLabel();
   private JLabel universityLabel = new JLabel();
@@ -28,7 +28,7 @@ public class UniversityInformationPanel extends JPanel {
   private JButton favouriteUniversityButton = new JButton();
   private JButton favouriteProgramButton = new JButton();
 
-  public UniversityInformationPanel(UniversityProgram program) {
+  public UniversityProgramInformationPanel(UniversityProgram program) {
     setLayout(new GridLayout(0, 1));
     nameLabel.setText("Program: " + program.getName());
     nameLabel.setPreferredSize(new Dimension(500, 50));
@@ -66,7 +66,7 @@ public class UniversityInformationPanel extends JPanel {
     gradeRangeLabel.setHorizontalAlignment(SwingConstants.LEFT);
     add(gradeRangeLabel);
     experientialLearningLabel.setText(
-        "Experientail Learning: " + program.getExperientialLearning());
+        "Experiential Learning: " + program.getExperientialLearning());
     experientialLearningLabel.setPreferredSize(new Dimension(500, 50));
     experientialLearningLabel.setHorizontalAlignment(SwingConstants.LEFT);
     add(experientialLearningLabel);

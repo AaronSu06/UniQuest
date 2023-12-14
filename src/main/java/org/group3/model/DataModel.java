@@ -165,11 +165,11 @@ public class DataModel {
 
 		// get the user information stored in the .json file so that we don't overwrite
 		// it (if it exists)
-		List<UserAccount> userInfoList = getUserAccount();
+		List<UserAccount> userAccountList = getUserAccounts();
 
 		// if not null, as in a file exists, add it to the user ArrayList
-		if (userInfoList.size() > 0) {
-			for (UserAccount userInfo : userInfoList) {
+		if (userAccountList.size() > 0) {
+			for (UserAccount userInfo : userAccountList) {
 				users.add(userInfo);
 			}
 		}
@@ -188,7 +188,7 @@ public class DataModel {
 		}
 	}
 
-	public static List<UserAccount> getUserAccount() throws IOException {
+	public static List<UserAccount> getUserAccounts() throws IOException {
 		Gson gson = new Gson();
 		FileReader reader = new FileReader(userAccountPath);
 
