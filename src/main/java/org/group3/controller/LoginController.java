@@ -37,6 +37,67 @@ public class LoginController implements ActionListener, FocusListener {
 		homeFrame.getEnterBtn().addActionListener(this);
 	}
 
+	
+	public static String getUser() {
+		return user;
+	}
+
+
+	public static void setUser(String user) {
+		LoginController.user = user;
+	}
+
+
+	public boolean isIncorrectInfo() {
+		return incorrectInfo;
+	}
+
+
+	public void setIncorrectInfo(boolean incorrectInfo) {
+		this.incorrectInfo = incorrectInfo;
+	}
+
+
+	public HomeFrame getHomeFrame() {
+		return homeFrame;
+	}
+
+
+	public void setHomeFrame(HomeFrame homeFrame) {
+		this.homeFrame = homeFrame;
+	}
+
+
+	public Color getGreen() {
+		return green;
+	}
+
+
+	public void setGreen(Color green) {
+		this.green = green;
+	}
+
+
+	public Color getRed() {
+		return red;
+	}
+
+
+	public void setRed(Color red) {
+		this.red = red;
+	}
+
+
+	public Color getGray() {
+		return gray;
+	}
+
+
+	public void setGray(Color gray) {
+		this.gray = gray;
+	}
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

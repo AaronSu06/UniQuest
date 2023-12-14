@@ -7,13 +7,17 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
 
+import org.group3.controller.LoginController;
+import org.group3.model.DataModel;
 import org.group3.model.LogoInput;
 import org.group3.model.UniversityProgram;
+import org.group3.model.UserInfo;
 
 public class UniversityInformationPanel extends JPanel {
 	private JLabel nameLabel=new JLabel();
@@ -41,7 +45,16 @@ public class UniversityInformationPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					for(UserInfo user:DataModel.getUserInformation()) {
+						if(user.getUsername().equals(LoginController.user)) {
+							
+						}
+					}
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});
@@ -55,7 +68,16 @@ public class UniversityInformationPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					for(UserInfo user:DataModel.getUserInformation()) {
+						if(user.getUsername().equals(LoginController.user)) {
+							
+						}
+					}
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});
