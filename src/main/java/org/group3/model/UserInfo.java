@@ -25,6 +25,11 @@ public class UserInfo {
     this.favouritedPrograms = favouritedPrograms;
     this.favouritedUniverisites = favouritedUniverisites;
 
+    generateNewCourseInfoMap(courseInfo, keyArr);
+
+  }
+
+  public void generateNewCourseInfoMap(HashMap<String, String> courseInfo, String[] keyArr) {
     for (int i = 0; i < keyArr.length; i++) {
       if (courseInfo.get(keyArr[i]) != null) {
         this.courseInfo.put(keyArr[i], courseInfo.get(keyArr[i]));

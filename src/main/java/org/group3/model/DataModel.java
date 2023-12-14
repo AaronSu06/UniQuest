@@ -262,8 +262,6 @@ public class DataModel {
     }
   }
 
-  public static void generateUserFavouriteProgram(String username, UniversityProgram program) {}
-
   public static void generateUserCourseInfo(
       String username, HashMap<String, String> courseInfo, String[] keyArr) throws IOException {
 
@@ -273,28 +271,40 @@ public class DataModel {
 
     // get the user information stored in the .json file so that we don't overwrite
     // it (if it exists)
-    List<UserInfo> userInfoList = getUserInformation();
+    List<UserInfo> previousUserInfoList = getUserInformation();
+
+    UserInfo currentUserInfo = null;
 
     // if not null, as in a file exists, add it to the user ArrayList
-    if (userInfoList != null) {
-      for (UserInfo userInfo : userInfoList) {
+    if (previousUserInfoList != null) {
+      for (UserInfo userInfo : previousUserInfoList) {
 
         // if the user already has existing information saved, don't add the information
-        // so that we won't have duplicates of the same user
+        // If statement ensures that only the other users get added.
         if (!(userInfo.getUsername().equals(username))) {
           users.add(userInfo);
+        } else {
+          currentUserInfo = userInfo;
         }
       }
     }
 
-    // add the current user information to the user ArrayList
-    users.add(
-        new UserInfo(
-            username,
-            new ArrayList<UniversityProgram>(),
-            new ArrayList<University>(),
-            courseInfo,
-            keyArr));
+    // If no existing user was found:
+    if (currentUserInfo == null) {
+      currentUserInfo =
+          new UserInfo(
+              username,
+              new ArrayList<UniversityProgram>(),
+              new ArrayList<University>(),
+              courseInfo,
+              keyArr);
+    } else {
+      // If a user was found:
+      currentUserInfo.generateNewCourseInfoMap(courseInfo, keyArr);
+
+      // add the current user information to the user ArrayList
+      users.add(currentUserInfo);
+    }
 
     // read and write to the .json file
     String jsonString = gson.toJson(users);

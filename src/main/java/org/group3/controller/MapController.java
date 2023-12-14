@@ -13,13 +13,16 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import org.group3.model.DataModel;
+import org.group3.model.LogoInput;
 import org.group3.model.University;
 import org.group3.model.UniversityProgram;
 import org.group3.view.AppColors;
 import org.group3.view.LabelledUniversityWaypoint;
 import org.group3.view.MapFrame;
 import org.group3.view.ProgramInfoText;
+import org.group3.view.UniversityInformationPanel;
 import org.group3.view.UniversityMapFrameSearchResult;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
@@ -187,7 +190,16 @@ public class MapController implements ActionListener, MouseListener {
       infoText.addMouseListener(
           new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent arg0) {}
+            public void mouseClicked(MouseEvent arg0) {
+              JScrollPane scroll =
+                  new JScrollPane(
+                      new UniversityInformationPanel(program),
+                      JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                      JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+              scroll.setPreferredSize(new Dimension(500, 500));
+              JOptionPane.showMessageDialog(
+                  mapFrame, scroll, "Information", 1, LogoInput.imageMap.get(university.getName()));
+            }
 
             @Override
             public void mouseEntered(MouseEvent arg0) {}
