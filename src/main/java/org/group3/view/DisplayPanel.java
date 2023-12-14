@@ -186,22 +186,6 @@ public class DisplayPanel extends JPanel {
 		revalidate();
 	}
 
-//	public void filteredUniversities(HashMap<Integer, UniversityProgram>hashmap) {
-//		removeAll();
-//		universityArray.clear();
-//		for(int i = 0;i<hashmap.size();i++){
-//			universityArray.add(new UniversityPanel(hashmap.get(i)));
-//			universityArray.get(i).setPreferredSize(new Dimension(220,300));;
-//			add(universityArray.get(i));
-//			System.out.println(i);
-//		}
-//		repaint();
-//		revalidate();
-//			
-//	}
-//	public void filterUniversities() {
-//		
-//	}
 	public void updateUniversityPanels(ArrayList<UniversityPanel> universityPanelArray) {
 		removeAll();
 		for (int i = 0; i < universityPanelArray.size(); i++) {

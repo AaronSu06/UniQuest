@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import org.group3.model.DataModel;
 import org.group3.model.University;
 import org.group3.model.UniversityProgram;
@@ -21,6 +20,7 @@ import org.group3.view.AppColors;
 import org.group3.view.LabelledUniversityWaypoint;
 import org.group3.view.MapFrame;
 import org.group3.view.ProgramInfoText;
+import org.group3.view.UniversityMapFrameSearchResult;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
 
@@ -30,25 +30,18 @@ public class MapController implements ActionListener, MouseListener {
   public MapController() {
     mapFrame = new MapFrame();
     mapFrame.setVisible(false);
-    addMouseListeners();
     addActionListeners();
 
     addWaypoints(Arrays.asList(DataModel.UNIVERSITIES));
-    addUniversityResults(Arrays.asList(DataModel.UNIVERSITIES));
+    addUniversitySearchResults(Arrays.asList(DataModel.UNIVERSITIES));
   }
 
   public MapFrame getMapFrame() {
-	return mapFrame;
-}
+    return mapFrame;
+  }
 
-public void setMapFrame(MapFrame mapFrame) {
-	this.mapFrame = mapFrame;
-}
-
-public void addMouseListeners() {
-    for (University university : DataModel.UNIVERSITIES) {
-      university.getSearchResult().addMouseListener(this);
-    }
+  public void setMapFrame(MapFrame mapFrame) {
+    this.mapFrame = mapFrame;
   }
 
   public void addActionListeners() {
@@ -68,11 +61,11 @@ public void addMouseListeners() {
           DataModel.findUniversityByKeyword(mapFrame.getUniversitySearchField().getText());
 
       if (universityResults.size() == 0) {
-        addUniversityResults(Arrays.asList(DataModel.UNIVERSITIES));
+        addUniversitySearchResults(Arrays.asList(DataModel.UNIVERSITIES));
         addWaypoints(Arrays.asList(DataModel.UNIVERSITIES));
         JOptionPane.showMessageDialog(null, "No Results!");
       } else {
-        addUniversityResults(universityResults);
+        addUniversitySearchResults(universityResults);
         addWaypoints(universityResults);
       }
     }
@@ -87,13 +80,59 @@ public void addMouseListeners() {
   /**
    * @param universities the {@code List} that contains all of the universities
    */
-  public void addUniversityResults(List<University> universities) {
+  public void addUniversitySearchResults(List<University> universities) {
     mapFrame.getSideBarContentPanel().removeAll();
 
+    // Calculate a good height for the result pane
     int preferredHeight = universities.size() * 55;
     mapFrame.getSideBarContentPanel().setPreferredSize(new Dimension(150, preferredHeight));
+
+    // Add the search result
     for (University uni : universities) {
-      mapFrame.getSideBarContentPanel().add(uni.getSearchResult());
+      UniversityMapFrameSearchResult searchResult =
+          new UniversityMapFrameSearchResult(uni.getName());
+
+      // Add a mouse listener to the university text
+      searchResult.addMouseListener(
+          new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+              // Get rid of the bullet point in front of the result
+              String universityName = searchResult.getText().substring(1).trim();
+
+              // Create a dummy ArrayList to hold the university since the waypoint adding
+              // method can only take in lists because of how JXMapViewer's waypoit system is
+              // implemented (it requires a map)
+              List<University> u = new ArrayList<University>();
+
+              u.add(DataModel.findUniversitySpecific(universityName));
+
+              addWaypoints(u);
+
+              // Since the university is the only thing in the arrayList.
+              addUniversityInformation(u.get(0));
+
+              // Adjust the boundaires of the sidebar accordingly
+              mapFrame.getSideBarContentScrollPane().getViewport().setViewPosition(new Point(0, 0));
+              mapFrame.getSideBarContentPanel().setPreferredSize(new Dimension(150, 500));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent arg0) {}
+
+            @Override
+            public void mouseExited(MouseEvent arg0) {}
+
+            @Override
+            public void mousePressed(MouseEvent arg0) {}
+
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}
+          });
+
+      mapFrame.getSideBarContentPanel().add(searchResult);
+
       JLabel invisibleLabel = new JLabel();
       invisibleLabel.setPreferredSize(new Dimension(150, 20));
       mapFrame.getSideBarContentPanel().add(invisibleLabel);
@@ -143,14 +182,12 @@ public void addMouseListeners() {
 
     for (UniversityProgram program : university.getPrograms()) {
       ProgramInfoText infoText = new ProgramInfoText(program.getName());
+
+      // Dynamically add a mouse listener to the program text area
       infoText.addMouseListener(
           new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent arg0) {
-              System.out.println("Favourited Program!");
-              infoText.setForeground(AppColors.NORMAL_GREEN);
-              // TODO might consider displaying the program info instead of only favouriting
-            }
+            public void mouseClicked(MouseEvent arg0) {}
 
             @Override
             public void mouseEntered(MouseEvent arg0) {}
@@ -177,24 +214,7 @@ public void addMouseListeners() {
   }
 
   @Override
-  public void mouseClicked(MouseEvent arg0) {
-    // Display the university information (Programs, address, etc.)
-    if (arg0.getSource() instanceof JTextArea) {
-      JTextArea clickedUniversityTextArea = (JTextArea) arg0.getSource();
-      // Removes the dot in front of the text area and gets rid of the resulting space
-      String universityName = clickedUniversityTextArea.getText().substring(1).trim();
-
-      List<University> u = new ArrayList<University>();
-      u.add(DataModel.findUniversitySpecific(universityName));
-
-      addWaypoints(u);
-
-      addUniversityInformation(u.get(0));
-
-      mapFrame.getSideBarContentScrollPane().getViewport().setViewPosition(new Point(0, 0));
-      mapFrame.getSideBarContentPanel().setPreferredSize(new Dimension(150, 500));
-    }
-  }
+  public void mouseClicked(MouseEvent arg0) {}
 
   @Override
   public void mouseEntered(MouseEvent arg0) {

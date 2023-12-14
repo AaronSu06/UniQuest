@@ -1,12 +1,11 @@
 /* Aaron Su, Kevin
- * 
+ *
  */
 
 package org.group3.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import com.google.gson.reflect.TypeToken;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,16 +14,15 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import org.jxmapviewer.viewer.GeoPosition;
 
 /*
- * Class for handling the data of our app: Follows the CRUD (Create retrieve update destroy) pattern 
+ * Class for handling the data of our app: Follows the CRUD (Create retrieve update destroy) pattern
  * */
 public class DataModel {
-	public static final String UNIVERSITY_PROGRAMS_PATH = "assets/data/programs.json";
-	public static final String userAccountPath = "assets/data/userAccount.json";
-	public static final String userInfoPath = "assets/data/userInfo.json";
+  public static final String UNIVERSITY_PROGRAMS_PATH = "assets/data/programs.json";
+  public static final String USER_ACCOUNT_PATH = "assets/data/userAccount.json";
+  public static final String USER_INFO_PATH = "assets/data/userInfo.json";
 
   // Data creation: generating all of the universities
   public static final University[] UNIVERSITIES =
@@ -163,162 +161,168 @@ public class DataModel {
             "223 Main St, Ottawa, ON K1S 1C4")
       };
 
-	public static ArrayList<UniversityProgram> universityProgramArrayList;
+  public static ArrayList<UniversityProgram> universityProgramArrayList;
 
-	/*
-	 * === Database Creation Methods ===
-	 */
+  /*
+   * === Database Creation Methods ===
+   */
 
-	/**
-	 * Generates all of the university programs needed for our app
-	 *
-	 * @throws Exception when the file is not found, or when any error occurs when
-	 *                   reading the json file
-	 */
-	public static void generateProgramArrayList() throws Exception {
-		FileReader reader = new FileReader(UNIVERSITY_PROGRAMS_PATH);
+  /**
+   * Generates all of the university programs needed for our app
+   *
+   * @throws Exception when the file is not found, or when any error occurs when reading the json
+   *     file
+   */
+  public static void generateProgramArrayList() throws Exception {
+    FileReader reader = new FileReader(UNIVERSITY_PROGRAMS_PATH);
 
-		Gson gson = new Gson();
-		Type universityProgramArrayListType = new TypeToken<ArrayList<UniversityProgram>>() {
-		}.getType();
+    Gson gson = new Gson();
+    Type universityProgramArrayListType =
+        new TypeToken<ArrayList<UniversityProgram>>() {}.getType();
 
-		universityProgramArrayList = gson.fromJson(reader, universityProgramArrayListType);
-		for (UniversityProgram universityProgram : universityProgramArrayList) {
-			University university = findUniversitySpecific(universityProgram.getUniversity());
-			if (university == null) {
-				System.out.println(universityProgram);
-			}
-			university.getPrograms().add(universityProgram);
-		}
-	}
+    universityProgramArrayList = gson.fromJson(reader, universityProgramArrayListType);
+    for (UniversityProgram universityProgram : universityProgramArrayList) {
+      University university = findUniversitySpecific(universityProgram.getUniversity());
+      if (university == null) {
+        System.out.println(universityProgram);
+      }
+      university.getPrograms().add(universityProgram);
+    }
+  }
 
-	/*
-	 * === Retrieval Methods ===
-	 */
+  /*
+   * === Retrieval Methods ===
+   */
 
-	/**
-	 * @param universityName The exact name of the university to find
-	 * @return the {@code University} associated with univeristyName
-	 */
-	public static University findUniversitySpecific(String universityName) {
-		for (University university : UNIVERSITIES) {
-			if (university.getName().equals(universityName)) {
-				return university;
-			}
-		}
-		return null;
-	}
+  /**
+   * @param universityName The exact name of the university to find
+   * @return the {@code University} associated with univeristyName
+   */
+  public static University findUniversitySpecific(String universityName) {
+    for (University university : UNIVERSITIES) {
+      if (university.getName().equals(universityName)) {
+        return university;
+      }
+    }
+    return null;
+  }
 
-	public static ArrayList<University> findUniversityByKeyword(String keyword) {
-		keyword = keyword.toLowerCase();
-		ArrayList<University> results = new ArrayList<University>();
-		for (University university : UNIVERSITIES) {
-			if (university.getName().toLowerCase().contains(keyword))
-				results.add(university);
-		}
-		return results;
-	}
+  public static ArrayList<University> findUniversityByKeyword(String keyword) {
+    keyword = keyword.toLowerCase();
+    ArrayList<University> results = new ArrayList<University>();
+    for (University university : UNIVERSITIES) {
+      if (university.getName().toLowerCase().contains(keyword)) results.add(university);
+    }
+    return results;
+  }
 
-	public static void generateUserAccount(String username, String password) throws IOException {
-		Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+  public static void generateUserAccount(String username, String password) throws IOException {
+    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-		ArrayList<UserAccount> users = new ArrayList<UserAccount>();
+    ArrayList<UserAccount> users = new ArrayList<UserAccount>();
 
-		// get the user information stored in the .json file so that we don't overwrite
-		// it (if it exists)
-		List<UserAccount> userInfoList = getUserAccount();
+    // get the user information stored in the .json file so that we don't overwrite
 
-		// if not null, as in a file exists, add it to the user ArrayList
-		if (userInfoList != null) {
-			for (UserAccount userInfo : userInfoList) {
-				users.add(userInfo);
-			}
-		}
+    // it (if it exists)
+    List<UserAccount> userAccountList = getUserAccounts();
 
-		// add the current user information to the user ArrayList
-		users.add(new UserAccount(username, password));
+    // if not null, as in a file exists, add it to the user ArrayList
+    if (userAccountList != null) {
+      for (UserAccount userInfo : userAccountList) {
+        users.add(userInfo);
+      }
+    }
 
-		// read and write to the .json file
-		String jsonString = gson.toJson(users);
-		try (FileWriter writer = new FileWriter(userAccountPath)) {
-			writer.write(jsonString);
-		}
+    // add the current user information to the user ArrayList
+    users.add(new UserAccount(username, password));
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    // read and write to the .json file
+    String jsonString = gson.toJson(users);
+    try (FileWriter writer = new FileWriter(USER_ACCOUNT_PATH)) {
+      writer.write(jsonString);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
-	public static List<UserAccount> getUserAccount() throws IOException {
-		Gson gson = new Gson();
-		FileReader reader = new FileReader(userAccountPath);
+  public static List<UserAccount> getUserAccounts() throws IOException {
+    Gson gson = new Gson();
+    FileReader reader = new FileReader(USER_ACCOUNT_PATH);
 
-		// try to fetch the information in the specified file path from the .json file
-		try {
-			Type userInfoListType = new TypeToken<List<UserAccount>>() {
-			}.getType();
+    // try to fetch the information in the specified file path from the .json file
+    try {
+      Type userAccountListType = new TypeToken<List<UserAccount>>() {}.getType();
 
-			List<UserAccount> userInfoList = gson.fromJson(reader, userInfoListType);
+      List<UserAccount> userAccountList = gson.fromJson(reader, userAccountListType);
 
-			return userInfoList;
+      return userAccountList;
 
-		} catch (Exception e) {
-			return null;
-		}
-	}
+    } catch (Exception e) {
+      return null;
+    }
+  }
 
-	public static void generateUserInfo(String username, HashMap<String, String> courseInfo, String[] keyArr)
-			throws IOException {
+  public static void generateUserFavouriteProgram(String username, UniversityProgram program) {}
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+  public static void generateUserCourseInfo(
+      String username, HashMap<String, String> courseInfo, String[] keyArr) throws IOException {
 
-		ArrayList<UserInfo> users = new ArrayList<UserInfo>();
+    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-		// get the user information stored in the .json file so that we don't overwrite
-		// it (if it exists)
-		List<UserInfo> userInfoList = getUserInformation();
+    ArrayList<UserInfo> users = new ArrayList<UserInfo>();
 
-		// if not null, as in a file exists, add it to the user ArrayList
-		if (userInfoList != null) {
-			for (UserInfo userInfo : userInfoList) {
+    // get the user information stored in the .json file so that we don't overwrite
+    // it (if it exists)
+    List<UserInfo> userInfoList = getUserInformation();
 
-				// if the user already has existing information saved, don't add the information
-				// so that we won't have duplicates of the same user
-				if (!(userInfo.getUsername().equals(username))) {
-					users.add(userInfo);
-				}
-			}
-		}
+    // if not null, as in a file exists, add it to the user ArrayList
+    if (userInfoList != null) {
+      for (UserInfo userInfo : userInfoList) {
 
-		// add the current user information to the user ArrayList
-		users.add(new UserInfo(username, courseInfo, keyArr));
+        // if the user already has existing information saved, don't add the information
+        // so that we won't have duplicates of the same user
+        if (!(userInfo.getUsername().equals(username))) {
+          users.add(userInfo);
+        }
+      }
+    }
 
-		// read and write to the .json file
-		String jsonString = gson.toJson(users);
-		try (FileWriter writer = new FileWriter(userInfoPath)) {
-			writer.write(jsonString);
-		}
+    // add the current user information to the user ArrayList
+    users.add(
+        new UserInfo(
+            username,
+            new ArrayList<UniversityProgram>(),
+            new ArrayList<University>(),
+            courseInfo,
+            keyArr));
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    // read and write to the .json file
+    String jsonString = gson.toJson(users);
+    try (FileWriter writer = new FileWriter(USER_INFO_PATH)) {
+      writer.write(jsonString);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
-	public static List<UserInfo> getUserInformation() throws IOException {
-		Gson gson = new Gson();
-		FileReader reader = new FileReader(userInfoPath);
+  /**
+   * @return a list of all the user informations (username, courses, etc.)
+   * @throws IOException if a file could not be found
+   */
+  public static List<UserInfo> getUserInformation() throws IOException {
+    Gson gson = new Gson();
+    FileReader reader = new FileReader(USER_INFO_PATH);
 
-		// try to fetch the information in the specified file path from the .json file
-		try {
-			Type userInfoListType = new TypeToken<List<UserInfo>>() {
-			}.getType();
+    // try to fetch the information in the specified file path from the .json file
+    try {
+      Type userInfoListType = new TypeToken<List<UserInfo>>() {}.getType();
 
-			List<UserInfo> userInfoList = gson.fromJson(reader, userInfoListType);
-			System.out.println(userInfoList);
-			return userInfoList;
+      List<UserInfo> userInfoList = gson.fromJson(reader, userInfoListType);
+      return userInfoList;
 
-		} catch (Exception e) {
-			return null;
-		}
-	}
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 }

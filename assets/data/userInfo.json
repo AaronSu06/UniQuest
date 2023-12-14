@@ -1,13 +1,10 @@
 [
   {
-    "username": "aaaaa",
+    "username": "Kevin",
+    "favouritedPrograms": [],
+    "favouritedUniverisites": [],
     "courseInfo": {
-      "MHF4U": "93",
-      "SCH4U": "89",
-      "SPH4U": "93",
-      "MCV4U": "100",
-      "ICS4U": "95",
-      "ENG4U": "80"
+      "ENG4U": "12"
     }
   }
 ]
