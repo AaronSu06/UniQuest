@@ -106,7 +106,7 @@ public class CourseJPanel extends JPanel {
 
 	// display the course information
 	public void changeCourseInfo(UserInfo userInfo) {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < userInfo.getCourseInfo().size(); i++) {
 			course[i].getCourseCode().setSelectedItem(keyArr.get(i));
 			course[i].getCourseMark().setText(userInfo.getCourseInfo().get(keyArr.get(i)));
 		}

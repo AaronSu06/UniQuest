@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.*;
 
 import org.group3.controller.LoginController;
@@ -19,7 +17,12 @@ import org.group3.model.LogoInput;
 import org.group3.model.UniversityProgram;
 import org.group3.model.UserInfo;
 
+//class
 public class UniversityInformationPanel extends JPanel {
+	
+//	fields
+	
+//	labels that display the information of the program
 	private JLabel nameLabel=new JLabel();
 	private JLabel universityLabel=new JLabel();
 	private JLabel degreeLabel=new JLabel();
@@ -34,12 +37,19 @@ public class UniversityInformationPanel extends JPanel {
 	private JButton favouriteUniversityButton = new JButton(LogoInput.favouritingStar);
 	private JButton favouriteProgramButton = new JButton(LogoInput.favouritingStar);
 
+//	constructor
 	public UniversityInformationPanel(UniversityProgram program) {
+		
+//		sets layout to gridlayout
+//		gridlayout makes it so that the components are added in the specified rows and columns. 0 represents any amount of row or column
 		setLayout(new GridLayout(0,1));
+		
+//		setting the programlabel
 		nameLabel.setText("Program: "+program.getName());
 		nameLabel.setPreferredSize(new Dimension(500,50));
 		nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		nameLabel.setLayout(null);
+	
 		favouriteProgramButton.setBounds(480,0,20,20);
 		favouriteProgramButton.addActionListener(new ActionListener() {
 

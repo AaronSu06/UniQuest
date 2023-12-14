@@ -73,24 +73,7 @@ public class SearchFrameController implements ActionListener {
 
 	}
 
-	
-//	re adds the actionlisteners to removed components
-//	public void reAddActionListeners() {
-//		System.out.println("RE ADDING");
-//		System.out.println(searchFrame.getDisplayPanel().getUniversityArray().size());
-//		for (int i = 0; i < searchFrame.getDisplayPanel().getUniversityArray().size(); i++) {
-//			searchFrame.getDisplayPanel().getUniversityArray().get(i).getUniversityButton().addActionListener(this);
-//			searchFrame.getDisplayPanel().getUniversityArray().get(i).getFavouriteButton().addActionListener(this);
-//		}
-//		for (Component menu : searchFrame.getSortMenu().getProgramMenu()[0].getMenuComponents()) {
-//			((JMenuItem) menu).addActionListener(this);
-//		}
-//
-//		for (Component menu : searchFrame.getSortMenu().getUniversityMenu()[0].getMenuComponents()) {
-//			((JMenuItem) menu).addActionListener(this);
-//		}
-//
-//	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -121,7 +104,6 @@ public class SearchFrameController implements ActionListener {
 					break;
 				}
 			}
-//			reAddActionListeners();
 
 			searchFrame.repaint();
 			searchFrame.revalidate();
@@ -130,7 +112,6 @@ public class SearchFrameController implements ActionListener {
 			searchFrame.getDisplayPanel().resetToOriginal();
 			searchFrame.getSidePanel().getFilterPanel().reset();
 			searchFrame.getSidePanel().getSortPanel().reset();
-//			reAddActionListeners();
 			searchFrame.repaint();
 			searchFrame.revalidate();
 		}
@@ -150,110 +131,41 @@ public class SearchFrameController implements ActionListener {
 				break;
 			}
 		}
-//		if (e.getSource() == searchFrame.getSidePanel().getSortPanel().getResetButton()) {
-////			System.out.println("RESETTED");
-//			searchFrame.getDisplayPanel().resetToOriginal();
-//			searchFrame.getSidePanel().getFilterPanel().reset();
-//			searchFrame.getSidePanel().getSortPanel().reset();
-////			reAddActionListeners();
-//			searchFrame.repaint();
-//			searchFrame.revalidate();
-//
-//			
-//		}
+
 		if (e.getSource() == searchFrame.getSearchField()) {
-//			searchFrame.getDisplayPanel().resetToOriginal();
-			searchFrame.getDisplayPanel().resetToPrevious(1);
+//			searchFrame.getDisplayPanel().resetToPrevious(1);
+			searchFrame.getDisplayPanel().resetToOriginal();
 			String text = searchFrame.getSearchField().getText();
 			searchFrame.getDisplayPanel().search(text);
-//			reAddActionListeners();
 
 		}
-//		for(Component menu:searchFrame.getSortMenu().getUniversityMenu()[0].getMenuComponents()) {
-//			if(e.getSource()==menu) {
-//				
-//			}
-//		}
+
 		for (int i = 0; i < searchFrame.getSortMenu().getProgramMenu()[0].getMenuComponentCount(); i++) {
 			if (e.getSource() == searchFrame.getSortMenu().getProgramMenu()[0].getMenuComponents()[i]) {
 				searchFrame.getDisplayPanel().sort(i, 0);
 				searchFrame.getSortMenu().getSortingTypes()[0]
 						.setText(searchFrame.getSortMenu().getProgramJMenuArray()[0][i].getText());
-//				reAddActionListeners();
 
 			}
-//			else if(e.getSource()==searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()[i]) {
-//				searchFrame.getDisplayPanel().sort(i,1);
-//				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getProgramJMenuArray()[1][i].getText());
-////				reAddActionListeners();
-//
-//			}
+
 		}
-//		for(int i = 0;i<searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponentCount();i++) {
-//			if(e.getSource()==searchFrame.getSortMenu().getProgramMenu()[1].getMenuComponents()[i]) {
-//				searchFrame.getDisplayPanel().sort(i,1);
-//				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getProgramJMenuArray()[1][i].getText());
-////				reAddActionListeners();
-//
-//			}
-//		}
+
 		for (int i = 0; i < searchFrame.getSortMenu().getUniversityMenu()[0].getMenuComponentCount(); i++) {
 			if (e.getSource() == searchFrame.getSortMenu().getUniversityMenu()[0].getMenuComponents()[i]) {
 				searchFrame.getDisplayPanel().sort(i + 4, 0);
 				searchFrame.getSortMenu().getSortingTypes()[0]
 						.setText(searchFrame.getSortMenu().getUniversityJMenuArray()[0][i].getText());
-//				reAddActionListeners();
 
 			}
-//			else if(e.getSource()==searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()[i]) {
-//				searchFrame.getDisplayPanel().sort(i+4,1);
-//				
-//				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getUniversityJMenuArray()[1][i].getText());
-////				reAddActionListeners();
-//
-//			}
+
 		}
-//		for(int i = 0;i<searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponentCount();i++) {
-//			if(e.getSource()==searchFrame.getSortMenu().getUniversityMenu()[1].getMenuComponents()[i]) {
-//				searchFrame.getDisplayPanel().sort(i+4,1);
-//				
-//				searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getUniversityJMenuArray()[1][i].getText());
-////				reAddActionListeners();
-//
-//			}
-//		}
 
 		if (e.getSource() == searchFrame.getSortMenu().getNoSort()[0]) {
 			searchFrame.getSortMenu().getSortingTypes()[0].setText(searchFrame.getSortMenu().getNoSort()[0].getText());
-			searchFrame.getDisplayPanel().resetToPrevious(0);
-//			reAddActionListeners();
+//			searchFrame.getDisplayPanel().resetToPrevious(0);
+			searchFrame.getDisplayPanel().resetToOriginal();
 
 		}
-//		else if (e.getSource()==searchFrame.getSortMenu().getNoSort()[1]) {
-//			searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getNoSort()[1].getText());
-//			searchFrame.getDisplayPanel().resetToPrevious(1);
-//			reAddActionListeners();
-//
-//
-//		}
-//		if(e.getSource()==searchFrame.getSortMenu().getProgramMenu()[0]) {
-//			searchFrame.getSortMenu().getSortingTypes()[0].setText(searchFrame.getSortMenu().getProgramMenu()[0].getText());
-//			searchFrame.getDisplayPanel().sort(0);
-//
-//		}else if(e.getSource()==searchFrame.getSortMenu().getProgramJMenuArray()[1]) {
-//			searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getProgramMenu()[1].getText());
-//			searchFrame.getDisplayPanel().sort(0);
-//
-//		}
-//		if(e.getSource()==searchFrame.getSortMenu().getUniversityJMenuArray()[0]) {
-//			searchFrame.getSortMenu().getSortingTypes()[0].setText(searchFrame.getSortMenu().getProgramMenu()[0].getText());
-//			searchFrame.getDisplayPanel().sort(0);
-//
-//		}else if(e.getSource()==searchFrame.getSortMenu().getProgramMenu()[1]) {
-//			searchFrame.getSortMenu().getSortingTypes()[1].setText(searchFrame.getSortMenu().getProgramMenu()[1].getText());
-//			searchFrame.getDisplayPanel().sort(0);
-//
-//		}
 
 //		FAVOURITING
 		for (int i = 0; i < searchFrame.getDisplayPanel().getUniversityArray().size(); i++) {
@@ -288,8 +200,8 @@ public class SearchFrameController implements ActionListener {
 
 	}
 
+//	gets the user information from the dataBase
 	public void retrieveUserInformation(UserAccount user) throws IOException {
-//		UserInfo userInfo = DataModel.getUserInformation();
 		double avg = 0;
 		UserInfo currentUser = null;
 		for (UserInfo userInfo : DataModel.getUserInformation()) {

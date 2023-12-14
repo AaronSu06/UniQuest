@@ -32,7 +32,7 @@ public class DisplayPanel extends JPanel {
 //	private ArrayList<UniversityPanel>[] sortPriority = new ArrayList[2];
 //	private int[] sortType = new int[2];
 //	private boolean[]sorted = new boolean[2];
-	private ArrayList<UniversityPanel>userAccordanceArray = new ArrayList<>();
+	private ArrayList<UniversityPanel> userAccordanceArray = new ArrayList<>();
 
 	public DisplayPanel() {
 //		setLayout(null);
@@ -65,7 +65,7 @@ public class DisplayPanel extends JPanel {
 //		sortPriority[1] = new ArrayList<>(universityArray);
 //		sortType[0] = -1;
 //		sortType[1] = -1;
-		originalUniversityArray=new ArrayList<>(universityArray);
+		originalUniversityArray = new ArrayList<>(universityArray);
 //		add(scrollPane);
 
 	}
@@ -212,8 +212,6 @@ public class DisplayPanel extends JPanel {
 		universityArray.clear();
 		universityArray.addAll(universityPanelArray);
 //		universityArray = universityPanelArray;
-		
-
 
 		repaint();
 		revalidate();
@@ -222,7 +220,7 @@ public class DisplayPanel extends JPanel {
 	public void sort(int type, int priority) {
 //		System.out.println("RAN "+type+" "+priority);
 //		System.out.println(sortType[0]+"sort 1," + sortType[1]+"sort 2");
-		ArrayList<UniversityPanel> sortedArray=new ArrayList<>();
+		ArrayList<UniversityPanel> sortedArray = new ArrayList<>();
 		sortedArray.addAll(universityArray);
 //		if (priority == 0 && sortType[0] != -1) {
 //			System.out.println("FIRST");
@@ -285,76 +283,6 @@ public class DisplayPanel extends JPanel {
 //			sorted[0]=true;
 //			sort(sortType[1], 1);
 		}
-//		else {
-//
-//			if (type == 0) {
-//
-//				sortedArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-//				updateUniversityPanels(sortedArray);
-//			} else if (type == 1) {
-//				sortedArray.sort((a, b) -> a.getProgram().getName().compareTo(b.getProgram().getName()));
-//				Collections.reverse(sortedArray);
-//				updateUniversityPanels(sortedArray);
-//
-//			} else if (type == 2) {
-////				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
-////
-////					@Override
-////					public int compare(UniversityPanel o1, UniversityPanel o2) {
-////		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-////					}
-////		            
-////		        });
-////
-////				Collections.reverse(universityArray);
-////				updateUniversityPanels(universityArray);
-//				Collections.sort(sortedArray, new Comparator<UniversityPanel>() {
-//
-//					@Override
-//					public int compare(UniversityPanel o1, UniversityPanel o2) {
-//						return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-//					}
-//
-//				});
-//
-//				Collections.reverse(sortedArray);
-//				updateUniversityPanels(sortedArray);
-//
-//			} else if (type == 3) {
-////				Collections.sort(universityArray, new Comparator<UniversityPanel>() {
-////
-////					@Override
-////					public int compare(UniversityPanel o1, UniversityPanel o2) {
-////		                return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-////					}
-////		            
-////		        });
-////				updateUniversityPanels(universityArray);
-//				Collections.sort(sortedArray, new Comparator<UniversityPanel>() {
-//
-//					@Override
-//					public int compare(UniversityPanel o1, UniversityPanel o2) {
-//						return Integer.compare(o1.getProgram().getGrade(), o2.getProgram().getGrade());
-//					}
-//
-//				});
-//				updateUniversityPanels(sortedArray);
-//			} else if (type == 4) {
-////				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-////				updateUniversityPanels(universityArray);
-//				sortedArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-//				updateUniversityPanels(sortedArray);
-//
-//			} else if (type == 5) {
-////				universityArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-////				Collections.reverse(universityArray);
-////				updateUniversityPanels(universityArray);
-//				sortedArray.sort((a, b) -> a.getProgram().getUniversity().compareTo(b.getProgram().getUniversity()));
-//				Collections.reverse(sortedArray);
-//				updateUniversityPanels(sortedArray);
-//			}
-//			sorted[1]=true;
-//		}
 
 	}
 
@@ -364,11 +292,8 @@ public class DisplayPanel extends JPanel {
 		for (Map.Entry<Integer, String> filter : selectedFilters.entrySet()) {
 			int filter1 = convertToInteger(filter.getValue());
 			int filter2 = convertToInteger(filter.getValue().replace(Integer.toString(filter1), ""));
-			System.out.println(filter1);
-			System.out.println(filter2);
 //			
 			for (int i = 0; i < tempArray.size(); i++) {
-//				System.out.println(tempArray.get(i).getProgram().getGrade());
 				if (filter.getKey() < FilterPanel.getUniversityCount()
 						&& filter.getValue().equals(tempArray.get(i).getProgram().getUniversity())) {
 //					
@@ -378,35 +303,21 @@ public class DisplayPanel extends JPanel {
 						&& (filter2 >= (tempArray.get(i).getProgram().getGrade()))
 						&& filter1 <= tempArray.get(i).getProgram().getGrade()) {
 
-				} else if(filter.getKey() >= FilterPanel.getUniversityCount()
-						&& filter.getKey() < FilterPanel.getGradeRangeCount()
-						&& (filter2 ==0)
+				} else if (filter.getKey() >= FilterPanel.getUniversityCount()
+						&& filter.getKey() < FilterPanel.getGradeRangeCount() && (filter2 == 0)
 						&& filter1 <= tempArray.get(i).getProgram().getGrade()) {
-					
+
 				}
-				
-				
-				
+
 				else if (filter.getKey() >= FilterPanel.getGradeRangeCount()
 						&& tempArray.get(i).getProgram().containsCourseCode(filter.getValue())) {
 
-				}
-//				else if(filter.getKey() > FilterPanel.getUniversityCount()
-//						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
-//						&& ((convertToInteger(filter.getValue()) <= (tempArray.get(i).getProgram().getGrade())))) {
-//					
-//				}
-//				else if (filter.getKey() > FilterPanel.getUniversityCount()
-//						&& filter.getKey() <= FilterPanel.getGradeRangeCount()
-//						&& ((convertToInteger(filter.getValue()) <= (tempArray.get(i).getProgram().getGrade()))&&filter1>=tempArray.get(i).getProgram().getGrade())) {
-//
-//				} 
-				else {
+				} else {
 					tempArray.remove(i);
 					i--;
 				}
 			}
-//			jointArray=new ArrayList<>(tempArray);
+
 			for (UniversityPanel uni : tempArray) {
 				if (!jointArray.contains(uni)) {
 					jointArray.add(uni);
@@ -416,7 +327,6 @@ public class DisplayPanel extends JPanel {
 
 		}
 
-//		System.out.println(tempArray);
 		updateUniversityPanels(jointArray);
 	}
 
@@ -482,71 +392,20 @@ public class DisplayPanel extends JPanel {
 		return -1;
 	}
 
-//	public void filter(ArrayList<String>selectedFilters) {
-//		removeAll();
-//		
-//		ArrayList<UniversityPanel>tempArray = new ArrayList<>(universityArray);
-//		for(String filters:selectedFilters) {
-//			for(int i = 0;i<tempArray.size();i++) {
-////				System.out.println(tempArray.get(i).getName());
-//				if(tempArray.get(i).getProgram().getName().equals(filters)) {
-//					tempArray.remove(i);
-//					i--;
-//				}
-//			}
-//		}
-////		System.out.println("RAN FILTER");
-//		updateUniversityPanels(tempArray);
-////		HashMap<Integer, UniversityProgram>filteredList = new HashMap<>();
-////		HashMap<Integer,UniversityProgram>hashMapVersion = convertArrayListToHashMap(Main.programList);
-////		if(selectedFilters.size()!=0) {
-////			for(String selected:selectedFilters) {
-////				Predicate<Map.Entry<Integer, UniversityProgram>> predicate = entry -> entry.getValue().getName().equals(selected);
-////				Map<Integer, UniversityProgram> filteredPrograms =  filterMap(hashMapVersion, predicate);			
-////				universityArray.clear();
-////				filteredList.putAll(filteredPrograms);
-////				
-////			}
-////			filteredUniversities(filteredList);
-////		}
-//		
-//		
-//	}
-//	private HashMap<Integer, UniversityProgram> 
-//    convertArrayListToHashMap(List<UniversityProgram> programList) 
-//    { 
-//  
-//        HashMap<Integer, UniversityProgram> hashMap = new HashMap<>(); 
-//  
-//        for(int i = 0;i<programList.size();i++) {
-//        	hashMap.put(i, programList.get(i));
-//        }
-//  
-//        return hashMap; 
-//    } 
-//	public  <T> List<T> filterObjects(List<T> list, Predicate<T> predicate) {
-//        return list.stream()
-//            .filter(predicate)
-//            .collect(Collectors.toList());
-//    }
-//	public <K, V> HashMap<K, V> filterMap(HashMap<Integer, UniversityProgram>map, Predicate<? super Entry<Integer, UniversityProgram>> predicate) {
-//        return (HashMap<K, V>) map.entrySet().stream()
-//            .filter(predicate)
-//            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-//    }
+//	resets the filters and sorting to original
 	public void resetToOriginal() {
-//		System.out.println(universityArray.size());
-//		updateUniversityPanels(universityArray);
-//		addUniversityPanels();
+		
+//		calls the update method passing in the original array
 		updateUniversityPanels(originalUniversityArray);
 	}
+
 	public void resetToPrevious(int arrayIndex) {
-		
-	}
-	public void resetToUser() {
-		updateUniversityPanels(userAccordanceArray);
-	
+
 	}
 
+	public void resetToUser() {
+		updateUniversityPanels(userAccordanceArray);
+
+	}
 
 }

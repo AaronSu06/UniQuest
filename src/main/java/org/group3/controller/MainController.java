@@ -37,6 +37,7 @@ public class MainController implements ActionListener{
 		for(JButton button:searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()) {
 			button.addActionListener(this);
 		}
+		searchFrameController.getSearchFrame().getMenuPanel().getQuit().addActionListener(loginController);
 		
 //		adds actionlisteners to mapFrame menuPanel
 		mapController.getMapFrame().getMenuPanel().getProfile().addActionListener(this);
