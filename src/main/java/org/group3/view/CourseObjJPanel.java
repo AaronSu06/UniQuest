@@ -46,7 +46,7 @@ public class CourseObjJPanel extends JPanel {
 		
 		// set the size of the components
 //		courseCode.setRenderer(new CustomComboBox());
-		courseMark.setPreferredSize(new Dimension(177, 40));
+		courseMark.setPreferredSize(new Dimension(117, 40));
 		
 		
 		
@@ -55,6 +55,7 @@ public class CourseObjJPanel extends JPanel {
 		add(courseMark);
 	}
 
+	// getters and setters
 	public JComboBox<ArrayList> getCourseCode() {
 		return courseCode;
 	}

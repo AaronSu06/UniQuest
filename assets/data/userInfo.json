@@ -2,10 +2,7 @@
   {
     "username": "aaaaa",
     "courseInfo": {
-      "MHF4U": "93",
-      "MCV4U": "100",
-      "Other": "95",
-      "ENG4U": "80"
+      "Course 1": "Course Mark"
     }
   }
 ]

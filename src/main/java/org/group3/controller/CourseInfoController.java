@@ -34,18 +34,20 @@ public class CourseInfoController implements ActionListener {
 		// if the save button is pressed, save the information to the .json file
 		if (e.getSource() == personalInfo.getSaveBtn()) {
 			try {
-				
+
 				// clear the hashmap
 				courseInfo.clear();
-				
+
 				// store the changes from the courseJPanel into an Array
 				for (int i = 0; i < 6; i++) {
 					courseInfo.put(
-							personalInfo.getCoursePanel().getCourse()[i].getCourseCode().getSelectedItem().toString(),
-							personalInfo.getCoursePanel().getCourse()[i].getCourseMark().getText());
-					courseInfoKey[i] = personalInfo.getCoursePanel().getCourse()[i].getCourseCode().getSelectedItem().toString();
+							personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString(),
+							personalInfo.getInfoPanel().getCourse()[i].getCourseMark().getText());
+					courseInfoKey[i] = personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem()
+							.toString();
 				}
 
+				// save the user information and display a message
 				DataModel.generateUserInfo(LoginController.user, courseInfo, courseInfoKey);
 				JOptionPane.showMessageDialog(personalInfo, "Your Current Changes Have Been Saved.");
 				personalInfo.setVisible(false);
