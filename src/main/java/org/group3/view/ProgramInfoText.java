@@ -7,7 +7,7 @@ public class ProgramInfoText extends JTextArea {
   public ProgramInfoText(String programName) {
     // Setup the search result button
     setText("• " + programName);
-    setFont(new Font("Sans Serif", Font.PLAIN, 12));
+    setFont(new Font("Sans Serif", Font.PLAIN, 10));
     setBackground(AppColors.LIGHT_GREEN);
     setLineWrap(true);
     setWrapStyleWord(true);

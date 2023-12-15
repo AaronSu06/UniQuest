@@ -1,7 +1,6 @@
 package org.group3.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -52,15 +51,13 @@ public class UniversityProgramInformationPanel extends JPanel {
         };
 
     GridBagConstraints gbc = new GridBagConstraints();
-    // gbc.fill = GridBagConstraints.HORIZONTAL;
-    gbc.insets = new Insets(0, 0, 0, 0);
+    gbc.insets = new Insets(10, 10, 10, 10);
     gbc.gridx = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
 
     setLayout(gbl);
-    nameTextArea.setColumns(45);
+    nameTextArea.setColumns(43);
     nameTextArea.setText("Program: " + program.getName());
-    nameTextArea.setPreferredSize(new Dimension(500, 50));
     nameTextArea.setLayout(null);
     nameTextArea.setLineWrap(true);
     nameTextArea.setWrapStyleWord(true);
@@ -68,27 +65,25 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy = 0;
     add(nameTextArea, gbc);
 
-    universityTextArea.setColumns(45);
+    universityTextArea.setColumns(43);
     universityTextArea.setText("University: " + program.getUniversity());
-    universityTextArea.setPreferredSize(new Dimension(500, 50));
     universityTextArea.setLineWrap(true);
     universityTextArea.setWrapStyleWord(true);
     GUIUtils.setFontRenderingHints(universityTextArea);
     gbc.gridy++;
     add(universityTextArea, gbc);
 
-    degreeTextArea.setColumns(45);
+    degreeTextArea.setColumns(43);
     degreeTextArea.setText("Degree: " + program.getDegree());
-    degreeTextArea.setPreferredSize(new Dimension(500, 50));
     degreeTextArea.setLineWrap(true);
     degreeTextArea.setWrapStyleWord(true);
     GUIUtils.setFontRenderingHints(degreeTextArea);
     gbc.gridy++;
     add(degreeTextArea, gbc);
 
-    ouacProgramCodeButton.setColumns(45);
+    ouacProgramCodeButton.setColumns(43);
     ouacProgramCodeButton.setText("OUAC code: " + program.getOuacProgramCode());
-    ouacProgramCodeButton.setPreferredSize(new Dimension(500, 50));
+    ouacProgramCodeButton.setForeground(new Color(0, 128, 0));
     ouacProgramCodeButton.addMouseListener(
         new MouseListener() {
           @Override
@@ -116,69 +111,65 @@ public class UniversityProgramInformationPanel extends JPanel {
     GUIUtils.setFontRenderingHints(ouacProgramCodeButton);
     add(ouacProgramCodeButton, gbc);
 
-    gradeRangeTextArea.setColumns(45);
+    gradeRangeTextArea.setColumns(43);
     gradeRangeTextArea.setText("Grade Range: " + program.getGradeRange());
-    gradeRangeTextArea.setPreferredSize(new Dimension(500, 50));
     gradeRangeTextArea.setLineWrap(true);
     gradeRangeTextArea.setWrapStyleWord(true);
     GUIUtils.setFontRenderingHints(gradeRangeTextArea);
     gbc.gridy++;
     add(gradeRangeTextArea, gbc);
 
-    experientialLearningTextArea.setColumns(45);
+    experientialLearningTextArea.setColumns(43);
     experientialLearningTextArea.setText(
         "Experiential Learning: " + program.getExperientialLearning());
-    experientialLearningTextArea.setPreferredSize(new Dimension(500, 50));
     experientialLearningTextArea.setLineWrap(true);
     experientialLearningTextArea.setWrapStyleWord(true);
     GUIUtils.setFontRenderingHints(experientialLearningTextArea);
     gbc.gridy++;
     add(experientialLearningTextArea, gbc);
 
-    enrollmentTextArea.setColumns(45);
+    enrollmentTextArea.setColumns(43);
     enrollmentTextArea.setText("Enrollment: " + program.getEnrollment());
-    enrollmentTextArea.setPreferredSize(new Dimension(500, 50));
     enrollmentTextArea.setLineWrap(true);
     enrollmentTextArea.setWrapStyleWord(true);
     GUIUtils.setFontRenderingHints(enrollmentTextArea);
     gbc.gridy++;
     add(enrollmentTextArea, gbc);
 
-    instructionLanguageTextArea.setColumns(45);
+    instructionLanguageTextArea.setColumns(43);
     instructionLanguageTextArea.setText(
         "Instructional Language: " + program.getInstructionLanguage());
-    instructionLanguageTextArea.setPreferredSize(new Dimension(500, 50));
     instructionLanguageTextArea.setLineWrap(true);
     instructionLanguageTextArea.setWrapStyleWord(true);
     GUIUtils.setFontRenderingHints(instructionLanguageTextArea);
     gbc.gridy++;
     add(instructionLanguageTextArea, gbc);
 
-    prerequisiteTextAreaHeader.setColumns(45);
-    // prerequisiteTextAreaHeader.setPreferredSize(new Dimension(500, 50));
+    prerequisiteTextAreaHeader.setColumns(43);
     GUIUtils.setFontRenderingHints(prerequisiteTextAreaHeader);
     gbc.gridy++;
     add(prerequisiteTextAreaHeader, gbc);
 
     for (String prereq : program.getPrerequisites()) {
       JTextArea prereqTextArea = new JTextArea(prereq);
-      prereqTextArea.setColumns(45);
+      prereqTextArea.setColumns(43);
       prereqTextArea.setLineWrap(true);
       prereqTextArea.setWrapStyleWord(true);
       GUIUtils.setFontRenderingHints(prereqTextArea);
 
       prerequisitesTextAreaArray.add(prereqTextArea);
-      prerequisitesTextAreaArray.getLast().setColumns(45);
+      prerequisitesTextAreaArray.getLast().setColumns(43);
       gbc.gridy++;
       add(prerequisitesTextAreaArray.getLast(), gbc);
     }
+
     if (program.getNotes() != null) {
       notesTextArea.setText("Notes: " + program.getNotes());
     } else {
       notesTextArea.setText("Notes: None");
     }
 
-    notesTextArea.setColumns(45);
+    notesTextArea.setColumns(43);
     notesTextArea.setLineWrap(true);
     notesTextArea.setWrapStyleWord(true);
     GUIUtils.setFontRenderingHints(notesTextArea);
@@ -186,7 +177,6 @@ public class UniversityProgramInformationPanel extends JPanel {
     add(notesTextArea, gbc);
 
     favouriteProgramButton.setText("Favourite");
-    favouriteProgramButton.setPreferredSize(new Dimension(128, 50));
     favouriteProgramButton.setHorizontalAlignment(SwingConstants.CENTER);
 
     // saves the program to the user's favourited
