@@ -1,3 +1,4 @@
+// Read code. Not write code.
 package org.group3.view;
 
 import java.awt.Color;
@@ -11,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class QuizFrame extends JFrame {
+public class SurveyFrame extends JFrame {
 
-	private JLabel title = new JLabel("University Programs Survey");
+  private JLabel titleLabel = new JLabel("University Programs Survey");
 	private JLabel question1 = new JLabel("What courses did you take in grade 12?");
 	private JLabel question2 = new JLabel("Which of the following topics interests you the most?");
 	private JLabel question3 = new JLabel("What was your favourite course in highschool");
@@ -21,168 +22,25 @@ public class QuizFrame extends JFrame {
 	private JLabel question5 = new JLabel("Are you looking for a program with co-op?");
 	
 	private MenuPanel menuPanel = new MenuPanel();
-	public static JButton finishButton = new JButton("Finish");
+	private JButton finishButton = new JButton("Finish");
 
-	public static JCheckBox[] question1Answers = new JCheckBox[6];
-	public static JCheckBox[] question2Answers = new JCheckBox[5];
-	public static JCheckBox[] question3Answers = new JCheckBox[6];
-	public static JCheckBox[] question4Answers = new JCheckBox[4];
-	public static JCheckBox[] question5Answers = new JCheckBox[3];
+	private JCheckBox[] question1Answers = new JCheckBox[6];
+	private JCheckBox[] question2Answers = new JCheckBox[5];
+	private JCheckBox[] question3Answers = new JCheckBox[6];
+	private JCheckBox[] question4Answers = new JCheckBox[4];
+	private JCheckBox[] question5Answers = new JCheckBox[3];
 
-	JPanel mainPanel = new JPanel();
+
+  JPanel mainPanel = new JPanel();
 
 	JScrollPane mainScrollPane = new JScrollPane();
 
-	public QuizFrame() {
+	public SurveyFrame() {
 //		setLocationRelativeTo(null);
 		menuPanel.setBounds(0,0,1280,45);
 		add(menuPanel);
 		setup();
 	}
-
-	
-	
-
-
-	public JLabel getQuestion1() {
-		return question1;
-	}
-
-
-	public void setQuestion1(JLabel question1) {
-		this.question1 = question1;
-	}
-
-
-	public JLabel getQuestion2() {
-		return question2;
-	}
-
-
-	public void setQuestion2(JLabel question2) {
-		this.question2 = question2;
-	}
-
-
-	public JLabel getQuestion3() {
-		return question3;
-	}
-
-
-	public void setQuestion3(JLabel question3) {
-		this.question3 = question3;
-	}
-
-
-	public JLabel getQuestion4() {
-		return question4;
-	}
-
-
-	public void setQuestion4(JLabel question4) {
-		this.question4 = question4;
-	}
-
-
-	public JLabel getQuestion5() {
-		return question5;
-	}
-
-
-	public void setQuestion5(JLabel question5) {
-		this.question5 = question5;
-	}
-
-
-	public MenuPanel getMenuPanel() {
-		return menuPanel;
-	}
-
-
-	public void setMenuPanel(MenuPanel menuPanel) {
-		this.menuPanel = menuPanel;
-	}
-
-
-	public static JButton getFinishButton() {
-		return finishButton;
-	}
-
-
-	public static void setFinishButton(JButton finishButton) {
-		QuizFrame.finishButton = finishButton;
-	}
-
-
-	public static JCheckBox[] getQuestion1Answers() {
-		return question1Answers;
-	}
-
-
-	public static void setQuestion1Answers(JCheckBox[] question1Answers) {
-		QuizFrame.question1Answers = question1Answers;
-	}
-
-
-	public static JCheckBox[] getQuestion2Answers() {
-		return question2Answers;
-	}
-
-
-	public static void setQuestion2Answers(JCheckBox[] question2Answers) {
-		QuizFrame.question2Answers = question2Answers;
-	}
-
-
-	public static JCheckBox[] getQuestion3Answers() {
-		return question3Answers;
-	}
-
-
-	public static void setQuestion3Answers(JCheckBox[] question3Answers) {
-		QuizFrame.question3Answers = question3Answers;
-	}
-
-
-	public static JCheckBox[] getQuestion4Answers() {
-		return question4Answers;
-	}
-
-
-	public static void setQuestion4Answers(JCheckBox[] question4Answers) {
-		QuizFrame.question4Answers = question4Answers;
-	}
-
-
-	public static JCheckBox[] getQuestion5Answers() {
-		return question5Answers;
-	}
-
-
-	public static void setQuestion5Answers(JCheckBox[] question5Answers) {
-		QuizFrame.question5Answers = question5Answers;
-	}
-
-
-	public JPanel getMainPanel() {
-		return mainPanel;
-	}
-
-
-	public void setMainPanel(JPanel mainPanel) {
-		this.mainPanel = mainPanel;
-	}
-
-
-	public JScrollPane getMainScrollPane() {
-		return mainScrollPane;
-	}
-
-
-	public void setMainScrollPane(JScrollPane mainScrollPane) {
-		this.mainScrollPane = mainScrollPane;
-	}
-
 
 	public void setup() {
 		setLocationRelativeTo(null);
@@ -203,11 +61,11 @@ public class QuizFrame extends JFrame {
 
 	public void setTitle() {
 
-		title.setBounds(310, 90, 620, 75);
-		title.setFont(new Font("Georgia", Font.PLAIN, 50));
-		title.setForeground(Color.decode("#BFEE90"));
+		titleLabel.setBounds(310, 90, 620, 75);
+		titleLabel.setFont(new Font("Georgia", Font.PLAIN, 50));
+		titleLabel.setForeground(Color.decode("#BFEE90"));
 
-		add(title);
+		add(titleLabel);
 
 	}
 
@@ -414,9 +272,127 @@ public class QuizFrame extends JFrame {
 		mainPanel.add(question5Answers[0]);
 		mainPanel.add(question5Answers[1]);
 		mainPanel.add(question5Answers[2]);
-
-		
 		
 	}
+	public JLabel getTitleLabel() {
+    return titleLabel;
+  }
+
+  public void setTitleLabel(JLabel title) {
+    this.titleLabel = title;
+  }
+
+  public JLabel getQuestion1() {
+    return question1;
+  }
+
+  public void setQuestion1(JLabel question1) {
+    this.question1 = question1;
+  }
+
+  public JLabel getQuestion2() {
+    return question2;
+  }
+
+  public void setQuestion2(JLabel question2) {
+    this.question2 = question2;
+  }
+
+  public JLabel getQuestion3() {
+    return question3;
+  }
+
+  public void setQuestion3(JLabel question3) {
+    this.question3 = question3;
+  }
+
+  public JLabel getQuestion4() {
+    return question4;
+  }
+
+  public void setQuestion4(JLabel question4) {
+    this.question4 = question4;
+  }
+
+  public JLabel getQuestion5() {
+    return question5;
+  }
+
+  public void setQuestion5(JLabel question5) {
+    this.question5 = question5;
+  }
+
+  public MenuPanel getMenuPanel() {
+    return menuPanel;
+  }
+
+  public void setMenuPanel(MenuPanel menuPanel) {
+    this.menuPanel = menuPanel;
+  }
+
+  public JButton getFinishButton() {
+    return finishButton;
+  }
+
+  public void setFinishButton(JButton finishButton) {
+    this.finishButton = finishButton;
+  }
+
+  public JCheckBox[] getQuestion1Answers() {
+    return question1Answers;
+  }
+
+  public void setQuestion1Answers(JCheckBox[] question1Answers) {
+    this.question1Answers = question1Answers;
+  }
+
+  public JCheckBox[] getQuestion2Answers() {
+    return question2Answers;
+  }
+
+  public void setQuestion2Answers(JCheckBox[] question2Answers) {
+    this.question2Answers = question2Answers;
+  }
+
+  public JCheckBox[] getQuestion3Answers() {
+    return question3Answers;
+  }
+
+  public void setQuestion3Answers(JCheckBox[] question3Answers) {
+    this.question3Answers = question3Answers;
+  }
+
+  public JCheckBox[] getQuestion4Answers() {
+    return question4Answers;
+  }
+
+  public void setQuestion4Answers(JCheckBox[] question4Answers) {
+    this.question4Answers = question4Answers;
+  }
+
+  public JCheckBox[] getQuestion5Answers() {
+    return question5Answers;
+  }
+
+  public void setQuestion5Answers(JCheckBox[] question5Answers) {
+    this.question5Answers = question5Answers;
+  }
+
+  public JPanel getMainPanel() {
+    return mainPanel;
+  }
+
+  public void setMainPanel(JPanel mainPanel) {
+    this.mainPanel = mainPanel;
+  }
+
+  public JScrollPane getMainScrollPane() {
+    return mainScrollPane;
+  }
+
+  public void setMainScrollPane(JScrollPane mainScrollPane) {
+    this.mainScrollPane = mainScrollPane;
+  }
+
 
 }

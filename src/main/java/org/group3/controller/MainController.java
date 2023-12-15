@@ -14,7 +14,7 @@ public class MainController implements ActionListener {
 	public static MapController mapController = new MapController();
 	public static SearchFrameController searchFrameController = new SearchFrameController();
 	public static SurveyController surveyController = new SurveyController();
-	public static CourseInfoController courseInfoController;
+	public static CourseInfoController courseInfoController = new CourseInfoController();
 
 	// constructor
 	public MainController() {
@@ -22,7 +22,7 @@ public class MainController implements ActionListener {
 		// sets mapframe and searchframe invisible
 		mapController.getMapFrame().setVisible(false);
 		searchFrameController.getSearchFrame().setVisible(false);
-		surveyController.getQuizFrame().setVisible(false);
+		surveyController.getSurveyFrame().setVisible(false);
 
 		// adds the actionlisteners
 		addActionListeners();
@@ -51,11 +51,11 @@ public class MainController implements ActionListener {
 		}
 
 		// adds actionlisteners to searchFrame menuPanel
-		surveyController.getQuizFrame().getMenuPanel().getProfile().addActionListener(this);
-		surveyController.getQuizFrame().getMenuPanel().getLogOut().addActionListener(this);
-		surveyController.getQuizFrame().getMenuPanel().getQuit().addActionListener(this);
+		surveyController.getSurveyFrame().getMenuPanel().getProfile().addActionListener(this);
+		surveyController.getSurveyFrame().getMenuPanel().getLogOut().addActionListener(this);
+		surveyController.getSurveyFrame().getMenuPanel().getQuit().addActionListener(this);
 
-		for (JButton button : surveyController.getQuizFrame().getMenuPanel().getFrameButtons()) {
+		for (JButton button : surveyController.getSurveyFrame().getMenuPanel().getFrameButtons()) {
 			button.addActionListener(this);
 		}
 
@@ -82,7 +82,7 @@ public class MainController implements ActionListener {
 			// sets quiz frame visible
 		} else if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[1]) {
 			searchFrameController.getSearchFrame().setVisible(false);
-			surveyController.getQuizFrame().setVisible(true);
+			surveyController.getSurveyFrame().setVisible(true);
 
 			// sets map frame visible
 		} else if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[2]) {
@@ -96,7 +96,7 @@ public class MainController implements ActionListener {
 			searchFrameController.getSearchFrame().setVisible(true);
 		} else if (e.getSource() == mapController.getMapFrame().getMenuPanel().getFrameButtons()[1]) {
 			mapController.getMapFrame().setVisible(false);
-			surveyController.getQuizFrame().setVisible(true);
+			surveyController.getSurveyFrame().setVisible(true);
 
 		} else if (e.getSource() == mapController.getMapFrame().getMenuPanel().getFrameButtons()[2]) {
 			JOptionPane.showMessageDialog(null, "You are already on this screen");
@@ -104,14 +104,14 @@ public class MainController implements ActionListener {
 		}
 
 		// structure checks mapFrame menu components for switching frames
-		if (e.getSource() == surveyController.getQuizFrame().getMenuPanel().getFrameButtons()[0]) {
-			surveyController.getQuizFrame().setVisible(false);
+		if (e.getSource() == surveyController.getSurveyFrame().getMenuPanel().getFrameButtons()[0]) {
+			surveyController.getSurveyFrame().setVisible(false);
 			searchFrameController.getSearchFrame().setVisible(true);
-		} else if (e.getSource() == surveyController.getQuizFrame().getMenuPanel().getFrameButtons()[1]) {
+		} else if (e.getSource() == surveyController.getSurveyFrame().getMenuPanel().getFrameButtons()[1]) {
 			JOptionPane.showMessageDialog(null, "You are already on this screen");
 
-		} else if (e.getSource() == surveyController.getQuizFrame().getMenuPanel().getFrameButtons()[2]) {
-			surveyController.getQuizFrame().setVisible(false);
+		} else if (e.getSource() == surveyController.getSurveyFrame().getMenuPanel().getFrameButtons()[2]) {
+			surveyController.getSurveyFrame().setVisible(false);
 			mapController.getMapFrame().setVisible(true);
 
 		}
@@ -126,25 +126,25 @@ public class MainController implements ActionListener {
 			courseInfoController.getPersonalInfo().setVisible(true);
 
 		}
-		if (e.getSource() == surveyController.getQuizFrame().getMenuPanel().getProfile()) {
+		if (e.getSource() == surveyController.getSurveyFrame().getMenuPanel().getProfile()) {
 //    	new CourseInfoController();
-			surveyController.getQuizFrame().setVisible(false);
+			surveyController.getSurveyFrame().setVisible(false);
 			courseInfoController.getPersonalInfo().setVisible(true);
 		}
 		if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getLogOut()
 				|| e.getSource() == mapController.getMapFrame().getMenuPanel().getLogOut()
-				|| e.getSource() == surveyController.getQuizFrame().getMenuPanel().getLogOut()
+				|| e.getSource() == surveyController.getSurveyFrame().getMenuPanel().getLogOut()
 				|| e.getSource() == courseInfoController.getPersonalInfo().getMenuPanel().getLogOut()) {
 			searchFrameController.getSearchFrame().setVisible(false);
 			mapController.getMapFrame().setVisible(false);
-			surveyController.getQuizFrame().setVisible(false);
+			surveyController.getSurveyFrame().setVisible(false);
 			courseInfoController.getPersonalInfo().setVisible(false);
 			loginController.getHomeFrame().setVisible(true);
 		}
 
 		if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getQuit()
 				|| e.getSource() == mapController.getMapFrame().getMenuPanel().getQuit()
-				|| e.getSource() == surveyController.getQuizFrame().getMenuPanel().getQuit()
+				|| e.getSource() == surveyController.getSurveyFrame().getMenuPanel().getQuit()
 				|| e.getSource() == courseInfoController.getPersonalInfo().getMenuPanel().getQuit()) {
 
 			System.exit(0);
@@ -169,7 +169,7 @@ public class MainController implements ActionListener {
 					
 					else if (e.getSource() == courseInfoController.getPersonalInfo().getMenuPanel().getFrameButtons()[1]) {
 						courseInfoController.getPersonalInfo().setVisible(false);
-						surveyController.getQuizFrame().setVisible(true);
+						surveyController.getSurveyFrame().setVisible(true);
 
 					}
 					
@@ -198,7 +198,7 @@ public class MainController implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				searchFrameController.getSearchFrame().setVisible(false);
 				mapController.getMapFrame().setVisible(false);
-				surveyController.getQuizFrame().setVisible(false);
+				surveyController.getSurveyFrame().setVisible(false);
 				courseInfoController.getPersonalInfo().setVisible(false);
 				loginController.getHomeFrame().setVisible(true);
 			}

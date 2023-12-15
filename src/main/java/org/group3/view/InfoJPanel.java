@@ -120,7 +120,7 @@ public class InfoJPanel extends JPanel {
 			for (UserProgram userProgram : userProgramList) {
 
 				// check if the username matches that of the username from the saved information
-				if (!(LoginController.user.equals(null)) && LoginController.user.equals(userProgram.getUsername())) {
+				if (LoginController.user != null && LoginController.user.equals(userProgram.getUsername())) {
 					addUserProgram(userProgram.getProgram());
 				}
 			}
@@ -143,7 +143,7 @@ public class InfoJPanel extends JPanel {
 			for (UserInfo userInfo : userInfoList) {
 
 				// check if the username matches that of the username from the saved information
-				if (!(LoginController.user.equals(null)) && LoginController.user.equals(userInfo.getUsername())) {
+				if (LoginController.user != null && LoginController.user.equals(userInfo.getUsername())) {
 					fillCourseArr(userInfo);
 					changeCourseInfo(userInfo);
 				}

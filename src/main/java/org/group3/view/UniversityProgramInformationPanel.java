@@ -1,9 +1,9 @@
 package org.group3.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -15,7 +15,6 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
-
 import org.group3.controller.LoginController;
 import org.group3.model.DataModel;
 import org.group3.model.UniversityProgram;
@@ -35,8 +34,13 @@ public class UniversityProgramInformationPanel extends JPanel {
   private ArrayList<JTextArea> prerequisitesTextAreaArray = new ArrayList<JTextArea>();
   private JTextArea notesTextArea = new JTextArea();
   private JButton favouriteProgramButton = new JButton();
-  private ArrayList<String>programList = new ArrayList<>();
+  private ArrayList<String> programList = new ArrayList<>();
+
   public UniversityProgramInformationPanel(UniversityProgram program) {
+
+    // Setting the layout to a top-aligned GridBagLayout
+    // The code to top-align the layout is from
+    // https://stackoverflow.com/questions/23951882/how-to-align-the-elements-to-the-top-in-a-gridbaglayout
     GridBagLayout gbl = new GridBagLayout();
     setLayout(gbl);
     gbl.columnWidths = new int[] {0, 0, 0, 0};
@@ -51,9 +55,10 @@ public class UniversityProgramInformationPanel extends JPanel {
     // gbc.fill = GridBagConstraints.HORIZONTAL;
     gbc.insets = new Insets(0, 0, 0, 0);
     gbc.gridx = 0;
+    gbc.fill = GridBagConstraints.HORIZONTAL;
 
     setLayout(gbl);
-    nameTextArea.setColumns(50);
+    nameTextArea.setColumns(45);
     nameTextArea.setText("Program: " + program.getName());
     nameTextArea.setPreferredSize(new Dimension(500, 50));
     nameTextArea.setLayout(null);
@@ -63,7 +68,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy = 0;
     add(nameTextArea, gbc);
 
-    universityTextArea.setColumns(50);
+    universityTextArea.setColumns(45);
     universityTextArea.setText("University: " + program.getUniversity());
     universityTextArea.setPreferredSize(new Dimension(500, 50));
     universityTextArea.setLineWrap(true);
@@ -72,7 +77,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(universityTextArea, gbc);
 
-    degreeTextArea.setColumns(50);
+    degreeTextArea.setColumns(45);
     degreeTextArea.setText("Degree: " + program.getDegree());
     degreeTextArea.setPreferredSize(new Dimension(500, 50));
     degreeTextArea.setLineWrap(true);
@@ -81,7 +86,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(degreeTextArea, gbc);
 
-    ouacProgramCodeButton.setColumns(50);
+    ouacProgramCodeButton.setColumns(45);
     ouacProgramCodeButton.setText("OUAC code: " + program.getOuacProgramCode());
     ouacProgramCodeButton.setPreferredSize(new Dimension(500, 50));
     ouacProgramCodeButton.addMouseListener(
@@ -111,7 +116,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     GUIUtils.setFontRenderingHints(ouacProgramCodeButton);
     add(ouacProgramCodeButton, gbc);
 
-    gradeRangeTextArea.setColumns(50);
+    gradeRangeTextArea.setColumns(45);
     gradeRangeTextArea.setText("Grade Range: " + program.getGradeRange());
     gradeRangeTextArea.setPreferredSize(new Dimension(500, 50));
     gradeRangeTextArea.setLineWrap(true);
@@ -120,7 +125,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(gradeRangeTextArea, gbc);
 
-    experientialLearningTextArea.setColumns(50);
+    experientialLearningTextArea.setColumns(45);
     experientialLearningTextArea.setText(
         "Experiential Learning: " + program.getExperientialLearning());
     experientialLearningTextArea.setPreferredSize(new Dimension(500, 50));
@@ -130,7 +135,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(experientialLearningTextArea, gbc);
 
-    enrollmentTextArea.setColumns(50);
+    enrollmentTextArea.setColumns(45);
     enrollmentTextArea.setText("Enrollment: " + program.getEnrollment());
     enrollmentTextArea.setPreferredSize(new Dimension(500, 50));
     enrollmentTextArea.setLineWrap(true);
@@ -139,7 +144,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(enrollmentTextArea, gbc);
 
-    instructionLanguageTextArea.setColumns(50);
+    instructionLanguageTextArea.setColumns(45);
     instructionLanguageTextArea.setText(
         "Instructional Language: " + program.getInstructionLanguage());
     instructionLanguageTextArea.setPreferredSize(new Dimension(500, 50));
@@ -149,21 +154,21 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(instructionLanguageTextArea, gbc);
 
-    prerequisiteTextAreaHeader.setColumns(50);
-//    prerequisiteTextAreaHeader.setPreferredSize(new Dimension(500, 50));
+    prerequisiteTextAreaHeader.setColumns(45);
+    // prerequisiteTextAreaHeader.setPreferredSize(new Dimension(500, 50));
     GUIUtils.setFontRenderingHints(prerequisiteTextAreaHeader);
     gbc.gridy++;
     add(prerequisiteTextAreaHeader, gbc);
 
     for (String prereq : program.getPrerequisites()) {
       JTextArea prereqTextArea = new JTextArea(prereq);
-      prereqTextArea.setColumns(50);
+      prereqTextArea.setColumns(45);
       prereqTextArea.setLineWrap(true);
       prereqTextArea.setWrapStyleWord(true);
       GUIUtils.setFontRenderingHints(prereqTextArea);
 
       prerequisitesTextAreaArray.add(prereqTextArea);
-      prerequisitesTextAreaArray.getLast().setPreferredSize(new Dimension(500, 50));
+      prerequisitesTextAreaArray.getLast().setColumns(45);
       gbc.gridy++;
       add(prerequisitesTextAreaArray.getLast(), gbc);
     }
@@ -173,40 +178,41 @@ public class UniversityProgramInformationPanel extends JPanel {
       notesTextArea.setText("Notes: None");
     }
 
-    notesTextArea.setColumns(50);
+    notesTextArea.setColumns(45);
     notesTextArea.setLineWrap(true);
     notesTextArea.setWrapStyleWord(true);
     GUIUtils.setFontRenderingHints(notesTextArea);
     gbc.gridy++;
     add(notesTextArea, gbc);
 
-    favouriteProgramButton.setText("Favourite Program");
-    favouriteProgramButton.setPreferredSize(new Dimension(150, 50));
+    favouriteProgramButton.setText("Favourite");
+    favouriteProgramButton.setPreferredSize(new Dimension(128, 50));
     favouriteProgramButton.setHorizontalAlignment(SwingConstants.CENTER);
-    
-//  saves the program to the user's favourited 
-    favouriteProgramButton.addActionListener(new ActionListener() {
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (!LoginController.user.equals(null)) {
-				
-				
-				programList.add(program.getName() + " at " + program.getUniversity());
-				
-				try {
-					DataModel.generateUserProgram(LoginController.user, programList);
-					
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-		}			
-		}
-    	
-    });
+    // saves the program to the user's favourited
+    favouriteProgramButton.addActionListener(
+        new ActionListener() {
+
+          @Override
+          public void actionPerformed(ActionEvent e) {
+            if (!LoginController.user.equals(null)) {
+
+              programList.add(program.getName() + " at " + program.getUniversity());
+
+              try {
+                DataModel.generateUserProgram(LoginController.user, programList);
+
+              } catch (IOException e1) {
+                e1.printStackTrace();
+              }
+            }
+          }
+        });
     GUIUtils.setFontRenderingHints(favouriteProgramButton);
     gbc.gridy++;
     add(favouriteProgramButton, gbc);
+
+    setBackground(Color.WHITE);
   }
 
   public JTextArea getNameTextArea() {

@@ -4,199 +4,198 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JCheckBox;
 import org.group3.model.DataModel;
 import org.group3.model.UniversityProgram;
-import org.group3.view.QuizFrame;
+import org.group3.view.SurveyFrame;
 
 public class SurveyController implements ActionListener {
 
-  private boolean calculusTaken, functionsTaken, englishTaken, physicsTaken, biologyTaken, chemistryTaken;
+  private boolean calculusTaken,
+      functionsTaken,
+      englishTaken,
+      physicsTaken,
+      biologyTaken,
+      chemistryTaken;
   private int question2Answer, question3Answer, question4Answer, question5Answer;
 
-  private QuizFrame quizFrame;
+  private SurveyFrame surveyFrame;
 
   private List<UniversityProgram> recommendedProgramList = new ArrayList<>();
 
   public SurveyController() {
-    quizFrame = new QuizFrame();
-    quizFrame.setVisible(false);
+    surveyFrame = new SurveyFrame();
+    surveyFrame.setVisible(false);
     setupActionListener();
   }
 
   private void setupActionListener() {
+    for (JCheckBox question1answer : surveyFrame.getQuestion1Answers()) {
+      question1answer.addActionListener(this);
+    }
 
-    QuizFrame.question1Answers[0].addActionListener(this);
-    QuizFrame.question1Answers[1].addActionListener(this);
-    QuizFrame.question1Answers[2].addActionListener(this);
-    QuizFrame.question1Answers[3].addActionListener(this);
-    QuizFrame.question1Answers[4].addActionListener(this);
-    QuizFrame.question1Answers[5].addActionListener(this);
+    for (JCheckBox question2answer : surveyFrame.getQuestion2Answers()) {
+      question2answer.addActionListener(this);
+    }
 
-    QuizFrame.question2Answers[0].addActionListener(this);
-    QuizFrame.question2Answers[1].addActionListener(this);
-    QuizFrame.question2Answers[2].addActionListener(this);
-    QuizFrame.question2Answers[3].addActionListener(this);
-    QuizFrame.question2Answers[4].addActionListener(this);
+    for (JCheckBox question3answer : surveyFrame.getQuestion3Answers()) {
+      question3answer.addActionListener(this);
+    }
 
-    QuizFrame.question3Answers[0].addActionListener(this);
-    QuizFrame.question3Answers[1].addActionListener(this);
-    QuizFrame.question3Answers[2].addActionListener(this);
-    QuizFrame.question3Answers[3].addActionListener(this);
-    QuizFrame.question3Answers[4].addActionListener(this);
-    QuizFrame.question3Answers[5].addActionListener(this);
+    for (JCheckBox question4answer : surveyFrame.getQuestion4Answers()) {
+      question4answer.addActionListener(this);
+    }
 
-    QuizFrame.question4Answers[0].addActionListener(this);
-    QuizFrame.question4Answers[1].addActionListener(this);
-    QuizFrame.question4Answers[2].addActionListener(this);
-    QuizFrame.question4Answers[3].addActionListener(this);
+    for (JCheckBox question4answer : surveyFrame.getQuestion4Answers()) {
+      question4answer.addActionListener(this);
+    }
 
-    QuizFrame.question5Answers[0].addActionListener(this);
-    QuizFrame.question5Answers[1].addActionListener(this);
-    QuizFrame.question5Answers[2].addActionListener(this);
+    for (JCheckBox question5answer : surveyFrame.getQuestion5Answers()) {
+      question5answer.addActionListener(this);
+    }
 
-    QuizFrame.finishButton.addActionListener(this);
+    surveyFrame.getFinishButton().addActionListener(this);
   }
 
-  
   public boolean isCalculusTaken() {
-	return calculusTaken;
-}
+    return calculusTaken;
+  }
 
-public void setCalculusTaken(boolean calculusTaken) {
-	this.calculusTaken = calculusTaken;
-}
+  public void setCalculusTaken(boolean calculusTaken) {
+    this.calculusTaken = calculusTaken;
+  }
 
-public boolean isFunctionsTaken() {
-	return functionsTaken;
-}
+  public boolean isFunctionsTaken() {
+    return functionsTaken;
+  }
 
-public void setFunctionsTaken(boolean functionsTaken) {
-	this.functionsTaken = functionsTaken;
-}
+  public void setFunctionsTaken(boolean functionsTaken) {
+    this.functionsTaken = functionsTaken;
+  }
 
-public boolean isEnglishTaken() {
-	return englishTaken;
-}
+  public boolean isEnglishTaken() {
+    return englishTaken;
+  }
 
-public void setEnglishTaken(boolean englishTaken) {
-	this.englishTaken = englishTaken;
-}
+  public void setEnglishTaken(boolean englishTaken) {
+    this.englishTaken = englishTaken;
+  }
 
-public boolean isPhysicsTaken() {
-	return physicsTaken;
-}
+  public boolean isPhysicsTaken() {
+    return physicsTaken;
+  }
 
-public void setPhysicsTaken(boolean physicsTaken) {
-	this.physicsTaken = physicsTaken;
-}
+  public void setPhysicsTaken(boolean physicsTaken) {
+    this.physicsTaken = physicsTaken;
+  }
 
-public boolean isBiologyTaken() {
-	return biologyTaken;
-}
+  public boolean isBiologyTaken() {
+    return biologyTaken;
+  }
 
-public void setBiologyTaken(boolean biologyTaken) {
-	this.biologyTaken = biologyTaken;
-}
+  public void setBiologyTaken(boolean biologyTaken) {
+    this.biologyTaken = biologyTaken;
+  }
 
-public boolean isChemistryTaken() {
-	return chemistryTaken;
-}
+  public boolean isChemistryTaken() {
+    return chemistryTaken;
+  }
 
-public void setChemistryTaken(boolean chemistryTaken) {
-	this.chemistryTaken = chemistryTaken;
-}
+  public void setChemistryTaken(boolean chemistryTaken) {
+    this.chemistryTaken = chemistryTaken;
+  }
 
-public int getQuestion2Answer() {
-	return question2Answer;
-}
+  public int getQuestion2Answer() {
+    return question2Answer;
+  }
 
-public void setQuestion2Answer(int question2Answer) {
-	this.question2Answer = question2Answer;
-}
+  public void setQuestion2Answer(int question2Answer) {
+    this.question2Answer = question2Answer;
+  }
 
-public int getQuestion3Answer() {
-	return question3Answer;
-}
+  public int getQuestion3Answer() {
+    return question3Answer;
+  }
 
-public void setQuestion3Answer(int question3Answer) {
-	this.question3Answer = question3Answer;
-}
+  public void setQuestion3Answer(int question3Answer) {
+    this.question3Answer = question3Answer;
+  }
 
-public int getQuestion4Answer() {
-	return question4Answer;
-}
+  public int getQuestion4Answer() {
+    return question4Answer;
+  }
 
-public void setQuestion4Answer(int question4Answer) {
-	this.question4Answer = question4Answer;
-}
+  public void setQuestion4Answer(int question4Answer) {
+    this.question4Answer = question4Answer;
+  }
 
-public int getQuestion5Answer() {
-	return question5Answer;
-}
+  public int getQuestion5Answer() {
+    return question5Answer;
+  }
 
-public void setQuestion5Answer(int question5Answer) {
-	this.question5Answer = question5Answer;
-}
+  public void setQuestion5Answer(int question5Answer) {
+    this.question5Answer = question5Answer;
+  }
 
-public QuizFrame getQuizFrame() {
-	return quizFrame;
-}
+  public SurveyFrame getSurveyFrame() {
+    return surveyFrame;
+  }
 
-public void setQuizFrame(QuizFrame quizFrame) {
-	this.quizFrame = quizFrame;
-}
+  public void setSurveyFrame(SurveyFrame quizFrame) {
+    this.surveyFrame = quizFrame;
+  }
 
-public List<UniversityProgram> getRecommendedProgramList() {
-	return recommendedProgramList;
-}
+  public List<UniversityProgram> getRecommendedProgramList() {
+    return recommendedProgramList;
+  }
 
-public void setRecommendedProgramList(List<UniversityProgram> recommendedProgramList) {
-	this.recommendedProgramList = recommendedProgramList;
-}
+  public void setRecommendedProgramList(List<UniversityProgram> recommendedProgramList) {
+    this.recommendedProgramList = recommendedProgramList;
+  }
 
-@Override
+  @Override
   public void actionPerformed(ActionEvent event) {
 
-    if (event.getSource() == QuizFrame.finishButton) {
+    if (event.getSource() == surveyFrame.getFinishButton()) {
 
       // Question 1
-      if (event.getSource() == QuizFrame.question1Answers[0]) calculusTaken = true;
+      if (event.getSource() == surveyFrame.getQuestion1Answers()[0]) calculusTaken = true;
 
-      if (event.getSource() == QuizFrame.question1Answers[1]) functionsTaken = true;
+      if (event.getSource() == surveyFrame.getQuestion1Answers()[1]) functionsTaken = true;
 
-      if (event.getSource() == QuizFrame.question1Answers[2]) englishTaken = true;
+      if (event.getSource() == surveyFrame.getQuestion1Answers()[2]) englishTaken = true;
 
-      if (event.getSource() == QuizFrame.question1Answers[3]) physicsTaken = true;
+      if (event.getSource() == surveyFrame.getQuestion1Answers()[3]) physicsTaken = true;
 
-      if (event.getSource() == QuizFrame.question1Answers[4]) biologyTaken = true;
+      if (event.getSource() == surveyFrame.getQuestion1Answers()[4]) biologyTaken = true;
 
-      if (event.getSource() == QuizFrame.question1Answers[5]) chemistryTaken = true;
+      if (event.getSource() == surveyFrame.getQuestion1Answers()[5]) chemistryTaken = true;
 
       // Question 2
-      if (event.getSource() == QuizFrame.question2Answers[0]) question2Answer = 1;
-      else if (event.getSource() == QuizFrame.question2Answers[1]) question2Answer = 2;
-      else if (event.getSource() == QuizFrame.question2Answers[2]) question2Answer = 3;
-      else if (event.getSource() == QuizFrame.question2Answers[3]) question2Answer = 4;
-      else if (event.getSource() == QuizFrame.question2Answers[4]) question2Answer = 5;
+      if (event.getSource() == surveyFrame.getQuestion2Answers()[0]) question2Answer = 1;
+      else if (event.getSource() == surveyFrame.getQuestion2Answers()[1]) question2Answer = 2;
+      else if (event.getSource() == surveyFrame.getQuestion2Answers()[2]) question2Answer = 3;
+      else if (event.getSource() == surveyFrame.getQuestion2Answers()[3]) question2Answer = 4;
+      else if (event.getSource() == surveyFrame.getQuestion2Answers()[4]) question2Answer = 5;
 
       // Question 3
-      if (event.getSource() == QuizFrame.question3Answers[0]) question3Answer = 1;
-      else if (event.getSource() == QuizFrame.question3Answers[1]) question3Answer = 2;
-      else if (event.getSource() == QuizFrame.question3Answers[2]) question3Answer = 3;
-      else if (event.getSource() == QuizFrame.question3Answers[3]) question3Answer = 4;
-      else if (event.getSource() == QuizFrame.question3Answers[4]) question3Answer = 5;
-      else if (event.getSource() == QuizFrame.question3Answers[5]) question3Answer = 6;
+      if (event.getSource() == surveyFrame.getQuestion3Answers()[0]) question3Answer = 1;
+      else if (event.getSource() == surveyFrame.getQuestion3Answers()[1]) question3Answer = 2;
+      else if (event.getSource() == surveyFrame.getQuestion3Answers()[2]) question3Answer = 3;
+      else if (event.getSource() == surveyFrame.getQuestion3Answers()[3]) question3Answer = 4;
+      else if (event.getSource() == surveyFrame.getQuestion3Answers()[4]) question3Answer = 5;
+      else if (event.getSource() == surveyFrame.getQuestion3Answers()[5]) question3Answer = 6;
 
       // Question 4
-      if (event.getSource() == QuizFrame.question4Answers[0]) question4Answer = 1;
-      else if (event.getSource() == QuizFrame.question4Answers[1]) question4Answer = 2;
-      else if (event.getSource() == QuizFrame.question4Answers[2]) question4Answer = 3;
-      else if (event.getSource() == QuizFrame.question4Answers[3]) question4Answer = 4;
+      if (event.getSource() == surveyFrame.getQuestion4Answers()[0]) question4Answer = 1;
+      else if (event.getSource() == surveyFrame.getQuestion4Answers()[1]) question4Answer = 2;
+      else if (event.getSource() == surveyFrame.getQuestion4Answers()[2]) question4Answer = 3;
+      else if (event.getSource() == surveyFrame.getQuestion4Answers()[3]) question4Answer = 4;
 
       // Question 5
-      if (event.getSource() == QuizFrame.question5Answers[0]) question5Answer = 1;
-      else if (event.getSource() == QuizFrame.question5Answers[1]) question5Answer = 2;
-      else if (event.getSource() == QuizFrame.question5Answers[2]) question5Answer = 3;
+      if (event.getSource() == surveyFrame.getQuestion4Answers()[0]) question5Answer = 1;
+      else if (event.getSource() == surveyFrame.getQuestion4Answers()[1]) question5Answer = 2;
+      else if (event.getSource() == surveyFrame.getQuestion4Answers()[2]) question5Answer = 3;
 
       findPrograms();
 
