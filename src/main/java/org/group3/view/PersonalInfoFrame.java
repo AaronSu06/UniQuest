@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class PersonalInfoFrame extends JFrame {
 
+	private MenuPanel menuPanel = new MenuPanel();
 	private JScrollPane scrollBar = new JScrollPane();
 	private InfoJPanel infoPanel = new InfoJPanel();
 	private JPanel btnPanel = new JPanel();
@@ -13,6 +14,8 @@ public class PersonalInfoFrame extends JFrame {
 	Color green = new Color(132, 199, 80);
 
 	public PersonalInfoFrame() {
+		
+		menuPanel.setPreferredSize(new Dimension(1280, 45));
 
 		// btnPanel settings
 		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
@@ -30,6 +33,7 @@ public class PersonalInfoFrame extends JFrame {
 		scrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollBar.setViewportView(infoPanel);
 
+		add(menuPanel, BorderLayout.PAGE_START);
 		add(scrollBar, BorderLayout.CENTER);
 		add(btnPanel, BorderLayout.PAGE_END);
 

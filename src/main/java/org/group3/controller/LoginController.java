@@ -43,28 +43,7 @@ public class LoginController implements ActionListener, FocusListener {
 		// action commands for switching between Login and Signup Panels
 		if (e.getSource() == homeFrame.getLogin()) {
 
-			// disable and enable the corresponding GUI components to match the JButton
-			// clicked
-			homeFrame.getConfirmPasswordText().setVisible(false);
-			homeFrame.getConfirmPassword().setVisible(false);
-			homeFrame.getEnterBtn().setVisible(false);
-
-			homeFrame.getLoginBtn().setVisible(true);
-			homeFrame.getLoginAsGuest().setVisible(true);
-
-			homeFrame.getLogin().setForeground(green);
-			homeFrame.getLogin().setBorder(new RoundedBorder(15, green));
-			homeFrame.getSignup().setForeground(gray);
-			homeFrame.getSignup().setBorder(new RoundedBorder(15, gray));
-
-			// reset color scheme
-			homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
-			homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
-			homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
-
-			// reset text
-			homeFrame.getUsername().setText("Enter Username");
-			homeFrame.getPassword().setText("Enter Password");
+			isLogin();
 		}
 
 		if (e.getSource() == homeFrame.getSignup()) {
@@ -109,8 +88,9 @@ public class LoginController implements ActionListener, FocusListener {
 					homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 					homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 					JOptionPane.showMessageDialog(homeFrame, "User has signed up");
-					user = homeFrame.getUsername().getText();
 					userAccountList = DataModel.getUserAccounts();
+					
+					isLogin();
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -152,19 +132,20 @@ public class LoginController implements ActionListener, FocusListener {
 
 						break;
 					}
+					// update the flag variable
+					else {
+						incorrectInfo = true;
+					}
 				}
-				// update the flag variable
-			}
-		} else {
-			incorrectInfo = true;
-		}
 
-		// if the information provided is not valid, display a message
-		if (incorrectInfo) {
-			incorrectInfo = false;
-			homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
-			homeFrame.getPassword().setBorder(new RoundedBorder(10, red));
-			JOptionPane.showMessageDialog(homeFrame, "Incorrect Username and/or Password! Please Try Again.");
+				// if the information provided is not valid, display a message
+				if (incorrectInfo) {
+					incorrectInfo = false;
+					homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
+					homeFrame.getPassword().setBorder(new RoundedBorder(10, red));
+					JOptionPane.showMessageDialog(homeFrame, "Incorrect Username and/or Password! Please Try Again.");
+				}
+			}
 		}
 
 		// signal that the user has decided to sign in as a guest
@@ -178,6 +159,31 @@ public class LoginController implements ActionListener, FocusListener {
 
 			user = null;
 		}
+	}
+
+	public void isLogin() {
+		// disable and enable the corresponding GUI components to match the JButton
+		// clicked
+		homeFrame.getConfirmPasswordText().setVisible(false);
+		homeFrame.getConfirmPassword().setVisible(false);
+		homeFrame.getEnterBtn().setVisible(false);
+
+		homeFrame.getLoginBtn().setVisible(true);
+		homeFrame.getLoginAsGuest().setVisible(true);
+
+		homeFrame.getLogin().setForeground(green);
+		homeFrame.getLogin().setBorder(new RoundedBorder(15, green));
+		homeFrame.getSignup().setForeground(gray);
+		homeFrame.getSignup().setBorder(new RoundedBorder(15, gray));
+
+		// reset color scheme
+		homeFrame.getUsername().setBorder(new RoundedBorder(10, Color.GRAY));
+		homeFrame.getPassword().setBorder(new RoundedBorder(10, Color.GRAY));
+		homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
+
+		// reset text
+		homeFrame.getUsername().setText("Enter Username");
+		homeFrame.getPassword().setText("Enter Password");
 	}
 
 	// limitations behind the signup (such as passwords must match, no space in
@@ -211,6 +217,7 @@ public class LoginController implements ActionListener, FocusListener {
 		if (userInfoList != null) {
 			for (UserAccount userInfo : userInfoList) {
 				if (homeFrame.getUsername().getText().equals(userInfo.getusername())) {
+					homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 					homeFrame.getUsername().setBorder(new RoundedBorder(10, red));
 					JOptionPane.showMessageDialog(homeFrame, "Username Is Already Taken! Please Try Again.");
 					return false;
