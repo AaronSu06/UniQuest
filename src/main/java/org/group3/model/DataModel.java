@@ -23,7 +23,7 @@ public static List<UniversityProgram> generateProgramList()
         gson.fromJson(reader, universityProgramListType);
 
     for (UniversityProgram program : universityProgramList) {
-      System.out.println(program);
+     // System.out.println(program);
     }
 
     System.out.println(universityProgramList.size());
