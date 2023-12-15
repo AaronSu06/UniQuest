@@ -12,8 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
+
+import org.group3.controller.LoginController;
+import org.group3.model.DataModel;
 import org.group3.model.UniversityProgram;
 
 // class
@@ -31,7 +35,7 @@ public class UniversityProgramInformationPanel extends JPanel {
   private ArrayList<JTextArea> prerequisitesTextAreaArray = new ArrayList<JTextArea>();
   private JTextArea notesTextArea = new JTextArea();
   private JButton favouriteProgramButton = new JButton();
-
+  private ArrayList<String>programList = new ArrayList<>();
   public UniversityProgramInformationPanel(UniversityProgram program) {
     GridBagLayout gbl = new GridBagLayout();
     setLayout(gbl);
@@ -185,8 +189,18 @@ public class UniversityProgramInformationPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			if (!LoginController.user.equals(null)) {
+				
+				
+				programList.add(getNameTextArea().getText() + " at " + getUniversityTextArea().getText());
+				
+				try {
+					DataModel.generateUserProgram(LoginController.user, programList);
+					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+		}			
 		}
     	
     });

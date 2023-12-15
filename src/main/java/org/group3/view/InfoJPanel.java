@@ -213,6 +213,7 @@ public class InfoJPanel extends JPanel {
 					// if leftclick, open to the corresponding university
 					if (e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("Opened to program");
+						
 					}
 
 					// if rightclick, remove the corresponding university from the saved information
@@ -249,6 +250,8 @@ public class InfoJPanel extends JPanel {
 
 			});
 		}
+		repaint();
+		revalidate();
 	}
 	
 	// method to remove and then re-add the preferred programs
@@ -272,8 +275,8 @@ public class InfoJPanel extends JPanel {
 				remove(preferredProgram.get(i));
 				updateProgram(userProgram);
 				
-				this.repaint();
-				this.revalidate();
+				repaint();
+				revalidate();
 				break;
 			}
 		}

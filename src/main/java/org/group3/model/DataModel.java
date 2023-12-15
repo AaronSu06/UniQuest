@@ -164,6 +164,7 @@ public class DataModel {
       };
 
   public static ArrayList<UniversityProgram> universityProgramArrayList;
+  public static ArrayList<String>favouritedArrayList = new ArrayList<>();
 
   /*
    * === Database Creation Methods ===
@@ -320,7 +321,8 @@ public class DataModel {
   // INFORMATION FOR PREFERRED PROGRAMS
   public static void generateUserProgram(String username, ArrayList<String> program)
       throws IOException {
-
+	program.addAll(favouritedArrayList);
+	
     Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     ArrayList<UserProgram> users = new ArrayList<UserProgram>();
@@ -355,7 +357,8 @@ public class DataModel {
 
     // add the current user information to the user ArrayList
     users.add(new UserProgram(username, program));
-
+    favouritedArrayList.clear();
+    favouritedArrayList.addAll(program);
     // read and write to the .json file
     String jsonString = gson.toJson(users);
     try (FileWriter writer = new FileWriter(USER_PROGRAM_PATH)) {

@@ -278,6 +278,7 @@ public class DisplayPanel extends JPanel {
       int filter2 = convertToInteger(filter.getValue().replace(Integer.toString(filter1), ""));
       //
       for (int i = 0; i < tempArray.size(); i++) {
+    	  
         if (filter.getKey() < FilterPanel.getUniversityCount()
             && filter.getValue().equals(tempArray.get(i).getProgram().getUniversity())) {
           //

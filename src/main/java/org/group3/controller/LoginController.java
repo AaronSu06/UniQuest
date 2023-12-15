@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
+
+import org.group3.Main;
 import org.group3.model.DataModel;
 import org.group3.model.UserAccount;
 import org.group3.view.HomeFrame;
@@ -120,7 +122,8 @@ public class LoginController implements ActionListener, FocusListener {
 
 						// switch JFrames
 						homeFrame.setVisible(false);
-
+						MainController.courseInfoController=new CourseInfoController();
+						MainController.courseInfoController.getPersonalInfo().setVisible(false);
 						MainController.searchFrameController.getSearchFrame().setVisible(true);
 
 						try {

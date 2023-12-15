@@ -13,12 +13,10 @@
   {
     "username": "Test",
     "courseInfo": {
-      "EAE4U": "12",
-      "TEJ4M": "32",
-      "SCH4C": "56",
-      "MDM4U": "93",
-      "BAT4M": "100",
-      "Other": "78"
+      "MHF4U": "90",
+      "MCV4U": "88",
+      "ENG4U": "88",
+      "Other": "88"
     }
   }
 ]

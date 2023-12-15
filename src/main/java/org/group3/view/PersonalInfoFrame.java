@@ -65,4 +65,37 @@ public class PersonalInfoFrame extends JFrame {
 		this.saveBtn = saveBtn;
 	}
 
+	public MenuPanel getMenuPanel() {
+		return menuPanel;
+	}
+
+	public void setMenuPanel(MenuPanel menuPanel) {
+		this.menuPanel = menuPanel;
+	}
+
+	public JScrollPane getScrollBar() {
+		return scrollBar;
+	}
+
+	public void setScrollBar(JScrollPane scrollBar) {
+		this.scrollBar = scrollBar;
+	}
+
+	public JPanel getBtnPanel() {
+		return btnPanel;
+	}
+
+	public void setBtnPanel(JPanel btnPanel) {
+		this.btnPanel = btnPanel;
+	}
+
+	public Color getGreen() {
+		return green;
+	}
+
+	public void setGreen(Color green) {
+		this.green = green;
+	}
+	
+
 }

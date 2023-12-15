@@ -21,6 +21,30 @@ public class CourseInfoController implements ActionListener {
 		personalInfo.getSaveBtn().addActionListener(this);
 	}
 
+	public HashMap<String, String> getCourseInfo() {
+		return courseInfo;
+	}
+
+	public void setCourseInfo(HashMap<String, String> courseInfo) {
+		this.courseInfo = courseInfo;
+	}
+
+	public String[] getCourseInfoKey() {
+		return courseInfoKey;
+	}
+
+	public void setCourseInfoKey(String[] courseInfoKey) {
+		this.courseInfoKey = courseInfoKey;
+	}
+
+	public PersonalInfoFrame getPersonalInfo() {
+		return personalInfo;
+	}
+
+	public void setPersonalInfo(PersonalInfoFrame personalInfo) {
+		this.personalInfo = personalInfo;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// if the save button is pressed, save the information to the .json file
@@ -44,6 +68,7 @@ public class CourseInfoController implements ActionListener {
 					DataModel.generateUserInfo(LoginController.user, courseInfo, courseInfoKey);
 					JOptionPane.showMessageDialog(personalInfo, "Your Current Changes Have Been Saved.");
 					personalInfo.setVisible(false);
+					MainController.searchFrameController.getSearchFrame().setVisible(true);
 				}
 				
 			} catch (IOException e1) {
