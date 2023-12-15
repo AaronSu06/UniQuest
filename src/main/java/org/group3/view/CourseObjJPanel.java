@@ -24,6 +24,8 @@ public class CourseObjJPanel extends JPanel {
 //		for (int i = 0; i < 10; i++) {
 //			courseList.add("Course " + (i + 1));
 //		}
+		
+		courseList.add("Nil");
 		for(int i =0;i<DataModel.universityProgramArrayList.size();i++) {
 //			System.out.println(i);
 			for(String string: DataModel.universityProgramArrayList.get(i).getCourseCodes()) {

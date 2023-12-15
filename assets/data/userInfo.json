@@ -1,2 +1,10 @@
 [
+  {
+    "username": "Test",
+    "courseInfo": {
+      "EAE4U": "28",
+      "Nil": "Course Mark",
+      "BAT4M": "69"
+    }
+  }
 ]

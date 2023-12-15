@@ -179,7 +179,10 @@ public class InfoJPanel extends JPanel {
 	public void changeCourseInfo(UserInfo userInfo) {
 		for (int i = 0; i < userInfo.getCourseInfo().size(); i++) {
 			course[i].getCourseCode().setSelectedItem(keyArr.get(i));
-			course[i].getCourseMark().setText(userInfo.getCourseInfo().get(keyArr.get(i)));
+			
+			if (!course[i].getCourseCode().getSelectedItem().toString().equals("Nil")) {
+				course[i].getCourseMark().setText(userInfo.getCourseInfo().get(keyArr.get(i)));
+			}
 		}
 	}
 

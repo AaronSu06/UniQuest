@@ -84,14 +84,20 @@ public class CourseInfoController implements ActionListener {
 
 			for (int x = i + 1; x < 6; x++) {
 				if (personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString()
-						.equals(personalInfo.getInfoPanel().getCourse()[x].getCourseCode().getSelectedItem().toString())) {
+						.equals(personalInfo.getInfoPanel().getCourse()[x].getCourseCode().getSelectedItem().toString()) &&
+						!personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString()
+						.equals("Nil")) {
 					JOptionPane.showMessageDialog(personalInfo, "You Cannot Have Multiple of the Same Course! Please Try Again.");
 					return false;
 				}
 				
-				if (Double.parseDouble(personalInfo.getInfoPanel().getCourse()[i].getCourseMark().getText()) > 100) {
-					JOptionPane.showMessageDialog(personalInfo, "Invalid Course Mark! Please Try Again");
-					return false;
+				try {
+					if (Double.parseDouble(personalInfo.getInfoPanel().getCourse()[i].getCourseMark().getText()) > 100) {
+						JOptionPane.showMessageDialog(personalInfo, "Invalid Course Mark! Please Try Again");
+						return false;
+					}
+				} catch(Exception e) {
+					System.out.println("Cannot parse to double");
 				}
 			}
 		}
