@@ -8,6 +8,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridx = 0;
 
     setLayout(gbl);
+    nameTextArea.setColumns(50);
     nameTextArea.setText("Program: " + program.getName());
     nameTextArea.setPreferredSize(new Dimension(500, 50));
     nameTextArea.setLayout(null);
@@ -56,6 +59,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy = 0;
     add(nameTextArea, gbc);
 
+    universityTextArea.setColumns(50);
     universityTextArea.setText("University: " + program.getUniversity());
     universityTextArea.setPreferredSize(new Dimension(500, 50));
     universityTextArea.setLineWrap(true);
@@ -64,6 +68,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(universityTextArea, gbc);
 
+    degreeTextArea.setColumns(50);
     degreeTextArea.setText("Degree: " + program.getDegree());
     degreeTextArea.setPreferredSize(new Dimension(500, 50));
     degreeTextArea.setLineWrap(true);
@@ -72,6 +77,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(degreeTextArea, gbc);
 
+    ouacProgramCodeButton.setColumns(50);
     ouacProgramCodeButton.setText("OUAC code: " + program.getOuacProgramCode());
     ouacProgramCodeButton.setPreferredSize(new Dimension(500, 50));
     ouacProgramCodeButton.addMouseListener(
@@ -101,6 +107,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     GUIUtils.setFontRenderingHints(ouacProgramCodeButton);
     add(ouacProgramCodeButton, gbc);
 
+    gradeRangeTextArea.setColumns(50);
     gradeRangeTextArea.setText("Grade Range: " + program.getGradeRange());
     gradeRangeTextArea.setPreferredSize(new Dimension(500, 50));
     gradeRangeTextArea.setLineWrap(true);
@@ -109,6 +116,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(gradeRangeTextArea, gbc);
 
+    experientialLearningTextArea.setColumns(50);
     experientialLearningTextArea.setText(
         "Experiential Learning: " + program.getExperientialLearning());
     experientialLearningTextArea.setPreferredSize(new Dimension(500, 50));
@@ -118,6 +126,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(experientialLearningTextArea, gbc);
 
+    enrollmentTextArea.setColumns(50);
     enrollmentTextArea.setText("Enrollment: " + program.getEnrollment());
     enrollmentTextArea.setPreferredSize(new Dimension(500, 50));
     enrollmentTextArea.setLineWrap(true);
@@ -126,6 +135,7 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(enrollmentTextArea, gbc);
 
+    instructionLanguageTextArea.setColumns(50);
     instructionLanguageTextArea.setText(
         "Instructional Language: " + program.getInstructionLanguage());
     instructionLanguageTextArea.setPreferredSize(new Dimension(500, 50));
@@ -135,13 +145,15 @@ public class UniversityProgramInformationPanel extends JPanel {
     gbc.gridy++;
     add(instructionLanguageTextArea, gbc);
 
-    prerequisiteTextAreaHeader.setPreferredSize(new Dimension(500, 50));
+    prerequisiteTextAreaHeader.setColumns(50);
+//    prerequisiteTextAreaHeader.setPreferredSize(new Dimension(500, 50));
     GUIUtils.setFontRenderingHints(prerequisiteTextAreaHeader);
     gbc.gridy++;
     add(prerequisiteTextAreaHeader, gbc);
 
     for (String prereq : program.getPrerequisites()) {
       JTextArea prereqTextArea = new JTextArea(prereq);
+      prereqTextArea.setColumns(50);
       prereqTextArea.setLineWrap(true);
       prereqTextArea.setWrapStyleWord(true);
       GUIUtils.setFontRenderingHints(prereqTextArea);
@@ -167,6 +179,17 @@ public class UniversityProgramInformationPanel extends JPanel {
     favouriteProgramButton.setText("Favourite Program");
     favouriteProgramButton.setPreferredSize(new Dimension(150, 50));
     favouriteProgramButton.setHorizontalAlignment(SwingConstants.CENTER);
+    
+//  saves the program to the user's favourited 
+    favouriteProgramButton.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+    	
+    });
     GUIUtils.setFontRenderingHints(favouriteProgramButton);
     gbc.gridy++;
     add(favouriteProgramButton, gbc);

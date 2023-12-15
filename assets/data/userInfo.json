@@ -1,16 +1,5 @@
 [
   {
-    "username": "Test",
-    "courseInfo": {
-      "EAE4U": "12",
-      "TEJ4M": "32",
-      "SCH4C": "56",
-      "MDM4U": "93",
-      "BAT4M": "140",
-      "Other": "78"
-    }
-  },
-  {
     "username": "Kevin",
     "courseInfo": {
       "MHF4U": "93",
@@ -19,6 +8,17 @@
       "ICS4U": "90",
       "Other": "89",
       "ENG4U": "Course Mark"
+    }
+  },
+  {
+    "username": "Test",
+    "courseInfo": {
+      "EAE4U": "12",
+      "TEJ4M": "32",
+      "SCH4C": "56",
+      "MDM4U": "93",
+      "BAT4M": "100",
+      "Other": "78"
     }
   }
 ]
