@@ -4,9 +4,20 @@
     "courseInfo": {
       "MHF4U": "93",
       "MCV4U": "100",
+      "ICS4U": "90",
       "ENG4U": "80",
-      "Other": "95",
-      "ICS4U": "90"
+      "Other": "95"
+    }
+  },
+  {
+    "username": "Test",
+    "courseInfo": {
+      "EAE4U": "12",
+      "TEJ4M": "32",
+      "SCH4C": "56",
+      "MDM4U": "93",
+      "BAT4M": "140",
+      "Other": "78"
     }
   }
 ]

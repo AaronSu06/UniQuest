@@ -240,7 +240,7 @@ public class SearchFrameController implements ActionListener {
     }
 
     if (currentUser == null) {
-      System.out.println("Something Wnt rong");
+      return;
     }
 
     HashMap<Integer, String> temp = new HashMap<>();
