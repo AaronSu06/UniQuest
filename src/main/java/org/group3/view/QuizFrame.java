@@ -11,8 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-
-
 public class QuizFrame extends JFrame {
 
 	private JLabel title = new JLabel("University Programs Survey");
@@ -201,9 +199,6 @@ public class QuizFrame extends JFrame {
 
 		setTitle();
 		setMainPanel();
-
-		setVisible(true);
-
 	}
 
 	public void setTitle() {

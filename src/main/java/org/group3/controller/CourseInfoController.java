@@ -92,7 +92,7 @@ public class CourseInfoController implements ActionListener {
 				}
 				
 				try {
-					if (Double.parseDouble(personalInfo.getInfoPanel().getCourse()[i].getCourseMark().getText()) > 100) {
+					if (Integer.parseInt(personalInfo.getInfoPanel().getCourse()[i].getCourseMark().getText()) > 100) {
 						JOptionPane.showMessageDialog(personalInfo, "Invalid Course Mark! Please Try Again");
 						return false;
 					}

@@ -6,5 +6,16 @@
       "Nil": "Course Mark",
       "BAT4M": "69"
     }
+  },
+  {
+    "username": "Kevin",
+    "courseInfo": {
+      "MHF4U": "90",
+      "FRA4U": "90",
+      "SPH3U": "90",
+      "SBI4U": "90",
+      "MCV4U": "90",
+      "ENG4U": "90"
+    }
   }
 ]

@@ -13,13 +13,13 @@ public class SurveyController implements ActionListener {
   private boolean calculusTaken, functionsTaken, englishTaken, physicsTaken, biologyTaken, chemistryTaken;
   private int question2Answer, question3Answer, question4Answer, question5Answer;
 
-  private QuizFrame quizFrame = new QuizFrame();
+  private QuizFrame quizFrame;
 
   private List<UniversityProgram> recommendedProgramList = new ArrayList<>();
 
-  
   public SurveyController() {
-
+    quizFrame = new QuizFrame();
+    quizFrame.setVisible(false);
     setupActionListener();
   }
 
