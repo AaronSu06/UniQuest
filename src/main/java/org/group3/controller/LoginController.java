@@ -284,3 +284,4 @@ public class LoginController implements ActionListener, FocusListener {
 		this.homeFrame = homeFrame;
 	}
 }
+

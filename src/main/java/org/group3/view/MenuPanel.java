@@ -44,9 +44,6 @@ public class MenuPanel extends JPanel {
     profile.setBorder(b);
     add(profile);
 
-    // for(JButton button:frameButtons) {
-    // button.setBounds();
-    // }
   }
 
   public JButton getQuit() {

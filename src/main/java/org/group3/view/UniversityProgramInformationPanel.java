@@ -1,190 +1,246 @@
 package org.group3.view;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import org.group3.model.UniversityProgram;
 
 // class
 public class UniversityProgramInformationPanel extends JPanel {
-
-  private JLabel nameLabel = new JLabel();
-  private JLabel universityLabel = new JLabel();
-  private JLabel degreeLabel = new JLabel();
-  private JButton ouacProgramCodeButton = new JButton();
-  private JLabel gradeRangeLabel = new JLabel();
-  private JLabel experientialLearningLabel = new JLabel();
-  private JLabel enrollmentLabel = new JLabel();
-  private JLabel instructionLanguageLabel = new JLabel();
-  private JLabel prerequisiteLabelHeader = new JLabel("Prerequisites:");
-  private ArrayList<JLabel> prerequisitesLabelArray = new ArrayList<JLabel>();
-  private JLabel notesLabel = new JLabel();
-  private JButton favouriteUniversityButton = new JButton();
+  // Fields
+  private JTextArea nameTextArea = new JTextArea();
+  private JTextArea universityTextArea = new JTextArea();
+  private JTextArea degreeTextArea = new JTextArea();
+  private JTextArea ouacProgramCodeButton = new JTextArea();
+  private JTextArea gradeRangeTextArea = new JTextArea();
+  private JTextArea experientialLearningTextArea = new JTextArea();
+  private JTextArea enrollmentTextArea = new JTextArea();
+  private JTextArea instructionLanguageTextArea = new JTextArea();
+  private JTextArea prerequisiteTextAreaHeader = new JTextArea("Prerequisites:");
+  private ArrayList<JTextArea> prerequisitesTextAreaArray = new ArrayList<JTextArea>();
+  private JTextArea notesTextArea = new JTextArea();
   private JButton favouriteProgramButton = new JButton();
 
   public UniversityProgramInformationPanel(UniversityProgram program) {
-    setLayout(new GridLayout(0, 1));
-    nameLabel.setText("Program: " + program.getName());
-    nameLabel.setPreferredSize(new Dimension(500, 50));
-    nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-    nameLabel.setLayout(null);
+    GridBagLayout gbl = new GridBagLayout();
+    setLayout(gbl);
+    gbl.columnWidths = new int[] {0, 0, 0, 0};
+    gbl.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    gbl.columnWeights = new double[] {0.0, 0.0, 1.0, Double.MIN_VALUE};
+    gbl.rowWeights =
+        new double[] {
+          0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE
+        };
 
-    add(nameLabel);
-    universityLabel.setText("University: " + program.getUniversity());
-    universityLabel.setPreferredSize(new Dimension(500, 50));
-    universityLabel.setHorizontalAlignment(SwingConstants.LEFT);
+    GridBagConstraints gbc = new GridBagConstraints();
+    // gbc.fill = GridBagConstraints.HORIZONTAL;
+    gbc.insets = new Insets(0, 0, 0, 0);
+    gbc.gridx = 0;
 
-    add(universityLabel);
-    degreeLabel.setText("Degree: " + program.getDegree());
-    degreeLabel.setPreferredSize(new Dimension(500, 50));
-    degreeLabel.setHorizontalAlignment(SwingConstants.LEFT);
-    add(degreeLabel);
+    setLayout(gbl);
+    nameTextArea.setText("Program: " + program.getName());
+    nameTextArea.setPreferredSize(new Dimension(500, 50));
+    nameTextArea.setLayout(null);
+    nameTextArea.setLineWrap(true);
+    nameTextArea.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(nameTextArea);
+    gbc.gridy = 0;
+    add(nameTextArea, gbc);
+
+    universityTextArea.setText("University: " + program.getUniversity());
+    universityTextArea.setPreferredSize(new Dimension(500, 50));
+    universityTextArea.setLineWrap(true);
+    universityTextArea.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(universityTextArea);
+    gbc.gridy++;
+    add(universityTextArea, gbc);
+
+    degreeTextArea.setText("Degree: " + program.getDegree());
+    degreeTextArea.setPreferredSize(new Dimension(500, 50));
+    degreeTextArea.setLineWrap(true);
+    degreeTextArea.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(degreeTextArea);
+    gbc.gridy++;
+    add(degreeTextArea, gbc);
+
     ouacProgramCodeButton.setText("OUAC code: " + program.getOuacProgramCode());
     ouacProgramCodeButton.setPreferredSize(new Dimension(500, 50));
-    ouacProgramCodeButton.setHorizontalAlignment(SwingConstants.LEFT);
-    ouacProgramCodeButton.addActionListener(
-        new ActionListener() {
-
+    ouacProgramCodeButton.addMouseListener(
+        new MouseListener() {
           @Override
-          public void actionPerformed(ActionEvent e) {
+          public void mouseClicked(MouseEvent arg0) {
             String ouacCode = program.getOuacProgramCode();
             StringSelection selection = new StringSelection(ouacCode);
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(selection, null);
             JOptionPane.showMessageDialog(null, "Code Copied!");
           }
+
+          @Override
+          public void mouseEntered(MouseEvent arg0) {}
+
+          @Override
+          public void mouseExited(MouseEvent arg0) {}
+
+          @Override
+          public void mousePressed(MouseEvent arg0) {}
+
+          @Override
+          public void mouseReleased(MouseEvent arg0) {}
         });
-    add(ouacProgramCodeButton);
-    gradeRangeLabel.setText("Grade Range: " + program.getGradeRange());
-    gradeRangeLabel.setPreferredSize(new Dimension(500, 50));
-    gradeRangeLabel.setHorizontalAlignment(SwingConstants.LEFT);
-    add(gradeRangeLabel);
-    experientialLearningLabel.setText(
+    gbc.gridy++;
+    GUIUtils.setFontRenderingHints(ouacProgramCodeButton);
+    add(ouacProgramCodeButton, gbc);
+
+    gradeRangeTextArea.setText("Grade Range: " + program.getGradeRange());
+    gradeRangeTextArea.setPreferredSize(new Dimension(500, 50));
+    gradeRangeTextArea.setLineWrap(true);
+    gradeRangeTextArea.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(gradeRangeTextArea);
+    gbc.gridy++;
+    add(gradeRangeTextArea, gbc);
+
+    experientialLearningTextArea.setText(
         "Experiential Learning: " + program.getExperientialLearning());
-    experientialLearningLabel.setPreferredSize(new Dimension(500, 50));
-    experientialLearningLabel.setHorizontalAlignment(SwingConstants.LEFT);
-    add(experientialLearningLabel);
-    enrollmentLabel.setText("Enrollment: " + program.getEnrollment());
-    enrollmentLabel.setPreferredSize(new Dimension(500, 50));
-    enrollmentLabel.setHorizontalAlignment(SwingConstants.LEFT);
-    add(enrollmentLabel);
-    instructionLanguageLabel.setText("Instructional Language: " + program.getInstructionLanguage());
-    instructionLanguageLabel.setPreferredSize(new Dimension(500, 50));
-    instructionLanguageLabel.setHorizontalAlignment(SwingConstants.LEFT);
-    add(instructionLanguageLabel);
-    prerequisiteLabelHeader.setPreferredSize(new Dimension(500, 50));
-    prerequisiteLabelHeader.setHorizontalAlignment(SwingConstants.LEFT);
-    add(prerequisiteLabelHeader);
+    experientialLearningTextArea.setPreferredSize(new Dimension(500, 50));
+    experientialLearningTextArea.setLineWrap(true);
+    experientialLearningTextArea.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(experientialLearningTextArea);
+    gbc.gridy++;
+    add(experientialLearningTextArea, gbc);
+
+    enrollmentTextArea.setText("Enrollment: " + program.getEnrollment());
+    enrollmentTextArea.setPreferredSize(new Dimension(500, 50));
+    enrollmentTextArea.setLineWrap(true);
+    enrollmentTextArea.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(enrollmentTextArea);
+    gbc.gridy++;
+    add(enrollmentTextArea, gbc);
+
+    instructionLanguageTextArea.setText(
+        "Instructional Language: " + program.getInstructionLanguage());
+    instructionLanguageTextArea.setPreferredSize(new Dimension(500, 50));
+    instructionLanguageTextArea.setLineWrap(true);
+    instructionLanguageTextArea.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(instructionLanguageTextArea);
+    gbc.gridy++;
+    add(instructionLanguageTextArea, gbc);
+
+    prerequisiteTextAreaHeader.setPreferredSize(new Dimension(500, 50));
+    GUIUtils.setFontRenderingHints(prerequisiteTextAreaHeader);
+    gbc.gridy++;
+    add(prerequisiteTextAreaHeader, gbc);
+
     for (String prereq : program.getPrerequisites()) {
-      prerequisitesLabelArray.add(new JLabel(prereq));
-      prerequisitesLabelArray.getLast().setPreferredSize(new Dimension(500, 50));
-      prerequisitesLabelArray.getLast().setHorizontalAlignment(SwingConstants.LEFT);
-      add(prerequisitesLabelArray.getLast());
+      JTextArea prereqTextArea = new JTextArea(prereq);
+      prereqTextArea.setLineWrap(true);
+      prereqTextArea.setWrapStyleWord(true);
+      GUIUtils.setFontRenderingHints(prereqTextArea);
+
+      prerequisitesTextAreaArray.add(prereqTextArea);
+      prerequisitesTextAreaArray.getLast().setPreferredSize(new Dimension(500, 50));
+      gbc.gridy++;
+      add(prerequisitesTextAreaArray.getLast(), gbc);
     }
     if (program.getNotes() != null) {
-      notesLabel.setText("Notes: " + program.getNotes());
-
+      notesTextArea.setText("Notes: " + program.getNotes());
     } else {
-      notesLabel.setText("Notes: None");
+      notesTextArea.setText("Notes: None");
     }
-    notesLabel.setPreferredSize(new Dimension(500, 50));
-    notesLabel.setHorizontalAlignment(SwingConstants.LEFT);
-    add(notesLabel);
+
+    notesTextArea.setColumns(50);
+    notesTextArea.setLineWrap(true);
+    notesTextArea.setWrapStyleWord(true);
+    GUIUtils.setFontRenderingHints(notesTextArea);
+    gbc.gridy++;
+    add(notesTextArea, gbc);
 
     favouriteProgramButton.setText("Favourite Program");
-    favouriteProgramButton.setPreferredSize(new Dimension(500, 50));
-    favouriteProgramButton.setHorizontalAlignment(SwingConstants.LEFT);
-    add(favouriteProgramButton);
-
-    favouriteUniversityButton.setText("Favourite University");
-    favouriteUniversityButton.setPreferredSize(new Dimension(500, 50));
-    favouriteUniversityButton.setHorizontalAlignment(SwingConstants.LEFT);
-    add(favouriteUniversityButton);
+    favouriteProgramButton.setPreferredSize(new Dimension(150, 50));
+    favouriteProgramButton.setHorizontalAlignment(SwingConstants.CENTER);
+    GUIUtils.setFontRenderingHints(favouriteProgramButton);
+    gbc.gridy++;
+    add(favouriteProgramButton, gbc);
   }
 
-  public JLabel getNameLabel() {
-    return nameLabel;
+  public JTextArea getNameTextArea() {
+    return nameTextArea;
   }
 
-  public void setNameLabel(JLabel nameLabel) {
-    this.nameLabel = nameLabel;
+  public void setNameTextArea(JTextArea nameTextArea) {
+    this.nameTextArea = nameTextArea;
   }
 
-  public JLabel getUniversityLabel() {
-    return universityLabel;
+  public JTextArea getUniversityTextArea() {
+    return universityTextArea;
   }
 
-  public void setUniversityLabel(JLabel universityLabel) {
-    this.universityLabel = universityLabel;
+  public void setUniversityTextArea(JTextArea universityTextArea) {
+    this.universityTextArea = universityTextArea;
   }
 
-  public JLabel getDegreeLabel() {
-    return degreeLabel;
+  public JTextArea getDegreeTextArea() {
+    return degreeTextArea;
   }
 
-  public void setDegreeLabel(JLabel degreeLabel) {
-    this.degreeLabel = degreeLabel;
+  public void setDegreeTextArea(JTextArea degreeTextArea) {
+    this.degreeTextArea = degreeTextArea;
   }
 
-  public JButton getOuacProgramCodeButton() {
-    return ouacProgramCodeButton;
+  public JTextArea getGradeRangeTextArea() {
+    return gradeRangeTextArea;
   }
 
-  public void setOuacProgramCodeButton(JButton ouacProgramCodeButton) {
-    this.ouacProgramCodeButton = ouacProgramCodeButton;
+  public void setGradeRangeTextArea(JTextArea gradeRangeTextArea) {
+    this.gradeRangeTextArea = gradeRangeTextArea;
   }
 
-  public JLabel getGradeRangeLabel() {
-    return gradeRangeLabel;
+  public JTextArea getExperientialLearningTextArea() {
+    return experientialLearningTextArea;
   }
 
-  public void setGradeRangeLabel(JLabel gradeRangeLabel) {
-    this.gradeRangeLabel = gradeRangeLabel;
+  public void setExperientialLearningTextArea(JTextArea experientialLearningTextArea) {
+    this.experientialLearningTextArea = experientialLearningTextArea;
   }
 
-  public JLabel getExperientialLearningLabel() {
-    return experientialLearningLabel;
+  public JTextArea getEnrollmentTextArea() {
+    return enrollmentTextArea;
   }
 
-  public void setExperientialLearningLabel(JLabel experientialLearningLabel) {
-    this.experientialLearningLabel = experientialLearningLabel;
+  public void setEnrollmentTextArea(JTextArea enrollmentTextArea) {
+    this.enrollmentTextArea = enrollmentTextArea;
   }
 
-  public JLabel getEnrollmentLabel() {
-    return enrollmentLabel;
+  public JTextArea getInstructionLanguageTextArea() {
+    return instructionLanguageTextArea;
   }
 
-  public void setEnrollmentLabel(JLabel enrollmentLabel) {
-    this.enrollmentLabel = enrollmentLabel;
+  public void setInstructionLanguageTextArea(JTextArea instructionLanguageTextArea) {
+    this.instructionLanguageTextArea = instructionLanguageTextArea;
   }
 
-  public JLabel getInstructionLanguageLabel() {
-    return instructionLanguageLabel;
+  public ArrayList<JTextArea> getPrerequisitesTextAreaArray() {
+    return prerequisitesTextAreaArray;
   }
 
-  public void setInstructionLanguageLabel(JLabel instructionLanguageLabel) {
-    this.instructionLanguageLabel = instructionLanguageLabel;
+  public void setPrerequisitesTextAreaArray(ArrayList<JTextArea> prerequisitesTextAreaArray) {
+    this.prerequisitesTextAreaArray = prerequisitesTextAreaArray;
   }
 
-  public ArrayList<JLabel> getPrerequisitesLabelArray() {
-    return prerequisitesLabelArray;
+  public JTextArea getNotesTextArea() {
+    return notesTextArea;
   }
 
-  public void setPrerequisitesLabelArray(ArrayList<JLabel> prerequisitesLabelArray) {
-    this.prerequisitesLabelArray = prerequisitesLabelArray;
-  }
-
-  public JLabel getNotesLabel() {
-    return notesLabel;
-  }
-
-  public void setNotesLabel(JLabel notesLabel) {
-    this.notesLabel = notesLabel;
+  public void setNotesTextArea(JTextArea notesTextArea) {
+    this.notesTextArea = notesTextArea;
   }
 }

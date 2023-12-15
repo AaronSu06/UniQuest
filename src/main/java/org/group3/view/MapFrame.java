@@ -152,14 +152,17 @@ public class MapFrame extends JFrame {
 
     sideBarContentPanel.setBackground(Color.WHITE);
 
-    // Create a top-aligned grid bag layout 
+    // Create a top-aligned grid bag layout
     // https://stackoverflow.com/questions/23951882/how-to-align-the-elements-to-the-top-in-a-gridbaglayout
-    GridBagLayout gbl  = new GridBagLayout();
+    GridBagLayout gbl = new GridBagLayout();
     sideBarContentPanel.setLayout(gbl);
-    gbl.columnWidths = new int[]{0, 0, 0, 0};
-    gbl.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    gbl.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-    gbl.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+    gbl.columnWidths = new int[] {0, 0, 0, 0};
+    gbl.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    gbl.columnWeights = new double[] {0.0, 0.0, 1.0, Double.MIN_VALUE};
+    gbl.rowWeights =
+        new double[] {
+          0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE
+        };
 
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -280,12 +283,15 @@ public class MapFrame extends JFrame {
 
     // Add programs
 
-    GridBagLayout gbl  = new GridBagLayout();
+    GridBagLayout gbl = new GridBagLayout();
     programsPanel.setLayout(gbl);
-    gbl.columnWidths = new int[]{0, 0, 0, 0};
-    gbl.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    gbl.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-    gbl.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+    gbl.columnWidths = new int[] {0, 0, 0, 0};
+    gbl.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    gbl.columnWeights = new double[] {0.0, 0.0, 1.0, Double.MIN_VALUE};
+    gbl.rowWeights =
+        new double[] {
+          0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE
+        };
 
     programsPanel.setBackground(AppColors.LIGHT_GREEN);
     programsScrollPane = new JScrollPane(programsPanel);
@@ -293,6 +299,7 @@ public class MapFrame extends JFrame {
     programsScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
     programsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     programsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+    programsScrollPane.getVerticalScrollBar().setUnitIncrement(20);
     gbc.gridy = 3;
     sideBarContentPanel.add(programsScrollPane, gbc);
   }
