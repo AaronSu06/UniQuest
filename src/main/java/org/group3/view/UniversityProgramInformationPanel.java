@@ -192,7 +192,7 @@ public class UniversityProgramInformationPanel extends JPanel {
 			if (!LoginController.user.equals(null)) {
 				
 				
-				programList.add(getNameTextArea().getText() + " at " + getUniversityTextArea().getText());
+				programList.add(program.getName() + " at " + program.getUniversity());
 				
 				try {
 					DataModel.generateUserProgram(LoginController.user, programList);

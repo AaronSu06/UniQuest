@@ -12,9 +12,11 @@ public class CourseInfoController implements ActionListener {
 	private String[] courseInfoKey = new String[6];
 
 	// display the PersonalInfoFrame
-	PersonalInfoFrame personalInfo = new PersonalInfoFrame();
+	PersonalInfoFrame personalInfo;
 
 	public CourseInfoController() {
+		
+		personalInfo = new PersonalInfoFrame();
 
 		// add an action listener for only the saveBtn (information only saves when the
 		// user clicks save)
