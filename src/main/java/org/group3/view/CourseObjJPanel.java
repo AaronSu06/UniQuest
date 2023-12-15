@@ -34,7 +34,6 @@ public class CourseObjJPanel extends JPanel {
 				}
 			}
 		}
-		courseList.add("Other");
 		
 		courseCode = new JComboBox(courseList.toArray());
 

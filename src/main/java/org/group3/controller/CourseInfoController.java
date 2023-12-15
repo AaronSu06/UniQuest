@@ -84,9 +84,7 @@ public class CourseInfoController implements ActionListener {
 
 			for (int x = i + 1; x < 6; x++) {
 				if (personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString()
-						.equals(personalInfo.getInfoPanel().getCourse()[x].getCourseCode().getSelectedItem().toString())
-						&& !personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString()
-								.equals("Other")) {
+						.equals(personalInfo.getInfoPanel().getCourse()[x].getCourseCode().getSelectedItem().toString())) {
 					JOptionPane.showMessageDialog(personalInfo, "You Cannot Have Multiple of the Same Course! Please Try Again.");
 					return false;
 				}

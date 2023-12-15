@@ -1,22 +1,2 @@
 [
-  {
-    "username": "Kevin",
-    "courseInfo": {
-      "MHF4U": "93",
-      "SBI4U": "80",
-      "MCV4U": "100",
-      "ICS4U": "90",
-      "Other": "89",
-      "ENG4U": "Course Mark"
-    }
-  },
-  {
-    "username": "Test",
-    "courseInfo": {
-      "MHF4U": "90",
-      "MCV4U": "88",
-      "ENG4U": "88",
-      "Other": "88"
-    }
-  }
 ]

@@ -102,7 +102,8 @@ public class InfoJPanel extends JPanel {
 		add(programHeader);
 		add(Box.createRigidArea(new Dimension(0, 10)));
 
-		// replace default preferred information with saved preferred information for that
+		// replace default preferred information with saved preferred information for
+		// that
 		// user (if
 		// possible)
 		try {
@@ -202,90 +203,6 @@ public class InfoJPanel extends JPanel {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-			int index = i;
-
-			// mouse listener for when the JLabels are pressed
-			preferredProgram.get(i).addMouseListener(new MouseListener() {
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// if leftclick, open to the corresponding university
-					if (e.getButton() == MouseEvent.BUTTON1) {
-						System.out.println("Opened to program");
-						
-					}
-
-					// if rightclick, remove the corresponding university from the saved information
-					else if (e.getButton() == MouseEvent.BUTTON3) {
-						
-						removeProgram(userProgram, userProgram.get(index));
-					}
-
-				}
-
-				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-			});
-		}
-		repaint();
-		revalidate();
-	}
-	
-	// method to remove and then re-add the preferred programs
-	public void updateProgram(ArrayList<String> userProgram) {
-		for (int i = 0; i < userProgram.size(); i++) {
-			remove(preferredProgram.get(i));
-		}
-		
-		addUserProgram(userProgram);
-	}
-	
-	// remove specified program from the ArrayList on click
-	public void removeProgram(ArrayList<String> userProgram, String userProgramToRemove) {
-		
-		// loop through to find and remove the program
-		for (int i = 0; i < userProgram.size(); i++) {
-			
-			// remove from the ArrayList and the ArrayList
-			if (userProgram.get(i).equals(userProgramToRemove)) {
-				userProgram.remove(i);
-				remove(preferredProgram.get(i));
-				updateProgram(userProgram);
-				
-				repaint();
-				revalidate();
-				break;
-			}
-		}
-		
-		// update the .json file
-		try {
-			DataModel.generateUserProgram(LoginController.user, userProgram);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 }
