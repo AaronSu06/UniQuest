@@ -23,7 +23,7 @@ public class MainController implements ActionListener {
 		mapController.getMapFrame().setVisible(false);
 		searchFrameController.getSearchFrame().setVisible(false);
 		surveyController.getQuizFrame().setVisible(false);
-		
+
 		// adds the actionlisteners
 		addActionListeners();
 	}
@@ -58,8 +58,7 @@ public class MainController implements ActionListener {
 		for (JButton button : surveyController.getQuizFrame().getMenuPanel().getFrameButtons()) {
 			button.addActionListener(this);
 		}
-		
-		
+
 //    loginController.getHomeFrame().getMenuPanel().getProfile().addActionListener(this);
 //    loginController.getHomeFrame().getMenuPanel().getLogOut().addActionListener(this);
 //    loginController.getHomeFrame().getMenuPanel().getQuit().addActionListener(this);
@@ -69,7 +68,7 @@ public class MainController implements ActionListener {
 //    }
 
 	}
-	
+
 	// handles actions
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -116,6 +115,7 @@ public class MainController implements ActionListener {
 			mapController.getMapFrame().setVisible(true);
 
 		}
+
 		if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getProfile()) {
 			searchFrameController.getSearchFrame().setVisible(false);
 			courseInfoController.getPersonalInfo().setVisible(true);
@@ -133,7 +133,8 @@ public class MainController implements ActionListener {
 		}
 		if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getLogOut()
 				|| e.getSource() == mapController.getMapFrame().getMenuPanel().getLogOut()
-				|| e.getSource() == surveyController.getQuizFrame().getMenuPanel().getLogOut()||e.getSource()==courseInfoController.getPersonalInfo().getMenuPanel().getLogOut()) {
+				|| e.getSource() == surveyController.getQuizFrame().getMenuPanel().getLogOut()
+				|| e.getSource() == courseInfoController.getPersonalInfo().getMenuPanel().getLogOut()) {
 			searchFrameController.getSearchFrame().setVisible(false);
 			mapController.getMapFrame().setVisible(false);
 			surveyController.getQuizFrame().setVisible(false);
@@ -143,11 +144,71 @@ public class MainController implements ActionListener {
 
 		if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getQuit()
 				|| e.getSource() == mapController.getMapFrame().getMenuPanel().getQuit()
-				|| e.getSource() == surveyController.getQuizFrame().getMenuPanel().getQuit()||e.getSource()==courseInfoController.getPersonalInfo().getMenuPanel().getQuit()) {
+				|| e.getSource() == surveyController.getQuizFrame().getMenuPanel().getQuit()
+				|| e.getSource() == courseInfoController.getPersonalInfo().getMenuPanel().getQuit()) {
 
 			System.exit(0);
 		}
 	}
 
-	
+	// method to add the MenuPanel action listeners in the CourseInfoController
+	public static void enableCourseInfoController() {
+		courseInfoController = new CourseInfoController();
+		courseInfoController.getPersonalInfo().setVisible(false);
+		
+		for (JButton button : courseInfoController.getPersonalInfo().getMenuPanel().getFrameButtons()) {
+			button.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// structure checks personalInfoFrame menu components for switching frames
+					if (e.getSource() == courseInfoController.getPersonalInfo().getMenuPanel().getFrameButtons()[0]) {
+						courseInfoController.getPersonalInfo().setVisible(false);
+						searchFrameController.getSearchFrame().setVisible(true);
+					}
+					
+					else if (e.getSource() == courseInfoController.getPersonalInfo().getMenuPanel().getFrameButtons()[1]) {
+						courseInfoController.getPersonalInfo().setVisible(false);
+						surveyController.getQuizFrame().setVisible(true);
+
+					}
+					
+					else if (e.getSource() == courseInfoController.getPersonalInfo().getMenuPanel().getFrameButtons()[2]) {
+						courseInfoController.getPersonalInfo().setVisible(false);
+						mapController.getMapFrame().setVisible(true);
+
+					}
+				}
+				
+			});
+		}
+
+		// adds actionlisteners to personalInfoFrame menuPanel
+		courseInfoController.getPersonalInfo().getMenuPanel().getProfile().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "You are already on this screen");
+			}
+		});
+
+		courseInfoController.getPersonalInfo().getMenuPanel().getLogOut().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				searchFrameController.getSearchFrame().setVisible(false);
+				mapController.getMapFrame().setVisible(false);
+				surveyController.getQuizFrame().setVisible(false);
+				courseInfoController.getPersonalInfo().setVisible(false);
+				loginController.getHomeFrame().setVisible(true);
+			}
+		});
+		courseInfoController.getPersonalInfo().getMenuPanel().getQuit().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+	}
 }

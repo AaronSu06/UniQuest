@@ -122,8 +122,7 @@ public class LoginController implements ActionListener, FocusListener {
 
 						// switch JFrames
 						homeFrame.setVisible(false);
-						MainController.courseInfoController=new CourseInfoController();
-						MainController.courseInfoController.getPersonalInfo().setVisible(false);
+						MainController.enableCourseInfoController();
 						MainController.searchFrameController.getSearchFrame().setVisible(true);
 
 						try {
