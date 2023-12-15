@@ -10,13 +10,14 @@ import org.group3.view.QuizFrame;
 
 public class SurveyController implements ActionListener {
 
-  boolean calculusTaken, functionsTaken, englishTaken, physicsTaken, biologyTaken, chemistryTaken;
-  int question2Answer, question3Answer, question4Answer, question5Answer;
+  private boolean calculusTaken, functionsTaken, englishTaken, physicsTaken, biologyTaken, chemistryTaken;
+  private int question2Answer, question3Answer, question4Answer, question5Answer;
 
-  QuizFrame quizFrame = new QuizFrame();
+  private QuizFrame quizFrame = new QuizFrame();
 
-  List<UniversityProgram> recommendedProgramList = new ArrayList<>();
+  private List<UniversityProgram> recommendedProgramList = new ArrayList<>();
 
+  
   public SurveyController() {
 
     setupActionListener();
@@ -56,7 +57,104 @@ public class SurveyController implements ActionListener {
     QuizFrame.finishButton.addActionListener(this);
   }
 
-  @Override
+  
+  public boolean isCalculusTaken() {
+	return calculusTaken;
+}
+
+public void setCalculusTaken(boolean calculusTaken) {
+	this.calculusTaken = calculusTaken;
+}
+
+public boolean isFunctionsTaken() {
+	return functionsTaken;
+}
+
+public void setFunctionsTaken(boolean functionsTaken) {
+	this.functionsTaken = functionsTaken;
+}
+
+public boolean isEnglishTaken() {
+	return englishTaken;
+}
+
+public void setEnglishTaken(boolean englishTaken) {
+	this.englishTaken = englishTaken;
+}
+
+public boolean isPhysicsTaken() {
+	return physicsTaken;
+}
+
+public void setPhysicsTaken(boolean physicsTaken) {
+	this.physicsTaken = physicsTaken;
+}
+
+public boolean isBiologyTaken() {
+	return biologyTaken;
+}
+
+public void setBiologyTaken(boolean biologyTaken) {
+	this.biologyTaken = biologyTaken;
+}
+
+public boolean isChemistryTaken() {
+	return chemistryTaken;
+}
+
+public void setChemistryTaken(boolean chemistryTaken) {
+	this.chemistryTaken = chemistryTaken;
+}
+
+public int getQuestion2Answer() {
+	return question2Answer;
+}
+
+public void setQuestion2Answer(int question2Answer) {
+	this.question2Answer = question2Answer;
+}
+
+public int getQuestion3Answer() {
+	return question3Answer;
+}
+
+public void setQuestion3Answer(int question3Answer) {
+	this.question3Answer = question3Answer;
+}
+
+public int getQuestion4Answer() {
+	return question4Answer;
+}
+
+public void setQuestion4Answer(int question4Answer) {
+	this.question4Answer = question4Answer;
+}
+
+public int getQuestion5Answer() {
+	return question5Answer;
+}
+
+public void setQuestion5Answer(int question5Answer) {
+	this.question5Answer = question5Answer;
+}
+
+public QuizFrame getQuizFrame() {
+	return quizFrame;
+}
+
+public void setQuizFrame(QuizFrame quizFrame) {
+	this.quizFrame = quizFrame;
+}
+
+public List<UniversityProgram> getRecommendedProgramList() {
+	return recommendedProgramList;
+}
+
+public void setRecommendedProgramList(List<UniversityProgram> recommendedProgramList) {
+	this.recommendedProgramList = recommendedProgramList;
+}
+
+@Override
   public void actionPerformed(ActionEvent event) {
 
     if (event.getSource() == QuizFrame.finishButton) {

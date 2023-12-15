@@ -2,19 +2,27 @@ package org.group3.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.*;
+//import javax.swing.*;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 
 public class QuizFrame extends JFrame {
 
-	JLabel title = new JLabel("University Programs Survey");
-	JLabel question1 = new JLabel("What courses did you take in grade 12?");
-	JLabel question2 = new JLabel("Which of the following topics interests you the most?");
-	JLabel question3 = new JLabel("What was your favourite course in highschool");
-	JLabel question4 = new JLabel("What was your total average in highschool?");
-	JLabel question5 = new JLabel("Are you looking for a program with co-op?");
-
+	private JLabel title = new JLabel("University Programs Survey");
+	private JLabel question1 = new JLabel("What courses did you take in grade 12?");
+	private JLabel question2 = new JLabel("Which of the following topics interests you the most?");
+	private JLabel question3 = new JLabel("What was your favourite course in highschool");
+	private JLabel question4 = new JLabel("What was your total average in highschool?");
+	private JLabel question5 = new JLabel("Are you looking for a program with co-op?");
+	
+	private MenuPanel menuPanel = new MenuPanel();
 	public static JButton finishButton = new JButton("Finish");
 
 	public static JCheckBox[] question1Answers = new JCheckBox[6];
@@ -28,12 +36,160 @@ public class QuizFrame extends JFrame {
 	JScrollPane mainScrollPane = new JScrollPane();
 
 	public QuizFrame() {
-
+//		setLocationRelativeTo(null);
+		menuPanel.setBounds(0,0,1280,45);
+		add(menuPanel);
 		setup();
 	}
 
-	public void setup() {
+	
+	
 
+
+	public JLabel getQuestion1() {
+		return question1;
+	}
+
+
+	public void setQuestion1(JLabel question1) {
+		this.question1 = question1;
+	}
+
+
+	public JLabel getQuestion2() {
+		return question2;
+	}
+
+
+	public void setQuestion2(JLabel question2) {
+		this.question2 = question2;
+	}
+
+
+	public JLabel getQuestion3() {
+		return question3;
+	}
+
+
+	public void setQuestion3(JLabel question3) {
+		this.question3 = question3;
+	}
+
+
+	public JLabel getQuestion4() {
+		return question4;
+	}
+
+
+	public void setQuestion4(JLabel question4) {
+		this.question4 = question4;
+	}
+
+
+	public JLabel getQuestion5() {
+		return question5;
+	}
+
+
+	public void setQuestion5(JLabel question5) {
+		this.question5 = question5;
+	}
+
+
+	public MenuPanel getMenuPanel() {
+		return menuPanel;
+	}
+
+
+	public void setMenuPanel(MenuPanel menuPanel) {
+		this.menuPanel = menuPanel;
+	}
+
+
+	public static JButton getFinishButton() {
+		return finishButton;
+	}
+
+
+	public static void setFinishButton(JButton finishButton) {
+		QuizFrame.finishButton = finishButton;
+	}
+
+
+	public static JCheckBox[] getQuestion1Answers() {
+		return question1Answers;
+	}
+
+
+	public static void setQuestion1Answers(JCheckBox[] question1Answers) {
+		QuizFrame.question1Answers = question1Answers;
+	}
+
+
+	public static JCheckBox[] getQuestion2Answers() {
+		return question2Answers;
+	}
+
+
+	public static void setQuestion2Answers(JCheckBox[] question2Answers) {
+		QuizFrame.question2Answers = question2Answers;
+	}
+
+
+	public static JCheckBox[] getQuestion3Answers() {
+		return question3Answers;
+	}
+
+
+	public static void setQuestion3Answers(JCheckBox[] question3Answers) {
+		QuizFrame.question3Answers = question3Answers;
+	}
+
+
+	public static JCheckBox[] getQuestion4Answers() {
+		return question4Answers;
+	}
+
+
+	public static void setQuestion4Answers(JCheckBox[] question4Answers) {
+		QuizFrame.question4Answers = question4Answers;
+	}
+
+
+	public static JCheckBox[] getQuestion5Answers() {
+		return question5Answers;
+	}
+
+
+	public static void setQuestion5Answers(JCheckBox[] question5Answers) {
+		QuizFrame.question5Answers = question5Answers;
+	}
+
+
+	public JPanel getMainPanel() {
+		return mainPanel;
+	}
+
+
+	public void setMainPanel(JPanel mainPanel) {
+		this.mainPanel = mainPanel;
+	}
+
+
+	public JScrollPane getMainScrollPane() {
+		return mainScrollPane;
+	}
+
+
+	public void setMainScrollPane(JScrollPane mainScrollPane) {
+		this.mainScrollPane = mainScrollPane;
+	}
+
+
+	public void setup() {
+		setLocationRelativeTo(null);
+		menuPanel.setBounds(0,0,1280,45);
+		add(menuPanel);
 		// setting size, title and layout
 		setSize(1280, 720);
 		setTitle("University Application - Survey Frame");

@@ -13,14 +13,14 @@ public class MainController implements ActionListener {
   public static LoginController loginController = new LoginController();
   public static MapController mapController = new MapController();
   public static SearchFrameController searchFrameController = new SearchFrameController();
-
+  public static SurveyController surveyController = new SurveyController();
   // constructor
   public MainController() {
 
     // sets mapframe and searchframe invisible
     mapController.getMapFrame().setVisible(false);
     searchFrameController.getSearchFrame().setVisible(false);
-
+    surveyController.getQuizFrame().setVisible(false);
     // adds the actionlisteners
     addActionListeners();
   }
@@ -31,15 +31,16 @@ public class MainController implements ActionListener {
     // adds actionlisteners to searchFrame menuPanel
     searchFrameController.getSearchFrame().getMenuPanel().getProfile().addActionListener(this);
     searchFrameController.getSearchFrame().getMenuPanel().getLogOut().addActionListener(this);
+    searchFrameController.getSearchFrame().getMenuPanel().getQuit().addActionListener(this);
+
     for (JButton button : searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()) {
       button.addActionListener(this);
     }
 
-    searchFrameController.getSearchFrame().getMenuPanel().getQuit().addActionListener(this);
 
 
     // adds actionlisteners to mapFrame menuPanel
-    mapController.getMapFrame().getMenuPanel().getProfile().addActionListener(this);
+//    mapController.getMapFrame().getMenuPanel().getProfile().addActionListener(this);
     mapController.getMapFrame().getMenuPanel().getLogOut().addActionListener(this);
     mapController.getMapFrame().getMenuPanel().getProfile().addActionListener(this);
     mapController.getMapFrame().getMenuPanel().getQuit().addActionListener(this);
@@ -47,6 +48,16 @@ public class MainController implements ActionListener {
     for (JButton button : mapController.getMapFrame().getMenuPanel().getFrameButtons()) {
       button.addActionListener(this);
     }
+    
+    // adds actionlisteners to searchFrame menuPanel
+    surveyController.getQuizFrame().getMenuPanel().getProfile().addActionListener(this);
+    surveyController.getQuizFrame().getMenuPanel().getLogOut().addActionListener(this);
+    surveyController.getQuizFrame().getMenuPanel().getQuit().addActionListener(this);
+
+    for (JButton button : surveyController.getQuizFrame().getMenuPanel().getFrameButtons()) {
+      button.addActionListener(this);
+    }
+    
   }
 
   // handles actions
@@ -64,6 +75,7 @@ public class MainController implements ActionListener {
     } else if (e.getSource()
         == searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[1]) {
       searchFrameController.getSearchFrame().setVisible(false);
+      surveyController.getQuizFrame().setVisible(true);
 
       // sets map frame visible
     } else if (e.getSource()
@@ -77,11 +89,25 @@ public class MainController implements ActionListener {
       mapController.getMapFrame().setVisible(false);
       searchFrameController.getSearchFrame().setVisible(true);
     } else if (e.getSource() == mapController.getMapFrame().getMenuPanel().getFrameButtons()[1]) {
-      mapController.getMapFrame().setVisible(false);
+    	mapController.getMapFrame().setVisible(false);
+    	surveyController.getQuizFrame().setVisible(true);
 
     } else if (e.getSource() == mapController.getMapFrame().getMenuPanel().getFrameButtons()[2]) {
+        JOptionPane.showMessageDialog(null, "You are already on this screen");
 
+    }
+    
+ // structure checks mapFrame menu components for switching frames
+    if (e.getSource() == surveyController.getQuizFrame().getMenuPanel().getFrameButtons()[0]) {
+      surveyController.getQuizFrame().setVisible(false);
+      searchFrameController.getSearchFrame().setVisible(true);
+    } else if (e.getSource() == surveyController.getQuizFrame().getMenuPanel().getFrameButtons()[1]) {
       JOptionPane.showMessageDialog(null, "You are already on this screen");
+
+    } else if (e.getSource() == surveyController.getQuizFrame().getMenuPanel().getFrameButtons()[2]) {
+        surveyController.getQuizFrame().setVisible(false);
+        mapController.getMapFrame().setVisible(true);
+
     }
     if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getProfile()) {
       new CourseInfoController();
@@ -89,14 +115,19 @@ public class MainController implements ActionListener {
     if (e.getSource() == mapController.getMapFrame().getMenuPanel().getProfile()) {
       new CourseInfoController();
     }
+    if(e.getSource()==surveyController.getQuizFrame().getMenuPanel().getProfile()) {
+    	new CourseInfoController();
+    }
     if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getLogOut()
-        || e.getSource() == mapController.getMapFrame().getMenuPanel().getLogOut()) {
+        || e.getSource() == mapController.getMapFrame().getMenuPanel().getLogOut()||e.getSource()==surveyController.getQuizFrame().getMenuPanel().getLogOut()) {
       searchFrameController.getSearchFrame().setVisible(false);
+      mapController.getMapFrame().setVisible(false);
+      surveyController.getQuizFrame().setVisible(false);
       loginController.getHomeFrame().setVisible(true);
     }
 
     if (e.getSource() == searchFrameController.getSearchFrame().getMenuPanel().getQuit()
-        || e.getSource() == mapController.getMapFrame().getMenuPanel().getQuit()) {
+        || e.getSource() == mapController.getMapFrame().getMenuPanel().getQuit()||e.getSource()==surveyController.getQuizFrame().getMenuPanel().getQuit()) {
 
       System.exit(0);
     }
