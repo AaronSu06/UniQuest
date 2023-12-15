@@ -157,6 +157,7 @@ public class SurveyController implements ActionListener {
   public void actionPerformed(ActionEvent event) {
 
     if (event.getSource() == surveyFrame.getFinishButton()) {
+      recommendedProgramList.clear();
 
       // Question 1
       if (event.getSource() == surveyFrame.getQuestion1Answers()[0]) calculusTaken = true;
@@ -207,7 +208,6 @@ public class SurveyController implements ActionListener {
   }
 
   private void findPrograms() {
-
     questionOne();
     questionTwo();
     questionThree();
@@ -216,7 +216,6 @@ public class SurveyController implements ActionListener {
   }
 
   private void questionOne() {
-
     int courseTaken = 0;
     int courseFound = 0;
 
