@@ -17,6 +17,7 @@ import javax.swing.*;
 import org.group3.controller.LoginController;
 import org.group3.view.PersonalInfoFrame;
 import org.group3.model.DataModel;
+import org.group3.model.UniversityProgram;
 import org.group3.model.UserInfo;
 import org.group3.model.UserProgram;
 
@@ -24,32 +25,25 @@ public class InfoJPanel extends JPanel {
 
 	// instance variables
 	List<UserInfo> userInfoList = null;
-	List<UserProgram> userProgramList = null;
 	ArrayList<String> keyArr = new ArrayList<String>();
 
 	private JLabel courseHeader = new JLabel("Course Information");
-	private JLabel programHeader = new JLabel("Preferred Programs");
-	private JLabel universityHeader = new JLabel("Preferred Universities");
 	private JLabel[] courseNum = new JLabel[6];
 	private CourseObjJPanel[] course = new CourseObjJPanel[6];
-	private ArrayList<JLabel> preferredProgram = new ArrayList<JLabel>();
 
 	public InfoJPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		// set font and size of all components in the JFrame
 		courseHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
-		programHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
-		universityHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
 
 		// used to center within the frame
 		courseHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
-		programHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
-		universityHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		// initially set the header
-		add(courseHeader);
 		add(Box.createRigidArea(new Dimension(0, 10)));
+		add(courseHeader);
+		add(Box.createRigidArea(new Dimension(0, 15)));
 
 		// add the course JLabels and course JTextFields to the JFrame
 		for (int i = 0; i < 6; i++) {
@@ -97,34 +91,6 @@ public class InfoJPanel extends JPanel {
 			add(course[i]);
 		}
 
-		// add a gap and a new header
-		add(Box.createRigidArea(new Dimension(0, 10)));
-		add(programHeader);
-		add(Box.createRigidArea(new Dimension(0, 10)));
-
-		// replace default preferred information with saved preferred information for that
-		// user (if
-		// possible)
-		try {
-			// get the saved user information
-			userProgramList = DataModel.getUserProgram();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// if not null, as in a file exists
-		if (userProgramList.size() > 0) {
-
-			// loop through the saved user information list
-			for (UserProgram userProgram : userProgramList) {
-
-				// check if the username matches that of the username from the saved information
-				if (!(LoginController.user.equals(null)) && LoginController.user.equals(userProgram.getUsername())) {
-					addUserProgram(userProgram.getProgram());
-				}
-			}
-		}
-
 		// replace default course information with saved course information for that
 		// user (if
 		// possible)
@@ -142,7 +108,7 @@ public class InfoJPanel extends JPanel {
 			for (UserInfo userInfo : userInfoList) {
 
 				// check if the username matches that of the username from the saved information
-				if (!(LoginController.user.equals(null)) && LoginController.user.equals(userInfo.getUsername())) {
+				if (LoginController.user != null && LoginController.user.equals(userInfo.getUsername())) {
 					fillCourseArr(userInfo);
 					changeCourseInfo(userInfo);
 				}
@@ -178,111 +144,10 @@ public class InfoJPanel extends JPanel {
 	public void changeCourseInfo(UserInfo userInfo) {
 		for (int i = 0; i < userInfo.getCourseInfo().size(); i++) {
 			course[i].getCourseCode().setSelectedItem(keyArr.get(i));
-			course[i].getCourseMark().setText(userInfo.getCourseInfo().get(keyArr.get(i)));
-		}
-	}
-
-	// display the preferred program information
-	public void addUserProgram(ArrayList<String> userProgram) {
-		for (int i = 0; i < userProgram.size(); i++) {
-			preferredProgram.add(new JLabel());
-			preferredProgram.get(i).setText(userProgram.get(i));
-			preferredProgram.get(i).setFont(new Font("Sans Serif", Font.BOLD, 20));
-			preferredProgram.get(i).setAlignmentX(Component.CENTER_ALIGNMENT);
-			add(preferredProgram.get(i));
-
-			add(Box.createRigidArea(new Dimension(0, 15)));
-
-			// replace default course information with saved course information for that
-			// user (if
-			// possible)
-			try {
-				// get the saved user program information
-				userProgramList = DataModel.getUserProgram();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			
-			int index = i;
-
-			// mouse listener for when the JLabels are pressed
-			preferredProgram.get(i).addMouseListener(new MouseListener() {
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// if leftclick, open to the corresponding university
-					if (e.getButton() == MouseEvent.BUTTON1) {
-						System.out.println("Opened to program");
-					}
-
-					// if rightclick, remove the corresponding university from the saved information
-					else if (e.getButton() == MouseEvent.BUTTON3) {
-						
-						removeProgram(userProgram, userProgram.get(index));
-					}
-
-				}
-
-				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-			});
-		}
-	}
-	
-	// method to remove and then re-add the preferred programs
-	public void updateProgram(ArrayList<String> userProgram) {
-		for (int i = 0; i < userProgram.size(); i++) {
-			remove(preferredProgram.get(i));
-		}
-		
-		addUserProgram(userProgram);
-	}
-	
-	// remove specified program from the ArrayList on click
-	public void removeProgram(ArrayList<String> userProgram, String userProgramToRemove) {
-		
-		// loop through to find and remove the program
-		for (int i = 0; i < userProgram.size(); i++) {
-			
-			// remove from the ArrayList and the ArrayList
-			if (userProgram.get(i).equals(userProgramToRemove)) {
-				userProgram.remove(i);
-				remove(preferredProgram.get(i));
-				updateProgram(userProgram);
-				
-				this.repaint();
-				this.revalidate();
-				break;
+			if (!course[i].getCourseCode().getSelectedItem().toString().equals("Nil")) {
+				course[i].getCourseMark().setText(userInfo.getCourseInfo().get(keyArr.get(i)));
 			}
-		}
-		
-		// update the .json file
-		try {
-			DataModel.generateUserProgram(LoginController.user, userProgram);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 }

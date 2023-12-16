@@ -31,11 +31,16 @@ import org.jxmapviewer.viewer.Waypoint;
 public class MapController implements ActionListener, MouseListener {
   private MapFrame mapFrame;
 
+  // Record the previous search result so that back button knows which search to
+  // return to
+  private String previousSearchQuery = "";
+
   public MapController() {
     mapFrame = new MapFrame();
     mapFrame.setVisible(false);
 
     mapFrame.getUniversitySearchSubmit().addActionListener(this);
+    mapFrame.getBackButton().addActionListener(this);
 
     addWaypoints(Arrays.asList(DataModel.UNIVERSITIES));
     addUniversitySearchResults(Arrays.asList(DataModel.UNIVERSITIES));
@@ -43,15 +48,29 @@ public class MapController implements ActionListener, MouseListener {
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
-    // When the user submits a search
-    if (arg0.getSource().equals(mapFrame.getUniversitySearchSubmit())) {
-      List<University> universityResults =
-          DataModel.findUniversityByKeyword(mapFrame.getUniversitySearchField().getText());
+    // When the user submits a search or the back button
+    // Essentially the same code, except the back button
+    if (arg0.getSource().equals(mapFrame.getUniversitySearchSubmit())
+        || arg0.getSource().equals(mapFrame.getBackButton())) {
+      String currentSearchQuery = mapFrame.getUniversitySearchField().getText();
+
+      // Update the previous search result only if the search button is pressed
+      if (arg0.getSource().equals(mapFrame.getUniversitySearchSubmit()))
+        previousSearchQuery = currentSearchQuery;
+
+      // Update the search results accordingly:
+      // Current query if the search button is pressed
+      // Previous query if the back button is pressed
+      List<University> universityResults;
+      if (arg0.getSource().equals(mapFrame.getUniversitySearchSubmit())) {
+        universityResults = DataModel.findUniversityByKeyword(currentSearchQuery);
+      } else {
+        universityResults = DataModel.findUniversityByKeyword(previousSearchQuery);
+      }
 
       if (universityResults.size() == 0) {
         addWaypoints(Arrays.asList(DataModel.UNIVERSITIES));
         addUniversitySearchResults(Arrays.asList(DataModel.UNIVERSITIES));
-        JOptionPane.showMessageDialog(null, "No Results!");
       } else {
         addWaypoints(universityResults);
         addUniversitySearchResults(universityResults);

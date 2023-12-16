@@ -6,7 +6,7 @@ import javax.swing.*;
 public class HomeFrame extends JFrame {
 
 	// background
-	private JLabel background = new JLabel(new ImageIcon("images/Group 6.png"));
+	private JLabel background = new JLabel(new ImageIcon("images/Background.png"));
 
 	// 3 panels are used, 2 of which will swap with one another according to the
 	// topPanel
@@ -71,10 +71,14 @@ public class HomeFrame extends JFrame {
 		login.setPreferredSize(new Dimension(180, 40));
 		login.setForeground(green);
 		login.setBorder(new RoundedBorder(15, green));
+		login.setFocusPainted(false);
+		login.setOpaque(false);
 
 		signup.setPreferredSize(new Dimension(180, 40));
 		signup.setForeground(gray);
 		signup.setBorder(new RoundedBorder(15, gray));
+		signup.setFocusPainted(false);
+		signup.setOpaque(false);
 
 		// pack the 2 buttons to the JPanel
 		topPanel.add(login);
@@ -101,9 +105,13 @@ public class HomeFrame extends JFrame {
 		loginBtn.setBounds(565, 384, 150, 40);
 		loginBtn.setForeground(green);
 		loginBtn.setBorder(new RoundedBorder(10, green));
+		loginBtn.setFocusPainted(false);
+		loginBtn.setOpaque(false);
 		loginAsGuest.setBounds(515, 454, 250, 40);
 		loginAsGuest.setForeground(green);
 		loginAsGuest.setBorder(new RoundedBorder(10, green));
+		loginAsGuest.setFocusPainted(false);
+		loginAsGuest.setOpaque(false);
 
 		// properties for the signup
 		confirmPasswordText.setBounds(465, 340, 289, 74);
@@ -113,6 +121,8 @@ public class HomeFrame extends JFrame {
 		enterBtn.setBounds(565, 465, 150, 40);
 		enterBtn.setForeground(green);
 		enterBtn.setBorder(new RoundedBorder(10, green));
+		enterBtn.setFocusPainted(false);
+		enterBtn.setOpaque(false);
 
 		// initially disable the components for the signup
 		confirmPasswordText.setVisible(false);

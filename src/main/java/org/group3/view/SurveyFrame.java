@@ -1,180 +1,50 @@
+// Read code. Not write code.
 package org.group3.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 //import javax.swing.*;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 
-import org.group3.controller.SurveyController;
-import org.group3.model.DataModel;
-import org.group3.model.LogoInput;
+public class QuizFrame extends JFrame {
 
-public class SurveyFrame extends JFrame {
-
-	private JLabel title = new JLabel("University Programs Survey");
+  private JLabel titleLabel = new JLabel("University Programs Survey");
 	private JLabel question1 = new JLabel("What courses did you take in grade 12?");
 	private JLabel question2 = new JLabel("Which of the following topics interests you the most?");
 	private JLabel question3 = new JLabel("What was your favourite course in highschool");
 	private JLabel question4 = new JLabel("What was your total average in highschool?");
 	private JLabel question5 = new JLabel("Are you looking for a program with co-op?");
-
-	private MenuPanel menuPanel = new MenuPanel();
-	public static JButton finishButton = new JButton("Finish");
-
-	public static JCheckBox[] question1Answers = new JCheckBox[6];
-	public static JCheckBox[] question2Answers = new JCheckBox[5];
-	public static JCheckBox[] question3Answers = new JCheckBox[6];
-	public static JCheckBox[] question4Answers = new JCheckBox[4];
-	public static JCheckBox[] question5Answers = new JCheckBox[3];
-
-	ArrayList<UniversityPanel> universityPanelArray = new ArrayList<>();
-
-	JPanel mainPanel = new JPanel();
-	public static JPanel resultsPanel = new JPanel();
 	
-	private JScrollPane resultsScrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	private MenuPanel menuPanel = new MenuPanel();
+	private JButton finishButton = new JButton("Finish");
 
-	public SurveyFrame() {
+	private JCheckBox[] question1Answers = new JCheckBox[6];
+	private JCheckBox[] question2Answers = new JCheckBox[5];
+	private JCheckBox[] question3Answers = new JCheckBox[6];
+	private JCheckBox[] question4Answers = new JCheckBox[4];
+	private JCheckBox[] question5Answers = new JCheckBox[3];
+
+
+  JPanel mainPanel = new JPanel();
+
+	JScrollPane mainScrollPane = new JScrollPane();
+
+	public QuizFrame() {
 //		setLocationRelativeTo(null);
-		menuPanel.setBounds(0, 0, 1280, 45);
+		menuPanel.setBounds(0,0,1280,45);
 		add(menuPanel);
 		setup();
 	}
 
-	public JLabel getQuestion1() {
-		return question1;
-	}
-
-	public void setQuestion1(JLabel question1) {
-		this.question1 = question1;
-	}
-
-	public JLabel getQuestion2() {
-		return question2;
-	}
-
-	public void setQuestion2(JLabel question2) {
-		this.question2 = question2;
-	}
-
-	public JLabel getQuestion3() {
-		return question3;
-	}
-
-	public void setQuestion3(JLabel question3) {
-		this.question3 = question3;
-	}
-
-	public JLabel getQuestion4() {
-		return question4;
-	}
-
-	public void setQuestion4(JLabel question4) {
-		this.question4 = question4;
-	}
-
-	public JLabel getQuestion5() {
-		return question5;
-	}
-
-	public void setQuestion5(JLabel question5) {
-		this.question5 = question5;
-	}
-
-	public MenuPanel getMenuPanel() {
-		return menuPanel;
-	}
-
-	public void setMenuPanel(MenuPanel menuPanel) {
-		this.menuPanel = menuPanel;
-	}
-
-	public static JButton getFinishButton() {
-		return finishButton;
-	}
-
-	public static void setFinishButton(JButton finishButton) {
-		SurveyFrame.finishButton = finishButton;
-	}
-
-	public static JCheckBox[] getQuestion1Answers() {
-		return question1Answers;
-	}
-
-	public static void setQuestion1Answers(JCheckBox[] question1Answers) {
-		SurveyFrame.question1Answers = question1Answers;
-	}
-
-	public static JCheckBox[] getQuestion2Answers() {
-		return question2Answers;
-	}
-
-	public static void setQuestion2Answers(JCheckBox[] question2Answers) {
-		SurveyFrame.question2Answers = question2Answers;
-	}
-
-	public static JCheckBox[] getQuestion3Answers() {
-		return question3Answers;
-	}
-
-	public static void setQuestion3Answers(JCheckBox[] question3Answers) {
-		SurveyFrame.question3Answers = question3Answers;
-	}
-
-	public static JCheckBox[] getQuestion4Answers() {
-		return question4Answers;
-	}
-
-	public static void setQuestion4Answers(JCheckBox[] question4Answers) {
-		SurveyFrame.question4Answers = question4Answers;
-	}
-
-	public static JCheckBox[] getQuestion5Answers() {
-		return question5Answers;
-	}
-
-	public static void setQuestion5Answers(JCheckBox[] question5Answers) {
-		SurveyFrame.question5Answers = question5Answers;
-	}
-
-	public JPanel getMainPanel() {
-		return mainPanel;
-	}
-
-	public void setMainPanel(JPanel mainPanel) {
-		this.mainPanel = mainPanel;
-	}
-
-	public JScrollPane getMainScrollPane() {
-		return resultsScrollPane;
-	}
-
-	public void setMainScrollPane(JScrollPane mainScrollPane) {
-		this.resultsScrollPane = mainScrollPane;
-	}
-
 	public void setup() {
-
 		setLocationRelativeTo(null);
-		menuPanel.setBounds(0, 0, 1280, 45);
+		menuPanel.setBounds(0,0,1280,45);
 		add(menuPanel);
 		// setting size, title and layout
 		setSize(1280, 720);
@@ -187,18 +57,15 @@ public class SurveyFrame extends JFrame {
 
 		setTitle();
 		setMainPanel();
-
-		setVisible(true);
-
 	}
 
 	public void setTitle() {
 
-		title.setBounds(310, 90, 620, 75);
-		title.setFont(new Font("Georgia", Font.PLAIN, 50));
-		title.setForeground(Color.decode("#BFEE90"));
+		titleLabel.setBounds(310, 90, 620, 75);
+		titleLabel.setFont(new Font("Georgia", Font.PLAIN, 50));
+		titleLabel.setForeground(Color.decode("#BFEE90"));
 
-		add(title);
+		add(titleLabel);
 
 	}
 
@@ -214,10 +81,6 @@ public class SurveyFrame extends JFrame {
 		finishButton.setForeground(Color.decode("#070707"));
 		finishButton.setBorderPainted(false);
 		finishButton.setOpaque(true);
-
-		resultsScrollPane = new JScrollPane(resultsPanel);
-		resultsScrollPane.setBounds(100, 200, 1080, 425);
-		resultsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		add(finishButton);
 
@@ -409,94 +272,127 @@ public class SurveyFrame extends JFrame {
 		mainPanel.add(question5Answers[0]);
 		mainPanel.add(question5Answers[1]);
 		mainPanel.add(question5Answers[2]);
-
-	}
-
-	public void addResultsPanel() {
-
-		remove(mainPanel);
-
-		resultsPanel.setBounds(100, 200, 964, 425);
-		resultsPanel.setBackground(Color.LIGHT_GRAY);
-		resultsPanel.setLayout(new GridLayout(0,4,10,10));
 		
-		resultsScrollPane = new JScrollPane(resultsPanel);
-		resultsScrollPane.setBounds(100, 200, 1080, 425);
-		resultsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
-		for (int x = 0; x < SurveyController.recommendedProgramList.size(); x++) {
-		universityPanelArray.add(new UniversityPanel(SurveyController.recommendedProgramList.get(x)));
-	      universityPanelArray.get(x).setPreferredSize(new Dimension(220, 300));
-	      
-	      Image sizeToFit =
-	    		 LogoInput.imageMap.get(universityPanelArray.get(x).getProgram().getUniversity()).getImage().getScaledInstance(universityPanelArray.get(x).getUniversityButton().getWidth(),universityPanelArray.get(x).getUniversityButton().getHeight(),
-	    	      Image.SCALE_SMOOTH);
-	    		 universityPanelArray.get(x).getUniversityButton().setIcon(new
-	    	      ImageIcon(sizeToFit));
-	      universityPanelArray.get(x).getUniversityButton().setContentAreaFilled(false);
-	      universityPanelArray.get(x).getUniversityButton().setIcon(LogoInput.imageMap.get(universityPanelArray.get(x).getProgram().getUniversity()));
-	      resultsPanel.add(universityPanelArray.get(x));
-	      repaint();
-	      revalidate();
-	      
-	      universityPanelArray.get(x).getUniversityButton().setHorizontalAlignment(SwingConstants.LEFT);
-	      universityPanelArray.get(x).getUniversityButton().setVerticalAlignment(SwingConstants.TOP);
-	      universityPanelArray.get(x).getUniversityButton().setHorizontalTextPosition(SwingConstants.LEFT);
-
-	      String imagePathJpg = "assets/data/UniLogos/" +
-	      getUniversityPanelArray().get(x).getProgram().getUniversity() + ".jpg";
-	      String imagePathPng = "assets/data/UniLogos/" +
-	    		  getUniversityPanelArray().get(x).getProgram().getUniversity() + ".png";
-	      BufferedImage image = null;
-	      try {
-	      image = ImageIO.read(new File(imagePathJpg));
-	      Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
-	      image = new BufferedImage(300, 200, BufferedImage.TYPE_INT_RGB);
-	      image.getGraphics().drawImage(scaledImage, 0, 0, null);
-	      
-	      } catch (IOException e2) {
-	      try {
-	      image = ImageIO.read(new File(imagePathPng));
-	      Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
-	      image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
-	      image.getGraphics().drawImage(scaledImage, 0, 0, null);
-	      System.out.println("SUCCESS");
-	      } catch (IOException e3) {
-	      e3.printStackTrace();
-	      System.out.println("FAILED IMAGE");
-	      }
-	      }
-	      ImageIcon imageIcon = new ImageIcon(image);
-	      universityPanelArray.get(x).getUniversityButton().setIcon(imageIcon);
-	      
-	     resultsPanel.add(universityPanelArray.get(x));
-	     System.out.println("ADDED");
-	      
-		}
-		
-		  repaint();
-		  revalidate();
-		
-		resultsScrollPane.setViewportView(resultsPanel);
-		add(resultsScrollPane);
-
-
 	}
+	public JLabel getTitleLabel() {
+    return titleLabel;
+  }
 
-	public ArrayList<UniversityPanel> getUniversityPanelArray() {
-		return universityPanelArray;
-	}
+  public void setTitleLabel(JLabel title) {
+    this.titleLabel = title;
+  }
 
-	public void setUniversityPanelArray(ArrayList<UniversityPanel> universityPanelArray) {
-		this.universityPanelArray = universityPanelArray;
-	}
+  public JLabel getQuestion1() {
+    return question1;
+  }
 
-	public static JPanel getResultsPanel() {
-		return resultsPanel;
-	}
+  public void setQuestion1(JLabel question1) {
+    this.question1 = question1;
+  }
 
-	public static void setResultsPanel(JPanel resultsPanel) {
-		SurveyFrame.resultsPanel = resultsPanel;
-	}
+  public JLabel getQuestion2() {
+    return question2;
+  }
+
+  public void setQuestion2(JLabel question2) {
+    this.question2 = question2;
+  }
+
+  public JLabel getQuestion3() {
+    return question3;
+  }
+
+  public void setQuestion3(JLabel question3) {
+    this.question3 = question3;
+  }
+
+  public JLabel getQuestion4() {
+    return question4;
+  }
+
+  public void setQuestion4(JLabel question4) {
+    this.question4 = question4;
+  }
+
+  public JLabel getQuestion5() {
+    return question5;
+  }
+
+  public void setQuestion5(JLabel question5) {
+    this.question5 = question5;
+  }
+
+  public MenuPanel getMenuPanel() {
+    return menuPanel;
+  }
+
+  public void setMenuPanel(MenuPanel menuPanel) {
+    this.menuPanel = menuPanel;
+  }
+
+  public JButton getFinishButton() {
+    return finishButton;
+  }
+
+  public void setFinishButton(JButton finishButton) {
+    this.finishButton = finishButton;
+  }
+
+  public JCheckBox[] getQuestion1Answers() {
+    return question1Answers;
+  }
+
+  public void setQuestion1Answers(JCheckBox[] question1Answers) {
+    this.question1Answers = question1Answers;
+  }
+
+  public JCheckBox[] getQuestion2Answers() {
+    return question2Answers;
+  }
+
+  public void setQuestion2Answers(JCheckBox[] question2Answers) {
+    this.question2Answers = question2Answers;
+  }
+
+  public JCheckBox[] getQuestion3Answers() {
+    return question3Answers;
+  }
+
+  public void setQuestion3Answers(JCheckBox[] question3Answers) {
+    this.question3Answers = question3Answers;
+  }
+
+  public JCheckBox[] getQuestion4Answers() {
+    return question4Answers;
+  }
+
+  public void setQuestion4Answers(JCheckBox[] question4Answers) {
+    this.question4Answers = question4Answers;
+  }
+
+  public JCheckBox[] getQuestion5Answers() {
+    return question5Answers;
+  }
+
+  public void setQuestion5Answers(JCheckBox[] question5Answers) {
+    this.question5Answers = question5Answers;
+  }
+
+  public JPanel getMainPanel() {
+    return mainPanel;
+  }
+
+  public void setMainPanel(JPanel mainPanel) {
+    this.mainPanel = mainPanel;
+  }
+
+  public JScrollPane getMainScrollPane() {
+    return mainScrollPane;
+  }
+
+  public void setMainScrollPane(JScrollPane mainScrollPane) {
+    this.mainScrollPane = mainScrollPane;
+  }
+
 
 }

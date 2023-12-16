@@ -29,29 +29,26 @@ import org.jxmapviewer.input.PanKeyListener;
 import org.jxmapviewer.input.PanMouseInputListener;
 import org.jxmapviewer.input.ZoomMouseWheelListenerCursor;
 import org.jxmapviewer.viewer.DefaultTileFactory;
-import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointPainter;
 
 public class MapFrame extends JFrame {
-  // Some random lake in Ontario
-  public static final GeoPosition ONTARIO = new GeoPosition(52.31384133253682, -85.23039497023031);
-
-  // Map
+  // Map and its related information
   private JPanel mapContainer = new JPanel();
   private JXMapViewer mapViewer = new JXMapViewer();
   private MenuPanel menuPanel = new MenuPanel();
   private WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
 
-  // Sidebar
+  /*
+   * === === Sidebar and its related contents === ===
+   */
   private JPanel sideBar = new JPanel();
 
   JPanel universitySearchPanel = new JPanel();
   JTextField universitySearchField = new JTextField("Search Schools...");
   JButton universitySearchSubmit = new JButton();
 
-  // Sidebar content
   JPanel sideBarContentPanel = new JPanel();
   JScrollPane sideBarContentScrollPane;
 
@@ -60,6 +57,8 @@ public class MapFrame extends JFrame {
 
   JPanel programsPanel = new JPanel();
   JScrollPane programsScrollPane;
+
+  JButton backButton = new JButton("Back");
 
   public MapFrame() {
     menuPanel.setBounds(0, 0, 1280, 45);
@@ -140,15 +139,13 @@ public class MapFrame extends JFrame {
   }
 
   public void addSideBar() {
-    // sideBar.setLayout(new BoxLayout(sideBar, BoxLayout.PAGE_AXIS));
+    // Setting up the sidebar
     sideBar.setLayout(null);
     sideBar.setBounds(0, 45, 198, 675);
     sideBar.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     sideBar.setBackground(Color.WHITE);
 
     addUniversitySearchBar();
-    // sideBarContentPanel.setLayout(new BoxLayout(sideBarContentPanel,
-    // BoxLayout.Y_AXIS));
 
     sideBarContentPanel.setBackground(Color.WHITE);
 
@@ -167,8 +164,11 @@ public class MapFrame extends JFrame {
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.fill = GridBagConstraints.HORIZONTAL;
     gbc.insets = new Insets(0, 0, 0, 0);
+
+    // Ensures that everything remeains in one column
     gbc.gridx = 0;
 
+    // Set up the scrollpane (The one that appears underneath the search bar)
     sideBarContentScrollPane = new JScrollPane(sideBarContentPanel);
     sideBarContentScrollPane.setBounds(24, 75, 150, 590);
     sideBarContentScrollPane.setPreferredSize(new Dimension(15, 590));
@@ -178,9 +178,6 @@ public class MapFrame extends JFrame {
     sideBarContentScrollPane.setVerticalScrollBarPolicy(
         ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     sideBarContentScrollPane.getVerticalScrollBar().setUnitIncrement(20);
-
-    // On first load: don't display the sideBar content
-    // addSideBarContent();
 
     gbc.gridy = 0;
     sideBar.add(sideBarContentScrollPane, gbc);
@@ -250,17 +247,12 @@ public class MapFrame extends JFrame {
   public void addUniversityInfoGUI() {
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    gbc.insets = new Insets(0, 0, 0, 0);
+    gbc.insets = new Insets(5, 0, 5, 0);
     gbc.gridx = 0;
 
-    // Title and address
-    // Set an arbitrary boundary
-    // For some reason, this allows for dynamically-sized JTextAreas with fixed
-    // width
-    universityTitle.setBounds(0, 0, 150, 10);
-    universityTitle.setText("York University");
-    universityTitle.setFont(new Font("Sans Serif", Font.BOLD, 20));
-    // So that text is contained and wrapped
+    // Name of the university
+    universityTitle.setFont(new Font("Sans Serif", Font.BOLD, 18));
+    // Enable word-based textwrapping to ensure that everything is contained
     universityTitle.setLineWrap(true);
     universityTitle.setWrapStyleWord(true);
     universityTitle.setEditable(false);
@@ -268,23 +260,19 @@ public class MapFrame extends JFrame {
     gbc.gridy = 0;
     sideBarContentPanel.add(universityTitle, gbc);
 
-    // Set an arbitrary boundary
-    universityAddress.setBounds(0, 0, 150, 10);
-    universityAddress.setText("200 University Ave W, Waterloo ON N2L 3G1, Canada");
+    // Address of the univeristy
     universityAddress.setFont(new Font("Sans Serif", Font.PLAIN, 14));
     universityAddress.setLineWrap(true);
     universityAddress.setWrapStyleWord(true);
     universityAddress.setEditable(false);
     GUIUtils.setFontRenderingHints(universityAddress);
-    gbc.gridy = 1;
-    sideBarContentPanel.add(universityTitle, gbc);
-    gbc.gridy = 2;
+    gbc.gridy++;
     sideBarContentPanel.add(universityAddress, gbc);
 
-    // Add programs
-
+    // The scroll pane that displays the programs of each university
     GridBagLayout gbl = new GridBagLayout();
     programsPanel.setLayout(gbl);
+
     gbl.columnWidths = new int[] {0, 0, 0, 0};
     gbl.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     gbl.columnWeights = new double[] {0.0, 0.0, 1.0, Double.MIN_VALUE};
@@ -295,19 +283,24 @@ public class MapFrame extends JFrame {
 
     programsPanel.setBackground(AppColors.LIGHT_GREEN);
     programsScrollPane = new JScrollPane(programsPanel);
-    programsScrollPane.setPreferredSize(new Dimension(150, 420));
+    programsScrollPane.setPreferredSize(new Dimension(150, 380));
     programsScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
     programsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     programsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
     programsScrollPane.getVerticalScrollBar().setUnitIncrement(20);
-    gbc.gridy = 3;
+    gbc.gridy++;
     sideBarContentPanel.add(programsScrollPane, gbc);
+
+    backButton.setPreferredSize(new Dimension(150, 32));
+    backButton.setBorder(new EmptyBorder(0, 0, 0, 0));
+    backButton.setBackground(AppColors.BUTTON_NORMAL);
+    backButton.setUI(new CustomButtonUI());
+    GUIUtils.setFontRenderingHints(backButton);
+    gbc.gridy++;
+    sideBarContentPanel.add(backButton, gbc);
   }
 
-  public static GeoPosition getOntario() {
-    return ONTARIO;
-  }
-
+  // Getters and setters
   public JPanel getMapContainer() {
     return mapContainer;
   }
@@ -410,5 +403,13 @@ public class MapFrame extends JFrame {
 
   public void setProgramsScrollPane(JScrollPane programsScrollPane) {
     this.programsScrollPane = programsScrollPane;
+  }
+
+  public JButton getBackButton() {
+    return backButton;
+  }
+
+  public void setBackButton(JButton backButton) {
+    this.backButton = backButton;
   }
 }

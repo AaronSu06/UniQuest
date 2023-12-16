@@ -164,6 +164,7 @@ public class DataModel {
       };
 
   public static ArrayList<UniversityProgram> universityProgramArrayList;
+  public static ArrayList<UniversityProgram> favouritedProgramArrayList = new ArrayList<>();
 
   /*
    * === Database Creation Methods ===
@@ -318,7 +319,7 @@ public class DataModel {
   }
 
   // INFORMATION FOR PREFERRED PROGRAMS
-  public static void generateUserProgram(String username, ArrayList<String> program)
+  public static void generateUserProgram(String username, ArrayList<UniversityProgram> program)
       throws IOException {
 
     Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -336,26 +337,22 @@ public class DataModel {
         // if the user already has existing information saved, don't add the information
         // so that we won't have duplicates of the same user
         if (!(userInfo.getUsername().equals(username))) {
+          // Add all the current programs to the list -> data stays persistent
           users.add(userInfo);
+        } else {
+          for (UniversityProgram up : userInfo.getPrograms()) {
+            if (!program.contains(up)) program.add(up);
+          }
         }
 
         // remove the most recent index from the given ArrayList if there are duplicate
         // programs
-        for (int i = 0; i < program.size(); i++) {
-
-          for (int x = i + 1; x < program.size(); x++) {
-
-            if (program.get(i).equals(program.get(x))) {
-              program.remove(i);
-            }
-          }
-        }
       }
     }
-
     // add the current user information to the user ArrayList
     users.add(new UserProgram(username, program));
-
+    favouritedProgramArrayList.clear();
+    favouritedProgramArrayList.addAll(program);
     // read and write to the .json file
     String jsonString = gson.toJson(users);
     try (FileWriter writer = new FileWriter(USER_PROGRAM_PATH)) {
