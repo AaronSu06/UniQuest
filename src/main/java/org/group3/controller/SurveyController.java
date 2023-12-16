@@ -4,449 +4,522 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+
 import org.group3.model.DataModel;
+import org.group3.model.LogoInput;
 import org.group3.model.UniversityProgram;
-import org.group3.view.QuizFrame;
+import org.group3.view.SurveyFrame;
 
 public class SurveyController implements ActionListener {
 
-  private boolean calculusTaken, functionsTaken, englishTaken, physicsTaken, biologyTaken, chemistryTaken;
-  private int question2Answer, question3Answer, question4Answer, question5Answer;
-
-  private QuizFrame quizFrame = new QuizFrame();
+	private boolean calculusTaken, functionsTaken, englishTaken, physicsTaken, biologyTaken, chemistryTaken;
+	private int question2Answer, question3Answer, question4Answer, question5Answer;
+
+	private SurveyFrame quizFrame = new SurveyFrame();
+
+	public static List<UniversityProgram> recommendedProgramList = new ArrayList<>();
+	public static List<JLabel> recommendedProgramLabels = new ArrayList<>();
+	
+	private JScrollBar scrollBar = new JScrollBar();
+
+	public SurveyController() {
+		
+		try {
+			DataModel.generateProgramArrayList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		new LogoInput();
+		
+		setupActionListener();
+	}
+
+	private void setupActionListener() {
+
+		SurveyFrame.question1Answers[0].addActionListener(this);
+		SurveyFrame.question1Answers[1].addActionListener(this);
+		SurveyFrame.question1Answers[2].addActionListener(this);
+		SurveyFrame.question1Answers[3].addActionListener(this);
+		SurveyFrame.question1Answers[4].addActionListener(this);
+		SurveyFrame.question1Answers[5].addActionListener(this);
+
+		SurveyFrame.question2Answers[0].addActionListener(this);
+		SurveyFrame.question2Answers[1].addActionListener(this);
+		SurveyFrame.question2Answers[2].addActionListener(this);
+		SurveyFrame.question2Answers[3].addActionListener(this);
+		SurveyFrame.question2Answers[4].addActionListener(this);
+
+		SurveyFrame.question3Answers[0].addActionListener(this);
+		SurveyFrame.question3Answers[1].addActionListener(this);
+		SurveyFrame.question3Answers[2].addActionListener(this);
+		SurveyFrame.question3Answers[3].addActionListener(this);
+		SurveyFrame.question3Answers[4].addActionListener(this);
+		SurveyFrame.question3Answers[5].addActionListener(this);
+
+		SurveyFrame.question4Answers[0].addActionListener(this);
+		SurveyFrame.question4Answers[1].addActionListener(this);
+		SurveyFrame.question4Answers[2].addActionListener(this);
+		SurveyFrame.question4Answers[3].addActionListener(this);
+
+		SurveyFrame.question5Answers[0].addActionListener(this);
+		SurveyFrame.question5Answers[1].addActionListener(this);
+		SurveyFrame.question5Answers[2].addActionListener(this);
+		
+		SurveyFrame.finishButton.addActionListener(this);
+		
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+
+		// Question 1
+		if (event.getSource() == SurveyFrame.question1Answers[0]) {
+			System.out.println("CalcTest");
+			calculusTaken = true;
+
+		}
+		if (event.getSource() == SurveyFrame.question1Answers[1]) {
+			System.out.println("FuncTest");
+			functionsTaken = true;
+
+		}
+		if (event.getSource() == SurveyFrame.question1Answers[2]) {
+			System.out.println("EngTest");
+			englishTaken = true;
+
+		}
+		if (event.getSource() == SurveyFrame.question1Answers[3]) {
+			System.out.println("PhysTest");
+			physicsTaken = true;
+
+		}
+		if (event.getSource() == SurveyFrame.question1Answers[4]) {
+			System.out.println("BioTest");
+			biologyTaken = true;
+
+		}
+		if (event.getSource() == SurveyFrame.question1Answers[5])
+			System.out.println("ChemTest");
+		chemistryTaken = true;
+
+		// Question 2
+		if (event.getSource() == SurveyFrame.question2Answers[0])
+			question2Answer = 1;
+		else if (event.getSource() == SurveyFrame.question2Answers[1])
+			question2Answer = 2;
+		else if (event.getSource() == SurveyFrame.question2Answers[2])
+			question2Answer = 3;
+		else if (event.getSource() == SurveyFrame.question2Answers[3])
+			question2Answer = 4;
+		else if (event.getSource() == SurveyFrame.question2Answers[4])
+			question2Answer = 5;
+
+		// Question 3
+		if (event.getSource() == SurveyFrame.question3Answers[0])
+			question3Answer = 1;
+		else if (event.getSource() == SurveyFrame.question3Answers[1])
+			question3Answer = 2;
+		else if (event.getSource() == SurveyFrame.question3Answers[2])
+			question3Answer = 3;
+		else if (event.getSource() == SurveyFrame.question3Answers[3])
+			question3Answer = 4;
+		else if (event.getSource() == SurveyFrame.question3Answers[4])
+			question3Answer = 5;
+		else if (event.getSource() == SurveyFrame.question3Answers[5])
+			question3Answer = 6;
 
-  private List<UniversityProgram> recommendedProgramList = new ArrayList<>();
-
-  
-  public SurveyController() {
-
-    setupActionListener();
-  }
+		// Question 4
+		if (event.getSource() == SurveyFrame.question4Answers[0])
+			question4Answer = 1;
+		else if (event.getSource() == SurveyFrame.question4Answers[1])
+			question4Answer = 2;
+		else if (event.getSource() == SurveyFrame.question4Answers[2])
+			question4Answer = 3;
+		else if (event.getSource() == SurveyFrame.question4Answers[3])
+			question4Answer = 4;
 
-  private void setupActionListener() {
-
-    QuizFrame.question1Answers[0].addActionListener(this);
-    QuizFrame.question1Answers[1].addActionListener(this);
-    QuizFrame.question1Answers[2].addActionListener(this);
-    QuizFrame.question1Answers[3].addActionListener(this);
-    QuizFrame.question1Answers[4].addActionListener(this);
-    QuizFrame.question1Answers[5].addActionListener(this);
-
-    QuizFrame.question2Answers[0].addActionListener(this);
-    QuizFrame.question2Answers[1].addActionListener(this);
-    QuizFrame.question2Answers[2].addActionListener(this);
-    QuizFrame.question2Answers[3].addActionListener(this);
-    QuizFrame.question2Answers[4].addActionListener(this);
-
-    QuizFrame.question3Answers[0].addActionListener(this);
-    QuizFrame.question3Answers[1].addActionListener(this);
-    QuizFrame.question3Answers[2].addActionListener(this);
-    QuizFrame.question3Answers[3].addActionListener(this);
-    QuizFrame.question3Answers[4].addActionListener(this);
-    QuizFrame.question3Answers[5].addActionListener(this);
-
-    QuizFrame.question4Answers[0].addActionListener(this);
-    QuizFrame.question4Answers[1].addActionListener(this);
-    QuizFrame.question4Answers[2].addActionListener(this);
-    QuizFrame.question4Answers[3].addActionListener(this);
-
-    QuizFrame.question5Answers[0].addActionListener(this);
-    QuizFrame.question5Answers[1].addActionListener(this);
-    QuizFrame.question5Answers[2].addActionListener(this);
-
-    QuizFrame.finishButton.addActionListener(this);
-  }
-
-  
-  public boolean isCalculusTaken() {
-	return calculusTaken;
-}
+		// Question 5
+		if (event.getSource() == SurveyFrame.question5Answers[0])
+			question5Answer = 1;
+		else if (event.getSource() == SurveyFrame.question5Answers[1])
+			question5Answer = 2;
+		else if (event.getSource() == SurveyFrame.question5Answers[2])
+			question5Answer = 3;
 
-public void setCalculusTaken(boolean calculusTaken) {
-	this.calculusTaken = calculusTaken;
-}
+		if (event.getSource() == SurveyFrame.finishButton) {
 
-public boolean isFunctionsTaken() {
-	return functionsTaken;
-}
+			System.out.println("FINDIHBUTTONPRESSED");
+			findPrograms();
 
-public void setFunctionsTaken(boolean functionsTaken) {
-	this.functionsTaken = functionsTaken;
-}
+			for (int x = 0; x < recommendedProgramList.size(); x++)
+				System.out.println(recommendedProgramList.get(x));
 
-public boolean isEnglishTaken() {
-	return englishTaken;
-}
+			System.out.println(recommendedProgramList.size());
+			
+			
+			for (int x = 0; x < recommendedProgramList.size(); x++) {
+				//
+							SurveyController.recommendedProgramLabels.add(
+									new JLabel(LogoInput.imageMap.get(SurveyController.recommendedProgramList.get(x).getUniversity())));
+							//quizFrame.resultsPanel.add(new JLabel(LogoInput.imageMap.get(recommendedProgramList.get(x).getUniversity())));
 
-public void setEnglishTaken(boolean englishTaken) {
-	this.englishTaken = englishTaken;
-}
+						}
+			
+			quizFrame.addResultsPanel();
+			
+			
 
-public boolean isPhysicsTaken() {
-	return physicsTaken;
-}
+			
+		}
+	}
 
-public void setPhysicsTaken(boolean physicsTaken) {
-	this.physicsTaken = physicsTaken;
-}
+	private void findPrograms() {
 
-public boolean isBiologyTaken() {
-	return biologyTaken;
-}
+		System.out.println("FINDINGPROGRAMS");
+		questionOne();
+		questionTwo();
+		questionThree();
+		questionFour();
+		questionFive();
 
-public void setBiologyTaken(boolean biologyTaken) {
-	this.biologyTaken = biologyTaken;
-}
+	}
 
-public boolean isChemistryTaken() {
-	return chemistryTaken;
-}
+	private void questionOne() {
 
-public void setChemistryTaken(boolean chemistryTaken) {
-	this.chemistryTaken = chemistryTaken;
-}
+		int courseTaken = 0;
+		int courseFound = 0;
 
-public int getQuestion2Answer() {
-	return question2Answer;
-}
+		for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-public void setQuestion2Answer(int question2Answer) {
-	this.question2Answer = question2Answer;
-}
+			if (calculusTaken) {
 
-public int getQuestion3Answer() {
-	return question3Answer;
-}
+				courseTaken++;
 
-public void setQuestion3Answer(int question3Answer) {
-	this.question3Answer = question3Answer;
-}
+				if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("MCV4U") > -1) {
 
-public int getQuestion4Answer() {
-	return question4Answer;
-}
+					courseFound++;
+				}
+			}
 
-public void setQuestion4Answer(int question4Answer) {
-	this.question4Answer = question4Answer;
-}
+			if (functionsTaken) {
 
-public int getQuestion5Answer() {
-	return question5Answer;
-}
+				courseTaken++;
 
-public void setQuestion5Answer(int question5Answer) {
-	this.question5Answer = question5Answer;
-}
+				if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("MHF4U") > -1) {
 
-public QuizFrame getQuizFrame() {
-	return quizFrame;
-}
+					courseFound++;
+				}
+			}
 
-public void setQuizFrame(QuizFrame quizFrame) {
-	this.quizFrame = quizFrame;
-}
+			if (englishTaken) {
 
-public List<UniversityProgram> getRecommendedProgramList() {
-	return recommendedProgramList;
-}
+				courseTaken++;
 
-public void setRecommendedProgramList(List<UniversityProgram> recommendedProgramList) {
-	this.recommendedProgramList = recommendedProgramList;
-}
+				if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("ENG4U") > -1) {
 
-@Override
-  public void actionPerformed(ActionEvent event) {
+					courseFound++;
+				}
+			}
 
-    if (event.getSource() == QuizFrame.finishButton) {
+			if (physicsTaken) {
 
-      // Question 1
-      if (event.getSource() == QuizFrame.question1Answers[0]) calculusTaken = true;
+				courseTaken++;
 
-      if (event.getSource() == QuizFrame.question1Answers[1]) functionsTaken = true;
+				if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("SPH4U") > -1) {
 
-      if (event.getSource() == QuizFrame.question1Answers[2]) englishTaken = true;
+					courseFound++;
+				}
+			}
 
-      if (event.getSource() == QuizFrame.question1Answers[3]) physicsTaken = true;
+			if (biologyTaken) {
 
-      if (event.getSource() == QuizFrame.question1Answers[4]) biologyTaken = true;
+				courseTaken++;
 
-      if (event.getSource() == QuizFrame.question1Answers[5]) chemistryTaken = true;
+				if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("SBI4U") > -1) {
 
-      // Question 2
-      if (event.getSource() == QuizFrame.question2Answers[0]) question2Answer = 1;
-      else if (event.getSource() == QuizFrame.question2Answers[1]) question2Answer = 2;
-      else if (event.getSource() == QuizFrame.question2Answers[2]) question2Answer = 3;
-      else if (event.getSource() == QuizFrame.question2Answers[3]) question2Answer = 4;
-      else if (event.getSource() == QuizFrame.question2Answers[4]) question2Answer = 5;
+					courseFound++;
+				}
+			}
+			if (chemistryTaken) {
 
-      // Question 3
-      if (event.getSource() == QuizFrame.question3Answers[0]) question3Answer = 1;
-      else if (event.getSource() == QuizFrame.question3Answers[1]) question3Answer = 2;
-      else if (event.getSource() == QuizFrame.question3Answers[2]) question3Answer = 3;
-      else if (event.getSource() == QuizFrame.question3Answers[3]) question3Answer = 4;
-      else if (event.getSource() == QuizFrame.question3Answers[4]) question3Answer = 5;
-      else if (event.getSource() == QuizFrame.question3Answers[5]) question3Answer = 6;
+				courseTaken++;
 
-      // Question 4
-      if (event.getSource() == QuizFrame.question4Answers[0]) question4Answer = 1;
-      else if (event.getSource() == QuizFrame.question4Answers[1]) question4Answer = 2;
-      else if (event.getSource() == QuizFrame.question4Answers[2]) question4Answer = 3;
-      else if (event.getSource() == QuizFrame.question4Answers[3]) question4Answer = 4;
+				if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("SCH4U") > -1) {
 
-      // Question 5
-      if (event.getSource() == QuizFrame.question5Answers[0]) question5Answer = 1;
-      else if (event.getSource() == QuizFrame.question5Answers[1]) question5Answer = 2;
-      else if (event.getSource() == QuizFrame.question5Answers[2]) question5Answer = 3;
+					courseFound++;
+				}
+			}
 
-      findPrograms();
+			if (courseTaken == courseFound)
+				recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
 
-      for (int x = 0; x < recommendedProgramList.size(); x++)
-        System.out.println(recommendedProgramList.get(x));
+			courseTaken = 0;
+			courseFound = 0;
+		}
+	}
 
-      System.out.println(recommendedProgramList.size());
-    }
-  }
+	private void questionTwo() {
 
-  private void findPrograms() {
+		if (question2Answer == 1) {
 
-    questionOne();
-    questionTwo();
-    questionThree();
-    questionFour();
-    questionFive();
-  }
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-  private void questionOne() {
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Science"))
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
 
-    int courseTaken = 0;
-    int courseFound = 0;
+		} else if (question2Answer == 2) {
 
-    for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-      if (calculusTaken) {
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Business"))
 
-        courseTaken++;
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
 
-        if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("MCV4U") > -1) {
+		} else if (question2Answer == 3) {
 
-          courseFound++;
-        }
-      }
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-      if (functionsTaken) {
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Psychology")
+						|| DataModel.universityProgramArrayList.get(x).getName().contains("Anthropology")
+						|| DataModel.universityProgramArrayList.get(x).getName().contains("Sociology")
+						|| DataModel.universityProgramArrayList.get(x).getName().contains("Social"))
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
 
-        courseTaken++;
+		} else if (question2Answer == 4) {
 
-        if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("MHF4U") > -1) {
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-          courseFound++;
-        }
-      }
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Law"))
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
 
-      if (englishTaken) {
+		} else if (question2Answer == 5) {
 
-        courseTaken++;
+			System.out.println("test");
 
-        if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("ENG4U") > -1) {
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-          courseFound++;
-        }
-      }
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Engineering")) {
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+					System.out.println("TestAddEngineering");
+				}
+			}
+		}
+	}
 
-      if (physicsTaken) {
+	private void questionThree() {
 
-        courseTaken++;
+		if (question3Answer == 1 || question3Answer == 2) {
 
-        if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("SPH4U") > -1) {
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-          courseFound++;
-        }
-      }
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Math"))
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
 
-      if (biologyTaken) {
+		} else if (question3Answer == 3) {
 
-        courseTaken++;
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-        if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("SBI4U") > -1) {
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("English")
+						|| DataModel.universityProgramArrayList.get(x).getName().contains("Literature"))
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
 
-          courseFound++;
-        }
-      }
-      if (chemistryTaken) {
+		} else if (question3Answer == 4) {
 
-        courseTaken++;
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-        if (DataModel.universityProgramArrayList.get(x).getPrerequisites().indexOf("SCH4U") > -1) {
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Physics"))
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
 
-          courseFound++;
-        }
-      }
+		} else if (question3Answer == 5) {
 
-      if (courseTaken == courseFound)
-        recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-      courseTaken = 0;
-      courseFound = 0;
-    }
-  }
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Biology")
+						|| DataModel.universityProgramArrayList.get(x).getName().contains("Life")
+						|| DataModel.universityProgramArrayList.get(x).getName().contains("Medical"))
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
 
-  private void questionTwo() {
+		} else if (question3Answer == 6) {
 
-    if (question2Answer == 1) {
+			for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+				if (DataModel.universityProgramArrayList.get(x).getName().contains("Chemistry"))
+					recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
+			}
+		}
+	}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Science"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
+	private void questionFour() {
 
-    } else if (question2Answer == 2) {
+		if (question4Answer == 1) {
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+			for (int x = 0; x < recommendedProgramList.size(); x++) {
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Business"))
-          ;
+				if (!DataModel.universityProgramArrayList.get(x).getGradeRange().contains("60")
+						|| DataModel.universityProgramArrayList.get(x).getGradeRange().contains("70")
+						|| DataModel.universityProgramArrayList.get(x).getGradeRange().contains("60s"))
+					recommendedProgramList.remove(recommendedProgramList.get(x));
+			}
 
-        recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
+		} else if (question4Answer == 2) {
 
-    } else if (question2Answer == 3) {
+			for (int x = 0; x < recommendedProgramList.size(); x++) {
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+				if (!DataModel.universityProgramArrayList.get(x).getGradeRange().contains("70")
+						|| DataModel.universityProgramArrayList.get(x).getGradeRange().contains("80")
+						|| DataModel.universityProgramArrayList.get(x).getGradeRange().contains("70s"))
+					recommendedProgramList.remove(recommendedProgramList.get(x));
+			}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Psychology")
-            || DataModel.universityProgramArrayList.get(x).getName().contains("Anthropology")
-            || DataModel.universityProgramArrayList.get(x).getName().contains("Sociology")
-            || DataModel.universityProgramArrayList.get(x).getName().contains("Social"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
+		} else if (question4Answer == 3) {
 
-    } else if (question2Answer == 4) {
+			for (int x = 0; x < recommendedProgramList.size(); x++) {
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+				if (!DataModel.universityProgramArrayList.get(x).getGradeRange().contains("80")
+						|| DataModel.universityProgramArrayList.get(x).getGradeRange().contains("90")
+						|| DataModel.universityProgramArrayList.get(x).getGradeRange().contains("80s"))
+					recommendedProgramList.remove(recommendedProgramList.get(x));
+			}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Law"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
+		} else if (question4Answer == 4) {
 
-    } else if (question2Answer == 5) {
+			for (int x = 0; x < recommendedProgramList.size(); x++) {
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+				if (!DataModel.universityProgramArrayList.get(x).getGradeRange().contains("90")
+						|| DataModel.universityProgramArrayList.get(x).getGradeRange().contains("100")
+						|| DataModel.universityProgramArrayList.get(x).getGradeRange().contains("90s"))
+					recommendedProgramList.remove(recommendedProgramList.get(x));
+			}
+		}
+	}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Engineering"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
-    }
-  }
+	private void questionFive() {
 
-  private void questionThree() {
+	}
 
-    if (question3Answer == 1 || question3Answer == 2) {
+	public boolean isCalculusTaken() {
+		return calculusTaken;
+	}
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+	public void setCalculusTaken(boolean calculusTaken) {
+		this.calculusTaken = calculusTaken;
+	}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Math"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
+	public boolean isFunctionsTaken() {
+		return functionsTaken;
+	}
 
-    } else if (question3Answer == 3) {
+	public void setFunctionsTaken(boolean functionsTaken) {
+		this.functionsTaken = functionsTaken;
+	}
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+	public boolean isEnglishTaken() {
+		return englishTaken;
+	}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("English")
-            || DataModel.universityProgramArrayList.get(x).getName().contains("Literature"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
+	public void setEnglishTaken(boolean englishTaken) {
+		this.englishTaken = englishTaken;
+	}
 
-    } else if (question3Answer == 4) {
+	public boolean isPhysicsTaken() {
+		return physicsTaken;
+	}
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+	public void setPhysicsTaken(boolean physicsTaken) {
+		this.physicsTaken = physicsTaken;
+	}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Physics"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
+	public boolean isBiologyTaken() {
+		return biologyTaken;
+	}
 
-    } else if (question3Answer == 5) {
+	public void setBiologyTaken(boolean biologyTaken) {
+		this.biologyTaken = biologyTaken;
+	}
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+	public boolean isChemistryTaken() {
+		return chemistryTaken;
+	}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Biology")
-            || DataModel.universityProgramArrayList.get(x).getName().contains("Life")
-            || DataModel.universityProgramArrayList.get(x).getName().contains("Medical"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
+	public void setChemistryTaken(boolean chemistryTaken) {
+		this.chemistryTaken = chemistryTaken;
+	}
 
-    } else if (question3Answer == 6) {
+	public int getQuestion2Answer() {
+		return question2Answer;
+	}
 
-      for (int x = 0; x < DataModel.universityProgramArrayList.size(); x++) {
+	public void setQuestion2Answer(int question2Answer) {
+		this.question2Answer = question2Answer;
+	}
 
-        if (DataModel.universityProgramArrayList.get(x).getName().contains("Chemistry"))
-          recommendedProgramList.add(DataModel.universityProgramArrayList.get(x));
-      }
-    }
-  }
+	public int getQuestion3Answer() {
+		return question3Answer;
+	}
 
-  private void questionFour() {
+	public void setQuestion3Answer(int question3Answer) {
+		this.question3Answer = question3Answer;
+	}
 
-    if (question4Answer == 1) {
+	public int getQuestion4Answer() {
+		return question4Answer;
+	}
 
-      for (int x = 0; x < recommendedProgramList.size(); x++) {
+	public void setQuestion4Answer(int question4Answer) {
+		this.question4Answer = question4Answer;
+	}
 
-        if (!DataModel.universityProgramArrayList.get(x).getGradeRange().contains("60")
-            || DataModel.universityProgramArrayList.get(x).getGradeRange().contains("70")
-            || DataModel.universityProgramArrayList.get(x).getGradeRange().contains("60s"))
-          recommendedProgramList.remove(recommendedProgramList.get(x));
-      }
+	public int getQuestion5Answer() {
+		return question5Answer;
+	}
 
-    } else if (question4Answer == 2) {
+	public void setQuestion5Answer(int question5Answer) {
+		this.question5Answer = question5Answer;
+	}
 
-      for (int x = 0; x < recommendedProgramList.size(); x++) {
+	public SurveyFrame getQuizFrame() {
+		return quizFrame;
+	}
 
-        if (!DataModel.universityProgramArrayList.get(x).getGradeRange().contains("70")
-            || DataModel.universityProgramArrayList.get(x).getGradeRange().contains("80")
-            || DataModel.universityProgramArrayList.get(x).getGradeRange().contains("70s"))
-          recommendedProgramList.remove(recommendedProgramList.get(x));
-      }
+	public void setQuizFrame(SurveyFrame quizFrame) {
+		this.quizFrame = quizFrame;
+	}
 
-    } else if (question4Answer == 3) {
+	public List<UniversityProgram> getRecommendedProgramList() {
+		return recommendedProgramList;
+	}
 
-      for (int x = 0; x < recommendedProgramList.size(); x++) {
+	public void setRecommendedProgramList(List<UniversityProgram> recommendedProgramList) {
+		this.recommendedProgramList = recommendedProgramList;
 
-        if (!DataModel.universityProgramArrayList.get(x).getGradeRange().contains("80")
-            || DataModel.universityProgramArrayList.get(x).getGradeRange().contains("90")
-            || DataModel.universityProgramArrayList.get(x).getGradeRange().contains("80s"))
-          recommendedProgramList.remove(recommendedProgramList.get(x));
-      }
+		if (question5Answer == 1)
+			for (int x = 0; x < recommendedProgramList.size(); x++) {
 
-    } else if (question4Answer == 3) {
+				if (DataModel.universityProgramArrayList.get(x).getExperientialLearning().contains("Not"))
+					recommendedProgramList.remove(DataModel.universityProgramArrayList.get(x));
+			}
 
-      for (int x = 0; x < recommendedProgramList.size(); x++) {
+		if (question5Answer == 2)
+			for (int x = 0; x < recommendedProgramList.size(); x++) {
 
-        if (!DataModel.universityProgramArrayList.get(x).getGradeRange().contains("90")
-            || DataModel.universityProgramArrayList.get(x).getGradeRange().contains("100")
-            || DataModel.universityProgramArrayList.get(x).getGradeRange().contains("90s"))
-          recommendedProgramList.remove(recommendedProgramList.get(x));
-      }
-    }
-  }
-
-  private void questionFive() {
-
-    if (question5Answer == 1)
-      for (int x = 0; x < recommendedProgramList.size(); x++) {
-
-        if (DataModel.universityProgramArrayList.get(x).getExperientialLearning().contains("Not"))
-          recommendedProgramList.remove(DataModel.universityProgramArrayList.get(x));
-      }
-
-    if (question5Answer == 2)
-      for (int x = 0; x < recommendedProgramList.size(); x++) {
-
-        if (DataModel.universityProgramArrayList
-            .get(x)
-            .getExperientialLearning()
-            .equals("Available"))
-          recommendedProgramList.remove(DataModel.universityProgramArrayList.get(x));
-      }
-  }
+				if (DataModel.universityProgramArrayList.get(x).getExperientialLearning().equals("Available"))
+					recommendedProgramList.remove(DataModel.universityProgramArrayList.get(x));
+			}
+	}
 }
