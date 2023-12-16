@@ -7,5 +7,16 @@
       "MCV4U": "31",
       "ENG4U": "67"
     }
+  },
+  {
+    "username": "Kevin",
+    "courseInfo": {
+      "MHF4U": "90",
+      "FRA4U": "90",
+      "SPH3U": "90",
+      "SBI4U": "90",
+      "MCV4U": "90",
+      "ENG4U": "90"
+    }
   }
 ]
