@@ -40,14 +40,14 @@ public class CourseObjJPanel extends JPanel {
 		courseCode = new JComboBox(courseList.toArray());
 
 		// flow layout for organizing horizontally
-		setLayout(new FlowLayout(FlowLayout.CENTER, 13, 3));
+		setLayout(new FlowLayout(FlowLayout.CENTER, 13, 5));
 		
 		// round the JTextField
 		courseMark.setBorder(new RoundedBorder(10, Color.GRAY));
 		
 		// set the size of the components
 //		courseCode.setRenderer(new CustomComboBox());
-		courseMark.setPreferredSize(new Dimension(117, 40));
+		courseMark.setPreferredSize(new Dimension(107, 40));
 		
 		
 		

@@ -29,7 +29,6 @@ public class InfoJPanel extends JPanel {
 
 	private JLabel courseHeader = new JLabel("Course Information");
 	private JLabel programHeader = new JLabel("Preferred Programs");
-	private JLabel universityHeader = new JLabel("Preferred Universities");
 	private JLabel[] courseNum = new JLabel[6];
 	private CourseObjJPanel[] course = new CourseObjJPanel[6];
 	private ArrayList<JLabel> preferredProgram = new ArrayList<JLabel>();
@@ -40,16 +39,15 @@ public class InfoJPanel extends JPanel {
 		// set font and size of all components in the JFrame
 		courseHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
 		programHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
-		universityHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
 
 		// used to center within the frame
 		courseHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
 		programHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
-		universityHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		// initially set the header
-		add(courseHeader);
 		add(Box.createRigidArea(new Dimension(0, 10)));
+		add(courseHeader);
+		add(Box.createRigidArea(new Dimension(0, 15)));
 
 		// add the course JLabels and course JTextFields to the JFrame
 		for (int i = 0; i < 6; i++) {
@@ -98,9 +96,9 @@ public class InfoJPanel extends JPanel {
 		}
 
 		// add a gap and a new header
-		add(Box.createRigidArea(new Dimension(0, 10)));
+		add(Box.createRigidArea(new Dimension(0, 30)));
 		add(programHeader);
-		add(Box.createRigidArea(new Dimension(0, 10)));
+		add(Box.createRigidArea(new Dimension(0, 15)));
 
 		// replace default preferred information with saved preferred information for
 		// that
