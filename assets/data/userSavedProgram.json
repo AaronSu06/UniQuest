@@ -1,2 +1,55 @@
 [
+  {
+    "username": "Kevin",
+    "programs": [
+      {
+        "name": "Drama",
+        "university": "University of Windsor",
+        "degree": "Bachelor of Arts, BA",
+        "ouacProgramCode": "NDS",
+        "gradeRange": "70–87%",
+        "experientialLearning": "Co-op option available with this program",
+        "enrollment": "No limit",
+        "instructionLanguage": "English",
+        "prerequisites": [
+          "ENG4U"
+        ],
+        "notes": "In addition to our BFA Acting program, we offer the following programs through our School of Dramatic Art: Drama Drama and Communication, Media and Film Drama in Education and Community with a concentration in Applied Theatre"
+      },
+      {
+        "name": "Zoology",
+        "university": "Laurentian University",
+        "degree": "Bachelor of Science, BSc",
+        "ouacProgramCode": "LZY",
+        "gradeRange": "70%",
+        "experientialLearning": "Not Available",
+        "enrollment": "Open",
+        "instructionLanguage": "English",
+        "prerequisites": [
+          "1 grade 12 English U/M course (ENG 4U)",
+          "1 grade 12 Advanced Functions (MHF 4U)",
+          "2 grade 12 U Science courses or 1 Science + 1 Math",
+          "2 other grade 12 U/M courses",
+          "A minimum overall average of 70% in the 6 best grade 12 U/M courses"
+        ]
+      },
+      {
+        "name": "Nanotechnology and Clean Energy (Co-op)",
+        "university": "Ontario Tech University",
+        "degree": "Bachelor of Science (Co-op), BSc (Co-op) Bachelor of Science & Management (Co-op), BSc&Mgt (Co-op)",
+        "ouacProgramCode": "DGC",
+        "gradeRange": "Low 70s",
+        "experientialLearning": "Co-op program",
+        "enrollment": "300",
+        "instructionLanguage": "English",
+        "prerequisites": [
+          "Six 4U/M credits, including ENG4U and MHF4U",
+          "Two of MCV4U, SBI4U, SCH4U or SPH4U",
+          "A combined minimum 70% average in prerequisite math and science courses",
+          "We recommend you take all 4 of MCV4U, SBI4U, SCH4U and SPH4U"
+        ],
+        "notes": "Nanotechnology and Clean Energy is a specialization within the Physics program. Students interested in the 5-year Bachelor of Science and Management (Honours) program will have an opportunity to apply to this option in their upper years of study."
+      }
+    ]
+  }
 ]

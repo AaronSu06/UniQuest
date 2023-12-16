@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.group3.controller.LoginController;
 import org.group3.model.DataModel;
+import org.group3.model.UniversityProgram;
 import org.group3.model.UserProgram;
 
 public class ProgramJPanel extends JPanel {
@@ -48,24 +49,24 @@ public class ProgramJPanel extends JPanel {
 		}
 
 		// if not null, as in a file exists
-		if (userProgramList.size() > 0) {
+		if (userProgramList != null || userProgramList.size() > 0) {
 
 			// loop through the saved user information list
 			for (UserProgram userProgram : userProgramList) {
 
 				// check if the username matches that of the username from the saved information
-				if (!(LoginController.user.equals(null)) && LoginController.user.equals(userProgram.getUsername())) {
-					addUserProgram(userProgram.getProgram());
+				if (LoginController.user != null && LoginController.user.equals(userProgram.getUsername())) {
+					addUserProgram(userProgram.getPrograms());
 				}
 			}
 		}
 	}
 
 	// display the preferred program information
-	public void addUserProgram(ArrayList<String> userProgram) {
-		for (int i = 0; i < userProgram.size(); i++) {
+	public void addUserProgram(ArrayList<UniversityProgram> programArrayList) {
+		for (int i = 0; i < programArrayList.size(); i++) {
 			preferredProgram.add(new JLabel());
-			preferredProgram.get(i).setText(userProgram.get(i));
+			preferredProgram.get(i).setText(programArrayList.get(i).getName() + " at " + programArrayList.get(i).getUniversity());
 			preferredProgram.get(i).setFont(new Font("Sans Serif", Font.BOLD, 18));
 			preferredProgram.get(i).setAlignmentX(Component.CENTER_ALIGNMENT);
 			add(preferredProgram.get(i));

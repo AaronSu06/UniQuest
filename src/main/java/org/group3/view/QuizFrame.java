@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class SurveyFrame extends JFrame {
+public class QuizFrame extends JFrame {
 
   private JLabel titleLabel = new JLabel("University Programs Survey");
 	private JLabel question1 = new JLabel("What courses did you take in grade 12?");
@@ -35,7 +35,7 @@ public class SurveyFrame extends JFrame {
 
 	JScrollPane mainScrollPane = new JScrollPane();
 
-	public SurveyFrame() {
+	public QuizFrame() {
 //		setLocationRelativeTo(null);
 		menuPanel.setBounds(0,0,1280,45);
 		add(menuPanel);

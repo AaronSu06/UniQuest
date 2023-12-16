@@ -7,10 +7,10 @@ public class UserProgram {
 	private String username;
 	private ArrayList<UniversityProgram> programs = new ArrayList<UniversityProgram>();
 	
-	public UserProgram(String username, ArrayList<UniversityProgram> program) {
+	public UserProgram(String username, ArrayList<UniversityProgram> programs) {
 		super();
 		this.username = username;
-		this.programs.addAll(program);
+    this.programs = programs;
 	}
 
 	public String getUsername() {
