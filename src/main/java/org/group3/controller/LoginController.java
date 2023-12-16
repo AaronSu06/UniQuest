@@ -91,7 +91,7 @@ public class LoginController implements ActionListener, FocusListener {
 					homeFrame.getConfirmPassword().setBorder(new RoundedBorder(10, Color.GRAY));
 					JOptionPane.showMessageDialog(homeFrame, "User has signed up");
 					userAccountList = DataModel.getUserAccounts();
-					
+
 					isLogin();
 				}
 			} catch (IOException e1) {
@@ -124,6 +124,10 @@ public class LoginController implements ActionListener, FocusListener {
 						homeFrame.setVisible(false);
 						MainController.enableCourseInfoController();
 						MainController.searchFrameController.getSearchFrame().setVisible(true);
+						MainController.searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[0]
+								.setForeground(new Color(255, 255, 255));
+						MainController.searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[0]
+								.getPanel().setBackground(new Color(255, 255, 255));
 
 						try {
 							MainController.searchFrameController.retrieveUserInformation();
@@ -158,6 +162,10 @@ public class LoginController implements ActionListener, FocusListener {
 			JOptionPane.showMessageDialog(homeFrame, "Signed In As Guest");
 			homeFrame.setVisible(false);
 			MainController.searchFrameController.getSearchFrame().setVisible(true);
+			MainController.searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[0]
+					.setForeground(new Color(255, 255, 255));
+			MainController.searchFrameController.getSearchFrame().getMenuPanel().getFrameButtons()[0]
+					.getPanel().setBackground(new Color(255, 255, 255));
 
 			user = null;
 		}
@@ -286,4 +294,3 @@ public class LoginController implements ActionListener, FocusListener {
 		this.homeFrame = homeFrame;
 	}
 }
-

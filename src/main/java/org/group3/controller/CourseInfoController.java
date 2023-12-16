@@ -56,6 +56,8 @@ public class CourseInfoController implements ActionListener {
 
 				// store the changes from the courseJPanel into an Array
 				for (int i = 0; i < 6; i++) {
+					System.out.println(personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString());
+					
 					courseInfo.put(
 							personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString(),
 							personalInfo.getInfoPanel().getCourse()[i].getCourseMark().getText());
@@ -83,8 +85,7 @@ public class CourseInfoController implements ActionListener {
 			for (int x = i + 1; x < 6; x++) {
 				if (personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString()
 						.equals(personalInfo.getInfoPanel().getCourse()[x].getCourseCode().getSelectedItem().toString()) &&
-						!personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString()
-						.equals("Nil")) {
+						!personalInfo.getInfoPanel().getCourse()[i].getCourseCode().getSelectedItem().toString().equals("Nil")) {
 					JOptionPane.showMessageDialog(personalInfo, "You Cannot Have Multiple of the Same Course! Please Try Again.");
 					return false;
 				}

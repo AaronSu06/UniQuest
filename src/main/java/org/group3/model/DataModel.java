@@ -24,7 +24,6 @@ public class DataModel {
   public static final String USER_ACCOUNT_PATH = "assets/data/userAccount.json";
   public static final String USER_INFO_PATH = "assets/data/userInfo.json";
   public static final String USER_PROGRAM_PATH = "assets/data/userSavedProgram.json";
-  public static final String USER_UNI_PATH = "assets/data/userSavedUni.json";
 
   // Data creation: generating all of the universities
   public static final University[] UNIVERSITIES =
@@ -265,40 +264,40 @@ public class DataModel {
     }
   }
 
-  // INFORMATION FOR USER COURSES
-  public static void generateUserInfo(
-      String username, HashMap<String, String> courseInfo, String[] keyArr) throws IOException {
+//INFORMATION FOR USER COURSES
+  public static void generateUserInfo(String username, HashMap<String, String> courseInfo, String[] keyArr)
+          throws IOException {
 
-    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+      Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-    ArrayList<UserInfo> users = new ArrayList<UserInfo>();
+      ArrayList<UserInfo> users = new ArrayList<UserInfo>();
 
-    // get the user information stored in the .json file so that we don't overwrite
-    // it (if it exists)
-    List<UserInfo> userInfoList = getUserInformation();
+      // get the user information stored in the .json file so that we don't overwrite
+      // it (if it exists)
+      List<UserInfo> userInfoList = getUserInformation();
 
-    // if not null, as in a file exists, add it to the user ArrayList
-    if (userInfoList.size() > 0) {
-      for (UserInfo userInfo : userInfoList) {
+      // if not null, as in a file exists, add it to the user ArrayList
+      if (userInfoList.size() > 0) {
+          for (UserInfo userInfo : userInfoList) {
 
-        // if the user already has existing information saved, don't add the information
-        // so that we won't have duplicates of the same user
-        if (!(userInfo.getUsername().equals(username))) {
-          users.add(userInfo);
-        }
+              // if the user already has existing information saved, don't add the information
+              // so that we won't have duplicates of the same user
+              if (!(userInfo.getUsername().equals(username))) {
+                  users.add(userInfo);
+              }
+          }
       }
-    }
 
-    // add the current user information to the user ArrayList
-    users.add(new UserInfo(username, courseInfo, keyArr));
+      // add the current user information to the user ArrayList
+      users.add(new UserInfo(username, courseInfo, keyArr));
 
-    // read and write to the .json file
-    String jsonString = gson.toJson(users);
-    try (FileWriter writer = new FileWriter(USER_INFO_PATH)) {
-      writer.write(jsonString);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+      // read and write to the .json file
+      String jsonString = gson.toJson(users);
+      try (FileWriter writer = new FileWriter(USER_INFO_PATH)) {
+          writer.write(jsonString);
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
   }
 
   public static List<UserInfo> getUserInformation() throws IOException {
