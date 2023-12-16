@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class UserProgram {
 
 	private String username;
-	private ArrayList<String> program = new ArrayList<String>();
+	private ArrayList<UniversityProgram> programs = new ArrayList<UniversityProgram>();
 	
-	public UserProgram(String username, ArrayList<String> program) {
+	public UserProgram(String username, ArrayList<UniversityProgram> program) {
 		super();
 		this.username = username;
-		this.program.addAll(program);
+		this.programs.addAll(program);
 	}
 
 	public String getUsername() {
@@ -21,17 +21,17 @@ public class UserProgram {
 		this.username = username;
 	}
 
-	public ArrayList<String> getProgram() {
-		return program;
+	public ArrayList<UniversityProgram> getPrograms() {
+		return programs;
 	}
 
-	public void setProgram(ArrayList<String> program) {
-		this.program = program;
+	public void setPrograms(ArrayList<UniversityProgram> program) {
+		this.programs = program;
 	}
 
 	@Override
 	public String toString() {
-		return "UserProgram [username=" + username + ", program=" + program + "]";
+		return "UserProgram [username=" + username + ", program=" + programs + "]";
 	}
 }
 

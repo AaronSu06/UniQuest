@@ -17,6 +17,7 @@ import javax.swing.*;
 import org.group3.controller.LoginController;
 import org.group3.view.PersonalInfoFrame;
 import org.group3.model.DataModel;
+import org.group3.model.UniversityProgram;
 import org.group3.model.UserInfo;
 import org.group3.model.UserProgram;
 
@@ -121,7 +122,7 @@ public class InfoJPanel extends JPanel {
 
 				// check if the username matches that of the username from the saved information
 				if (LoginController.user != null && LoginController.user.equals(userProgram.getUsername())) {
-					addUserProgram(userProgram.getProgram());
+					addUserProgram(userProgram.getPrograms());
 				}
 			}
 		}
@@ -187,10 +188,10 @@ public class InfoJPanel extends JPanel {
 	}
 
 	// display the preferred program information
-	public void addUserProgram(ArrayList<String> userProgram) {
-		for (int i = 0; i < userProgram.size(); i++) {
+	public void addUserProgram(ArrayList<UniversityProgram> userPrograms) {
+		for (int i = 0; i < userPrograms.size(); i++) {
 			preferredProgram.add(new JLabel());
-			preferredProgram.get(i).setText(userProgram.get(i));
+			preferredProgram.get(i).setText(userPrograms.get(i).getName() + " at " + userPrograms.get(i).getUniversity());
 			preferredProgram.get(i).setFont(new Font("Sans Serif", Font.BOLD, 20));
 			preferredProgram.get(i).setAlignmentX(Component.CENTER_ALIGNMENT);
 			add(preferredProgram.get(i));

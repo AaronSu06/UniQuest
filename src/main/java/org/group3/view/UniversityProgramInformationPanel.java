@@ -13,10 +13,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 import org.group3.controller.LoginController;
 import org.group3.model.DataModel;
 import org.group3.model.UniversityProgram;
+import org.group3.model.UserProgram;
 
 // class
 public class UniversityProgramInformationPanel extends JPanel {
@@ -33,7 +36,8 @@ public class UniversityProgramInformationPanel extends JPanel {
   private ArrayList<JTextArea> prerequisitesTextAreaArray = new ArrayList<JTextArea>();
   private JTextArea notesTextArea = new JTextArea();
   private JButton favouriteProgramButton = new JButton();
-  private ArrayList<String> programList = new ArrayList<>();
+
+  private ArrayList<UniversityProgram> programList = new ArrayList<>();
 
   public UniversityProgramInformationPanel(UniversityProgram program) {
 
@@ -42,13 +46,12 @@ public class UniversityProgramInformationPanel extends JPanel {
     // https://stackoverflow.com/questions/23951882/how-to-align-the-elements-to-the-top-in-a-gridbaglayout
     GridBagLayout gbl = new GridBagLayout();
     setLayout(gbl);
-    gbl.columnWidths = new int[] {0, 0, 0, 0};
-    gbl.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    gbl.columnWeights = new double[] {0.0, 0.0, 1.0, Double.MIN_VALUE};
-    gbl.rowWeights =
-        new double[] {
-          0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE
-        };
+    gbl.columnWidths = new int[] { 0, 0, 0, 0 };
+    gbl.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    gbl.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
+    gbl.rowWeights = new double[] {
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE
+    };
 
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.insets = new Insets(10, 10, 10, 10);
@@ -96,16 +99,20 @@ public class UniversityProgramInformationPanel extends JPanel {
           }
 
           @Override
-          public void mouseEntered(MouseEvent arg0) {}
+          public void mouseEntered(MouseEvent arg0) {
+          }
 
           @Override
-          public void mouseExited(MouseEvent arg0) {}
+          public void mouseExited(MouseEvent arg0) {
+          }
 
           @Override
-          public void mousePressed(MouseEvent arg0) {}
+          public void mousePressed(MouseEvent arg0) {
+          }
 
           @Override
-          public void mouseReleased(MouseEvent arg0) {}
+          public void mouseReleased(MouseEvent arg0) {
+          }
         });
     gbc.gridy++;
     GUIUtils.setFontRenderingHints(ouacProgramCodeButton);
@@ -187,7 +194,7 @@ public class UniversityProgramInformationPanel extends JPanel {
           public void actionPerformed(ActionEvent e) {
             if (!LoginController.user.equals(null)) {
 
-              programList.add(program.getName() + " at " + program.getUniversity());
+              programList.add(program);
 
               try {
                 DataModel.generateUserProgram(LoginController.user, programList);
