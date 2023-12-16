@@ -15,6 +15,7 @@ public class PersonalInfoFrame extends JFrame {
 	private JButton saveBtn = new JButton("Save");
 
 	Color green = new Color(132, 199, 80);
+	Color white = new Color(255, 255 , 255);
 
 	public PersonalInfoFrame() {
 
@@ -46,9 +47,12 @@ public class PersonalInfoFrame extends JFrame {
 		courseScrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		courseScrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		courseScrollBar.setViewportView(infoPanel);
+		
 		programScrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		programScrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		programScrollBar.setViewportView(programPanel);
+		
+		infoPanel.setBackground(white);
 
 		// pack
 		add(menuPanel, BorderLayout.PAGE_START);

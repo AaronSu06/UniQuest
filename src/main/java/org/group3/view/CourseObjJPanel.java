@@ -9,6 +9,7 @@ import org.group3.model.UniversityProgram;
 
 public class CourseObjJPanel extends JPanel {
 
+	// instance variables
 	private ArrayList<String> courseList = new ArrayList<String>();
 	private JComboBox<ArrayList> courseCode;
 	private JTextField courseMark = new JTextField("Course Mark");
@@ -17,14 +18,15 @@ public class CourseObjJPanel extends JPanel {
 	Color green = new Color(132, 199, 80);
 	Color red = new Color(222, 49, 99);
 	Color gray = new Color(207, 207, 207);
+	Color white = new Color(255, 255, 255);
 
 	public CourseObjJPanel() {
+		setBackground(white);
 		
+		// add the course code options to an ArrayList
 		courseList.add("Nil");
 		for(int i =0;i<DataModel.universityProgramArrayList.size();i++) {
-//			System.out.println(i);
 			for(String string: DataModel.universityProgramArrayList.get(i).getCourseCodes()) {
-//				System.out.println(string+ "THIS IS STRING");
 				
 				if(!courseList.contains(string)) {
 					courseList.add(string);
@@ -32,7 +34,11 @@ public class CourseObjJPanel extends JPanel {
 			}
 		}
 		
+		// set the JComboBox to the ArrayList
 		courseCode = new JComboBox(courseList.toArray());
+		
+		// set the text in the JTextField
+		courseMark.setHorizontalAlignment(JTextField.CENTER);
 
 		// flow layout for organizing horizontally
 		setLayout(new FlowLayout(FlowLayout.CENTER, 13, 5));
@@ -41,7 +47,6 @@ public class CourseObjJPanel extends JPanel {
 		courseMark.setBorder(new RoundedBorder(10, Color.GRAY));
 		
 		// set the size of the components
-//		courseCode.setRenderer(new CustomComboBox());
 		courseMark.setPreferredSize(new Dimension(107, 40));
 		
 		

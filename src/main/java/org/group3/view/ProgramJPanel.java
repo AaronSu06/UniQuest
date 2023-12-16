@@ -1,5 +1,6 @@
 package org.group3.view;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,7 +21,9 @@ public class ProgramJPanel extends JPanel {
 	private ArrayList<JLabel> preferredProgram = new ArrayList<JLabel>();
 
 	public ProgramJPanel() {
+		// box layout for vertical packing and change the background to white
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setBackground(Color.white);
 		
 		// set font and size of all components in the JFrame
 		programHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
@@ -63,7 +66,7 @@ public class ProgramJPanel extends JPanel {
 		for (int i = 0; i < userProgram.size(); i++) {
 			preferredProgram.add(new JLabel());
 			preferredProgram.get(i).setText(userProgram.get(i));
-			preferredProgram.get(i).setFont(new Font("Sans Serif", Font.BOLD, 20));
+			preferredProgram.get(i).setFont(new Font("Sans Serif", Font.BOLD, 18));
 			preferredProgram.get(i).setAlignmentX(Component.CENTER_ALIGNMENT);
 			add(preferredProgram.get(i));
 
