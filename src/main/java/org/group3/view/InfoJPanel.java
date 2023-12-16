@@ -24,25 +24,20 @@ public class InfoJPanel extends JPanel {
 
 	// instance variables
 	List<UserInfo> userInfoList = null;
-	List<UserProgram> userProgramList = null;
 	ArrayList<String> keyArr = new ArrayList<String>();
 
 	private JLabel courseHeader = new JLabel("Course Information");
-	private JLabel programHeader = new JLabel("Preferred Programs");
 	private JLabel[] courseNum = new JLabel[6];
 	private CourseObjJPanel[] course = new CourseObjJPanel[6];
-	private ArrayList<JLabel> preferredProgram = new ArrayList<JLabel>();
 
 	public InfoJPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		// set font and size of all components in the JFrame
 		courseHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
-		programHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
 
 		// used to center within the frame
 		courseHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
-		programHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		// initially set the header
 		add(Box.createRigidArea(new Dimension(0, 10)));
@@ -93,35 +88,6 @@ public class InfoJPanel extends JPanel {
 
 			// add it to the JPanel
 			add(course[i]);
-		}
-
-		// add a gap and a new header
-		add(Box.createRigidArea(new Dimension(0, 30)));
-		add(programHeader);
-		add(Box.createRigidArea(new Dimension(0, 15)));
-
-		// replace default preferred information with saved preferred information for
-		// that
-		// user (if
-		// possible)
-		try {
-			// get the saved user information
-			userProgramList = DataModel.getUserProgram();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// if not null, as in a file exists
-		if (userProgramList.size() > 0) {
-
-			// loop through the saved user information list
-			for (UserProgram userProgram : userProgramList) {
-
-				// check if the username matches that of the username from the saved information
-				if (!(LoginController.user.equals(null)) && LoginController.user.equals(userProgram.getUsername())) {
-					addUserProgram(userProgram.getProgram());
-				}
-			}
 		}
 
 		// replace default course information with saved course information for that
@@ -180,29 +146,6 @@ public class InfoJPanel extends JPanel {
 			
 			if (!course[i].getCourseCode().getSelectedItem().toString().equals("Nil")) {
 				course[i].getCourseMark().setText(userInfo.getCourseInfo().get(keyArr.get(i)));
-			}
-		}
-	}
-
-	// display the preferred program information
-	public void addUserProgram(ArrayList<String> userProgram) {
-		for (int i = 0; i < userProgram.size(); i++) {
-			preferredProgram.add(new JLabel());
-			preferredProgram.get(i).setText(userProgram.get(i));
-			preferredProgram.get(i).setFont(new Font("Sans Serif", Font.BOLD, 20));
-			preferredProgram.get(i).setAlignmentX(Component.CENTER_ALIGNMENT);
-			add(preferredProgram.get(i));
-
-			add(Box.createRigidArea(new Dimension(0, 15)));
-
-			// replace default course information with saved course information for that
-			// user (if
-			// possible)
-			try {
-				// get the saved user program information
-				userProgramList = DataModel.getUserProgram();
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
 		}
 	}

@@ -6,8 +6,11 @@ import javax.swing.*;
 public class PersonalInfoFrame extends JFrame {
 
 	private MenuPanel menuPanel = new MenuPanel();
-	private JScrollPane scrollBar = new JScrollPane();
+	private JScrollPane courseScrollBar = new JScrollPane();
+	private JScrollPane programScrollBar = new JScrollPane();
+	private JPanel middlePanel = new JPanel();
 	private InfoJPanel infoPanel = new InfoJPanel();
+	private ProgramJPanel programPanel = new ProgramJPanel();
 	private JPanel btnPanel = new JPanel();
 	private JButton saveBtn = new JButton("Save");
 
@@ -28,15 +31,28 @@ public class PersonalInfoFrame extends JFrame {
 		saveBtn.setOpaque(false);
 		btnPanel.add(saveBtn);
 
+		// middlePanel settings
+		middlePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
+		middlePanel.add(courseScrollBar);
+		middlePanel.add(programScrollBar);
+		
+		// set preferred size of the scrollBars
+		courseScrollBar.setPreferredSize(new Dimension(600, 540));
+		programScrollBar.setPreferredSize(new Dimension(600, 540));
+
 		setLayout(new BorderLayout());
 
 		// preferences for the scroll bar
-		scrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollBar.setViewportView(infoPanel);
+		courseScrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		courseScrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		courseScrollBar.setViewportView(infoPanel);
+		programScrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		programScrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		programScrollBar.setViewportView(programPanel);
 
+		// pack
 		add(menuPanel, BorderLayout.PAGE_START);
-		add(scrollBar, BorderLayout.CENTER);
+		add(middlePanel, BorderLayout.CENTER);
 		add(btnPanel, BorderLayout.PAGE_END);
 
 		// settings for the JFrame
@@ -72,12 +88,12 @@ public class PersonalInfoFrame extends JFrame {
 		this.menuPanel = menuPanel;
 	}
 
-	public JScrollPane getScrollBar() {
-		return scrollBar;
+	public JScrollPane getcourseScrollBar() {
+		return courseScrollBar;
 	}
 
-	public void setScrollBar(JScrollPane scrollBar) {
-		this.scrollBar = scrollBar;
+	public void setcourseScrollBar(JScrollPane courseScrollBar) {
+		this.courseScrollBar = courseScrollBar;
 	}
 
 	public JPanel getBtnPanel() {
@@ -98,7 +114,7 @@ public class PersonalInfoFrame extends JFrame {
 
 	public void update() {
 		
-		scrollBar.setViewportView(new InfoJPanel());
+		programScrollBar.setViewportView(new ProgramJPanel());
 		
 		repaint();
 		revalidate();

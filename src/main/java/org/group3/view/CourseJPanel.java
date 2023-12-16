@@ -17,7 +17,6 @@ public class CourseJPanel extends JPanel {
 
   private JLabel courseHeader = new JLabel("Course Information");
   private JLabel programHeader = new JLabel("Preferred Programs");
-  private JLabel universityHeader = new JLabel("Preferred Universities");
   private JLabel[] courseNum = new JLabel[6];
   private CourseObjJPanel[] course = new CourseObjJPanel[6];
 
@@ -27,12 +26,10 @@ public class CourseJPanel extends JPanel {
     // set font and size of all components in the JFrame
     courseHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
     programHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
-    universityHeader.setFont(new Font("Sans Serif", Font.BOLD, 36));
 
     // used to center within the frame
     courseHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
     programHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
-    universityHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
 
     // initially set the header
     add(courseHeader);
